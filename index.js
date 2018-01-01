@@ -1,5 +1,5 @@
 /*
- * Vorlesung "Webprogrammierung"
+ * Vorlesung "Verteilte Systeme"
  * im Studiengang Wirtschaftsinformatik
  * an der DHBW Karlsurhe
  *
@@ -35,6 +35,8 @@
  */
 "use strict";
 
+import emailLinkJs from "email-link.js";
+
 import SlideshowPlayer from "lecture-slides.js";
 import "./style/style.less";
 
@@ -42,6 +44,8 @@ import LsPluginHighlightJs from "ls-plugin-highlight.js";
 import "./node_modules/highlight.js/styles/atom-one-light.css";
 
 window.addEventListener("load", () => {
+    emailLinkJs.enableEmailLinks();
+
     let player = new SlideshowPlayer({
         labelPrev: "Zurück",
         labelNext: "Weiter",
