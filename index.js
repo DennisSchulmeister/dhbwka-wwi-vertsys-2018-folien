@@ -50,7 +50,10 @@ window.addEventListener("load", () => {
         labelPrev: "Zurück",
         labelNext: "Weiter",
         labelGoTo: "Gehe zu",
+        labelViewMenu: "Ansicht",
         labelOverview: "Übersicht",
+        labelSlideView: "Folien",
+        labelPrintView: "Drucken",
         labelPresentationMode: "Präsentationsmodus",
         mode: "overview",
         plugins: {
