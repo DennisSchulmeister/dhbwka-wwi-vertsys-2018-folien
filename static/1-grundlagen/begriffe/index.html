@@ -12,7 +12,10 @@
         <header>
             <h2>Inhaltsverzeichnis</h2>
             <p>
-                TODO
+                Bevor wir loslegen und programmieren können, wollen wir an dieser Stelle
+                erst einmal das Themengebiet unserer Vorlesung abstecken. Hier erhältst
+                du daher einen umfassenden Überblick, was verteilte Systeme sind und
+                welche Möglichkeiten es bei ihrer Entwicklung gibt.
             </p>
         </header>
 
@@ -22,35 +25,73 @@
         <section data-chapter data-background-color="rgb(210,190,210)">
             <h1>Lernziele dieser Einheit</h1>
             <article>
-                <h2>Übergeordnete Kompetenzziele</h2>
+                <h3>Nach Abschluss dieser Einheit kannst du …</h3>
                 <ul>
                     <li>
-                        …
+                        den Begriff <span class="dhbw-lightblue font-weight-bold">verteiltes System</span>
+                        erklären und von ähnlichen Begriffen abgrenzen.
                     </li>
-                </ul>
-
-                <h2>Lernziele des Selbststudiums</h2>
-                <ul>
                     <li>
-                        …
+                        Beispiele für <span class="dhbw-lightblue font-weight-bold">verteilte Anwendungen</span>
+                        nennen und von normalen Anwendungen abgrenzen.
                     </li>
-                </ul>
-
-                <h2>Lernziele der nächsten Vorlesung</h2>
-                <ul>
                     <li>
-                        …
+                        die wichtigsten Gründe nennen, warum wir in der Wirtschaftsinformatik verteilte
+                        Systeme entwickeln 💰.
+                    </li>
+                    <li>
+                        die Bedeutung des <span class="dhbw-lightblue font-weight-bold">CAP-Theorem</span> verstehen
+                        und seine Bedeutung wiedergeben.
+                    </li>
+                    <li>
+                        die Begriffe <span class="dhbw-lightblue font-weight-bold">Client</span>,
+                        <span class="dhbw-lightblue font-weight-bold">Server</span> und
+                        <span class="dhbw-lightblue font-weight-bold">Peer</span> exakt definieren und voneinander abgrenzen.
+                    </li>
+                    <li>
+                        beschreiben, was eine <span class="dhbw-lightblue font-weight-bold">Middleware</span>
+                        ist und welche Aufgaben sie besitzt.
+                    </li>
+                    <li>
+                        beschreiben, wie es zur Entwicklung heutiger Middlewarearten gekommen ist.
+                    </li>
+                    <li>
+                        unterschiedliche Arten der Kommunikation verteilter Systeme gegeneinander abwägen.
+                    </li>
+                    <li>
+                        die gängigsten <span class="dhbw-lightblue font-weight-bold">Architekturmuster
+                        verteilter Anwendungen</span> beschreiben und bewerten.
                     </li>
                 </ul>
                 <span style="font-size: 240px; color: white;" class="dhbw-text-shadow" >🏁</span>
             </article>
             <aside>
                 <p>
-                    In dieser Einheit zeigen wir die, wie du … / lernst du …
-                    Hierfür schauen wir uns … / Beginnen werden wir deshalb mit …
+                    Heute wollen wir uns noch nicht ganz so tief in die Programmierung stürzen. Denn bevor damit
+                    so richtig loslegen können, musst du erst noch ein paar Grundbegriffe kennen und verstehen.
+                    Beginnen werden wir die Einheit daher mit ein paar einfachen Definitionen der beiden Begriffe
+                    <b>verteiltes System️</b> und <b>verteilte Anwendung</b>, wobei wir hier insbesondere auf die
+                    Unterschiede beider Begriffe und ihre heute Bedeutung für die Wirtschaftsinformatik 💰 eingehen
+                    werden. Des Weiteren werden wir bei dieser Gelegenheit die beiden Begriffe <b>Client</b> und
+                    <b>Server</b> nochmal etwas genauer anschauen. Zwar handelt es sich dabei um alltägliche Begriffe,
+                    die du sicher auch schon so gekannt hast, doch gerade weil sie so alltäglich sind, versteht
+                    eigentlich jeder etwas anderes darunter und keiner weiß so ganz genau, was sie bedeuten und
+                    was nicht. 🤔
                 </p>
                 <p>
-                    In der Vorlesung werden wir dann …
+                    Anschließend gehen wir dann doch schon ein ganz klein wenig auf die Programmierung ein, indem
+                    wir zeigen, was eine <b>Middleware</b> ist und welche Aufgaben sie hat. Denn, soviel sei hier
+                    schon verraten, im Prinzip könnten wir zwar auch mit den Boardmitteln von Java verteilte Anwendungen
+                    schreiben, in vielen Fällen gibt es aber komfortablere Möglichkeiten, die uns viel Arbeit sparen
+                    können. Aus diesem Grund lernen wir hier verschiedene Middlewarearten kennen, und zeigen, welche
+                    Programmierstile sie begünstigen.
+                </p>
+                <p>
+                    Vollenden werden wir die heilige Dreieinigkeit mit einer kurzen Besprechung der wichtigsten
+                    <b>Architekturmuster verteilter Anwendungen</b>. Ausgehend von ein paar einfachen Fallbeispielen
+                    zeigen wir dabei, aus welchen Bestandteilen verteilte Anwendungen bestehen können und wie
+                    diese zusammenspielen. Damit kennst du dann alle Grundlagen 📚, um für den Rest der Vorlesung
+                    in unterschiedlichen Middlewares, Frameworks und natürlich ganz viel Quellcode zu versinken. 🕳️
                 </p>
             </aside>
         </section>
@@ -73,7 +114,258 @@
         <section>
             <h1>Definition des Begriffs „Verteiltes System”</h1>
             <article>
-                …
+                <h2>Allgemeine Definition</h2>
+
+                <div style="margin-bottom: 1em;">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "vertsys-definition-system-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#vertsys-definition-system"
+                                role          = "tab"
+                                aria-controls = "vertsys-definition-system"
+                                aria-expanded = "true"
+                            >
+                                Ach, ein System
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "vertsys-definition-computer-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#vertsys-definition-computer"
+                                role          = "tab"
+                                aria-controls = "vertsys-definition-computer"
+                            >
+                                Mehrere Computer
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "vertsys-definition-cpus-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#vertsys-definition-cpus"
+                                role          = "tab"
+                                aria-controls = "vertsys-definition-cpus"
+                            >
+                                Mehrere Rechenkerne
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Ach, ein System -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "vertsys-definition-system"
+                            role            = "tabpanel"
+                            aria-labelledby = "vertsys-definition-system-tab"
+                        >
+                            <p>
+                                Jeden Tag sprechen wir vom System: <br />
+                                <i>📣 Das System hängt mal wieder.</i> <br />
+                                <i>📣 Dazu musst du dich am System anmelden.</i><br />
+                                <i>📣 Das haben wir im System gespeichert.</i>
+                            </p>
+                            <p>
+                                Doch was um alles in der Welt ist überhaupt ein „System”
+                                <span style="color: crimson; text-shadow: 1px 1px 1px rgba(0,0,0,0.5);">⁉️</span>
+                            </p>
+                            <div class="embed-responsive-16by9">
+                                <iframe src="https://www.youtube-nocookie.com/embed/UWU14-EK9CE" allow="encrypted-media" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <!-- Vollständig getrennte Computereinheiten -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "vertsys-definition-computer"
+                            role            = "tabpanel"
+                            aria-labelledby = "vertsys-definition-computer-tab"
+                        >
+                            <p>
+                                Die klassische Definition eines verteilten Systems: Mehre <b>voneinander unabhängige Computer</b>
+                                (Prozessoren) <b>mit jeweils eigenem Hauptspeicher</b> tauschen über ein Netzwerk Daten miteinander
+                                Daten aus, um <b>eine gemeinsame Aufgabe</b> zu bearbeiten.
+                            </p>
+                            <p>
+                                <img src="verteiltes-system.jpg" alt="Skizze eines verteilten Systems mit mehreren Computern" style="width: 100%" />
+                            </p>
+                            <p>
+                                <small>
+                                    <small>
+                                        Bildnachweise:
+                                        <a href="https://commons.wikimedia.org/wiki/File:Jolla_PoppyRed_Home.jpg" target="_blank">Wikimedia Commons: Jolla Ltd.</a>,
+                                        <a href="https://pixabay.com/en/macbook-laptop-players-mac-office-1443927/" target="_blank">Pixabay: Elianos2</a>,
+                                        <a href="https://pixabay.com/en/imac-pc-personal-computer-computer-2493287/" target="_blank">Pixabay: GAMEZONA</a>,
+                                        <a href="https://pixabay.com/en/router-network-connection-pc-670079/" target="_blank">Pixabay: succo</a>,
+                                        <a href="https://pixabay.com/en/computer-file-mounted-158930/" target="_blank">Pixabay: OpenClipart-Vectors</a>
+                                    </small>
+                                </small>
+                            </p>
+                        </div>
+                        <!-- Mehrere Prozessoren mit gemeinsamem Speicher -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "vertsys-definition-cpus"
+                            role            = "tabpanel"
+                            aria-labelledby = "vertsys-definition-cpus-tab"
+                        >
+                            <p>
+                                Dies ist <u>kein</u> verteiltes System. Zwar haben wir hier auch mehrere, prinzipiell unabhängige
+                                Prozessoren. Jedoch teilen sich diese den Hauptspeicher und alle andere Peripherie des Systems, so
+                                dass man hier für alle praktischen Belange von einem einzelnen Computer ausgehen kann.
+                            </p>
+                            <p>
+                                <img src="smp.svg" alt="Schematisches Diagramm eines symetrischen Multiprozessorsystems" style="width: 100%" />
+                            </p>
+                            <p>
+                                <small>
+                                    <small>
+                                        Bildnachweis: In Anlehnung an
+                                        <a href="https://en.wikipedia.org/wiki/Symmetric_multiprocessing#/media/File:SMP_-_Symmetric_Multiprocessor_System.svg" target="_blank">
+                                            Wikipedia: Diagram of a symmetric multiprocessing system
+                                        </a>
+                                    </small>
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Fallbeispiele</h2>
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "vertsys-beispiele-internet-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#vertsys-beispiele-internet"
+                                role          = "tab"
+                                aria-controls = "vertsys-beispiele-internet"
+                                aria-expanded = "true"
+                            >
+                                Das Internet
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "vertsys-beispiele-supercomputer-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#vertsys-beispiele-supercomputer"
+                                role          = "tab"
+                                aria-controls = "vertsys-beispiele-supercomputer"
+                            >
+                                Moderne Supercomputer
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "vertsys-beispiele-videoueberwachung-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#vertsys-beispiele-videoueberwachung"
+                                role          = "tab"
+                                aria-controls = "vertsys-beispiele-videoueberwachung"
+                            >
+                                Videoüberwachung
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Das Internet -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "vertsys-beispiele-internet"
+                            role            = "tabpanel"
+                            aria-labelledby = "vertsys-beispiele-internet-tab"
+                        >
+                            <p>
+                                Das größte verteilte System überhaupt ist sicher das Internet.
+                                1977 noch ARPANET genannt, konnte man alle beteiligten Rechner auf einer Seite darstellen. 😎
+                            </p>
+                            <p>
+                                <img src="arpanet.png" alt="Karte des ARPANET von 1977" style="width: 100%" />
+                            </p>
+                            <p>
+                                <small>
+                                    <small>
+                                        Bildnachweis: <a href="https://commons.wikimedia.org/wiki/File:Arpanet_logical_map,_march_1977.png" target="_blank">Wikimedia Commons</a>
+                                    </small>
+                                </small>
+                            </p>
+                        </div>
+                        <!-- Moderne Supercomputer -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "vertsys-beispiele-supercomputer"
+                            role            = "tabpanel"
+                            aria-labelledby = "vertsys-beispiele-supercomputer-tab"
+                        >
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col">
+                                        Hochleistungsrechner, wie sie in der Forschung und Wissenschaft oder von großen Internetkonzernen
+                                        genutzt werden, bestehen aus einer riesigen Anzahl kleiner Computer mit eigenem Hauptspeicher und
+                                        in der Regel auch eigenem Massenspeicher. Die Einzelcomputer werden dabei in <b>Storage Nodes</b>
+                                        zur Speicherung von Daten und in <b>Compute Nodes</b> zur Bereitstellung von Rechenleistung
+                                        unterschieden.
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="ibm-blue-gene.jpg" alt="IBM Blue-Gene Supercomputer" style="width: 100%;" class="img-thumbnail" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <img src="gridcomputer.svg" alt="Skizze eines Grid-Computers" style="width: 100%;" />
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <small>
+                                            <small>
+                                                Bildnachweis (Foto):
+                                                <a href="https://de.wikipedia.org/wiki/Blue_Gene#/media/File:IBM_Blue_Gene_P_supercomputer.jpg" taget="_blank">Wikimedia Commons / Argonne National Laboratory</a>
+                                            </small>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Videoüberwachung -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "vertsys-beispiele-videoueberwachung"
+                            role            = "tabpanel"
+                            aria-labelledby = "vertsys-beispiele-videoueberwachung-tab"
+                        >
+                            <p>
+                                Ein Fallbeispiel aus dem IoT-Umfeld könnte eine IP-basierte Videoüberwachungsanlage sein 📹. In diesem Fall
+                                beinhaltet jede Kamera ein eingebettetes Computersystem, das über ein IP-Netz mit einem Archivserver und den
+                                Arbeitsplatzcomputern des Sicherheitspersonals kommuniziert.
+                            </p>
+                            <p>
+                                <img src="cctv.svg" alt="Skizee einer digitalen Videoüberwachungsanlage" style="width: 100%" />
+                            </p>
+                            <p>
+                                <small>
+                                    <small>
+                                        Bildnachweise:
+                                        <a href="https://pixabay.com/en/surveillance-camera-security-video-147831/" target="_blank">Pixabay: OpenClipart-Vectors</a>,
+                                        <a href="https://pixabay.com/en/mountain-road-winding-road-travel-1556177/" target="_blank">PIxabay: JanBaby</a>,
+                                        <a href="https://pixabay.com/en/auto-road-home-window-building-3091234/" target="_blank">Pixabay: GunetherDillingen</a>
+                                    </small>
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
