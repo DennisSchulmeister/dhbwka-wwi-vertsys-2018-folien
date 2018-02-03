@@ -40,8 +40,8 @@
                         Systeme entwickeln 💰.
                     </li>
                     <li>
-                        die Bedeutung des <span class="dhbw-lightblue font-weight-bold">CAP-Theorem</span> verstehen
-                        und seine Bedeutung wiedergeben.
+                        die Bedeutung des <span class="dhbw-lightblue font-weight-bold">CAP-Theorem</span>
+                        verstehen und seine Bedeutung wiedergeben.
                     </li>
                     <li>
                         die Begriffe <span class="dhbw-lightblue font-weight-bold">Client</span>,
@@ -67,8 +67,8 @@
             </article>
             <aside>
                 <p>
-                    Heute wollen wir uns noch nicht ganz so tief in die Programmierung stürzen. Denn bevor damit
-                    so richtig loslegen können, musst du erst noch ein paar Grundbegriffe kennen und verstehen.
+                    Heute wollen wir uns noch nicht ganz so tief in die Programmierung stürzen. Denn bevor wir
+                    damit so richtig loslegen können, musst du erst noch ein paar Grundbegriffe kennen und verstehen.
                     Beginnen werden wir die Einheit daher mit ein paar einfachen Definitionen der beiden Begriffe
                     <b>verteiltes System️</b> und <b>verteilte Anwendung</b>, wobei wir hier insbesondere auf die
                     Unterschiede beider Begriffe und ihre heute Bedeutung für die Wirtschaftsinformatik 💰 eingehen
@@ -368,8 +368,111 @@
                 </div>
             </article>
             <aside>
+                <h2>Bedeutung des Begriffs</h2>
                 <p>
-                    …
+                    Da es von nun an um verteilte Systeme gehen soll, liegt die Frage nahe, was darunter überhaupt
+                    zu verstehen ist. Wobei sich hieraus gleich die nächste Frage ableitet: Was ist überhaupt ein
+                    System?. Denn wenn man so darüber nachdenkt, kommt man schnell zu dem Schluss, dass wir im
+                    IT-Alltag zwar oft von Systemen sprechen, der Begriff aber niemandem so wirklich klar ist.
+                    Oder wie ist es genau gemeint, wenn wir dem Büronachbarn zurufen, <i>das System hängt mal wieder</i>
+                    oder <i>die Daten sollten im System gespeichert sein</i>? Meinen wir damit den eigenen Computer,
+                    ein bestimmtes Programm oder doch einfach nur <i>das Ding, für das mir gerade kein besserer
+                    Name einfällt</i>?
+                </p>
+                <p>
+                    Halten wir also fest, dass ein System einfach ein Irgendwas ist und dass wir ab sofort nicht mehr
+                    herkömmliches Irgendwas sondern verteiltes Irgendwas machen. 🤠 Tatsächlich gibt es aber eine
+                    relativ klare Definition für verteilte Systeme, die von dem niederländischen Informatikprofessor
+                    Andres Tanenbaum und anderen bekannten Persönlichkeiten geprägt wurde. Allerdings ist sie deshalb
+                    nur „relativ klar”, da jede dieser Personen einen etwas abweichenden Wortlaut mit geringfügig
+                    abweichenden Schwerpunkten benutzt.
+                </p>
+                <p>
+                    Dabei läuft es aber immer auf folgendes hinaus: Ein verteiltes System ist ein Sammlung, mehrerer,
+                    <b>voneinander unabhängiger Computer</b> (Prozessoren) <b>mit jeweils eigenem Hauptspeicher</b>,
+                    die <b>über ein Netzwerk Daten (Nachrichten) austauschen</b>, um eine gemeinsame Aufgabe zu bearbeiten.
+                    Zusammengefasst also:
+                </p>
+                <ol>
+                    <li>
+                        Mindestens zwei vollwertige Computer,
+                    </li>
+                    <li>
+                        die einen gemeinsamen Zweck erfüllen,
+                    </li>
+                    <li>
+                        und über ein Netzwerk miteinander verbunden sind.
+                    </li>
+                </ol>
+                <p>
+                    Dabei ist insbesondere die Anforderung, dass es sich um zwei vollwertige Computer mit jeweils eigenem
+                    Hauptspeicher handeln muss sehr wichtig, da hierüber auch die Abgrenzung zu sogenannten Parallelrechnern
+                    oder einfachen Multi-Core-Systemen erfolgt. Denn nur, wenn jeder Rechenkern über seinen eigenen, privaten
+                    Hauptspeicher verfügt, kann man wirklich von zwei getrennten Computern ausgehen, die sich lediglich
+                    Nachrichten über das Netzwerk schicken können. 🖧 Andernfalls wäre heutzutage jedes kleine Smartphone und
+                    jeder Laptop ein verteiltes System, da es heute Computer mit nur einem Rechenkern im Prinzip gar nicht
+                    mehr gibt.
+                </p>
+                <p>
+                    Generell mag die Definition eines verteilten Systems in heutiger Zeit etwas befremdlich klingen, wo heute
+                    doch nicht nur jedes Smartphone und Tablet eine dauerhafte Internetverbindung besitzt, sondern wir auch über
+                    Ausmaß und Bedeutung des Internet of Things oder gar Internet of Everything sprechen. 🌍 Dazu muss man natürlich
+                    sagen, dass der Begriff „verteiltes System” noch zu einer Zeit geprägt wurde, als ein Computer tatsächlich
+                    einfach nur ein Computer mit einer Single-Core CPU war 🖳, der ohne Verbindung zur Außenwelt einfach seine
+                    Aufgabe erfüllte. Ja sogar zu einer Zeit, als es generell etwas Besonderes war, überhaupt einen Computer
+                    zu haben. Und zwar sowohl an der Hochschule, in der Firma als auch privat. Heute sieht die Welt tatsächlich
+                    etwas anderes aus und wir arbeiten tagtäglich mit verteilten Systemen, meistens sogar ohne es zu wissen.
+                </p>
+
+                <h2>Weitere Abgrenzungsmerkmale</h2>
+                <p>
+                    Manche Autoren gehen neben der oben genannten Definition noch einen Schritt weiter und fügen die zusätzlich
+                    Bedingung hinzu, dass die Computer eines verteilten Systems keine gemeinsame Uhrzeit besitzen dürfen. Dies
+                    ist aber eigentlich keine Voraussetzung für ein verteiltes System sondern eine zwangsläufige Konsequenz daraus.
+                    Denn so gut wie jeder Computer besitzt heute eine eingebaute Echtzeituhr und diese kann natürlich vor oder nach
+                    gehen. Es wäre sogar ein Wunder, wenn zwei Uhren per Zufall auf exakt dieselbe Uhrzeit gestellt wären. Vereilte
+                    Systeme müssen daher auch mit der Situation umgehen können, dass 11:48 Uhr auf dem einen Rechner später ist als
+                    11:50 Uhr auf dem anderen.
+                </p>
+                <p>
+                    Weiterhin wird gerne zwischen heterogenen und homogenen, verteilten Systemen unterscheiden, womit aber nur
+                    gemeint ist, ob alle Rechnerknoten dieselbe Hardware und Betriebssysteme verwenden (homogen) oder eben nicht
+                    (heterogen). Wie du dir sicher denken kannst, haben wir es gerade in der Wirtschaftsinformatik fast immer
+                    mit heterogenen Systemen zu tun. Das <i>Write Once, Run Anywhere</i>-Prinzip von Java könnte am Ende vom Tag
+                    also doch noch ganz nützlich sein. 🐶
+                </p>
+                <p>
+                    Wichtig für die weitere Abgrenzung, vor allem von verteilten Anwendungen, ist jedoch, dass bei einem verteilten
+                    System lediglich die Hardware und im erweiterten Sinne noch Netzwerk und Betriebssystem betrachtet werden. Es geht
+                    also ganz konkret um Fragen wie, <i>welche Hardwarekomponenten habe ich</i>, <i>welcher Knoten übernimmt welche
+                    Aufgabe</i>, <i>wie ist das Netzwerk aufgebaut</i> und so weiter?
+                </p>
+
+                <h2>Einige Fallbeispiele</h2>
+                <p>
+                    Mit diesem Wissen ausgestattet schauen wir uns nun ein paar verteilte Systeme in, wobei du sicher zustimmen wirst,
+                    dass das größte davon das Internet ist. Auch wenn es manchmal praktikabel ist, bei der Festlegung eines verteilten
+                    Systems nur ein paar wenige Rechner zu betrachten, selbst wenn sie ausschließlich über das Internet miteinander
+                    verbunden sind, kann man doch ohne Zweifel sagen, dass das Internet in seiner Gesamtheit alle der oben genannten
+                    Kriterien erfüllt. Man kann sogar sagen, es war die erste praktikable Umsetzung eines verteilten Systems überhaupt,
+                    auch wenn 1977 noch alle beteiligten Computer auf ein Blatt Papier gepasst haben (siehe Folie). 😎
+                </p>
+                <p>
+                    Ein weiteres gutes Beispiel, mit dem wir in der WI leider nicht so oft in Berührung kommen, sind Computer Cluster,
+                    Supercomputer oder Grid Computer. Dabei handelt es sich um einen Zusammenschluss wahnsinnig vieler, eigentlich kleiner
+                    Computer zu einem großen Computer. Die Einzelcomputer sind hierfür in mehreren Racks dicht and dicht verbaut und über
+                    ein physikalisch getrenntes Netzwerk miteinander verbunden. Über eine öffentiche Netzwerkschnittstelle werden sie
+                    dann in der Regel als eine Einheit angesprochen, an die die auszuführenden Jobs übergeben werden können. Intern sind
+                    die Einzelcomputer hierfür in Compute Nodes zur Bereitstellung von Rechenleistung und in Storage Nodes zur Bereitstellung
+                    von Plattenplatz unterteilt. Dem Verwender des Systems bleibt diese Trennung jedoch verborgen.
+                </p>
+                <p>
+                    Etwas mehr in unserem Alltag verortet könnte eine IP-basierte Videoüberwachung sein. 📹 Die Kameras beinhalten dann jeweils
+                    ein kleines, eingebettetes Computersystem, das über ein TCP/IP-Netz seine Bilder an einen zentralen Archivserver sowie die
+                    PCs des Wachpersonals schickt.
+                </p>
+                <p>
+                    Und so lassen sich noch viele weitere Beispiele finden …
                 </p>
             </aside>
         </section>
@@ -378,34 +481,437 @@
             <h1>Definition des Begriffs „Verteilte Anwendung”</h1>
             <article>
                 …
+                <!--
+                Bullet Points mit der Definition
+                E-Mail mit Skizzen im Detail
+                Andere Beispiele nur aufgezählt
+                -->
             </article>
             <aside>
                 <p>
-                    …
+                    Das schönste, verteilte System nützt einem natürlich nichts, wenn es keine Aufgabe erfüllt. Wie Romeo und Julia,
+                    Asterix und Obelix, Batman und Robin, Dick und Doof, Bud Spencer und Terence Hill, Protonen und Neutronen, so
+                    gehören verteilte Systeme und verteilte Anwendungen immer zusammen. 👥 Wobei mit einer verteilter Anwendung die
+                    Summe aller Teilprogramme gemeint ist, die auf den einzelnen Computern laufen, um eine gemeinsame Aufgaben zu
+                    erfüllen.
+                </p>
+                <p>
+                    Wie wir später noch sehen werden, kann man sich das so vorstellen, als hätte man einen großen Klumpen Quellcode
+                    eines Programms in mehrere Einzelteile zerlegt und diese dann auf die einzelnen Rechner verteilt. Denn für den
+                    Anwender soll die Trennung ja gar nicht sichtbar sein und prinzipiell könnte auch der einfachste, kleine Rechner
+                    die kompliziertesten Aufgaben erfüllen, wenn er nur lange genug rechnen würde. Da aber niemand mehrere Tage oder
+                    gar Jahre auf ein Ergebnis warten will, zerlegt man das Programm einfach in mehrere Teilprogramme und lässt diese
+                    zeitgleich auf vielen kleinen Computern laufen.
+                </p>
+                <p>
+                    Okay, das klingt vielleicht ein wenig abstrakt und theoretisch. Aber denke ruhig nochmal eine Minute darüber nach. 🤔
+                    Eigentlich ist es ganz einfach: Eine verteilte Anwendung, ist eine Anwendung, die ein <b>verteiltes System zur
+                    Lösung ihres Anwendungsproblems</b> nutzt und <b>aus mehreren Teilprogrammen (Softwarekomponenten)</b> besteht,
+                    die untereinander durch den <b>Austausch von Nachrichten</b> kommunizieren. Mögliche Beispiele könnten daher sein:
+                </p>
+                <ul>
+                    <li>
+                        Das World Wide Web als der Informationsdienst im Internet
+                    </li>
+                    <li>
+                        Der E-Maildienst des Internets
+                    </li>
+                    <li>
+                        Voice-Over-IP generell sowie spezielle VoIP-Anwendungen
+                    </li>
+                    <li>
+                        Aber auch jeder Webshop und nahezu jede Webanwendung
+                    </li>
+                    <li>
+                        Konkrete IoT-Softwarepakete zur Überachung eines „Smart Home”
+                    </li>
+                    <li>
+                        Jedes Computerspiel mit internetbasiertem Mehrspielermodus
+                    </li>
+                    <li>
+                        Und so weiter …
+                    </li>
+                </ul>
+                <p>
+                    Leitfragen, die wir uns hier stellen, könnten zum Beispiel sein <i>in welche Teilaspekte kann ich mein Problem
+                    zerlegen</i>, <i>welche Programme laufen auf welchen Rechnernknoten</i>, <i>welches Programm muss was in welcher
+                    Reihenfolge machen</i>, <i>welche Nachrichten tauschen die Programme untereinander aus</i> und so weiter.
                 </p>
             </aside>
         </section>
 
         <section>
-            <h1>Bedeutung für die Wirtschaftsinformatik</h1>
+            <h1>Wozu man verteilte Systeme wirklich braucht</h1>
             <article>
                 …
+                <!--
+                Raytracingbild hierher verschieben?
+                -->
             </article>
             <aside>
                 <p>
-                    …
+                    Um die Wichtigkeit verteilter Systeme in der Wirtschaftsinformatik zu verdeutlichen, schauen wir uns
+                    zunächst einmal ein für die meisten Unternehmen eher untypisches, dafür aber umso deutlicheres Beispiel
+                    an: 3D-Animationsfilme. 🎞️ Jeder kennt sie und jeder liebt sie 🍿, weshalb zwischenzeitlich selbst Disney
+                    seine traditionelle Zeichentricksparte eingestellt hatte, um nur noch 3D-Filme zu produzieren.¹ 😯
                 </p>
+                <p>
+                    <small>
+                        ¹ Zum Glück wurde diese Entscheidung wieder rückgängig gemacht, wenn man bedenkt, wie eng doch gerade
+                        Walt Disney mit der Entwicklung des Zeichentrick verbunden ist. Aber wusstest du, dass Disney zusammen
+                        mit Pixar bereits Ende der 1980er-Jahre <a href="https://en.wikipedia.org/wiki/Computer_Animation_Production_System"
+                        target="_blank">das erste Computersystem zur Erstellung von Zeichentrickfilmen</a> entwickelt und für
+                        viele seiner Filme genutzt hat?
+                    </small>
+                </p>
+                <p>
+                    Was sicher nur wenigen bewusst ist, ist der immense Rechenaufwand, der in jedem 3D-Animationsfilm steckt.
+                    Denn ein typischer Kinofilm besitzt bei 90 Minuten Länge und 25 Bildern je Sekunde immerhin 135.000 Einzelbilder,
+                    von denen jedes bei einer typischen 4K-Auflösung (von 8K wollen wir erst gar nicht reden) unvorstellbare 8.847.360
+                    Pixel umfasst. Und die wollen alle berechnet werden! 🌇🌃🌃🌃🌇🌆🌆🌇🌃🌃🌃🌇
+                </p>
+                <p>
+                    Der Aufwand potentiert sich sogar noch, wenn man bedenkt, dass hierfür das rechenintensive
+                    <a href="https://de.wikipedia.org/wiki/Raytracing" target="_blank">Raytracing-Verfahren</a>
+                    genutzt wird, bei dem ausgehend von einer virtuellen Kamera für jeden Bildpunkt ein gedachter
+                    Lichtstrahl ausgesendet und geprüft wird, auf welche Oberflächen er trifft. Dabei handelt es
+                    sich auch noch um einen rekursiven Algorithmus, der auch berücksichtigt, wenn ein Strahl an einer
+                    Oberfläche gebrochen wird und dadurch in hunderte weitere Teilstrahlen zerfällt. Das ganze ist
+                    wahnsinnig aufwändig, produziert dafür aber umso realistischere Bilder, wie das folgende Beispiel
+                    zeigt:
+                </p>
+                <p>
+                    <img src="raytracing.jpg" alt="Beispiel für ein klassisches Raytracing-Motiv (drei Kugeln mit Spiegelung)" class="img-thumbnail" style="width: 100%;" />
+                    <small>
+                        Klassisches Raytracing-Motiv: Drei Kugeln auf einem Schachbrettmuster. Das Lichtspiel und die Spiegelungen werden
+                        durch die rekursive Verfolgung der Lichtstrahlen sehr realistisch simuliert. Für noch mehr beeindruckende
+                        Beispiele <a href="http://hof.povray.org/" target="_blank">hier klicken</a>. Bildnachweis:
+                        <a href="https://commons.wikimedia.org/wiki/File:3chromeballs.png" target="_blank">Wikimedia Commons: 3chromeballs.png</a>
+                    </small>
+                </p>
+                <p>
+                    Ein einzelner Computer wäre Jahrzehnte lang damit beschäftigt, die Bilder eines ganzen Filmes zu berechnen und würde damit
+                    fast genauso lange brauchen, wie Deep Thought in <a href="https://de.wikipedia.org/wiki/Per_Anhalter_durch_die_Galaxis"
+                    target="_blank">Per Anhalter durch die Galaxis</a> 🐬. Ein verteiltes System oder besser gesagt eine
+                    <a href="https://en.wikipedia.org/wiki/Render_farm" target="_blank">Render Farm</a> muss also her, um die Berechnungsdauer
+                    auf ein Jahr zu reduzieren. Denn dafür wurden verteilte Systeme ursprünglich erfunden: Zur Parallelisierung großer
+                    Berechnungen, um diese schneller durchführen zu können. Und auch für uns Wirtschaftsinformatiker ist das oft ein Grund,
+                    auf verteilte Systeme zurückzugreifen. Im gewöhnlichen, grauen IT-Alltag können aber auch folgende ganz unspekatuläre
+                    Gründe ausschlaggebend sein:
+                </p>
+                <ul>
+                    <li>
+                        Zentralisierung von Daten und Informationen
+                    </li>
+                    <li>
+                        Abschirmung der internen Systeme von der Außenwelt
+                    </li>
+                    <li>
+                        Zum sammeln, speichern und auswerten von Sensordaten
+                    </li>
+                    <li>
+                        Zur Unterstützung von Geschäftsprozessen
+                    </li>
+                    <li>
+                        Für den Zugriff auf interne Daten über eine Smartphone App
+                    </li>
+                    <li>
+                        Für die Nutzung des Browsers als Ersatz für einen Standalone-Client
+                    </li>
+                    <li>
+                        Und so weiter, und so fort …
+                    </li>
+                </ul>
             </aside>
         </section>
 
         <section>
-            <h1>Von Clients, Servern und Peers</h1>
+            <h1>Allgemeine Anforderungen an verteilte Systeme</h1>
             <article>
                 …
             </article>
             <aside>
                 <p>
-                    …
+                    Hat man sich einmal zu einem verteilten System hinreisen lassen, will man natürlich, dass es die gewünschte
+                    Aufgabe so gut wie möglich unterstützt. Und hierfür will man in den meisten Fällen, dass folgende Anforderungen
+                    berücksichtigt werden, was uns beim Programmieren manchmal vor echte Herausforderungen stellen kann: 🤤
+                </p>
+
+                <h5 class="dhbw-lightblue">Optimale Ressourcennutzung</h5>
+                <p>
+                    Jeder einzelne Computer eines verteilten Systems stellt Ressourcen wie Rechenleistung oder Speicherkapazität
+                    zur Verfügung. Diese sollen effizient genutzt werden können, um somit die Gesamtleistung des Systems zu steigern.
+                    Hardwareseitig muss das System daher möglichst wenig Ressourcen für sich beanspruchen und softwareseitig muss man
+                    darauf achten, diese intelligent zu nutzen.
+                </p>
+
+                <h5 class="dhbw-lightblue">Einfache Skalierbarkeit</h5>
+                <p>
+                    Ein System, das mit kleinen Anforderungen heute beginnt, kann morgen schon riesengroß sein. Es muss daher einfach möglich
+                    sein, die Leistung des Systems zu erhöhen oder diese zu reduzieren, wenn sie nicht mehr benötigt wird. Im einfachsten
+                    Fall bedeutet das, dass man einen schwachen Rechner einfach durch ein leistungsfähigeres Modell ersetzen kann (vertikale
+                    Skalierung). Zusätzlich sollte es aber auch einfach möglich sein, einen weiteren Rechner hinzuzufügen, ohne an den anderen
+                    etwas ändern zu müssen (horizontale Skalierung).
+                </p>
+
+                <h5 class="dhbw-lightblue">Einfache Erweiterbarkeit</h5>
+                <p>
+                    Veränderung ist die einzige Konstante in der Informatik! Anforderungen können sich jederzeit ändern und tun dies auch,
+                    weshalb agile Entwicklungsmethoden heute in fast allen Bereichen bevorzugt werden. Doch wer wirklich agil sein will,
+                    braucht eine Architektur, die Veränderungen zulässt und sie nicht erschwert. Hardware und Software müssen daher immer
+                    so gestaltet werden, dass jeder Bestandteil jederzeit ausgetauscht oder weiterentwickelt werden kann, ohne gleich alles
+                    auseinander nehmen zu müssen. Bezogen auf den Code sollte man also keinen Spaghetticode hinlegen und auch keine Lasagnencode
+                    (Schichten über Schichten, die sich stapeln). Der Code sollte mehr wie Tortellini sein: Viele, kleine Module, die nur sehr
+                    lose miteinander verbunden sind.
+                </p>
+
+                <h5 class="dhbw-lightblue">Stabilität und Fehlertoleranz</h5>
+                <p>
+                    Das schlimmste was einem Programm passieren kann ist ein Absturz. 🗯️ Dieser GAU sollten daher immer vermieden werden, auch
+                    wenn davon nur ein Teil einer verteilten Anwendung betroffen ist. Dummerweise bringen verteilte Anwendungen eine ganze
+                    Reihe weiterer Fehlerquellen mit sich, die man ebenfalls berücksichtigen muss:
+                </p>
+                <ul>
+                    <li>
+                        Manchmal streikt das Netzwerk.
+                    </li>
+                    <li>
+                        Ein anderes mal funktioniert es zwar, ist aber saulangsam.
+                    </li>
+                    <li>
+                        Oder ein Programm auf einem anderen Rechner wurde vergessen zu starten.
+                    </li>
+                    <li>
+                        Oder die Putzfrau hat den Stecker gezogen, um den Serverraum zu saugen. 🤦
+                    </li>
+                    <li>
+                        Oder die Schnittstelle eines entfernten Programms hat sich verändert.
+                    </li>
+                </ul>
+                <p>
+                    Fehlerquellen gibt es also mehr als genug! Und das sind nur die technischen Fehler, die sich aus der Verteilung ergeben
+                    können. Hinzu kommen natürlich noch all die fachlichen Fehler wie Fehleingaben vom Benutzer, ein nicht gedecktes Konto
+                    eines Kunden, fehlende Ware im Lager und so weiter. Der Umgang mit Fehlern ist daher sehr wichtig, weshalb sich in der
+                    Praxis folgende Strategien entwickelt haben:
+                </p>
+                <dl>
+                    <dt>Fehler vermeiden</dt>
+                    <dd>
+                        Das ist der oberklügste Vorschlag und doch der nützlichste. Wenn immer es geht, sollte
+                        man Fehler gar nicht erst entstehen lassen. Das System sollte daher möglichst selbsterklärend sein und dem Anwender
+                        durch ein komfortables UI möglichst viel Hilfestellung bieten. Aber auch auf technischer Seite sollten Stolperfallen
+                        vermieden werden und keine unsauberen Lösungen implementiert werden, weil „das ja eh so gut wie nie vorkommen kann”.
+                    </dd>
+
+                    <dt>Fehler erkennen</dt>
+                    <dd>
+                        Natürlich lassen sich Fehler nicht immer vermeiden. In diesem Fall müssen sie aber wenigstens
+                        erkannt werden, um darauf reagieren zu können. Dies heist zum Beispiel, dass Benutzereingaben auf Plausiblität geprüft
+                        oder empfangene Daten durch Checksummen abgesichert werden.
+                    </dd>
+
+                    <dt>Fehler maskieren</dt>
+                    <dd>
+                        Nicht jeder Fehler ist es wert, dem Anwender damit auf den Keks zu gehen. 🍪 Gerade kleine
+                        Fehler lassen sich auch automatisch beheben, indem zum Beispiel nicht empfangene Daten erneut gesendet werden und
+                        so weiter.
+                    </dd>
+
+                    <dt>Fehler tolerieren</dt>
+                    <dd>
+                        Manchmal ist Rückzug der beste Angriff. Wenn ein Fehler keine wirkliche Bedeutung hat, kann es auch ganz sinnvoll
+                        sein, sich gar nicht erst darum zu kümmern. Das mag zunächst widersprüchlich klingen, ein Beispiel macht es aber
+                        deutlich: NoSQL Document Stores wie <a href="http://couchdb.apache.org/" target="_blank"> CouchDB</a> besitzen aus
+                        Performancegründen keinen Sperrmechanismus zur Vermeidung zeitgleicher Änderungen. Es kann also durchaus vorkommen,
+                        dass ein Anwender die Änderung eines anderen überschreibt, wenn zwischen dem Einlesend und Speichern des Dokuments
+                        ein anderer Anwender eine neue Version angelegt hat. Dieser Fehler wird bewusst in Kauf genommen und es wird einfach
+                        festgehalten, dass die beiden Dokumentversion in Konflikt zueinander stehen. (Vgl. <a href="#folie-cap">CAP-Theorem</a>)
+                    </dd>
+
+                    <dt>Fehler beheben</dt>
+                    <dd>
+                        Und last but not least: Wann immer ein Fehler festgestellt wird, sollte dieser möglichst ohne manuelle Eingriffe
+                        automatisch behoben werden. Beispielsweise, indem verlorene Daten aus einer redundanten Sicherung wiederhergestellt
+                        werden, oder ein abgestürzter Rechner durch ein Hot Standby abgelöst wird.
+                    </dd>
+                </dl>
+
+                <h5 class="dhbw-lightblue">Einfache Nutzung (Transparenz)</h5>
+                <p>
+                    Dieser Begriff ist sehr wichtig. Die Welt ist schon kompliziert genug, dann müssen es nicht auch noch die IT-Systeme sein.
+                    Zumindest für den Anwender sollte die inheränte Komplexität einer verteilten Anwendung verborgen werden. Für den Anwender
+                    (und gerne auch den Entwickler) sollte die Anwendung so einfach wie möglich zu benutzen, einrichten und entwickeln sein.
+                    Wenn man das schafft, gilt das System als transparent. Denn merke: In der Informatik bedeutet Transparenz nicht, dass man
+                    alle Details sehen kann (wie das in der Wirtschaft oft der Fall ist, frag einfach mal deinen Chef 🙉), sondern dass man sich
+                    mit den Details gar nicht erst auseinandersetzen muss.
+                </p>
+
+                <h5 class="dhbw-lightblue">Sicherheit</h5>
+                <p>
+                    Ein weiterer wichtiger Aspekt ist die Sicherheit verteilter Systeme. <a href="https://www.youtube.com/watch?v=rXUlmP5MvnE"
+                    target="_blank">Denn das Böse ist immer und überall.</a> Folgende Dinge muss eine Anwendung daher immer sicherstellen:
+                </p>
+                <dl>
+                    <dt>Vertraulichkeit</dt>
+                    <dd>
+                        Die Anwendung muss eine Benutzer- und Rechteverwaltung besitzen, so dass unbefugte Dritte keine Zugriff auf
+                        sensitive Informationen bekommen. Sensible Informationen sollten zustäzlich verschlüsselt werden.
+                    </dd>
+
+                    <dt>Integrität</dt>
+                    <dd>
+                        Die Anwendung muss sicherstellen, dass die in ihr gespeicherten Daten nicht verfälscht werden können.
+                        Oder falls sich dies nicht verhindern lässt (zum Beispiel während der Übertragung über das Internet),
+                        muss es zumindest möglich sein, die Manipulation aufzudecken. Public-Key-Verfahren und Signaturen
+                        können dies sicherstellen.
+                    </dd>
+
+                    <dt>Authentizität</dt>
+                    <dd>
+                        Aus Sicht der Anwendung muss es möglich sein, die Identitiät eines Benutzers überrpüfen und auch nachweisen
+                        zu können. (Ist das wirklich der Benutzer, für den er sich ausgibt?) Aus Benutzersicht muss es umgekehrt
+                        auch möglich sein, die Authentizität der Gegenseite zu überprfen.
+                    </dd>
+                </dl>
+            </aside>
+        </section>
+
+        <section>
+            <h1>Die acht Arten der Transparenz</h1>
+            <article>
+                …
+            </article>
+            <aside>
+                <p>
+                    Auf der letzten Folie hatten wir ja schon erklärt, was Transparenz in der Informatik bedeutet. Doch damit
+                    ist nicht nur Anwenderfreundlichkeit gemeint. Viel mehr geht es darum, dass sich eine verteilte Anwendung
+                    auch in folgenden Dingen völlig unkompliziert verhält, damit es von Anwendern und Entwicklern möglichst
+                    als Ganzes und nicht als Sammlung unabhängiger Einzelteile wahrgenommen werden kann.¹
+                </p>
+                <p>
+                    <small>
+                        ¹ Das ist es, was Andrew Tanenbaum mit „eine Kollektion von Computern, die dem Anwender wie
+                        ein einzelner Computer erscheinen” meint.
+                    </small>
+                </p>
+
+                <h5 class="dhbw-lightblue">Zugriffstransparenz</h5>
+                <p>
+                    Der Zugriff auf lokale und entfernte Ressourcen sollte mit identischen Operationen erfolgen, so dass
+                    man nicht zwischen ihnen unterscheiden muss.
+                </p>
+
+                <h5 class="dhbw-lightblue">Positionstransparenz</h5>
+                <p>
+                    Auch Ortstransparenz genannt. Idealerweise muss man überhaupt nicht wissen, wo eine Ressource sich
+                    befindet, um auf sie zugreifen zu können. Nimm zum Beispiel eine Webseite. Du gibst
+                    <a href="https://www.dhbw-karlsruhe.de">www.dhbw-karlsruhe.de</a> in den Browser ein und schon
+                    erscheint die Seite unserer Hochschule. Du musst dafür nicht wissen, auf welchem Rechner mit welcher
+                    IP-Adresse die Seite gespeichert ist. Der symbolische Name reicht völlig aus.
+                </p>
+
+                <h5 class="dhbw-lightblue">Mobilitätstransparenz</h5>
+                <p>
+                    Und da kommen wir auch schon zur Mobilitätstransparenz. Wenn du nicht wissen musst, wo eine Ressource
+                    sich befindet, um sie nutzen zu können, sollte es auch möglich sein, die Ressource jederzeit zu verschieben.
+                    Die gesamte Anwendung muss dann einfach wie gehabt weiter funktionieren, ohne dass sie angepasst werden
+                    muss. Konkret bedeutet das zum Beispiel, dass Servernamen und Adressen nicht hartcodiert sondern in einer
+                    Konfigurationsdatei oder einem Namensdienst nachgeschlagen werden sollten.
+                </p>
+
+                <h5 class="dhbw-lightblue">Nebenläufigkeitstransparenz</h5>
+                <p>
+                    Das wäre natürlich schon ganz praktisch, wenn ein verteiltes System wirklich nebenläufig wäre. 😅
+                    Nur sollten die Programme und Algorithmen damit auch umgehen können. Beispielsweise darf es keine
+                    <a href="https://de.wikipedia.org/wiki/Race_Condition" target="_blank">Race Conditions</a> oder
+                    <a href="https://de.wikipedia.org/wiki/Deadlock_(Informatik)">Deadlocks</a> geben, die zu sporadischen
+                    Fehlern führen.
+                </p>
+
+                <h5 class="dhbw-lightblue">Replikationstransparenz</h5>
+                <p>
+                    Verteilte Anwendungen arbeiten oft auch mit verteilten Datenbeständen. Aus Gründen der Ausfallsicherheit
+                    sollte es dabei möglich sein, mehrere Repliken aller Daten auf unterschiedlichen Computern vorzuhalten.
+                    Das System muss dann so intelligent sein, dass die Benutzer auf unterschiedlichen, möglichst synchronen
+                    Repliken arbeiten können, ohne davon beeinträchtigt zu werden.
+                </p>
+
+                <h5 class="dhbw-lightblue">Fehlertransparenz</h5>
+                <p>
+                    Dieses Thema haben wir in der letzten Folie schon ein wenig gestreift. Hierunter sind die Strategien zum
+                    Umgang mit Fehlern gemeint, so dass ein Fehler nicht die gesamte Anwendung zum Absturz bringt.
+                </p>
+
+                <h5 class="dhbw-lightblue">Leistungstransparenz</h5>
+                <p>
+                    Damit ist gemeint, dass System und Anwendungen prinzipiell skalierbar sind, um erhöhten Leistungsanforderungen
+                    genügen zu können. Ob die Skalierung dabei wie in einer Cloud automatisch erfolgt oder von Hand durchgeführt
+                    werden muss, ist dafür unbedeutend. Wichtig ist nur, dass es möglich ist.
+                </p>
+
+                <h5 class="dhbw-lightblue">Skalierbarkeitstransparenz</h5>
+                <p>
+                    Auf den ersten Blick klingt das redundant zur Leistungstransparenz. Dies ist aber mitnichten der Fall. Viel
+                    mehr geht es hier darum, dass eine Skalierung vorgenommen werden kann, ohne die Systemstruktur oder den
+                    Quellcode der Anwendung anpassen zu müssen. Beispielsweise sollten keine wilkürlichen Obergrenzen hart im
+                    Quellcode hinterlegt sein und die Teilprogramme müssen so programmiert sein, dass sie mit jeder beliebigen
+                    Datenmenge zurecht kommen.
+                </p>
+            </aside>
+        </section>
+
+        <section id="folie-cap">
+            <h1>Das CAP-Theorem verteilter Anwendungen</h1>
+            <article>
+                …
+            </article>
+            <aside>
+                <p>
+                    In der Datenbankvorlesung haben wir alle mal gelernt, normalisierte Datenmodelle zu erstellen und Transaktionen
+                    zu nutzen, damit unsere Daten immer konsistent und widerspruchsfrei sind. <span style="color: darkgreen">✔️</span>
+                    Und in vielen Fällen will man das auch genauso haben. Doch eine zu einseitige Fixierung auf die Konsistenz kann zu
+                    bedeutenden Nachteilen in anderen Punkten führen, wie das im Jahr 2000 formulierte und 2002 bewiesene CAP-Theorem
+                    besagt. Denn aus ihm folgt, dass eine verteilte Anwendung niemals alle drei der folgenden Eigenschaften gleichzeitig
+                    erfüllen kann:
+                </p>
+                <ul>
+                    <li>
+                        <b>Consistency (Konsistenz):</b> Betrachtet man nur eine einzelne Datenbank auf einem einzelnen Rechner, gibt
+                        es hier noch keine Probleme. Doch wenn die Daten auf mehrere Rechner repliziert werden, kann es für einen kurzen
+                        Zeitpunkt zu lokalen Unterschieden kommen, so lange die neusten Änderungen noch nicht an alle Rechner weiter
+                        verteilt wurden. Nur durch eine verteilte Transaktion, die erst abgeschlossen ist, wenn alle Änderungen auf allen
+                        Rechnern nachgezogen wurden, lässt sich eine solche Konsistenz erzielen.
+                    </li>
+                    <li>
+                        <b>Availability (Verfügbarkeit):</b> Hiermit ist sowohl die generelle Verfügbarkeit im Sinne, dass das System
+                        überhaupt erreichbar ist gemeint, als auch die maximal zulässige Antwortzeit. Beispielsweise kann es vorkommen,
+                        dass das System während einer aktiven, verteilten Transaktionen alle weiteren Anfragen auf denselben Datenbestand
+                        ablehnt oder so lange warten lässt, bis die Transaktion abgeschlossen ist. Geht die Transaktion zu lange, weil
+                        besonders viele Daten geschrieben werden oder weil ein Deadlock aufgetreten ist, kann das System nicht mehr
+                        hinreichend schnell auf die anderen Anfragen reagieren.
+                    </li>
+                    <li>
+                        <b>Partition Tolerance (Partitionstoleranz):</b> Zunächst würde man denken, damit sie die horizontale oder
+                        vertikale Partitionierung von Daten auf einzelne Rechnerknoten gemeint. Dem ist aber nicht so. Stattdessen
+                        geht es eher darum, dass ein verteiltes System auch dann noch weiter arbeiten kann, wenn ein Teil seiner
+                        Rechner ausgefallen ist. Es kann sozusagen auch ein kleiner Teil (eine Partition) des Systems noch autonom
+                        weiter arbeiten.
+                    </li>
+                </ul>
+                <p>
+                    Das CAP-Theorem besagt, dass ein verteiltes System oder eine verteilte Anwendung immer nur zwei dieser Kriterien,
+                    niemals aber alle drei gleichzeitig erfüllen kann, weshalb es auch gerne als Dreieck ⚠️ dargestellt wird. Eine
+                    Verbesserung in einem der drei Bereiche führt also unweigerlich zu einer Verschlechterung in einem der anderen
+                    beiden. <span style="color: deepskyblue;">⬆️</span><span style="color: crimson;">⬇️</span>
+                </p>
+                <p>
+                    Ein Beispiel hierfür haben wir schon bei den NoSQL-Datenbanken gesehen, wo die Konsistenz oft zu Gunsten der
+                    Verfügbarkeit getauscht wird. Anstatt auf das Ende einer Transaktion zu warten, werden mögliche Konflikte
+                    einfach nur erkannt und es wird auch in Kauf genommen, dass ein Client eine Änderung nicht sofort sieht, auch
+                    wenn der Schreibvorgang bereits abgeschlossen wurde. Die Datenbank ist dann nur noch eventuell-konsistent, was
+                    aber für fast alle Anwendungsfälle vollkommen in Ordnung ist. Denn es gibt sogar Autoren, die argumentieren,
+                    dass echte, transaktionale Konsistenz absoluter Unsinn sei, da es diese im echten Leben auch nicht gäbe und dort
+                    alle Vorgänge nur eventuell-konsistent sein. 🤔
                 </p>
             </aside>
         </section>
@@ -435,6 +941,18 @@
                     </small>
                 </small>
             </article>
+        </section>
+
+        <section>
+            <h1>Von Clients, Servern und Peers</h1>
+            <article>
+                …
+            </article>
+            <aside>
+                <p>
+                    …
+                </p>
+            </aside>
         </section>
 
         <section>
@@ -487,7 +1005,7 @@
         </section>
 
         <section>
-            <h1>Alternative Lösungsansätze</h1>
+            <h1>Weitere reelvante Middlewarearten</h1>
             <article>
                 …
             </article>
