@@ -331,7 +331,7 @@
                                         <small>
                                             <small>
                                                 Bildnachweis (Foto):
-                                                <a href="https://de.wikipedia.org/wiki/Blue_Gene#/media/File:IBM_Blue_Gene_P_supercomputer.jpg" taget="_blank">Wikimedia Commons / Argonne National Laboratory</a>
+                                                <a href="https://de.wikipedia.org/wiki/Blue_Gene#/media/File:IBM_Blue_Gene_P_supercomputer.jpg" taget="_blank">Wikimedia Commons: Argonne National Laboratory</a>
                                             </small>
                                         </small>
                                     </div>
@@ -480,12 +480,111 @@
         <section>
             <h1>Definition des Begriffs „Verteilte Anwendung”</h1>
             <article>
-                …
-                <!--
-                Bullet Points mit der Definition
-                E-Mail mit Skizzen im Detail
-                Andere Beispiele nur aufgezählt
-                -->
+                <div style="margin-bottom: 1em;">
+                    <img src="verteilte-anwendung.svg" alt="Die Komponente einer verteilten Anwendung laufen auf einem verteilten System" style="width: 100%;" />
+                </div>
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "vertan-www-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#vertan-www"
+                                role          = "tab"
+                                aria-controls = "vertan-www"
+                                aria-expanded = "true"
+                            >
+                                Beispiel: World Wide Web
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "vertan-weitere-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#vertan-weitere"
+                                role          = "tab"
+                                aria-controls = "vertan-weitere"
+                            >
+                                Weitere Beispiele
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Beispiel: World Wide Web -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "vertan-www"
+                            role            = "tabpanel"
+                            aria-labelledby = "vertan-www-tab"
+                        >
+                            <p style="margin-bottom: 1em;">
+                                🌟 Weltweiter Informationsdienst, auf Grundlage des Internets <br />
+                                🌟 Softwarekomponenten: Browser, Webserver, Datenbanken <br />
+                                🌟 Viele Implementierungen für jede Komponente verfügbar <br />
+                                🌟 HTTP als universelles Nachrichtenformat <br />
+                                🌟 Interessant: Das Web dient selbst als Plattform für verteilte Anwendungen
+                            </p>
+                            <p>
+                                <img src="world-wide-web.png" alt="Skizze einer Webanwendung mit Browser, Server und Datenbank" style="width: 100%;" />
+                            </p>
+                            <p>
+                                <small>
+                                    <small>
+                                        Bildnachweise:
+                                        <a href="https://commons.wikimedia.org/wiki/File:Jolla_PoppyRed_Home.jpg" target="_blank">Wikimedia Commons: Jolla Ltd.</a>,
+                                        <a href="https://pixabay.com/en/macbook-laptop-players-mac-office-1443927/" target="_blank">Pixabay: Elianos2</a>,
+                                        <a href="https://de.wikipedia.org/wiki/Apache_HTTP_Server#/media/File:Apache_HTTP_server_logo_(2016).png" target="_blank">Wikipedia: Apache Software Foundation</a>
+                                    </small>
+                                </small>
+                            </p>
+                        </div>
+                        <!-- Weitere Beispiele -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "vertan-weitere"
+                            role            = "tabpanel"
+                            aria-labelledby = "vertan-weitere-tab"
+                        >
+                            <ul>
+                                <li>
+                                    E-Mail
+                                </li>
+                                <li>
+                                    Onlinekalender mit Zugriff via Desktop und mobiler App
+                                </li>
+                                <li>
+                                    Voice over IP und Videokonferenzen
+                                </li>
+                                <li>
+                                    Internet Relay Chat
+                                </li>
+                                <li>
+                                    XMPP (technische Grundlage für WhatsApp)
+                                </li>
+                                <li>
+                                    Sammlung und Überwachung von IoT-Sensordaten
+                                </li>
+                                <li>
+                                    Computerspiele mit Mehrbenutzermodus
+                                </li>
+                                <li>
+                                    Buchung von Flugtickets online
+                                </li>
+                                <li>
+                                    Jedes ERP- oder CRM-System
+                                </li>
+                                <li>
+                                    Generell jede moderne Mehrbenutzeranwendung
+                                </li>
+                                <li>
+                                    Sowie jede Webanwendung mit Server-Backend
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
@@ -541,12 +640,87 @@
         </section>
 
         <section>
-            <h1>Wozu man verteilte Systeme wirklich braucht</h1>
+            <h1>Wozu man verteilte Systeme gebraucht werden</h1>
             <article>
-                …
-                <!--
-                Raytracingbild hierher verschieben?
-                -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md">
+                            <h2>Parallelisierung rechenintensiver Aufgaben</h2>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 0;">
+                        <div class="col-md-4">
+                            <img src="handwerker1.jpg" alt="Ein einzelner Handwerker" class="img-thumbnail" style="width: 100%" />
+                            Ein einzelner Computer würde viel zu lange brauchen!
+                        </div>
+                        <div class="col-md-4">
+                            <img src="handwerker2.jpg" alt="Viele Handwerker gleichzeitig" class="img-thumbnail" style="width: 100%" />
+                            Wenn sich die Arbeit verteilt, geht es natürlich viel schneller.
+                        </div>
+                        <div class="col-md-4">
+                            <img src="raytracing1.jpg" alt="Computergeneriertes Bild zweier Schrauben" class="img-thumbnail" style="width: 100%" />
+                            Zum Beispiel beim <a href="https://de.wikipedia.org/wiki/Raytracing" target="_blank">Raytracing</a>,
+                            das zwar besonders realistische Bilder erzeugt, dafür aber auch sehr rechenintensiv ist.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <small>
+                                <small>
+                                    Bildnachweise:
+                                    <a href="https://pixabay.com/en/construction-workers-maurer-site-3036602/" target="_blank">Pixabay: Capri23auto</a>,
+                                    <a href="https://pixabay.com/en/house-construction-craftsmen-site-3102324/" target="_blank">Pixabay: Alexas_Fotos</a>,
+                                    <a href="https://pixabay.com/en/screw-thread-technology-mother-1924219/" target="_blank">Pixabay: PIRO4D</a>
+                                </small>
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md">
+                            <h2>Weitere Anwendungsfälle</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <ul>
+                                <li>
+                                    Informations- und Wissensmanagement¹
+                                </li>
+                                <li>
+                                    Datenbankanwendungen mit mehreren Benutzern
+                                </li>
+                                <li>
+                                    Kollaboratives, gleichzeitiges Arbeiten an gemeinsamen Dokumenten
+                                </li>
+                                <li>
+                                    Statistische Auswertungen, Datenanalyse, Big Data
+                                </li>
+                                <li>
+                                    IoT-Anwendungen zum Sammeln, Speichern und Auswerten von Sensordaten
+                                </li>
+                                <li>
+                                    Mobile Apps und browserbasierte Benutzeroberflächen
+                                </li>
+                                <li>
+                                    KI-Systeme und Expertensysteme
+                                </li>
+                                <li>
+                                    Computergestützte Fertigungsanlagen
+                                </li>
+                                <li>
+                                    Eingebettete Systeme zur
+                                    <a href="https://de.wikipedia.org/wiki/Steuerger%C3%A4t" target="_blank">Motorsteuerung im Auto</a>
+                                </li>
+                            </ul>
+                            <p>
+                                <small>
+                                    ¹ Hierfür wurde das gesamte Internet ursprünglich erfunden.
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
@@ -581,7 +755,7 @@
                     zeigt:
                 </p>
                 <p>
-                    <img src="raytracing.jpg" alt="Beispiel für ein klassisches Raytracing-Motiv (drei Kugeln mit Spiegelung)" class="img-thumbnail" style="width: 100%;" />
+                    <img src="raytracing2.jpg" alt="Beispiel für ein klassisches Raytracing-Motiv (drei Kugeln mit Spiegelung)" class="img-thumbnail" style="width: 100%;" />
                     <small>
                         Klassisches Raytracing-Motiv: Drei Kugeln auf einem Schachbrettmuster. Das Lichtspiel und die Spiegelungen werden
                         durch die rekursive Verfolgung der Lichtstrahlen sehr realistisch simuliert. Für noch mehr beeindruckende
@@ -595,31 +769,41 @@
                     target="_blank">Per Anhalter durch die Galaxis</a> 🐬. Ein verteiltes System oder besser gesagt eine
                     <a href="https://en.wikipedia.org/wiki/Render_farm" target="_blank">Render Farm</a> muss also her, um die Berechnungsdauer
                     auf ein Jahr zu reduzieren. Denn dafür wurden verteilte Systeme ursprünglich erfunden: Zur Parallelisierung großer
-                    Berechnungen, um diese schneller durchführen zu können. Und auch für uns Wirtschaftsinformatiker ist das oft ein Grund,
-                    auf verteilte Systeme zurückzugreifen. Im gewöhnlichen, grauen IT-Alltag können aber auch folgende ganz unspekatuläre
-                    Gründe ausschlaggebend sein:
+                    Berechnungen, um diese schneller durchführen zu können.
+                </p>
+                <p>
+                    Die Parallelisierung von Aufgaben zählt auch für uns Wirtschaftsinformatiker zu den häufigens Aufgaben verteilter Systeme.
+                    Auch wenn wir eher selten einen abendfüllenden Kinofilm produzieren müssen. Für uns sind es dafür andere Anwendungsfälle,
+                    wie zum Beispiel die folgenden:
                 </p>
                 <ul>
                     <li>
-                        Zentralisierung von Daten und Informationen
+                        Informations- und Wissensmanagement
                     </li>
                     <li>
-                        Abschirmung der internen Systeme von der Außenwelt
+                        Datenbankanwendungen mit mehreren Benutzern
                     </li>
                     <li>
-                        Zum sammeln, speichern und auswerten von Sensordaten
+                        Kollaboratives, gleichzeitiges Arbeiten an gemeinsamen Dokumenten
                     </li>
                     <li>
-                        Zur Unterstützung von Geschäftsprozessen
+                        Statistische Auswertungen, Datenanalyse, Big Data
                     </li>
                     <li>
-                        Für den Zugriff auf interne Daten über eine Smartphone App
+                        IoT-Anwendungen zum Sammeln, Speichern und Auswerten von Sensordaten
                     </li>
                     <li>
-                        Für die Nutzung des Browsers als Ersatz für einen Standalone-Client
+                        Mobile Apps und browserbasierte Benutzeroberflächen
                     </li>
                     <li>
-                        Und so weiter, und so fort …
+                        KI-Systeme und Expertensysteme
+                    </li>
+                    <li>
+                        Computergestützte Fertigungsanlagen
+                    </li>
+                    <li>
+                        Eingebettete Systeme zur
+                        <a href="https://de.wikipedia.org/wiki/Steuerger%C3%A4t" target="_blank">Motorsteuerung im Auto</a> 🚗
                     </li>
                 </ul>
             </aside>
@@ -628,7 +812,248 @@
         <section>
             <h1>Allgemeine Anforderungen an verteilte Systeme</h1>
             <article>
-                …
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "anforderungen-uebersicht-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#anforderungen-uebersicht"
+                                role          = "tab"
+                                aria-controls = "anforderungen-uebersicht"
+                                aria-expanded = "true"
+                            >
+                                Übersicht
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "anforderungen-fehler-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#anforderungen-fehler"
+                                role          = "tab"
+                                aria-controls = "anforderungen-fehler"
+                            >
+                                Umgang mit Fehlern
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "anforderungen-sicherheit-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#anforderungen-sicherheit"
+                                role          = "tab"
+                                aria-controls = "anforderungen-sicherheit"
+                            >
+                                Sicherheitsaspekte
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Übersicht -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "anforderungen-uebersicht"
+                            role            = "tabpanel"
+                            aria-labelledby = "anforderungen-uebersicht-tab"
+                        >
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md">
+                                        <h3 class="dhbw-lightblue">Optimale Ressourcennutzung</h3>
+                                        <img src="anforderung-ressourcennutzung.jpg" alt="" class="img-thumbnail" style="width: 100%;" />
+                                        Das System muss effizient mit den Ressourcen umgehen und möglichst viele Ressourcen
+                                        für die eigentliche Anwendung zur Verfügung stellen. Die Anwendung muss ebenfalls
+                                        intelligent mit den Ressourcen umgehen und sie gut nutzen.
+                                    </div>
+                                    <div class="col-md">
+                                        <h3 class="dhbw-lightblue">Stabilität und Fehlertoleranz</h3>
+                                        <img src="anforderung-stabilitaet.jpg" alt="" class="img-thumbnail" style="width: 100%;" />
+                                        Programmabstürze und unvorhersehbares Verhalten sind unbedingt zu vermeiden.
+                                        Beim Programmieren muss man daher neben den fachlichen Fehlern auch die Fehler
+                                        berücksichtigen, die sich aus der Verteilung ergeben.
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <h3 class="dhbw-lightblue">Einfache Skalierbarkeit</h3>
+                                        <img src="anforderung-skalierbarkeit.jpg" alt="" class="img-thumbnail" style="width: 100%;" />
+                                        Es muss einfach möglich sein, die Leistung des Systems zu erhöhen oder diese zu reduzieren,
+                                        wenn sie nicht mehr benötigt wird. Dies kann je nach System automatisch oder manuell erfolgen.
+                                    </div>
+                                    <div class="col-md">
+                                        <h3 class="dhbw-lightblue">Einfache Nutzung (Transparenz)</h3>
+                                        <img src="anforderung-transparenz.jpg" alt="" class="img-thumbnail" style="width: 100%;" />
+                                        Zumindest für den Anwender sollte die inheränte Komplexität des Systems verborgen bleiben.
+                                        Entwickler und Administratoren freuen sich aber auch, wenn sie sich nicht um jede Kleinigkeit
+                                        kümmern müssen.
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <h3 class="dhbw-lightblue">Einfache Erweiterbarkeit</h3>
+                                        <img src="anforderung-erweiterbarkeit.jpg" alt="" class="img-thumbnail" style="width: 100%;" />
+                                        Die Architektur muss flexibel genug sein, um einzelne Teile jederzeit austauschen oder
+                                        weiterentwickeln zu können.
+                                    </div>
+                                    <div class="col-md">
+                                        <h3 class="dhbw-lightblue">Sicherheit</h3>
+                                        <img src="anforderung-sicherheit.jpg" alt="" class="img-thumbnail" style="width: 100%;" />
+                                        Die Vertraulichkeit, Integrität und Authentizität des Systems und seiner Daten muss
+                                        gewährleistet bleiben.
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <small>
+                                            <small>
+                                                Bildnachweise:
+                                                <a href="https://pixabay.com/en/wallet-tape-measure-economical-levy-2383496/" target="_blank">Pixabay: Myriams-Fotos</a>,
+                                                <a href="https://pixabay.com/en/house-of-cards-fragile-patience-763246/" target="_blank">Pixabay: wilhei</a>,
+                                                <a href="https://pixabay.com/en/mixer-fader-digital-console-1631398/" target="_blank">Pixabay: michaelmep</a>,
+                                                <a href="https://pixabay.com/en/glass-water-napkin-sky-reflection-2875091/" target="_blank">Pixabay: Michael-T</a>,
+                                                <a href="https://pixabay.com/en/floor-plan-blueprint-house-home-1474454/" target="_blank">Pixabay: ElasticComputerFarm</a>,
+                                                <a href="https://pixabay.com/en/building-cctv-door-female-ladies-1839464/" target="_blank">Pixabay: Pexels</a>
+                                            </small>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Umgang mit Fehlern -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "anforderungen-fehler"
+                            role            = "tabpanel"
+                            aria-labelledby = "anforderungen-fehler-tab"
+                        >
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h3 class="dhbw-lightblue">Fehler vermeiden</h3>
+                                        <img src="fehler-vermeiden.jpg" alt="" class="img-thumbnail" style="width: 100%;" />
+                                        Zum Beispiel durch Eingabehilfen oder einen sauberen Programmierstil
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h3 class="dhbw-lightblue">Fehler erkennen</h3>
+                                        <img src="fehler-erkennen.jpg" alt="" class="img-thumbnail" style="width: 100%;" />
+                                        Zum Beispiel durch Checksummen, Plausiprüfungen oder Monitoring
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h3 class="dhbw-lightblue">Fehler maskieren</h3>
+                                        <img src="fehler-maskieren.jpg" alt="" class="img-thumbnail" style="width: 100%;" />
+                                        Zum Beispiel durch spätere Wiederholung des Vorgangs
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h3 class="dhbw-lightblue">Fehler tolerieren</h3>
+                                        <img src="fehler-tolerieren.jpg" alt="" class="img-thumbnail" style="width: 100%;" />
+                                        Zum Beispiel durch Speichern beider Versionen bei Schreibkonflikten
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h3 class="dhbw-lightblue">Fehler beheben</h3>
+                                        <img src="fehler-beheben.jpg" alt="" class="img-thumbnail" style="width: 100%;" />
+                                        Zum Beispiel durch automatisches Umschalten auf ein Hot-Standby
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <small>
+                                            <small>
+                                                Bildnachweise:
+                                                <a href="https://pixabay.com/en/rappelling-rope-safety-security-755400/" target="_blank">Pixabay: cegoh</a>,
+                                                <a href="https://pixabay.com/en/equipment-hospital-ecg-3089883/" target="_blank">Pixabay: hioahelsefag</a>,
+                                                <a href="https://pixabay.com/en/redirect-shield-tree-attention-2257746/" target="_blank">Pixabay: Digitalpfade</a>,
+                                                <a href="https://pixabay.com/en/home-single-family-home-on-the-head-2308799/" target="_blank">Pixabay: ulleo</a>,
+                                                <a href="https://pixabay.com/en/first-aid-frog-medic-nurse-funny-1732708/" target="_blank">Pixabay: Alexas_Fotos</a>
+                                            </small>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sicherheitsaspekte -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "anforderungen-sicherheit"
+                            role            = "tabpanel"
+                            aria-labelledby = "anforderungen-sicherheit-tab"
+                        >
+                            <div class="container-fluid">
+                                <!-- Authentizität -->
+                                <div class="row" style="margin-bottom: 0;">
+                                    <div class="col-md">
+                                        <h3 class="dhbw-lightblue">Authentizität</h3>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 1em;">
+                                    <div class="col-md-4">
+                                        <img src="sicherheit-authentizitaet.jpg" alt="" class="img-thumbnail" style="width: 100%;" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        Die Anwendung kann die Identität des Benutzers überprüfen und verhindern, dass
+                                        er sich für jemand anderes ausgibt. Der Benutzer kann umgekehrt die Identität
+                                        der Gegenseite verifizieren. In der Regel werden von einer vertrauenswürigen
+                                        Zertifizierungsstelle ausgestellte SSL-Zertifikate hierfür genutzt.
+                                    </div>
+                                </div>
+
+                                <!-- Vertraulichkeit -->
+                                <div class="row" style="margin-bottom: 0;">
+                                    <div class="col-md">
+                                        <h3 class="dhbw-lightblue">Vertraulichkeit</h3>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 1em;">
+                                    <div class="col-md-4">
+                                        <img src="sicherheit-vertraulichkeit.jpg" alt="" class="img-thumbnail" style="width: 100%;" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        Sensitive Informationen werden gegen Einsicht durch unbefugte Dritte geschützt.
+                                        Die Anwendung muss daher mindestens eine Benutzer- und Rechteverwaltung besitzen.
+                                        Zusätzlich sollten die Daten verschlüsselt werden.
+                                    </div>
+                                </div>
+
+                                <!-- Integrität -->
+                                <div class="row" style="margin-bottom: 0;">
+                                    <div class="col-md">
+                                        <h3 class="dhbw-lightblue">Integrität</h3>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 1em;">
+                                    <div class="col-md-4">
+                                        <img src="sicherheit-integritaet.jpg" alt="" class="img-thumbnail" style="width: 100%;" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        Es muss sichergestellt werden, dass keine Informationen unbemerkt verfälscht werden
+                                        können. Dies trifft sowohl auf gespeicherte Daten als auch auf die Übertragung der
+                                        Daten zu. Üblicherweise werden hierfür digitale Signaturen auf Basis asymmetrischer
+                                        Verschlüsselung verwendet.
+                                    </div>
+                                </div>
+
+                                <!-- Bildnachweise -->
+                                <div class="row">
+                                    <div class="col-md">
+                                        <small>
+                                            <small>
+                                                Bildnachweise:
+                                                <a href="https://pixabay.com/en/name-nameplate-shield-id-press-1714231/" target="_blank">Pixabay: janf93</a>,
+                                                <a href="https://pixabay.com/en/application-job-work-workplace-2076445/" target="_blank">Pixabay: slightly_different</a>,
+                                                <a href="https://pixabay.com/en/secret-top-stamp-spy-army-3037639/" target="_blank">Pixabay: TayebMEZAHDIA</a>
+                                            </small>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
@@ -705,9 +1130,9 @@
 
                     <dt>Fehler erkennen</dt>
                     <dd>
-                        Natürlich lassen sich Fehler nicht immer vermeiden. In diesem Fall müssen sie aber wenigstens
-                        erkannt werden, um darauf reagieren zu können. Dies heist zum Beispiel, dass Benutzereingaben auf Plausiblität geprüft
-                        oder empfangene Daten durch Checksummen abgesichert werden.
+                        Natürlich lassen sich Fehler nicht immer vermeiden. In diesem Fall müssen sie aber wenigstens erkannt werden, um darauf
+                        reagieren zu können. Dass heißt zum Beispiel, dass Benutzereingaben auf Plausiblität geprüft oder empfangene Daten durch
+                        Checksummen abgesichert werden.
                     </dd>
 
                     <dt>Fehler maskieren</dt>
@@ -752,9 +1177,16 @@
                     target="_blank">Denn das Böse ist immer und überall.</a> Folgende Dinge muss eine Anwendung daher immer sicherstellen:
                 </p>
                 <dl>
+                    <dt>Authentizität</dt>
+                    <dd>
+                        Aus Sicht der Anwendung muss es möglich sein, die Identitiät eines Benutzers überrpüfen und auch nachweisen
+                        zu können. (Ist das wirklich der Benutzer, für den er sich ausgibt?) Aus Benutzersicht muss es umgekehrt
+                        auch möglich sein, die Authentizität der Gegenseite zu überprfen.
+                    </dd>
+
                     <dt>Vertraulichkeit</dt>
                     <dd>
-                        Die Anwendung muss eine Benutzer- und Rechteverwaltung besitzen, so dass unbefugte Dritte keine Zugriff auf
+                        Die Anwendung muss eine Benutzer- und Rechteverwaltung besitzen, so dass unbefugte Dritte keinen Zugriff auf
                         sensitive Informationen bekommen. Sensible Informationen sollten zustäzlich verschlüsselt werden.
                     </dd>
 
@@ -765,13 +1197,6 @@
                         muss es zumindest möglich sein, die Manipulation aufzudecken. Public-Key-Verfahren und Signaturen
                         können dies sicherstellen.
                     </dd>
-
-                    <dt>Authentizität</dt>
-                    <dd>
-                        Aus Sicht der Anwendung muss es möglich sein, die Identitiät eines Benutzers überrpüfen und auch nachweisen
-                        zu können. (Ist das wirklich der Benutzer, für den er sich ausgibt?) Aus Benutzersicht muss es umgekehrt
-                        auch möglich sein, die Authentizität der Gegenseite zu überprfen.
-                    </dd>
                 </dl>
             </aside>
         </section>
@@ -779,7 +1204,80 @@
         <section>
             <h1>Die acht Arten der Transparenz</h1>
             <article>
-                …
+                <div class="container-fluid">
+                    <div class="row" style="margin-bottom: 0;">
+                        <div class="col-md">
+                            <h2>Transparenz in der Wirtschaft</h2>
+                            <img src="transparenz1.jpg" alt="" class="img-thumbnail" style="width: 100%" />
+                            Jedes Detail kann nachgelesen und muss beachtet werden.
+                        </div>
+                        <div class="col-md">
+                            <h2>Transparenz in der Informatik</h2>
+                            <img src="transparenz2.jpg" alt="" class="img-thumbnail" style="width: 100%" />
+                            Es läuft einfach, ich muss mich um nichts kümmern.
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 2.5em;">
+                        <div class="col-md">
+                            <small>
+                                <small>
+                                    Bildnachweise:
+                                    <a href="https://pixabay.com/en/tax-paperwork-accounting-business-739107/" target="_blank">Pixabay: stevepb</a>,
+                                    <a href="https://pixabay.com/en/dogs-carnival-humor-pet-ernst-1190015/" target="_blank">Pixabay: Chiemsee2016</a>,
+                                    <a href="https://pixabay.com/en/background-christmas-3009949/" target="_blank">Pixabay: monicore</a>
+                                </small>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <h3>Zugriffstransparenz</h3>
+                            Ermöglicht den Zugriff auf lokale und entfernte Ressourcen auf gleiche Art und Weise
+                            (mit identischen Operationen).
+                        </div>
+                        <div class="col-md">
+                            <h3>Replikationstransparenz</h3>
+                            Ermöglicht der automatische Replikation von Daten ohne dass dies gesondert berücksichtig
+                            werden muss. Die Repliken werden automatisch aktuell gehalten.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <h3>Positions- / Ortstransparenz</h3>
+                            Ermöglicht den Zugriff auf eine Ressource ohne genau wissen zu müssen, auf welchem Rechner
+                            oder an welchem Ort sie sich befindet.
+                        </div>
+                        <div class="col-md">
+                            <h3>Fehlertransparenz</h3>
+                            Ermöglicht die automatische Behandlung bestimmter Fehler, ohne Benutzereingriff, beispielsweise
+                            durch automatisch eingeleitete Korrekturmaßnahmen.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <h3>Mobilitätstransparenz</h3>
+                            Ermöglicht es, die Ressourcen jederzeit (auf andere Rechner) zu verschieben, ohne dass die
+                            Anwendung oder das System hierfür angepasst werden müssen.
+                        </div>
+                        <div class="col-md">
+                            <h3>Leistungstransparenz</h3>
+                            Ermöglicht es automatisch oder manuell die Leistung des Systems anzupassen, wenn die Anforderungen
+                            steigen oder abnehmen.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <h3>Nebenläufigkeitstransparenz</h3>
+                            Ermöglicht es, viele nebenläufige Teilprozesse gleichzeitig laufen zu lassen, ohne dass es
+                            zu <a href="https://de.wikipedia.org/wiki/Race_Condition" target="_blank">Race Conditions</a>
+                            oder <a href="https://de.wikipedia.org/wiki/Deadlock_(Informatik)">Deadlocks</a> kommt.
+                        </div>
+                        <div class="col-md">
+                            <h3>Skalierbarkeitstransparenz</h3>
+                            Ermöglicht es, das System zu skalieren, ohne tiefgreifende Anpassungen daran vornehmen zu müssen.
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
@@ -863,7 +1361,47 @@
         <section id="folie-cap">
             <h1>Das CAP-Theorem verteilter Anwendungen</h1>
             <article>
-                …
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img src="cap-theorem.png" alt="Visualisierung des CAP-Theorems" style="width: 100%;" />
+                        </div>
+                        <div class="col-md">
+                            <h4 class="dhbw-lightblue">Consistency (Konsistenz)</h4>
+                            <p>
+                                Alle Knoten sehen immer exakt dieselbe, konsistenten Daten. Bei replizierten Datenbeständen
+                                werden die Änderungen daher erst sichtbar, wenn sie in allen Repliken nachgezogen wurden.
+                            </p>
+
+                            <h4 class="dhbw-lightblue">Availability (Verfügbarkeit)</h4>
+                            <p>
+                                Das System ist jederzeit erreichbar und überschreitet niemals die maximal zulässige
+                                Antwortzeit.
+                            </p>
+
+                            <h4 class="dhbw-lightblue">Partition Tolerance (Partitionstoleranz)</h4>
+                            <p>
+                                Die Anwendung funktioniert auch dann noch, wenn einzelne Teile ausgefallen sind.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <p style="color: darkred;">
+                                Eine verteilte Anwendung kann immer nur zwei dieser Anforderungen gänzlich erfüllen!
+                            </p>
+                            <p>
+                                Moderne Anwendungen sind deshalb oft nur „eventuell-konsistent”. Beispielsweise kann es
+                                in Facebook vorkommen, dass ein Like in den ersten Sekunden nicht für alle Profilbesucher
+                                sichtbar wird, da nicht alle auf derselben Datenreplik arbeiten.
+                            </p>
+                            <p>
+                                eBay hingegen würde bei der Gebotsabgabe stattdessen sicher lieber eine etwas längere
+                                Antwortzeit in Kauf nehmen, anstatt sich überschreibende Gebote zu riskieren.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
@@ -910,8 +1448,8 @@
                     einfach nur erkannt und es wird auch in Kauf genommen, dass ein Client eine Änderung nicht sofort sieht, auch
                     wenn der Schreibvorgang bereits abgeschlossen wurde. Die Datenbank ist dann nur noch eventuell-konsistent, was
                     aber für fast alle Anwendungsfälle vollkommen in Ordnung ist. Denn es gibt sogar Autoren, die argumentieren,
-                    dass echte, transaktionale Konsistenz absoluter Unsinn sei, da es diese im echten Leben auch nicht gäbe und dort
-                    alle Vorgänge nur eventuell-konsistent sein. 🤔
+                    dass strikte, transaktionale Konsistenz Unsinn sei, da es diese im echten Leben auch nicht gäbe und dort alle
+                    Vorgänge nur eventuell-konsistent seien. 🤔
                 </p>
             </aside>
         </section>
@@ -919,11 +1457,342 @@
         <section data-background-color="rgb(231, 221, 141)">
             <h1>Aufgabe 1: Ein kleines Verteilte-Systeme-Quiz</h1>
             <article>
-                …
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "aufgabe1-teilaufgabe1-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#aufgabe1-teilaufgabe1"
+                                role          = "tab"
+                                aria-controls = "aufgabe1-teilaufgabe1"
+                                aria-expanded = "true"
+                            >
+                                Definitionen
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "aufgabe1-teilaufgabe2-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#aufgabe1-teilaufgabe2"
+                                role          = "tab"
+                                aria-controls = "aufgabe1-teilaufgabe2"
+                            >
+                                Welche Aussage stimmt?
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "aufgabe1-teilaufgabe3-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#aufgabe1-teilaufgabe3"
+                                role          = "tab"
+                                aria-controls = "aufgabe1-teilaufgabe3"
+                            >
+                                Begriffe zuordnen
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Definitionen -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "aufgabe1-teilaufgabe1"
+                            role            = "tabpanel"
+                            aria-labelledby = "aufgabe1-teilaufgabe1-tab"
+                        >
+                            <p>
+                                Der nachfolgende Lückentext soll die Definition eines verteilten Systems und
+                                einer verteilten Anwendung wiedergeben. Bediene dich daher aus folgendem
+                                Wortvorrat, um die Definition zu vervollständigen.
+                            </p>
+                            <div class="dhbw-begriffswolke d-flex justify-content-center">
+                                <table>
+                                    <tr>
+                                        <td>Nachrichten</td>
+                                        <td>System</td>
+                                        <td>Austausch</td>
+                                        <td>Komponenten</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Klassen</td>
+                                        <td>Problem</td>
+                                        <td>kommunizieren</td>
+                                        <td>Aufruf</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Softwarekomponenten</td>
+                                        <td>Schnittstellen</td>
+                                        <td>Interfaces</td>
+                                        <td>Lösung</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Methoden</td>
+                                        <td>verteiltes</td>
+                                        <td>Kollektion</td>
+                                        <td>Computer</td>
+                                    </tr>
+                                    <tr>
+                                        <td>unabhängiger</td>
+                                        <td>Anwendung</td>
+                                        <td>System</td>
+                                        <td>schicken</td>
+                                    </tr>
+                                    <tr>
+                                        <td>kommunizieren</td>
+                                        <td>System</td>
+                                        <td>Komponenten</td>
+                                        <td>Netzwerk</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <h4>Verteiltes System</h4>
+                            <p style="margin-bottom: 1.5em;">
+                                Ein
+                                <span class="dhbw-wortluecke"></span>
+                                <span class="dhbw-wortluecke"></span>
+                                ist ein
+                                <span class="dhbw-wortluecke"></span>,
+                                in dem sich Hardware- und
+                                <span class="dhbw-wortluecke"></span>
+                                auf mehreren Computern befinden und diese nur über den
+                                <span class="dhbw-wortluecke"></span>
+                                von
+                                <span class="dhbw-wortluecke"></span>
+                                <span class="dhbw-wortluecke"></span>,
+                                um ihre Aktionen zu koordinieren.
+                            </p>
+
+                            <h4>Verteilte Anwendung</h4>
+                            <p style="margin-bottom: 1.5em;">
+                                Eine verteilte Anwendung ist eine
+                                <span class="dhbw-wortluecke"></span>,
+                                die ein verteiltes System zur
+                                <span class="dhbw-wortluecke"></span>
+                                des Anwendungsproblems nutzt und aus mehreren
+                                <span class="dhbw-wortluecke"></span>
+                                besteht, die über wohl-definierte
+                                <span class="dhbw-wortluecke"></span>.
+                                mit anderen Komponenten des Systems und dem Anwender
+                                <span class="dhbw-wortluecke"></span>.
+                            </p>
+
+                            <hr />
+
+                            <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                                <small>
+                                    <!-- <b>Lösung:</b> 2, 3, 1, 2, 1 und 2, 2, 4 -->
+                                    <b>Lösung:</b> <br />
+                                    verteiltes, System, System, Softwarekomponenten, Austausch, Nachrichten, kommunizieren <br />
+                                    Anwendung, Lösung, Komponenten, kommunizieren
+                                </small>
+                            </p>
+                        </div>
+                        <!-- Welche Aussage stimmt? -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "aufgabe1-teilaufgabe2"
+                            role            = "tabpanel"
+                            aria-labelledby = "aufgabe1-teilaufgabe2-tab"
+                        >
+                            <p>
+                                a) Nur eine der folgenden Aussagen ist richtig. Welche?
+                            </p>
+                            <ol class="dhbw-liste-mit-viel-text">
+                                <li>
+                                    Heutige Computer sind eigentlich immer verteilte Systeme, da jeder Computer
+                                    heutzutage über mehr als einen Rechenkern verfügt.
+                                </li>
+                                <li>
+                                    <!-- richtig -->
+                                    Eine der Hauptaufgaben verteilter Systeme ist die Parallelisierung komplexer
+                                    Berechnungen, für die ein einzelner Computer zu langsam wäre.
+                                </li>
+                                <li>
+                                    Auch wenn man in der Regel kooperierenden Programmen auf mehreren Rechnern ausgeht,
+                                    können ganz kleine, verteilte System nur aus einem Programm auf einem Rechner bestehen.
+                                </li>
+                            </ol>
+
+                            <p>
+                                b) Welches ist keine verteilte Anwendung im Sinne der obigen Definition?
+                            </p>
+                            <ol class="dhbw-liste-mit-viel-text">
+                                <li>
+                                    Ein zu Forschungszwecken eingesetzter Supercomputer besteht in Wirklichkeit aus vielen
+                                    kleinen Computern, auf die sich die Rechenlast verteilt.
+                                </li>
+                                <li>
+                                    Eine in den 1980ern entwickelte Auftragsverwaltung einer kleinen Fabrik legt einmal am Tag
+                                    eine Datei mit Produktionsaufträgen auf einem Fileserver ab. Dort wird sie dann von einem
+                                    anderen Programm ausgelesen, das damit die Fertigungsanlagen steuert.
+                                </li>
+                                <li>
+                                    <!-- richtig -->
+                                    Um die Rechenleistung moderner Prozessoren besser ausnutzen zu können, startet sich ein Programm
+                                    gleich mehrfach. Die unabhängig voneinander laufenden Programmteile können deshalb nur über Nachrichten
+                                    miteinander kommunizieren (<a href="https://de.wikipedia.org/wiki/Interprozesskommunikation" target="_blank">Interprozesskommunikation</a>).
+                                </li>
+                                <li>
+                                    In einem Rennspiel können mehrere Spieler gegeneinander antreten. Ein Spieler muss jedoch die Leitung
+                                    übernehmen, was bedeutet, dass sich alle anderen Spieler mit seinem Rechner verbinden müssen.
+                                </li>
+                            </ol>
+
+                            <p>
+                                c) Welches ist kein verteiltes System?
+                            </p>
+                            <ol class="dhbw-liste-mit-viel-text">
+                                <li>
+                                    Hunderte von Computern nutzen die inaktive Zeit, während der Bildschirm gesperrt ist, um komplizierte
+                                    Berechnungen auszuführen. Dabei werden die Rechner über das Internet koordiniert, so dass eine möglichst
+                                    optimale Aufgabenverteilung entsteht.
+                                </li>
+                                <li>
+                                    Das Internet, welches aus einer unüberschaubar großen Anzahl lose gekoppelter Einzelsysteme und
+                                    Netzwerke besteht, die alle über dieselbe Protokollfamilie miteinander kommunizieren.
+                                </li>
+                                <li>
+                                    <!-- richtig -->
+                                    Cloud Computing: Durch einen Kurzschluss im Netzwerkkabel geht einer Ihrer Computer in Rauch auf.
+                                    Vor lauter Nebel können Sie aber nicht sagen welcher.
+                                </li>
+                            </ol>
+
+                            <p>
+                                d) Welches sind die richtigen Definitionen von Vertraulichkeit und Datenintegrität?
+                            </p>
+                            <ol class="dhbw-liste-mit-viel-text">
+                                <li>
+                                    <!-- richtig -->
+                                    Vertraulichkeit bedeutet, dass nur berechtigte Personen auf sensible Daten zugreifen können. <br />
+                                    Datenintegrität bedeutet, dass die Daten nicht unbemerkt verfälscht werden können.
+                                </li>
+                                <li>
+                                    Vertraulichkeit bedeutet, dass die Herkunft fremder Daten zweifelsfrei festgestellt werden kann. <br />
+                                    Datenintegrität bedeutet, dass die Daten nicht verfälscht werden können.
+                                </li>
+                                <li>
+                                    Vertraulichkeit bedeutet, dass die Daten einer Anwendung nicht verfälscht werden können. <br />
+                                    Datenintegrität bedeutet, dass die Herkunft der Daten zweifelsfrei festgestellt werden kann.
+                                </li>
+                            </ol>
+
+                            <hr />
+
+                            <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                                <small>
+                                    <b>Lösung:</b> 2, 3, 3, 1
+                                </small>
+                            </p>
+                        </div>
+                        <!-- Begriffe zuordnen -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "aufgabe1-teilaufgabe3"
+                            role            = "tabpanel"
+                            aria-labelledby = "aufgabe1-teilaufgabe3-tab"
+                        >
+                            <p>
+                                Ordne die nachfolgenden Begriffe den untenstehenden Definitionen zu.
+                            </p>
+                            <div class="dhbw-begriffswolke d-flex justify-content-center">
+                                <table>
+                                    <tr>
+                                        <td>Fehler maskieren</td>
+                                        <td>Authentizität</td>
+                                        <td>Erweiterbarkeit</td>
+                                        <td>Zugriffstransparenz</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ortstransparenz</td>
+                                        <td>Horizontale Skalierung</td>
+                                        <td>CAP-Theorem</td>
+                                        <td>Fehler vermeiden</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <p style="margin-bottom: 1.5em;">
+                                <!-- Horizontale Skalierung -->
+                                a) <span class="dhbw-langer-strich"></span> <br />
+                                Um die Leistung eines verteilten Systems zu steigern, werden einfach weitere Computer
+                                hinzugefügt. An den bereits vorhandenen Computern sowie den darauf laufenden Programmen
+                                müssen hierfür keine nennenswerten Änderungen vorgenommen werden.
+                            </p>
+                            <p style="margin-bottom: 1.5em;">
+                                <!-- Zugriffstransparenz -->
+                                b) <span class="dhbw-langer-strich"></span> <br />
+                                Egal ob man als Anwender oder als Entwickler auf eine Ressource zugreift. Es sollte
+                                keinen Unterschied machen, ob diese sich auf dem eigenen oder einem anderen Computer
+                                befindet. Der Zugriff erfolgt immer auf dieselbe Weise.
+                            </p>
+                            <p style="margin-bottom: 1.5em;">
+                                <!-- Erweiterbarkeit -->
+                                c) <span class="dhbw-langer-strich"></span> <br />
+                                Sowohl die Systemarchitektur als auch die Softwarearchitektur sind flexibel genug,
+                                um jederzeit weitere Funktionen hinzufügen zu können, ohne gleich alles auseinander
+                                nehmen zu müssen. Denn nichts ist so beständig wie der Wandel.
+                            </p>
+                            <p style="margin-bottom: 1.5em;">
+                                <!-- Fehler vermeiden -->
+                                d) <span class="dhbw-langer-strich"></span> <br />
+                                Beim Programmieren darf man auf keinen Fall am falschen Ende sparen. Lieber investiert
+                                man etwas mehr Arbeit und bietet dafür zum Beispiel eine komfortable, selbsterklärende
+                                Benutzeroberfläche oder achtet darauf, selbst die eher unwahrscheinlichen Ausnahmen
+                                sauber zu behandeln als einen Programmabsturz zu riskieren.
+                            </p>
+                            <p style="margin-bottom: 1.5em;">
+                                <!-- Authentizität -->
+                                e) <span class="dhbw-langer-strich"></span> <br />
+                                Durch asymmetrische Verschlüsselungsverfahren und darauf aufbauende Public-Key/Private-Key-Verfahren
+                                kann ein Anwender sicher sein, sich nicht mit einem kompromittierten Server zu verbinden.
+                                Idealerweise kann auf dieselbe Weise auch die Identität des Benutzers überprüft werden.
+                            </p>
+                            <p style="margin-bottom: 1.5em;">
+                                <!-- CAP-Theorem -->
+                                f) <span class="dhbw-langer-strich"></span> <br />
+                                Wie schön wäre eine Welt, in der jede verteilte Anwendung stets mit konsistenten Daten arbeiten
+                                könnte, hochverfügbar wäre und selbst der Ausfall einzelner Komponenten keine wirkliche Störung
+                                wäre. Doch leider ist das nur ein schöner Traum, der nie wahr werden kann. Eine Anwendung kann
+                                immer nur zwei, niemals aber alle drei Kriterien erfüllen.
+                            </p>
+                            <p style="margin-bottom: 1.5em;">
+                                <!-- Ortstransparenz -->
+                                g) <span class="dhbw-langer-strich"></span> <br />
+                                <i><a href="https://www.youtube.com/watch?v=MWF7HTOT8BU" target="_blank">Heute hier, morgen dort</a>,
+                                bin kaum da, muss ich fort. So vergeht Jahr um Jahr, und es ist mir längst klar, dass nichts bleibt
+                                wie es war.</i> Dieser Songtext von Hannes Wader beschreibt auch eine wichtige Anforderung an
+                                verteilte Anwendungen.
+                            </p>
+                            <p style="margin-bottom: 1.5em;">
+                                <!-- Fehler maskieren -->
+                                h) <span class="dhbw-langer-strich"></span> <br />
+                                Geht mal was schief ist das oft eigentlich gar nicht so schlimm. Nicht jeder Fehler erfordert gleich
+                                die volle Aufmerksamkeit des Anwenders. Oft kann das System die fehlgeschlagene Aktion einfach nochmal
+                                versuchen oder sonst wie um das Problem herum arbeiten.
+                            </p>
+
+                            <hr />
+
+                            <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                                <small>
+                                    <b>Lösung:</b> Horizontale Skalierung, Zugriffstransparenz, Erweiterbarkeit, <br />
+                                    Fehler vermeiden, Authentizität, CAP-Theorem, Ortstransparenz, Fehler maskieren
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    Dies ist die Stelle, an der wir dir den Ball zuspielen. Hier kannst du zeigen, was du bisher gelernt hast. ⚽
                 </p>
             </aside>
         </section>
@@ -1005,7 +1874,7 @@
         </section>
 
         <section>
-            <h1>Weitere reelvante Middlewarearten</h1>
+            <h1>Weitere relevante Middlewarearten</h1>
             <article>
                 …
             </article>
