@@ -3103,7 +3103,187 @@
         </section>
 
         <section>
-            <h1>Drei oder vier Schichten</h1>
+            <h1>Vorgeschalteter Proxyserver</h1>
+            <article>
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "proxy-clientseitig-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#proxy-clientseitig"
+                                role          = "tab"
+                                aria-controls = "proxy-clientseitig"
+                                aria-expanded = "true"
+                            >
+                                Clientseitiger Proxy
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "proxy-serverseitig-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#proxy-serverseitig"
+                                role          = "tab"
+                                aria-controls = "proxy-serverseitig"
+                            >
+                                Serverseitiger Proxy
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Clientseitiger Proxy -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "proxy-clientseitig"
+                            role            = "tabpanel"
+                            aria-labelledby = "proxy-clientseitig-tab"
+                        >
+                            <h2>Beschreibung</h2>
+                            <p style="margin-bottom: 2em;">
+                                Ein clientseitiger Proxy bildet die Schnittstelle eines entfernten Servers innerhalb
+                                des lokalen Netzwerks ab. Die Anfragen der Clients werden nicht direkt an den Server
+                                sondern an den lokalen Proxy gesendet, der daraufhin entscheiden kann, ob er die
+                                Anfragen weiterleitet oder selbst beantwortet.
+                            </p>
+                            <div class="d-flex justify-content-center">
+                                <img src="proxy-clientseitig.png" alt="Architekturskizze mit clientseitigem Proxy" style="height: 16em; max-width: 100%; margin-bottom: 2em;" />
+                            </div>
+
+                            <h2>Anwendungsbeispiele</h2>
+                            <table style="margin-bottom: 1em;">
+                                <tr>
+                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                                        ✔️
+                                    </td>
+                                    <td>
+                                        Steigerung der Performance durch Cachen häufig angefragter Daten
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                                        ✔️
+                                    </td>
+                                    <td>
+                                        Implementierung von Zugangsbeschränkungen und Content Filtern
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                                        ✔️
+                                    </td>
+                                    <td>
+                                        Clientseitige Lastverteilung durch Weiterleitung an unterschiedliche Server
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- Serverseitiger Proxy -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "proxy-serverseitig"
+                            role            = "tabpanel"
+                            aria-labelledby = "proxy-serverseitig-tab"
+                        >
+                            <h2>Beschreibung</h2>
+                            <p style="margin-bottom: 2em;">
+                                Serverseitig kann ebenfalls ein Proxy eingesetzt werden, um die eingehenden Anfragen zu bündeln.
+                                Dadurch wird es möglich, zusätzliche Sicherheitsprüfungen zu implementieren, häufig angefragte
+                                Inhalte zu cachen oder eine transparente Lastverteilung vorzunehmen.
+                            </p>
+                            <div class="d-flex justify-content-center">
+                                <img src="proxy-serverseitig.png" alt="Architekturskizze mit serverseitigem Proxy" style="height: 16em; max-width: 100%; margin-bottom: 2em;" />
+                            </div>
+
+                            <h2>Anwendungsbeispiele</h2>
+                            <table style="margin-bottom: 1em;">
+                                <tr>
+                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                                        ✔️
+                                    </td>
+                                    <td>
+                                        Steigerung der Performance durch Cachen häufig angefragter Daten
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                                        ✔️
+                                    </td>
+                                    <td>
+                                        Implementierung von Zugangsbeschränkungen und Upload Filtern
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                                        ✔️
+                                    </td>
+                                    <td>
+                                        Realisierung von Paywalls zum Ausfiltern kostenpflichtiger Inhalte
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                                        ✔️
+                                    </td>
+                                    <td>
+                                        Sicherstellen einer vorgelagerten, zentralen Authentifizierung
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                                        ✔️
+                                    </td>
+                                    <td>
+                                        Serverseitige Lastverteilung durch Weiterleitung an unterschiedliche Server
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <aside>
+                <p>
+                    Das Wort <a href="https://de.wiktionary.org/wiki/Proxy" target="_blank">Proxy</a> kommt eigentlich vom
+                    lateinischen Wort „proximus”, was übersetzt „der Nächste” heißt. Als solches gibt es das Wort sowohl
+                    auf englisch als auch auf deutsch, wobei das englische Wort hin und wieder auch als „Stellvertreter”
+                    übersetzt wird. 📖 Und so ist es auch gemeint. <span style="color: darkred;">Ein Proxyserver bietet den
+                    Clients gegenüber exakt dieselbe Schnittstelle, wie der Server, den er vertritt.</span> Somit können die
+                    Clientanfragen einfach an den Proxy geschickt werden, ohne dass die Clients angepasst werden müssen.
+                    Der Proxy hat dann aber die Möglichkeit, bestimmte Anfragen gesondert zu behandeln:
+                </p>
+                <ul>
+                    <li>
+                        <b>Caching:</b> Bereits bekannte Anfragen können aus einem Cache bedient werden, ohne den
+                        Server kontaktieren zu müssen.
+                    </li>
+                    <li>
+                        <b>Content Filter:</b> Nicht erlaubte Anfragen, zum Beispiel aufgrund fehlender Berechtigungen
+                        oder aufgrund von Filterregeln können abgelehnt werden.
+                    </li>
+                    <li>
+                        <b>Authentifizierung:</b> Bevor eine Anfrage weitergeleitet wird, kann der Proxy versuchen,
+                        den Client zu authentifizieren und seine Berechtigungen zu prüfen.
+                    </li>
+                    <li>
+                        <b>Lastverteilung</b>: Der Proxy kann die Anfrage an unterschiedliche Serverinstanzen weiterleiten,
+                        um somit eine gleichmäßige Auslastung und eine insgesamt höhere Systemleistung zu erzielen.
+                    </li>
+                </ul>
+                <p>
+                    Dabei spielt es grundsätzlich keine Rolle, ob der Proxy auf Clientseite oder auf Serverseite angesiedelt ist.
+                    Beides hat seine Anwendungsfälle, wobei clientseitige Proxies in der Regel eher aus Performance- und Sicherheitsgründen
+                    eingesetzt werden. Zum Beispiel in so gut wie jedem Firmennetzwerk, wo der gesamte Web-Traffic durch einen zentralen
+                    Proxyserver geleitet wird. Serverseitig gehören die Entlastung kritischer Server durch vorgeschaltete Caches sowie eine
+                    transparente Lastverteilung zu den häufigsten Anwendungsfällen.
+                </p>
+            </aside>
+        </section>
+
+        <section>
+            <h1>Schichtenarchitektur mit Datenhaltung</h1>
             <article>
                 <div>
                     <ul class="nav nav-tabs" role="tablist">
@@ -3143,10 +3323,14 @@
                         >
                             <h2>Beschreibung</h2>
                             <p style="margin-bottom: 2em;">
-                                …
+                                Hierbei handelt es sich ebenfalls um eine Client-/Server-Architektur, jedoch greift der Server im
+                                auf eine Datenbank zu. Client, Server und Datenbank werden daher den drei Schichten <b>Darstellung</b>,
+                                <b>Anwendungslogik</b> und <b>Datenhaltung</b> zugeordnet. Für die Darstellung wurden früher ausschließlich
+                                native Clients verwendet, die heute zunehmend von Weboberflächen verdrängt werden. Die Schichten für die
+                                Anwendungslogik und Datenhaltung können durchaus auch mehrere Server umfassen.
                             </p>
                             <div class="d-flex justify-content-center">
-                                <img src="architektur-3schichten.svg" alt="Skizze einer 3-Schichtenarchitektur" style="height: 14em; max-width: 100%; margin-bottom: 2em;" />
+                                <img src="architektur-3schichten.svg" alt="Skizze einer 3-Schichtenarchitektur" style="height: 16em; max-width: 100%; margin-bottom: 2em;" />
                             </div>
 
                             <h2>Fallbeispiele</h2>
@@ -3172,7 +3356,7 @@
                                         ✔️
                                     </td>
                                     <td>
-                                        Die meisten ERP- und CRM-Systeme
+                                        Die meisten ERP- und CRM-Systeme (unter anderem SAP und Navision)
                                     </td>
                                 </tr>
                                 <tr>
@@ -3194,10 +3378,12 @@
                         >
                             <h2>Beschreibung</h2>
                             <p style="margin-bottom: 2em;">
-                                …
+                                Hierbei handelt es sich um eine Variation der 3-Schichtenarchitektur, bei der die mittlere Sicht
+                                in eine <b>Präsentations-</b> und eine <b>Anwendungsschicht</b> aufgeteilt wurde. Dieses Modell findet man
+                                häufig bei ERP-Systemen, die nachträglich um weiter Clienttechnologien erweitert wurden.
                             </p>
                             <div class="d-flex justify-content-center">
-                                <img src="architektur-4schichten.svg" alt="Skizze einer 3-Schichtenarchitektur" style="height: 14em; max-width: 100%; margin-bottom: 2em;" />
+                                <img src="architektur-4schichten.svg" alt="Skizze einer 3-Schichtenarchitektur" style="height: 16em; max-width: 100%; margin-bottom: 2em;" />
                             </div>
 
                             <h2>Fallbeispiele</h2>
@@ -3225,105 +3411,33 @@
             </article>
             <aside>
                 <p>
-                    …
+                    Große Informationssysteme wie die meisten CRM- und ERP-Systeme nutzen häufig eine ausgefeiltere Variante
+                    der Client-/Server-Architektur. Anstatt alle Funktionen auf einem zentralen Server zu vereinen nutzt der
+                    Server im Hintergrund einen Datenbankserver für die Datenhaltung. Der vorgeschaltete Server hat dann nur
+                    noch die Aufgabe, die fachlichen Anwendungsfunktionen auszuführen, ohne sich mit der Speicherung der Daten
+                    beschäftigen zu müssen. Dadurch besteht dann auch die Möglichkeit, sowohl auf Datenbankseite als auch auf
+                    Seite des Anwendungsservers eine Lastverteilung über mehrere Instanzen aufzusetzen, oder unterschiedliche
+                    Teilfunktionen auf unterschiedliche Server auszulagern. Gedanklich teilt man das System daher in die drei
+                    Schichten <b>Darstellung</b>, <b>Anwendungslogik</b> und <b>Datenhaltung</b> und definiert für jeden Client
+                    und jeden Server, in welche Schicht er gehört.
                 </p>
-            </aside>
-        </section>
-
-        <section>
-            <h1>Vorgeschalteter Proxyserver</h1>
-            <article>
-                <div>
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item">
-                            <a
-                                id            = "proxy-clientseitig-tab"
-                                class         = "nav-link active"
-                                data-toggle   = "tab"
-                                href          = "#proxy-clientseitig"
-                                role          = "tab"
-                                aria-controls = "proxy-clientseitig"
-                                aria-expanded = "true"
-                            >
-                                Clientseitiger Proxy
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a
-                                id            = "proxy-serverseitig-tab"
-                                class         = "nav-link"
-                                data-toggle   = "tab"
-                                href          = "#proxy-serverseitig"
-                                role          = "tab"
-                                aria-controls = "proxy-serverseitig"
-                            >
-                                Serverseitiger Proxy
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
-                        <!-- Clientseitiger Proxy -->
-                        <div
-                            class           = "tab-pane fade show active"
-                            id              = "proxy-clientseitig"
-                            role            = "tabpanel"
-                            aria-labelledby = "proxy-clientseitig-tab"
-                        >
-                            <!-- Proxy bei Client: Caching, Zugriffsbeschränkungen -->
-                            <h2>Beschreibung</h2>
-                            <p style="margin-bottom: 2em;">
-                                …
-                            </p>
-                            <div class="d-flex justify-content-center">
-                                <img src="" alt="" style="height: 18em; max-width: 100%; margin-bottom: 2em;" />
-                            </div>
-
-                            <h2>Fallbeispiele</h2>
-                            <table style="margin-bottom: 1em;">
-                                <tr>
-                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
-                                        ✔️
-                                    </td>
-                                    <td>
-                                        …
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <!-- Serverseitiger Proxy -->
-                        <div
-                            class           = "tab-pane fade"
-                            id              = "proxy-serverseitig"
-                            role            = "tabpanel"
-                            aria-labelledby = "proxy-serverseitig-tab"
-                        >
-                            <!-- Proxy bei Server: Caching, Zugriffsbeschränkungen, Lastverteilung, Integration -->
-                            <h2>Beschreibung</h2>
-                            <p style="margin-bottom: 2em;">
-                                …
-                            </p>
-                            <div class="d-flex justify-content-center">
-                                <img src="" alt="" style="height: 18em; max-width: 100%; margin-bottom: 2em;" />
-                            </div>
-
-                            <h2>Fallbeispiele</h2>
-                            <table style="margin-bottom: 1em;">
-                                <tr>
-                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
-                                        ✔️
-                                    </td>
-                                    <td>
-                                        …
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <aside>
                 <p>
-                    …
+                    Historisch gesehen verlief die Entwicklung allerdings genau umgekehrt, wie hier gezeigt. Die ersten
+                    Datenbankanwendungen hielten die komplette Anwendungslogik im Client (damals noch nicht so genannt),
+                    der zur Speicherung seiner Daten auf eine zentrale Datenbank zurückgreifen konnte. Nach und nach wurde
+                    den Datenbanken dann die Möglichkeit gegeben, ausführbaren Programmcode zu speichern (sogenannte Stored
+                    Procedures), so dass immer mehr Funktionen von den Clients in die Datenbanken gewandert sind. Als das dann
+                    irgendwann nicht mehr handhabbar war, wurde die Anwendungslogik aus den Datenbanken ausgelagert, wodurch
+                    die heute bekannte <b>3-Schichtenarchitektur</b> hervorgegangen ist.
+                </p>
+                <p>
+                    Da der Client seither nur noch für die Darstellung zuständig ist, wird er heute immer der Darstellungsschicht
+                    zugeordnet. Manche Hersteller sind allerdings dazu übergegangen, die mittlere Schicht nochmal in eine
+                    <b>Anwendungs-</b> und eine <b>Präsentationsschicht</b> zu unterteilen. Dies ist vor allem immer dann der
+                    Fall, wenn eine Altanwendung um weitere Clienttechnologien wie zum Beispiel eine Weboberfläche oder mobile
+                    Apps erweitert wurde. Die Server der Präsentationsschicht übernehmen dann die Aufgabe, die vom Anwendungsserver
+                    zurückgelieferten Daten für den jeweiligen Client passend aufzubereiten. In diesem Fall spricht man von einer
+                    <b>4-Schichtenarchitektur</b>.
                 </p>
             </aside>
         </section>
@@ -3331,105 +3445,298 @@
         <section>
             <h1>Getrennt entwickelte Microservices</h1>
             <article>
-                <div>
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item">
-                            <a
-                                id            = "microservices-rpc-tab"
-                                class         = "nav-link active"
-                                data-toggle   = "tab"
-                                href          = "#microservices-rpc"
-                                role          = "tab"
-                                aria-controls = "microservices-rpc"
-                                aria-expanded = "true"
-                            >
-                                Auf Basis entfernter Aufrufe
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a
-                                id            = "microservices-pubsub-tab"
-                                class         = "nav-link"
-                                data-toggle   = "tab"
-                                href          = "#microservices-pubsub"
-                                role          = "tab"
-                                aria-controls = "microservices-pubsub"
-                            >
-                                Auf Basis eines Message Brokers
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
-                        <!-- Auf Basis entfernter Aufrufe -->
-                        <div
-                            class           = "tab-pane fade show active"
-                            id              = "microservices-rpc"
-                            role            = "tabpanel"
-                            aria-labelledby = "microservices-rpc-tab"
-                        >
-                            <h2>Beschreibung</h2>
-                            …
-
-                            <h2>Fallbeispiele</h2>
-                            <table style="margin-bottom: 1em;">
-                                <tr>
-                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
-                                        ✔️
-                                    </td>
-                                    <td>
-                                        …
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <!-- Auf Basis eines Message Brokers -->
-                        <div
-                            class           = "tab-pane fade"
-                            id              = "microservices-pubsub"
-                            role            = "tabpanel"
-                            aria-labelledby = "microservices-pubsub-tab"
-                        >
-                            <h2>Beschreibung</h2>
-                            …
-
-                            <h2>Fallbeispiele</h2>
-                            <table style="margin-bottom: 1em;">
-                                <tr>
-                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
-                                        ✔️
-                                    </td>
-                                    <td>
-                                        …
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
+                <h2>Beschreibung</h2>
+                <p>
+                    Microservices zerlegen eine große, monolithische Anwendung in viele kleine Teilanwendungen. Jeder Microservice hat
+                    ein klar umrissenes Aufgabengebiet, besitzt eine gut dokumentierte und versionierte Schnittstelle und wird von einem
+                    eigenen Team entwickelt und betrieben. Entwicklung, Test und Betrieb sind sehr stark automatisiert. Microservices
+                    eignen sich daher nur für große Firmen mit kleinen, unabhängigen Entwicklungsmannschaften.
+                </p>
+                <div class="d-flex justify-content-center">
+                    <img src="microservices.svg" alt="Skizze einer Microservicearchitektur" style="height: 26em; max-width: 100%;" />
                 </div>
+
+                <h2>Fallbeispiele</h2>
+                <table style="margin-bottom: 1em;">
+                    <tr>
+                        <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                            ✔️
+                        </td>
+                        <td>
+                            Amazon gilt allgemein als Vorreiter, obwohl sie den Begriff selbst nicht verwenden
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                            ✔️
+                        </td>
+                        <td>
+                            Große Internetplattformen wie eBay, Netflix, SoundCloud, Spotify, …
+                        </td>
+                    </tr>
+                </table>
             </article>
             <aside>
                 <p>
-                    …
+                    Auf der Folie zuvor hast du eben die 3-Schichtenarchitektur kennengelernt. Es handelt sich dabei
+                    um einen bewährten Ansatz, der vielmals zu guten Ergebnissen und einer sauberen Gesamtarchitektur
+                    geführt hat. Allerdings nur solange, wie die Anwendung eine gewisse Maximalgröße nicht überschreiten
+                    hatte und die Rahmenbedingungen innerhalb des Entwicklerteams es zuließen. Denn die klassische
+                    3-Schichtenarchitektur, wie sie ja gerade von den Applikationsservern favorisiert wird, neigt dazu,
+                    sämmtliche Funktionen einer Anwendung in einem großen, monolithischen Monsterserver zu vereinen. 👹
+                    Für viele Anwendungen und viele Teams ist das genau der richtige Ansatz. Ab einer gewissen Größe
+                    lohnt es sich aber, die Architektur nochmal zu hinterfragen.
+                </p>
+                <p>
+                    Die generelle Trennung zwischen Anwendungslogik und Datenhaltung ist sicher keine schlechte Idee,
+                    egal wie groß die Anwendung wirklich ist. Doch macht es wirklich so viel Sinn, sämtliche Funktionen
+                    in ein und denselben Server zu packen, der dadurch nicht nur ziemlich umfangreich sondern in gleichem
+                    Maße auch ziemlich unübersichtlich und schwer zu warten wird? 🐻 Oder wäre es nicht besser, ganz im
+                    Sinne der <a href="#6">einfachen Erweiterbarkeit</a>, eher auf eine Sammlung, kleiner Module zu setzen,
+                    die nur sehr lose miteinander verbunden sind? Die Antwort darauf ist nicht schwarz und auch nicht weiß,
+                    sondern <a href="https://www.heise.de/-3944829" target="_blank">hängt von vielen Faktoren ab</a>, die
+                    überraschenderweise gar nicht so technischer Natur 🌴 sind.
+                </p>
+                <p>
+                    Doch fingen wir zunächst einmal bei den technischen Gegebenheiten und hier bei einem bekannten
+                    Unternehmen an: Bei Amazon. 💸 Amazon hatte, wie alle Unternehmen seinerzeit,
+                    <a href="https://thenewstack.io/led-amazon-microservices-architecture/" target="_blank">eine
+                    große monolithische</a> Anwendung für seinen Webshop gebaut. Zwar war die Anwendung durchaus gut
+                    durchdacht und logisch strukturiert, es war aber weiterhin eine riesengroße Anwendung mit hunderten
+                    von Entwicklern, deren Arbeit erst komplett zusammengeführt werden musste, bevor eine neue Version
+                    produktiv genommen werden konnte. „Ganz oder gar nicht” war die technische Realität damals, so
+                    dass es nicht möglich war, einzelne Bug Fixes produktiv zu setzen, ohne den Rest der Anwendung
+                    ebenfalls hochstufen zu müssen. Das ganze Ding war daher einfach zu groß 🎡 geworden, um wirklich
+                    noch handhabbar zu bleiben!
+                </p>
+                <p>
+                    Also begann Amazon im Jahr 2001, seine Anwendung in viele kleine, in sich geschlossene Teilanwendungen
+                    zu zerlegen, die alle …
+                </p>
+                <ul>
+                    <li>
+                        Von unterschiedlichen Entwicklermannschaften betreut werden,
+                    </li>
+                    <li>
+                        Unabhängig voneinander weiterentwickelt werden,
+                    </li>
+                    <li>
+                        Jeweils eine eigene Versionierung besitzen,
+                    </li>
+                    <li>
+                        Und deshalb getrennt voneinander deployed werden,
+                    </li>
+                    <li>
+                        Eine genau abgesteckte Aufgabe erfüllen,
+                    </li>
+                    <li>
+                        Ihre eigene Datenhaltung besitzen,
+                    </li>
+                    <li>
+                        Und über offene Schnittstellen miteinander kommunizieren.
+                    </li>
+                </ul>
+                <p>
+                    Und ehe man sich versah, waren
+                    <a href="http://microservices.io/patterns/microservices.html" target="_blank">Microservices</a>
+                    geboren. 🌟 Denn genau das ist die Idee hinter Microservices, auch wenn Amazon seine Architektur selbst so
+                    nie genannt hat.
+                </p>
+                <p>
+                    Auf der Folie siehst du, dass die einzelnen Microservices meist nach einer vereinfachten 2-Schichtenarchitektur
+                    aufgebaut sind. Der Grund hierfür ist, dass Microservices keine Benutzeroberfläche besitzen und daher die
+                    Präsentationsschicht wegfällt. Stattdessen bieten Microservices einfach nur eine öffentliche Schnittstelle,
+                    zum Beispiel in Form von Webservices, über die sie aufgerufen werden können. Die Aufgabe, alle Services zu einer
+                    einheitlichen Oberfläche zu vereinen, obliegt dann einem vorgeschalteten Frontserver¹, der die eigentliche
+                    Weboberfläche (falls eine Weboberfläche genutzt wird) beinhaltet und alle Services in der richtigen Reihenfolge
+                    aufrufen kann. Er ist dabei so intelligent, dass die Weboberfläche auch dann noch funktioniert, wenn einzelne
+                    Microservices ausgefallen sind oder nur sehr langsam reagieren.
+                </p>
+                <p>
+                    <small>
+                        ¹ Wichtig anzumerken ist, dass es sich beim Frontserver weder um einen Peer noch um einen Proxy handelt.
+                        Denn in Richtung der Clients bietet der Frontserver beispielsweise eine HTTP-Schnittstelle zum Aufruf einer
+                        Weboberfläche, was ihn zu einem vollwertigen Server macht. In Richtung der Microservices könnte es
+                        beispielsweise nötig sein, diese via RPC aufzurufen, was ihn von einem einfachen Proxy unterscheidet,
+                        der ja in beide Richtungen immer „dieselbe Sprache” sprechen würde.
+                    </small>
+                </p>
+                <p>
+                    Insgesamt ergibt sich somit eine Architektur, die viele der Anforderungen von <a href="#6">Folie 6</a> erfüllen kann,
+                    beispielsweise da sie einfach erweiterbar und jeder Microservice unabhängig von den anderen skalierbar ist. Dennoch handelt
+                    es sich um keinen <a href="https://www.youtube.com/watch?v=UM_mMtyz6ig" target="_blank">heiligen Gral</a>. Gerade, wenn die
+                    organisatorischen Voraussetzungen, wie das Vorhandensein mehrerer, unabhängiger Entwicklerteams, eine hohe Testautomatisierung
+                    und so weiter nicht gegeben sind, oder die Anwendung einfach nicht so groß ist, macht die Entwicklung eines klassischen
+                    Monolithen mehr Sinn.
                 </p>
             </aside>
         </section>
 
         <section data-background-color="rgb(231, 221, 141)">
-            <h1>Aufgabe 3: Architekturmuster bewerten</h1>
+            <h1>Aufgabe 3: Ein kleines Architekturmuster-Quiz</h1>
             <article>
-                …
+                <h2>Aufgabe 3.1: Proxyserver</h2>
+
+                <p>
+                    a) Welche der folgenden Definition entspricht der eines Proxyservers?
+                </p>
+                <ol>
+                    <li>
+                        Ein Proxyserver verbindet sich mit vielen anderen Proxyservern zu einem virtuellen Gesamtsystem.
+                    </li>
+                    <li>
+                        Ein Proxyserver dient der Zusammenführung mehrerer Microservices in einer Weboberfläche.
+                    </li>
+                    <li>
+                        Ein Proxyserver kopiert die Schnittstelle eines anderen Servers, und vertritt diesen gegenüber seiner Clients.
+                    </li>
+                </ol>
+
+                <p>
+                    b) Welche der folgenden Aufgaben gehören nicht zu denen eines Proxyservers?
+                </p>
+                <ol>
+                    <li>
+                        Chachen häufig angefragter Inhalte
+                    </li>
+                    <li>
+                        Vereinheitlichung unterschiedlicher Serverprotokolle
+                    </li>
+                    <li>
+                        Content Filter, Upload Filter, Paywalls
+                    </li>
+                    <li>
+                        Lastverteilung über mehrere Serverinstanzen
+                    </li>
+                    <li>
+                        Sicherstellen einer zentralen Authentifizierung
+                    </li>
+                </ol>
+
+                <h2>Aufgabe 3.2: 3-Schichtenarchitektur</h2>
+
+                <p>
+                    a) Welche der folgenden Schichten gehören zur 3-Schichtenarchitektur?
+                </p>
+                <ol>
+                    <li>
+                        Datenhaltungsschicht
+                    </li>
+                    <li>
+                        Präsentationsschicht
+                    </li>
+                    <li>
+                        Darstellungsschicht
+                    </li>
+                    <li>
+                        Clientschicht
+                    </li>
+                    <li>
+                        Spätschicht
+                    </li>
+                    <li>
+                        Anwendungsschicht
+                    </li>
+                </ol>
+
+                <p>
+                    b) Welche der folgenden Schichten gehören zur 4-Schichtenarchitektur?
+                </p>
+                <ol>
+                    <li>
+                        Mittelschicht
+                    </li>
+                    <li>
+                        Anwendungsschicht
+                    </li>
+                    <li>
+                        Präsentationsschicht
+                    </li>
+                    <li>
+                        Peer-To-Peer-Schicht
+                    </li>
+                    <li>
+                        Darstellungsschicht
+                    </li>
+                    <li>
+                        Datenhaltungsschicht
+                    </li>
+                </ol>
+
+                <h2>Aufgabe 3.3: Microservices</h2>
+
+                <p>
+                    a) Jeder Microservice entspricht einer 3-Schichtenarchitektur?
+                </p>
+                <ol>
+                    <li>
+                        Wahr
+                    </li>
+                    <li>
+                        Falsch
+                    </li>
+                </ol>
+
+                <p>
+                    b) Microservices lohnen sich in der Regel eher für …
+                </p>
+                <ol>
+                    <li>
+                        Große Anwendungen in großen Unternehmen mit vielen Entwicklern
+                    </li>
+                    <li>
+                        Große Anwendungen in kleinen Unternehmen mit wenigen Entwicklern
+                    </li>
+                    <li>
+                        Kleine Anwendungen in großen Unternehmen mit wenigen Entwicklern
+                    </li>
+                </ol>
+
+                <p>
+                    c) Welche der folgenden Techniken können die Schnittstelle eines Microservices bilden?
+                </p>
+                <ol>
+                    <li>
+                        Entfernte Prozedur-/Methodenaufrufe
+                    </li>
+                    <li>
+                        Webservices
+                    </li>
+                    <li>
+                        Weboberflächen im Browser
+                    </li>
+                    <li>
+                        Message Broker
+                    </li>
+                    <li>
+                        Mobile Apps
+                    </li>
+                </ol>
+
+                <p>
+                    d) Die Microservices einer großen Anwendung besitzen alle dieselbe Versionsnummer?
+                </p>
+                <ol>
+                    <li>
+                        Wahr
+                    </li>
+                    <li>
+                        Falsch
+                    </li>
+                </ol>
 
                 <hr />
 
                 <p style="transform: scaleY(-1) scaleX(-1); display: inline-block;">
                     <small>
-                        <b>Lösung:</b> …
+                        <b>Lösung:</b> Aufgabe 3.1: 3, 2; Aufgabe 3.2: 1 + 3 + 6, 2 + 3 + 5 + 6; Aufgabe 3.3: 2, 1, 1 + 2 + 4, 2
                     </small>
                 </p>
             </article>
             <aside>
                 <p>
-                    …
+                    Und hier nun das große Finale! 🎪 Zum Abschluss dieser Einheit darfst du ein paar
+                    Fragen zu den eben gelernten Architekturmustern beantworten.
                 </p>
             </aside>
         </section>
