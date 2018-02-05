@@ -505,13 +505,28 @@
                             role            = "tabpanel"
                             aria-labelledby = "vertan-www-tab"
                         >
-                            <p style="margin-bottom: 1em;">
-                                🌟 Weltweiter Informationsdienst auf Grundlage des Internets <br />
-                                🌟 Softwarekomponenten: Browser, Webserver, Datenbanken <br />
-                                🌟 Viele Implementierungen für jede Komponente verfügbar <br />
-                                🌟 HTTP als universelles Nachrichtenformat <br />
-                                🌟 Interessant: Das Web dient selbst als Plattform für verteilte Anwendungen
-                            </p>
+                            <table style="margin-bottom: 1em;">
+                                <tr>
+                                    <td style="padding-right: 0.5em;">🌟</td>
+                                    <td>Weltweiter Informationsdienst auf Grundlage des Internets</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-right: 0.5em;">🌟</td>
+                                    <td>Softwarekomponenten: Browser, Webserver, Datenbanken</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-right: 0.5em;">🌟</td>
+                                    <td>Viele Implementierungen für jede Komponente verfügbar</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-right: 0.5em;">🌟</td>
+                                    <td>HTTP als universelles Nachrichtenformat</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-right: 0.5em;">🌟</td>
+                                    <td>Interessant: Das Web dient selbst als Plattform für verteilte Anwendungen</td>
+                                </tr>
+                            </table>
                             <p>
                                 <img src="world-wide-web.png" alt="Skizze einer Webanwendung mit Browser, Server und Datenbank" style="width: 100%;" />
                             </p>
@@ -626,7 +641,7 @@
         </section>
 
         <section>
-            <h1>Wozu man verteilte Systeme gebraucht werden</h1>
+            <h1>Wozu verteilte Systeme gebraucht werden</h1>
             <article>
                 <div class="container-fluid">
                     <div class="row">
@@ -1561,7 +1576,6 @@
 
                             <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
                                 <small>
-                                    <!-- <b>Lösung:</b> 2, 3, 1, 2, 1 und 2, 2, 4 -->
                                     <b>Lösung:</b> <br />
                                     verteiltes, System, System, Softwarekomponenten, Austausch, Nachrichten, kommunizieren <br />
                                     Anwendung, Lösung, Komponenten, Schnittstellen, kommunizieren
@@ -1790,7 +1804,110 @@
         <section>
             <h1>Von Clients, Servern und Peers</h1>
             <article>
-                …
+                <div class="container-fluid">
+                    <div class="row" style="margin-bottom: 2em;">
+                        <div class="col-md">
+                                <table style="font-size: 75%;">
+                                <tr>
+                                    <td style="padding-right: 0.5em;">
+                                        💿
+                                    </td>
+                                    <td>
+                                        <b>Server</b>
+                                    </td>
+                                    <td style="padding-bottom: 0.33em;">
+                                        Langlaufendes Programm, das einen Dienst zur Verfügung stellt.
+                                        <span style="color: darkred;">
+                                            Wartet darauf, bis sich ein Client mit ihm verbindet.
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-right: 0.33em;">
+                                        💿
+                                    </td>
+                                    <td>
+                                        <b>Client</b>
+                                    </td>
+                                    <td style="padding-bottom: 0.33em;">
+                                        Kurzlebiges Programm, das den Dienst nutzt.
+                                        <span style="color: darkred;">
+                                            Stellt hierfür eine Verbindung zum Server her.
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-right: 0.5em;">
+                                        💿
+                                    </td>
+                                    <td>
+                                        <b>Peer</b>
+                                    </td>
+                                    <td style="padding-bottom: 0.66em;">
+                                        Spezielles Programm, das sowohl Client als auch Server ist.
+                                    </td>
+                                </tr>
+                                <tr style="border: 0px dashed black; border-top-width: 1px;">
+                                    <td style="padding-top: 1em; padding-right: 0.5em;">
+                                        🖥
+                                    </td>
+                                    <td style="padding-top: 1em;">
+                                        ️<b>Host</b>
+                                    </td>
+                                    <td style="padding-top: 1em;">
+                                        Der Rechner, auf dem die Software läuft.
+                                        <span style="color: darkred;">
+                                            Oft sagen die Leute „Server” und meinen den „Host” damit.
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 2em;">
+                        <div class="col-md">
+                            <h3 class="dhbw-lightblue">Client/Server-Architektur</h3>
+                            <img src="client-server.svg" alt="Skizze mit vielen Clients und einem Server in der Mitte" style="width: calc(100% - 2em);" />
+                        </div>
+                        <div class="col-md">
+                            <h3 class="dhbw-lightblue">Peer-To-Peer-Architektur</h3>
+                            <img src="peer-to-peer.svg" alt="Skizze mit vielen untereinander verbundenen Peers" style="width: calc(100% - 2em);" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md">
+                            <h3 class="dhbw-lightblue">Serverless Computing</h3>
+                            <table style="width: 100%; background-image: url(cloud.jpg); background-repeat: no-repeat; background-position: center center; background-size: cover;">
+                                <tr>
+                                    <td style="width: 1em;">
+                                        ⛱️
+                                    </td>
+                                    <td>
+                                        Kunstwort der Cloudanbieter.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 1em;">
+                                        ⛱️
+                                    </td>
+                                    <td>
+                                        Besagt lediglich, dass alle Dienste in der Cloud laufen.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 1em;">
+                                        ⛱️
+                                    </td>
+                                    <td>
+                                        Aber natürlich gibt es dort weiterhin Server und (virtuelle) Hosts.
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
@@ -1875,61 +1992,828 @@
         <section>
             <h1>Aufgaben einer Middleware</h1>
             <article>
-                <img src="middleware.svg" alt="Schematische Skizze einer verteilten Anwendung mit Middleware" style="width: 100%" />
-                …
+                <img src="middleware.png" alt="Schematische Skizze einer verteilten Anwendung mit Middleware" style="width: 100%; margin-bottom: 2em;" />
+
+                <table style="margin-bottom: 1em;">
+                    <tr>
+                        <td style="font-weight: bold; color: darkgreen; padding-right: 0.5em;">
+                            🗸
+                        </td>
+                        <td>
+                            Eine Middleware vereinfacht die Programmierung verteilter Anwendungen.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: darkgreen; padding-right: 0.5em;">
+                            🗸
+                        </td>
+                        <td>
+                            Hauptsächlich versteckt sie die Einzelheiten der Netzwerkprogrammierung.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: darkgreen; padding-right: 0.5em;">
+                            🗸
+                        </td>
+                        <td>
+                            Manche Middlewarearten bieten jedoch auch weitere nützliche Funktionen.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: darkgreen; padding-right: 0.5em;">
+                            🗸
+                        </td>
+                        <td>
+                            Dadurch können wir uns ausschließlich auf das Anwendungsproblem konzentrieren.
+                        </td>
+                    </tr>
+                </table>
+
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "middleware-arten-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#middleware-arten"
+                                role          = "tab"
+                                aria-controls = "middleware-arten"
+                            >
+                                Nutzung einer Middleware
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "middleware-transparenz-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#middleware-transparenz"
+                                role          = "tab"
+                                aria-controls = "middleware-transparenz"
+                                aria-expanded = "true"
+                            >
+                                Middleware und die Transparenz
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Nutzung einer Middleware -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "middleware-arten"
+                            role            = "tabpanel"
+                            aria-labelledby = "middleware-arten-tab"
+                        >
+                            <div class="container-fluid">
+                                <!-- Kommunikationsorientiert -->
+                                <div class="row" style="margin-bottom: 0">
+                                    <div class="col-md">
+                                        <h3>Kommunikationsorientiert</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="middleware-kommunikationsorientiert.jpg" alt="" class="img-thumbnail" class="style: width: 100%;" />
+                                    </div>
+                                    <div class="col-md">
+                                        <table style="margin-bottom: 1em;">
+                                            <tr>
+                                                <td style="font-weight: bold; color: darkgreen; padding-right: 0.5em;">
+                                                    🗸
+                                                </td>
+                                                <td>
+                                                    Besteht aus einer einfachen Klassenbibliothek
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold; color: darkgreen; padding-right: 0.5em;">
+                                                    🗸
+                                                </td>
+                                                <td>
+                                                    Kann daher in jedes Javaprogramm eingebaut werden
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold; color: darkgreen; padding-right: 0.5em;">
+                                                    🗸
+                                                </td>
+                                                <td>
+                                                    Kümmert sich nur um den Datenaustausch
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold; color: darkgreen; padding-right: 0.5em;">
+                                                    🗸
+                                                </td>
+                                                <td>
+                                                    Beinhaltet häufig auch Funktionen zum Auffinden der Anwendungskomponenten und zur Lastverteilung
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Anwendungsorientiert -->
+                                <div class="row" style="margin-bottom: 0">
+                                    <div class="col-md">
+                                        <h3>Anwendungsorientiert</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="middleware-anwendungsorientiert.jpg" alt="" class="img-thumbnail" class="style: width: 100%;" />
+                                    </div>
+                                    <div class="col-md">
+                                        <table style="margin-bottom: 1em;">
+                                            <tr>
+                                                <td style="font-weight: bold; color: darkgreen; padding-right: 0.5em;">
+                                                    🗸
+                                                </td>
+                                                <td>
+                                                    Besteht meistens aus einem ausgewachsenen Applikationsserver
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold; color: darkgreen; padding-right: 0.5em;">
+                                                    🗸
+                                                </td>
+                                                <td>
+                                                    Bietet alle Funktionen einer kommunikationsorientierten Middleware
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold; color: darkgreen; padding-right: 0.5em;">
+                                                    🗸
+                                                </td>
+                                                <td>
+                                                    Bietet darüber hinaus aber auch viele Zusatzfunktionen wie
+                                                    eine Benutzerverwaltung oder Datenbankfunktionen
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold; color: darkgreen; padding-right: 0.5em;">
+                                                    🗸
+                                                </td>
+                                                <td>
+                                                    Beinhaltet bereits ein Rahmenprogramm und eine Laufzeitumgebung für die
+                                                    Klassen mit den Anwendungsfunktionen
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold; color: darkgreen; padding-right: 0.5em;">
+                                                    🗸
+                                                </td>
+                                                <td>
+                                                    Bietet umfangreiche Schnittstellen zum Aufruf der Klassen durch verschiedene
+                                                    Arten von Clients
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold; color: darkgreen; padding-right: 0.5em;">
+                                                    🗸
+                                                </td>
+                                                <td>
+                                                    Dient oft auch als Anwendungsserver für Webanwendungen
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Bildnachweise -->
+                                <div class="row">
+                                    <div class="col-md">
+                                        <small>
+                                            <small>
+                                                Bildnachweise:
+                                                <a href="https://pixabay.com/en/ship-boat-lake-garda-italy-sea-952292/" target="_blank">Pixabay: Mariamichelle</a>,
+                                                <a href="https://pixabay.com/en/cruise-ship-cruiser-cruise-ship-1578528/" target="_blank">Pixabay: susannp4</a>
+                                            </small>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Middleware und die Transparenz -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "middleware-transparenz"
+                            role            = "tabpanel"
+                            aria-labelledby = "middleware-transparenz-tab"
+                        >
+                            <div class="container-fluid">
+                                <!-- Wobei uns eine Middleware oft hilft -->
+                                <div class="row">
+                                    <div class="col-md">
+                                        <h2>Wobei uns eine Middleware oft hilft</h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <h3>Nebenläufigkeitstransparenz</h3>
+                                        Manche Middlewarearten lassen den Client warten, während der Server eine Anfrage bearbeitet.
+                                        Andere gehen von vornherein davon aus, dass eine Antwort wann dann zeitversetzt kommt.
+                                    </div>
+                                    <div class="col-md">
+                                        <h3>Leistungs- / Skalierbarkeitstransparenz</h3>
+                                        Oft hat die Middleware bereits Funktionen zur Lastverteilung eingebaut. Meistens reicht es
+                                        dann, einfach eine weitere Serverinstanz zu starten, um die Leistung zu erhöhen.
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <h3>Zugriffstransparenz</h3>
+                                        Bestimmte Middlewares erlaubt den Aufruf von Methoden entfernter Objekte, genau so als wären
+                                        es lokale Objekte innerhalb des eigenen Javaprogramms.
+                                    </div>
+                                    <div class="col-md">
+                                        <h3>Orts- / Mobiltitätstransparenz</h3>
+                                        Die meisten Middlewares haben einen Namensdienst zum Nachschlagen von entfernter Adressen
+                                        eingebaut. Die Adressen müssen somit nicht hartcodiert werden.
+                                    </div>
+                                </div>
+
+                                <!-- Wo eine Middleware meistens nicht hilft -->
+                                <div class="row">
+                                    <div class="col-md">
+                                        <h2>Wo eine Middleware meistens nicht hilft</h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <h3>Replikationstransparenz</h3>
+                                        Die Replikation der Daten wird oft außerhalb der Anwendung zum Beispiel auf
+                                        Datenbankebene gelöst. Nur wenige Middlewares bieten deshalb Funktionen hierfür.
+                                    </div>
+                                    <div class="col-md">
+                                        <h3>Fehlertransparenz</h3>
+                                        Eine Middleware vereinfacht zwar die Programmierung, es können aber immer noch
+                                        dieselben technischen Fehler auftreten, um die wir uns kümmern müssen.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    <!-- s. "Herleitung des Middlewarebegriffs" im Konzept -->
-                    …
+                    Auf <a href="#4">Folie 4</a> hast du bereits eine Abbildung gesehen, die zeigt, dass eine
+                    verteilte Anwendung immer aus mehreren Teilprogrammen (auch Komponenten genannt) besteht,
+                    die auf den einzelnen Rechnern eines verteilten Systems laufen. Hier siehst du dieselbe
+                    Abbildung noch einmal, sie sieht aber ein wenig anders aus. Zwischen der Anwendung und dem
+                    System befindet sich eine weitere Schicht, die sich „Middleware” nennt. 🍔
+                </p>
+                <p>
+                    Prinzipiell sind Schichten in der Netzwerkprogrammierung ja nichts neues für uns. Bereits beim
+                    guten alten OSI-Modell haben wir sie kennengelernt, da sie die Grundlage für den heute üblichen
+                    TCP/IP-Protokollstapel bilden:
+                </p>
+                <ol>
+                    <li>
+                        <b>Netzwerk:</b> Auf unterster Ebene befindet sich das Netzwerk, wobei TCP/IP hier nicht
+                        zwischen den physikalischen Eigenschaften und der Codierung der Daten unterscheidet. Deshalb
+                        bleibt auch unberücksichtigt, dass auf dem Weg zwischen zwei Computern meist unterschiedliche
+                        Netzwerktypen liegen. Zuhause hast du vielleicht deinen Laptop mit einem Kabel an den Router
+                        angeschlossen, während dein Smartphone über WLAN verbunden ist. Technisch gesehen sind das
+                        zwei verschiedene Netzwerktypen: Ethernet und WLAN. Und dein Internetprovider nutzt sowieso
+                        eine ganz andere Technik. Für die darüber liegenden Schichten spielt das aber alles keine
+                        Rolle. 📜
+                    </li>
+                    <li>
+                        <b>Vermittlungsschicht:</b> Auf dieser Ebene ist das IP-Protokoll angesiedelt. Es weist jedem
+                        Rechner eine im Idealfall weltweit eindeutige IP-Adresse zu und kümmert sich darum, die in
+                        einzelne kleine Pakete aufgeteilten Daten durch das Internet zu routen und zuzustellen.
+                    </li>
+                    <li>
+                        <b>Transportschicht:</b> Hier sind verschiedene Protokolle wie TCP, UDP oder TLS angesiedelt. Sie
+                        fügen der IP-Adresse eines Rechners eine 32-bit große Portnummer hinzu, über die unterschiedliche
+                        Dienste angesprochen werden können. Beispielsweise gibt es eine Konvention, dass HTTP-Server
+                        standardmäßig auf Port 80 und Mailserver auf Port 25 angesprochen werden. Dadurch wird es möglich,
+                        dass ein Host mehrere Serverprogramme beherbergt.
+                    </li>
+                    <li>
+                        <b>Anwendungsprotokoll:</b> Diese Schicht hängt, wie der Name bereits sagt, von der eigentlichen
+                        Anwendung ab. Es muss jedoch angemerkt werden, dass damit nicht die Anwendung selbst gemeint!
+                        Stattdessen handelt es sich über das Protokoll, das die Nachrichtenarten definiert, die innerhalb
+                        einer verteilten Anwendung ausgetauscht werden.
+                    </li>
+                </ol>
+
+                <p>
+                    Und wie kommt hier nun die Middleware ins Spiel? Ganz einfach, indem sie uns die Programmierung
+                    verteilter Anwendungen vereinfacht. Denn ohne Middleware müssten wir uns mit Javaklassen wie
+                    <code>Socket</code>, <code>ServerSocket</code>, <code>InputStream</code> und <code>OutputStream</code>
+                    auseinandersetzen und alles selbst entwickeln. Unter anderem müssten wir ein eigenes Anwendungsprotokoll
+                    entwerfen und auch sonst jede Kleinigkeit selbst programmieren, die eine verteilte Anwendung
+                    nunmal braucht. 🏚️🏗️
+                </p>
+                <p>
+                    Eine Middleware nimmt uns einen großen Teil dieser Arbeit ab, indem sie unter Anderem bereits
+                    ein Anwendungsprotokoll implementiert und sich auch sonst um verschiedene Dinge kümmert, die
+                    eigentlich so gut wie immer benötigt werden. Sie kann uns daher auch bei der Einhaltung der
+                    Transparenzarten von <a href="#7">Folie 7</a> helfen:
+                </p>
+                <ul>
+                    <li>
+                        <b>Nebenläufigkeitstransparenz:</b> Hier gibt es die größten Unterschiede zwischen den
+                        verschiedenen Middlewarearten. Manche Middlewares lösen das Problem, indem der Client bei
+                        eine Anfrage an den Server so lange wartet, bis er eine Antwort erhält. Andere Middlewares
+                        gehen von vornherein davon aus, dass entweder gar keine Antwort oder die Antwort irgendwann
+                        zeitversetzt eintreffen wird.
+                    </li>
+                    <li>
+                        <b>Orts- und Mobilitätstransparenz:</b> Die meisten Middlewarearten enthalten einen sogenannten
+                        Namensdienst, in dem die Position entfernte Ressourcen nachgeschlagen werden kann. Dadurch
+                        werden die Zieladressen nicht hartcodiert und können jederzeit angepasst werden.
+                    </li>
+                    <li>
+                        <b>Leistungs- und Skalierbarkeitstransparenz:</b> Manche Middlewarearten haben bereits Funktionen
+                        zur Lastverteilung eingebaut.
+                    </li>
+                </ul>
+                <p>
+                    Und so weiter und so fort. 💫 Durch eine Middleware können wir uns ausschließlich auf das
+                    Anwendungsproblem konzentrieren, ohne uns um die Technik all zu viele Gedanken machen zu müssen.
+                    Die einzige Entscheidung, die wir treffen müssen, ist welche Middleware wir verwenden wollen.
+                    Denn, wie es ja nicht anders zu erwarten war, gibt es viele verschiedene Arten von Middleware
+                    von vielen verschiedenen Herstellern. Für die Vorlesung haben wir dir Entscheidung allerdings
+                    bereits abgenommen. 😌
+                </p>
+
+                <h2>Zwei Arten von Middleware</h2>
+                <p>
+                    Ganz allgemein betrachtet gibt es zwei Arten von Middleware, die wir beide in der Vorlesung
+                    kennen lernen werden: Kommunikationsorientierte Middleware und Anwendungsorientierte Middleware:
+                </p>
+                <ul>
+                    <li>
+                        <b>Kommunikationsorientiert:</b> Einfache Klassenbibliothek, die sich nur um alle
+                        Aufgaben rund um die Kommunikation kümmert.
+                    </li>
+                    <li>
+                        <b>Anwendungsorientiert:</b> Vollwertiger Applikationsserver, der zusätziche Funktionen
+                        wie eine Benutzer- und Rechteverwaltung oder Funktionen für Datenbankzugriffe bietet.
+                    </li>
+                </ul>
+                <p>
+                    Bei ersterer müssen wir nur die richtigen Klassen in unsere Programme einbinden und aufrufen.
+                    Bei letzterer schreiben wir zumindest serverseitig gar keine klassischen Programme mehr,
+                    sondern implementieren nur einzelne Klassen mit den Anwendungsfunktionen.
+                </p>
+
+                <h2>Abgrenzung zu EAI</h2>
+                <p>
+                    Eine kleine Abgrenzung, die wir hier noch vornehmen müssen, ist die zu
+                    <a href="https://de.wikipedia.org/wiki/Enterprise_Application_Integration" target="_blank">Enterprise
+                    Application Integration</a>. Denn auf den ersten Blick sieht diese nicht viel anders aus, wie das, was
+                    wir in Verteilte Systeme machen werden. Jedoch gibt es einen bedeutenden Unterschied: Bei EAI werden
+                    bereits fertige Anwendungen unterschiedlicher Hersteller über einen Integrationsserver lose miteinander
+                    gekoppelt. Wir schreiben jedoch unsere eigenen Anwendungen, deren interne Komponenten viel enger miteinander
+                    verzahnt sind.
                 </p>
             </aside>
         </section>
 
         <section>
-            <h1>Ganz am Anfang: Programmieren ohne Middleware</h1>
+            <h1>Netzwerkprogrammierung im Laufe der Zeit</h1>
             <article>
-                …
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="img-thumbnail" style="padding: 0.5em; height: 100%; display: flex; flex-direction: column;">
+                                <h2>Host-To-Host</h2>
+                                <table style="margin-bottom: 1em;">
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            🔌
+                                        </td>
+                                        <td>
+                                            Direkte Kabelverbindung zwischen zwei Rechnern
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            🔌
+                                        </td>
+                                        <td>
+                                            Keine Unterstützung durch das Betriebssystem
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div style="flex: 1;"></div>
+                                <img src="historie-kabel.svg" alt="Zwei VS-Knoten mit direkter Kabelverbindung" style="width: 100%; margin-bottom: 1em;" />
+                                <img src="historie-abb1.jpg" alt="" style="width: 100%;" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="img-thumbnail" style="padding: 0.5em; height: 100%; display: flex; flex-direction: column;">
+                                <h2>Paket Switching</h2>
+                                <table style="margin-bottom: 1em;">
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            📦
+                                        </td>
+                                        <td>
+                                            NCP und später TCP als Vorläufer von TCP/IP
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            📦
+                                        </td>
+                                        <td>
+                                            Weltweiter Datenaustausch zwischen allen Hosts
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            📦
+                                        </td>
+                                        <td>
+                                            Anschluss des Computers hierfür an einen IMP
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div style="flex: 1;"></div>
+                                <img src="historie-sockets.svg" alt="Zwei VS-Knoten mit Socketverbindung" style="width: 100%; margin-bottom: 1em;" />
+                                <img src="historie-abb2.jpg" alt="" style="width: 100%;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="img-thumbnail" style="padding: 0.5em; height: 100%; display: flex; flex-direction: column;">
+                                <h2>Sockets und Middleware</h2>
+                                <table style="margin-bottom: 1em;">
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            📃
+                                        </td>
+                                        <td>
+                                            Erste Middlewares bereits in den 1970ern
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            📃
+                                        </td>
+                                        <td>
+                                            <a href="https://de.wikipedia.org/wiki/Remote_Procedure_Call" target="_blank">RPC</a>
+                                            anstelle direkter Socketprogrammierung
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            📃
+                                        </td>
+                                        <td>
+                                            Moderne TCP/IP-Sockets ab 1983 in BSD Unix
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div style="flex: 1;"></div>
+                                <img src="historie-middleware.svg" alt="Zwei VS-Knoten mit Middleware" style="width: 100%; margin-bottom: 1em;" />
+                                <img src="historie-abb3.jpg" alt="" style="width: 100%;" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="img-thumbnail" style="padding: 0.5em; height: 100%; display: flex; flex-direction: column;">
+                                <h2>Applikationsserver</h2>
+                                <table style="margin-bottom: 1em;">
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            🚢
+                                        </td>
+                                        <td>
+                                            Applikationsserver ab den 1990ern
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            🚢
+                                        </td>
+                                        <td>
+                                            Zunächst weiterhin RPC-basiert
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            🚢
+                                        </td>
+                                        <td>
+                                            Später auch für Webanwendungen
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div style="flex: 1;"></div>
+                                <img src="historie-appserver.svg" alt="Drei VS-Knoten von denen einer ein Applikationsserver ist" style="width: 100%; margin-bottom: 1em;" />
+                                <img src="historie-abb4.jpg" alt="" style="width: 100%;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <small>
+                                <small>
+                                    Bildnachweise:
+                                    <a href="https://commons.wikimedia.org/wiki/File:G805315andremarcos.png" target="_blank">Wikimedia Commons: NASA</a>,
+                                    <a href="https://commons.wikimedia.org/wiki/File:Interface_Message_Processor_Front_Panel.jpg" target="_blank">Wikimedia Commons: FastLizard4</a>,
+                                    <a href="https://commons.wikimedia.org/wiki/File:Videoton_VDX_52600.jpg" target="_blank">Wikimedia Commons: FAndrey</a>,
+                                    <a href="https://commons.wikimedia.org/wiki/File:2007Computex_RegArea_Hall1_Corridor_PC.jpg" target="_blank">Wikimedia Commons: Rico Shen</a>
+                                </small>
+                            </small>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    Die Entwicklung verteilter Anwendungen unterlag schon immer einem großen Wandel. Angefangen von einfachen
+                    Host-To-Host-Anwendungen, bei denen einfach zwei Computer mit einem Kabel verbunden wurden, kam mit der
+                    Erfindung des <a href="https://en.wikipedia.org/wiki/ARPANET" target="_blank">ARPANET</a> als Vorläufer des
+                    heutigen Internets schnell der Wunsch auf, zwischen jeden beliebigen Computern weltweit Daten austauschen
+                    zu können. Technologischer Vorreiter hierfür war das
+                    <a href="https://en.wikipedia.org/wiki/Network_Control_Program" target="_blank">Network Control Program</a>
+                    der 1970er-Jahre, das eine einfache,
+                    <a href="https://en.wikipedia.org/wiki/Packet_switching" target="_blank">paketvermittelte</a>
+                    Kommunikation zwischen zwei Rechnern erlaubte. Hierfür wurden die „Host” genannten Rechner an einen speziellen
+                    zweiten Computer namens
+                    <a href="https://en.wikipedia.org/wiki/Interface_Message_Processor" target="_blank">Interface Message Processor</a>
+                    (kurz IMP) angeschlossen, der die eigentliche Netzwerkkommunikation durchführte. Technisch gesehen waren
+                    daher nur die IMP miteinander verbunden, was auch als „IMP subnet” bezeichnet wurde:
+                </p>
+                <p>
+                    <img src="imp-subnet.svg" alt="Skizee des IMP subnet" style="width: 100%;" />
+                </p>
+                <p>
+                    Auf dieser Basis wurde dann ab 1973 das
+                    <a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol#Development" target="_blank">Transmission Control Protocol</a>
+                    entwickelt, aus dem später <a href="https://en.wikipedia.org/wiki/Internet_protocol_suite" target="_blank">TCP/IP</a>
+                    hervorging. Jedoch sollte es noch bis 1983 dauern, bis TCP/IP das alte NCP im ARPANET ablöste, was allgemein als
+                    <a href="https://en.wikipedia.org/wiki/Network_Control_Program#Transition_to_TCP/IP" target="_blank">Geburtsstunde
+                    des Internet</a> gilt. Ab dieser Zeit verschwanden dann auch die IMP und mit
+                    <a href="https://en.wikipedia.org/wiki/Berkeley_Software_Distribution#Berkeley_sockets" target="_blank">BSD Unix</a>
+                    erschien das erste Betriebssystem mit eingebauten Internetfunktionen. 🌍 Gemessen an dem, was davor war, war
+                    die Programmierung dadurch relativ einfach geworden. Um Daten zu senden oder zu empfangen musste man nur
+                    eine spezielle Betriebssystemfunktion aufrufen, um einen Socket öffnen und diesen wie eine Datei lesen oder schreiben.
+                </p>
+                <p>
+                    Die ersten Middlewares wurden ebenfalls in den 1970ern entwickelt und sollten vor allem die Programmierung großer
+                    Anwendungen vereinfachen. Sie ermöglichten eine
+                    <a href="https://de.wikipedia.org/wiki/Remote_Procedure_Call" target="_blank">Remote Procedure Call</a> genannte
+                    Programmierung, bei der ein Programm direkt die Prozeduren¹ eines anderen Programms auf einem anderen Rechner
+                    aufrufen konnte. Somit musste man nur noch die Funktionen definieren, die man entfernt aufrufbar machen wollte, ohne
+                    sich über den genauen Ablauf und die hierfür zu übertragenden Daten Gedanken machen zu müssen. Bis heute hat sich
+                    dieser Programmierstil daher gehalten, auch wenn zwischenzeitlich natürlich viele Alternativen dazu entstanden.
+                </p>
+                <p>
+                    <small>
+                        ¹ In Java würde man Methoden sagen, jedoch steckte die Objektorientierung damals noch in den Kinderschuhen.
+                    </small>
+                    👟
+                </p>
+                <p>
+                    Die 1980er 🕹️ waren dann von Client/Server-Anwendungen auf Basis von Sockets oder einer RPC-Middleware geprägt.
+                    Jedoch wurden die Anwendungen immer ausgefeilter und komplexer, so dass gegen Ende des Jahrzehnts die ersten
+                    großen Informationssysteme mit vielen Clients und mehreren, kooperierenden Servern entwickelt wurden. Dabei
+                    zeigte sich dann schnell, dass sie alle ähnliche Anforderungen wie eine Benutzer- und Rechteverwaltung oder
+                    den Zugriff auf relationale Datenbanken besaßen. Ab Mitte der 1990er-Jahre entstanden deshalb die heute bekannten
+                    Applikationsserver. Ihnen liegt zugrunde, dass der Server bereits als fertiges Programm einschließlich aller
+                    Grundfunktionen vorliegt und nur noch um fachliche Funktionalität erweitert werden muss.
+                </p>
+                <p>
+                    Anfangs wurden weiterhin RPC-artige Methodenaufrufe für die Kommunikation mit den Applikationsservern genutzt.
+                    Ab den 2000ern wurden diese jedoch mehr und mehr durch Webservices verdrängt, so dass der Aufruf via RPC
+                    in vielen Bereichen heute eher selten geworden ist. Jedoch setzte zeitgleich eine weitere Entwicklung ein, die
+                    eine neue Nische für RPC schaffen sollte: Die Erfindung von
+                    <a href="https://de.wikipedia.org/wiki/Microservices" target="_blank">Microservices</a>.
+                    Denn dabei handelt es sich um kleine, in sich abgeschlossene Serverprogramme, die je eine komplette, fachliche
+                    Funktionalität realisieren, anstatt alle Funktionen in einem riesigen Zentralserver zu vereinen. Sie nutzen sehr
+                    häufig RPC, da es im Vergleich zu Webservices wesentlich effizienter ist und weniger Bandbreite beansprucht.
                 </p>
             </aside>
         </section>
 
         <section>
-            <h1>Erste kommunikationsorientierte Middlewares</h1>
+            <h1>Heutzutage übliche Middlewarearten</h1>
             <article>
-                …
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="img-thumbnail" style="padding: 0.5em; height: 100%; display: flex; flex-direction: column;">
+                                <h2>Applikationsserver</h2>
+                                <table style="margin-bottom: 1em;">
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            🎙️
+                                        </td>
+                                        <td>
+                                            Beinhalten sehr viele Grundfunktionen
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            🎙️
+                                        </td>
+                                        <td>
+                                            Bieten verschiedene Schnittstellen nach außen
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            🎙️
+                                        </td>
+                                        <td>
+                                            Beinhalten oft auch einen Webserver
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div style="flex: 1"></div>
+                                <img src="arten-appserver.png" alt="" style="width: 100%" />
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="img-thumbnail" style="padding: 0.5em; height: 100%; display: flex; flex-direction: column;">
+                                <h2>Entfernte Methodenaufrufe</h2>
+                                <table style="margin-bottom: 1em;">
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            🎙️
+                                        </td>
+                                        <td>
+                                            Direkter Aufruf von Objektmethoden des Servers
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            🎙️
+                                        </td>
+                                        <td>
+                                            Programmiersprachen müssen nicht identisch sein
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            🎙️
+                                        </td>
+                                        <td>
+                                            Jedoch kann nicht jede Middleware alle Sprachen
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div style="flex: 1"></div>
+                                <img src="arten-methodenaufrufe.png" alt="" style="width: 100%" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="img-thumbnail" style="padding: 0.5em; height: 100%; display: flex; flex-direction: column;">
+                                <h2>Webservices</h2>
+                                <table style="margin-bottom: 1em;">
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            🎙️
+                                        </td>
+                                        <td>
+                                            Selbe Idee wie bei entfernten Aufrufen
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            🎙️
+                                        </td>
+                                        <td>
+                                            Jedoch auf Basis offener Webstandards
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            🎙️
+                                        </td>
+                                        <td>
+                                            SOAP- und REST heute relevant
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div style="flex: 1"></div>
+                                <img src="arten-webservices.png" alt="" style="width: 100%" />
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="img-thumbnail" style="padding: 0.5em; height: 100%; display: flex; flex-direction: column;">
+                                <h2>Message Broker</h2>
+                                <table style="margin-bottom: 1em;">
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            🎙️
+                                        </td>
+                                        <td>
+                                            Asynchrone Kommuniktion ohne Wartezeiten
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            🎙️
+                                        </td>
+                                        <td>
+                                            Nachrichten werden in FIFO-Queues gesammelt
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">
+                                            🎙️
+                                        </td>
+                                        <td>
+                                            Beliebig viele Empfänger für eine Nachricht
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div style="flex: 1"></div>
+                                <img src="arten-pubsub.png" alt="" style="width: 100%" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    Heute sind im Wesentlichen vier Arten von Middleware von Bedeutung: Applikationsserver,
+                    Entfernte Methodenaufrufe, Webservices und Message Broker. Sie alle werden wir in der
+                    Vorlesung kennenlernen und für eigene Anwendungen nutzen. Damit du weißt, was da auf
+                    dich zukommt, haben wir hier eine kurze Übersicht zusammengestellt.
                 </p>
-            </aside>
-        </section>
 
-        <section>
-            <h1>Moderne Applikationsserver für große Anwendungen</h1>
-            <article>
-                …
-            </article>
-            <aside>
+                <h4 class="dhbw-lightblue">Applikationsserver</h4>
                 <p>
-                    …
+                    Anwendungsserver haben wir eben ja schon ein wenig kennengelernt. Es handelt sich dabei um
+                    die einzige Art anwendungsorientierter Middleware. Angefangen haben sie als eine Erweiterung
+                    der klassischen Middleware um Datenbankfunktionen für den Zugriff auf SQL-Datenbanken.
+                    Anwendungsserver werden daher überwiegend für Informationssysteme mit folgenden Eigenschaften
+                    genutzt:
                 </p>
-            </aside>
-        </section>
-
-        <section>
-            <h1>Weitere relevante Middlewarearten</h1>
-            <article>
-                …
-            </article>
-            <aside>
+                <ul>
+                    <li>
+                        <b>Software-Intensiv:</b> Typische Informationssysteme bestehen nicht selten aus
+                        hundertausenden oder gar Millionen Zeilen Quellcode.
+                    </li>
+                    <li>
+                        <b>Datenzentriert:</b> Hauptaufgabe ist die Erfassung, Verwaltung und Anzeige von
+                        Daten, wofür so gut wie immer eine relationale Datenbank genutzt wird.
+                    </li>
+                    <li>
+                        <b>Nebenläufig:</b> In großen Installationen arbeiten nicht selten tausende
+                        Benutzer gleichzeitig mit der Anwendung.
+                    </li>
+                    <li>
+                        <b>Interaktiv:</b> Grundlage der Bedienung ist entweder ein dedizierter Client
+                        für den Desktop und Mobil oder ein Weboberfläche. Die meisten Anwendungsserver
+                        bieten daher auch Funktionen zur Webentwicklung.
+                    </li>
+                </ul>
                 <p>
-                    …
+                    Ein weiterer Schwerpunkt liegt in der Bereitstellung möglichst vieler Schnittstellen,
+                    damit sich jede Art von Client mit dem Server verbinden kann. Gängige Applikationsserver
+                    implementieren daher jede der nachfolgend aufgezählten Kommunikationsarten.
+                </p>
+
+                <h4 class="dhbw-lightblue">Entfernte Methodenaufrufe</h4>
+                <p>
+                    Entfernte Methodenaufrufe können entweder durch eine Klassenbibliothek als kommunikationsorientierte
+                    Middleware oder durch einen Applikationsserver bereitgestellt werden. Grundidee dahinter ist, dass
+                    der Server eine Sammlung von Objekten enthält, deren Methoden auch über Rechnergrenzen hinweg aufgerufen
+                    werden können. Die Middleware versucht dabei, die Unterschiede zwischen lokalen und entfernten Aufrufen
+                    so gut es geht zu verstecken. Die Programmierung ist daher sehr einfach. Das Konzept bringt jedoch mit
+                    sich, dass ein Client bei einem entfernten Aufruf warten muss, bis der Server eine Antwort liefert.
+                    Da der rufende Thread dadurch komplett angehalten wird, kann dies die Performance des Clients ziemlich
+                    beeinflussen.
+                </p>
+
+                <h4 class="dhbw-lightblue">Webservices</h4>
+                <p>
+                    Webservices sind in den ausgehenden 1990ern als gedanklicher Nachfolger der entfernten Methodenaufrufe
+                    entstanden. Die Grundidee ist im Prinzip dieselbe, nur anstelle proprietärer Protokolle werden
+                    ausschließlich offene Webstandards genutzt. Der Transport der Aufrufe erfolgt daher über HTTP und
+                    als Datenformat kommt entweder XML und JSON zum Einsatz. Heute unterscheidet man dabei zwischen zwei
+                    den beiden konkurrierenden Ansätzen SOAP und REST. Da sie beide im jeweiligen Umfeld eine große Bedeutung
+                    haben, werden wir uns beide Arten anschauen.
+                </p>
+
+                <h4 class="dhbw-lightblue">Message Broker</h4>
+                <p>
+                    Message Broker fallen im Vergleich zu entfernten Aufrufen und Webservices ein wenig aus der Reihe.
+                    Zwar handelt es sich dabei auch um eine kommunikationsorientierte Middleware, jedoch wird dafür ein
+                    zentraler Messageserver (Message Broker) genannt, der eine asynchrone Kommunikation zwischen den
+                    Kommunikationspartnern herstellt. Die Programmierung erfolgt deshalb nicht „innerhalb” des Servers
+                    wie bei den Anwendungsservern sondern wie gewohnt in Form ganz normaler (Java-)Programme, die sich
+                    mit dem Server verbinden, um Nachrichten zu senden und zu empfangen. 📨 Die Nachrichten werden dabei
+                    in unterschiedlichen FIFO-Warteschlangen gesammelt 📥 und von dort zeitversetzt an einen oder mehrere
+                    Empfänger weitergeleitet. 📤 Sender und Empfänger bleiben dadurch sehr performant, jedoch muss man
+                    beim Programmieren etwas umdenken. Im IoT-Umfeld sind Message Broker daher sehr verbreitet, was
+                    wir uns gegen Ende der Vorlesung ebenfalls anschauen werden.
                 </p>
             </aside>
         </section>
@@ -1937,11 +2821,160 @@
         <section data-background-color="rgb(231, 221, 141)">
             <h1>Aufgabe 2: Ein kleines Middleware-Quiz</h1>
             <article>
-                …
+                <h2>Aufgabe 2.1: Grundlegende Definitionen</h2>
+
+                <p>
+                    a) Welche der folgenden Definitionen beschreibt einen Server?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Ein Programm, das einen Dienst anbietet und sich hierfür mit anderen,
+                        gleichartigen Programmen verbindet.
+                    </li>
+                    <li>
+                        Ein Programm, das einen Dienst anbietet und hierfür wartet, bis sich
+                        ein Nutzer mit ihm verbindet.
+                    </li>
+                    <li>
+                        Ein Programm, das temporär gestartet wird, um einen Dienst zu nutzen.
+                    </li>
+                </ol>
+
+                <p>
+                    b) Welche der folgenden Eigenschaften treffen nicht auf kommunikationsorienterte Middlewares zu?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Vereinfacht die Programmierung verteilter Anwendungen.
+                    </li>
+                    <li>
+                        Steuert die Kommunikation innerhalb einer verteilten Anwendung.
+                    </li>
+                    <li>
+                        Bietet oft eine Benutzer- und Rechteverwaltung.
+                    </li>
+                    <li>
+                        Bietet oftmals einen Namensdienst zum Auffinden entfernter Ressourcen.
+                    </li>
+                    <li>
+                        Setzt direkt auf den Socketfunktionen des Betriebssystems auf.
+                    </li>
+                    <li>
+                        Beinhaltet eine Laufzeitumgebung die Klassen einer Anwendung.
+                    </li>
+                </ol>
+
+                <p>
+                    c) Eine Middleware beinhaltet einen Namensdienst zum Auffinden fremder Ressourcen.
+                    Welche Transparenzarten werden dadurch realisiert?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Ortstransparenz
+                    </li>
+                    <li>
+                        Nebenläufigkeitstransparenz
+                    </li>
+                    <li>
+                        Mobilitätstransparenz
+                    </li>
+                    <li>
+                        Fehlertransparenz
+                    </li>
+                    <li>
+                        Skalierungstransparenz
+                    </li>
+                </ol>
+
+                <!-- Frage nach Orts- und Mobilitätstransparenz, welche Transparenz wird durch einen Nameserver erreicht -->
+
+                <h2>Aufgabe 2.2: Middlewarearten</h2>
+
+                <p>
+                    a) Welche der folgenden Middlewarearten wurde bereits in den 1970ern erfunden?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Webservices
+                    </li>
+                    <li>
+                        Applikationsserver
+                    </li>
+                    <li>
+                        Message Broker
+                    </li>
+                    <li>
+                        Entfernte Prozedur-/Methodenaufrufe
+                    </li>
+                </ol>
+
+                <p>
+                    b) Welche Middlewareart erlaubt eine durch Queues entkoppelte, asynchrone Kommunikation?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Entfernte Prozedur-/Methodenaufrufe
+                    </li>
+                    <li>
+                        Webservices
+                    </li>
+                    <li>
+                        Message Broker
+                    </li>
+                    <li>
+                        Applikationsserver
+
+                    </li>
+                </ol>
+
+                <p>
+                    c) Welche Aussage beschreibt am Besten die Grundidee hinter Webservices?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Im Gegensatz zu RPC sollen auch Features wie die Vererbung von Objekten unterstützt werden.
+                    </li>
+                    <li>
+                        Die Programmierung großer Informationssysteme mit vielen Benutzern soll vereinfacht werden.
+                    </li>
+                    <li>
+                        Im Prinzip sind Webservices dasselbe wie RPC nur auf Basis offener Webstandards.
+                    </li>
+                    <li>
+                        Kein Kommunikationsteilnehmer soll gezwungen werden, auf die anderen zu warten.
+                    </li>
+                </ol>
+
+                <p>
+                    d) Welches ist keine Grundfunktion eines typischen Applikationsservers?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Vereinheitlichung der Programmierung von Clients für mobile Betriebssysteme
+                    </li>
+                    <li>
+                        Datenbankfunktionen zum Zugriff auf relationale Datenbanken
+                    </li>
+                    <li>
+                        Funktionen zur serverseitigen Webentwicklung
+                    </li>
+                    <li>
+                        Möglichst viele Schnittstellen für unterschiedliche Clients
+                    </li>
+                </ol>
+
+                <hr />
+
+                <p style="transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                    <small>
+                        <b>Lösung:</b> Aufgabe 2.1: 2, 3+6, 1+3; Aufgabe 2.2: 4, 3, 3, 1
+                    </small>
+                </p>
             </article>
             <aside>
                 <p>
-                    …
+                    Das waren jetzt sehr viele Informationen auf kleinstem Raum. 📚
+                    Hier kannst du prüfen, ob du dir alles gemerkt hast.
                 </p>
             </aside>
         </section>
@@ -2015,6 +3048,14 @@
             <h1>Aufgabe 3: Architekturmuster bewerten</h1>
             <article>
                 …
+
+                <hr />
+
+                <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                    <small>
+                        <b>Lösung:</b> …
+                    </small>
+                </p>
             </article>
             <aside>
                 <p>
