@@ -2997,19 +2997,232 @@
         <section>
             <h1>Einfache Client/Server-Anwendungen</h1>
             <article>
-                …
+                <h2>Beschreibung</h2>
+                <p style="margin-bottom: 2em;">
+                    Dies ist die einfachste Architektur von allen. Sie besteht lediglich aus einem Server,
+                    der einen Dienst anbietet und den Clients, welche den Dienst aufrufen. Meistens kommt dabei
+                    ein synchrones, den Client blockierendes Request/Reply-Verfahren zum Einsatz, weil
+                    besonders einfach zu programmieren ist. Ohne Middleware mit direkter Socketprogrammierung
+                    kann aber jeder beliebige Kommunikationsstrategie umgesetzt werden.
+                </p>
+                <div class="d-flex justify-content-center">
+                    <img src="architektur-client-server.svg" alt="Skizze eines Servers und dreier Clients" style="height: 18em; max-width: 100%; margin-bottom: 2em;" />
+                </div>
+
+                <h2>Fallbeispiele</h2>
+
+                <table style="margin-bottom: 1em;">
+                    <tr>
+                        <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                            ✔️
+                        </td>
+                        <td>
+                            Browser und Webserver im World Wide Web
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                            ✔️
+                        </td>
+                        <td>
+                            Browser App mit Zugriff auf den Server via Websockets
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                            ✔️
+                        </td>
+                        <td>
+                            Secure Shell (entfernter Konsolenzugriff auf einen Rechner)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                            ✔️
+                        </td>
+                        <td>
+                            Zugriff auf eine E-Mailpostfach mit IMAP
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                            ✔️
+                        </td>
+                        <td>
+                            Zentrale Quellcodeverwaltung mit einem Git-Server
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                            ✔️
+                        </td>
+                        <td>
+                            WebDAV-Zugriff auf einen mit Owncloud geteilten Ordner
+                        </td>
+                    </tr>
+                </table>
             </article>
             <aside>
                 <p>
-                    …
+                    Mehr Anwendungen als man denkt nutzen tatsächlich nur eine einfache Client/Server-Architektur
+                    mit nur einem Server. Es handelt sich dabei sozusagen um die einfachste Art eines verteilten
+                    Anwendung, die man überhaupt schreiben kann. 🐈 In vielen Fällen reicht dies jedoch völlig aus,
+                    beispielsweise, wenn einfach nur eine bisher lokale Anwendung auf einem Server für mehrere
+                    Benutzer zur Verfügung gestellt werden soll.
                 </p>
+                <p>
+                    Hinsichtlich der Programmierung gilt, dass derartige Anwendungen sehr häufig komplett ohne
+                    Middleware realisiert werden, um wirklich kein Übertragungsvolumen zu verschenken und um
+                    sich nicht von einem fremden Softwareanbieter abhängig zu machen. Prinzipiell kann aber auch
+                    eine RPC- oder Webservice-basierte Middleware genutzt werden. Aus dem Browser heraus werden
+                    stattdessen entweder AJAX- oder Websocket-Aufrufe verwendet.
+                </p>
+                <p>
+                    Mögliche Fallbeispiele könnten sein:
+                </p>
+                <ul>
+                    <li>
+                        Browser und Webserver im World Wide Web
+                    </li>
+                    <li>
+                        Browser App mit Zugriff auf den Server via Websockets
+                    </li>
+                    <li>
+                        Secure Shell (entfernter Konsolenzugriff auf einen Rechner)
+                    </li>
+                    <li>
+                        Zugriff auf eine E-Mailpostfach mit IMAP
+                    </li>
+                    <li>
+                        Zentrale Quellcodeverwaltung mit einem Git-Server
+                    </li>
+                    <li>
+                        WebDAV-Zugriff auf einen mit Owncloud geteilten Ordner
+                    </li>
+                </ul>
             </aside>
         </section>
 
         <section>
-            <h1>Drei Schichten oder mehr</h1>
+            <h1>Drei oder vier Schichten</h1>
             <article>
-                …
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "schichten-typische3-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#schichten-typische3"
+                                role          = "tab"
+                                aria-controls = "schichten-typische3"
+                                aria-expanded = "true"
+                            >
+                                3-Schichtenarchitektur
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "schichten-reiter2-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#schichten-reiter2"
+                                role          = "tab"
+                                aria-controls = "schichten-reiter2"
+                            >
+                                4-Schichtenarchitektur
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- 3-Schichtenarchitektur -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "schichten-typische3"
+                            role            = "tabpanel"
+                            aria-labelledby = "schichten-typische3-tab"
+                        >
+                            <h2>Beschreibung</h2>
+                            <p style="margin-bottom: 2em;">
+                                …
+                            </p>
+                            <div class="d-flex justify-content-center">
+                                <img src="architektur-3schichten.svg" alt="Skizze einer 3-Schichtenarchitektur" style="height: 14em; max-width: 100%; margin-bottom: 2em;" />
+                            </div>
+
+                            <h2>Fallbeispiele</h2>
+                            <table style="margin-bottom: 1em;">
+                                <tr>
+                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                                        ✔️
+                                    </td>
+                                    <td>
+                                        Jede Webanwendung mit einer Datenbank im Hintergrund
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                                        ✔️
+                                    </td>
+                                    <td>
+                                        Einfache Informationssysteme ohne eigenständigen Präsentationsserver
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                                        ✔️
+                                    </td>
+                                    <td>
+                                        Sehr viele ERP- und CRM-Systeme
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                                        ✔️
+                                    </td>
+                                    <td>
+                                        Per Webservice erreichbare Microservices
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- 4-Schichtenarchitektur -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "schichten-reiter2"
+                            role            = "tabpanel"
+                            aria-labelledby = "schichten-reiter2-tab"
+                        >
+                            <h2>Beschreibung</h2>
+                            <p style="margin-bottom: 2em;">
+                                …
+                            </p>
+                            <div class="d-flex justify-content-center">
+                                <img src="architektur-4schichten.svg" alt="Skizze einer 3-Schichtenarchitektur" style="height: 14em; max-width: 100%; margin-bottom: 2em;" />
+                            </div>
+
+                            <h2>Fallbeispiele</h2>
+                            <table style="margin-bottom: 1em;">
+                                <tr>
+                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                                        ✔️
+                                    </td>
+                                    <td>
+                                        ERP- und CRM-Systeme mit einem eigenständigen Präsentationsserver
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                                        ✔️
+                                    </td>
+                                    <td>
+                                        Java-Webanwendung mit getrenntem Deployment der Servlets und EJBs
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
@@ -3021,7 +3234,93 @@
         <section>
             <h1>Vorgeschalteter Proxyserver</h1>
             <article>
-                …
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "proxy-clientseitig-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#proxy-clientseitig"
+                                role          = "tab"
+                                aria-controls = "proxy-clientseitig"
+                                aria-expanded = "true"
+                            >
+                                Clientseitiger Proxy
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "proxy-serverseitig-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#proxy-serverseitig"
+                                role          = "tab"
+                                aria-controls = "proxy-serverseitig"
+                            >
+                                Serverseitiger Proxy
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Clientseitiger Proxy -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "proxy-clientseitig"
+                            role            = "tabpanel"
+                            aria-labelledby = "proxy-clientseitig-tab"
+                        >
+                            <!-- Proxy bei Client: Caching, Zugriffsbeschränkungen -->
+                            <h2>Beschreibung</h2>
+                            <p style="margin-bottom: 2em;">
+                                …
+                            </p>
+                            <div class="d-flex justify-content-center">
+                                <img src="" alt="" style="height: 18em; max-width: 100%; margin-bottom: 2em;" />
+                            </div>
+
+                            <h2>Fallbeispiele</h2>
+                            <table style="margin-bottom: 1em;">
+                                <tr>
+                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                                        ✔️
+                                    </td>
+                                    <td>
+                                        …
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- Serverseitiger Proxy -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "proxy-serverseitig"
+                            role            = "tabpanel"
+                            aria-labelledby = "proxy-serverseitig-tab"
+                        >
+                            <!-- Proxy bei Server: Caching, Zugriffsbeschränkungen, Lastverteilung, Integration -->
+                            <h2>Beschreibung</h2>
+                            <p style="margin-bottom: 2em;">
+                                …
+                            </p>
+                            <div class="d-flex justify-content-center">
+                                <img src="" alt="" style="height: 18em; max-width: 100%; margin-bottom: 2em;" />
+                            </div>
+
+                            <h2>Fallbeispiele</h2>
+                            <table style="margin-bottom: 1em;">
+                                <tr>
+                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                                        ✔️
+                                    </td>
+                                    <td>
+                                        …
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
@@ -3033,9 +3332,81 @@
         <section>
             <h1>Getrennt entwickelte Microservices</h1>
             <article>
-                …
-                <!-- Tabreiter: Auf Basis RPC / Auf Basis Publish/Subscribe -->
-                <!-- Auf der Folie nur Abbildungen und wenige Stichworte -->
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "microservices-rpc-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#microservices-rpc"
+                                role          = "tab"
+                                aria-controls = "microservices-rpc"
+                                aria-expanded = "true"
+                            >
+                                Auf Basis entfernter Aufrufe
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "microservices-pubsub-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#microservices-pubsub"
+                                role          = "tab"
+                                aria-controls = "microservices-pubsub"
+                            >
+                                Auf Basis eines Message Brokers
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Auf Basis entfernter Aufrufe -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "microservices-rpc"
+                            role            = "tabpanel"
+                            aria-labelledby = "microservices-rpc-tab"
+                        >
+                            <h2>Beschreibung</h2>
+                            …
+
+                            <h2>Fallbeispiele</h2>
+                            <table style="margin-bottom: 1em;">
+                                <tr>
+                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                                        ✔️
+                                    </td>
+                                    <td>
+                                        …
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- Auf Basis eines Message Brokers -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "microservices-pubsub"
+                            role            = "tabpanel"
+                            aria-labelledby = "microservices-pubsub-tab"
+                        >
+                            <h2>Beschreibung</h2>
+                            …
+
+                            <h2>Fallbeispiele</h2>
+                            <table style="margin-bottom: 1em;">
+                                <tr>
+                                    <td style="font-weight: bold; color: navy; padding-right: 0.5em;">
+                                        ✔️
+                                    </td>
+                                    <td>
+                                        …
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
@@ -3051,7 +3422,7 @@
 
                 <hr />
 
-                <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                <p style="transform: scaleY(-1) scaleX(-1); display: inline-block;">
                     <small>
                         <b>Lösung:</b> …
                     </small>
