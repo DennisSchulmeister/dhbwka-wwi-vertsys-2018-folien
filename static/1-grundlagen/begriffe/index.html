@@ -1857,7 +1857,7 @@
                                     <td style="padding-top: 1em;">
                                         Der Rechner, auf dem die Software läuft.
                                         <span style="color: darkred;">
-                                            Oft sagen die Leute „Server” und meinen den „Host” damit.
+                                            Oft sagen die Leute „Server” und meinen damit den „Host”.
                                         </span>
                                     </td>
                                 </tr>
@@ -2214,7 +2214,7 @@
                                     <div class="col-md">
                                         <h3>Nebenläufigkeitstransparenz</h3>
                                         Manche Middlewarearten lassen den Client warten, während der Server eine Anfrage bearbeitet.
-                                        Andere gehen von vornherein davon aus, dass eine Antwort wann dann zeitversetzt kommt.
+                                        Andere gehen von vornherein davon aus, dass Antworten gar nicht oder nur zeitversetzt kommen.
                                     </div>
                                     <div class="col-md">
                                         <h3>Leistungs- / Skalierbarkeitstransparenz</h3>
@@ -2225,13 +2225,13 @@
                                 <div class="row">
                                     <div class="col-md">
                                         <h3>Zugriffstransparenz</h3>
-                                        Bestimmte Middlewares erlaubt den Aufruf von Methoden entfernter Objekte, genau so als wären
+                                        Bestimmte Middlewares erlauben den Aufruf von Methoden entfernter Objekte, genau so als wären
                                         es lokale Objekte innerhalb des eigenen Javaprogramms.
                                     </div>
                                     <div class="col-md">
                                         <h3>Orts- / Mobiltitätstransparenz</h3>
-                                        Die meisten Middlewares haben einen Namensdienst zum Nachschlagen von entfernter Adressen
-                                        eingebaut. Die Adressen müssen somit nicht hartcodiert werden.
+                                        Die meisten Middlewares haben einen Namensdienst zum Nachschlagen entfernter Ressourcen
+                                        eingebaut. Die Zugriffspfade müssen somit nicht hartcodiert werden.
                                     </div>
                                 </div>
 
@@ -2285,19 +2285,19 @@
                     <li>
                         <b>Vermittlungsschicht:</b> Auf dieser Ebene ist das IP-Protokoll angesiedelt. Es weist jedem
                         Rechner eine im Idealfall weltweit eindeutige IP-Adresse zu und kümmert sich darum, die in
-                        einzelne kleine Pakete aufgeteilten Daten durch das Internet zu routen und zuzustellen.
+                        kleine Pakete aufgeteilten Daten durch das Internet zu routen.
                     </li>
                     <li>
                         <b>Transportschicht:</b> Hier sind verschiedene Protokolle wie TCP, UDP oder TLS angesiedelt. Sie
-                        fügen der IP-Adresse eines Rechners eine 32-bit große Portnummer hinzu, über die unterschiedliche
-                        Dienste angesprochen werden können. Beispielsweise gibt es eine Konvention, dass HTTP-Server
-                        standardmäßig auf Port 80 und Mailserver auf Port 25 angesprochen werden. Dadurch wird es möglich,
-                        dass ein Host mehrere Serverprogramme beherbergt.
+                        fügen der IP-Adresse eine 32-bit große Portnummer hinzu, über die unterschiedliche Dienste angesprochen
+                        werden können. Beispielsweise gibt es eine Konvention, dass HTTP-Server standardmäßig auf Port 80 und
+                        Mailserver auf Port 25 angesprochen werden. Dadurch wird es möglich, dass ein Host mehrere Serverprogramme
+                        beherbergt.
                     </li>
                     <li>
                         <b>Anwendungsprotokoll:</b> Diese Schicht hängt, wie der Name bereits sagt, von der eigentlichen
-                        Anwendung ab. Es muss jedoch angemerkt werden, dass damit nicht die Anwendung selbst gemeint!
-                        Stattdessen handelt es sich über das Protokoll, das die Nachrichtenarten definiert, die innerhalb
+                        Anwendung ab. Es muss jedoch angemerkt werden, dass damit nicht die Anwendung selbst gemeint ist!
+                        Stattdessen handelt es sich um das Protokoll, das die Nachrichtenarten definiert, die innerhalb
                         einer verteilten Anwendung ausgetauscht werden.
                     </li>
                 </ol>
@@ -2307,11 +2307,11 @@
                     verteilter Anwendungen vereinfacht. Denn ohne Middleware müssten wir uns mit Javaklassen wie
                     <code>Socket</code>, <code>ServerSocket</code>, <code>InputStream</code> und <code>OutputStream</code>
                     auseinandersetzen und alles selbst entwickeln. Unter anderem müssten wir ein eigenes Anwendungsprotokoll
-                    entwerfen und auch sonst jede Kleinigkeit selbst programmieren, die eine verteilte Anwendung
-                    nunmal braucht. 🏚️🏗️
+                    entwerfen und auch sonst jede Kleinigkeit selbst entwickeln, die eine verteilte Anwendung nun mal
+                    so braucht. 🏚️🏗️
                 </p>
                 <p>
-                    Eine Middleware nimmt uns einen großen Teil dieser Arbeit ab, indem sie unter Anderem bereits
+                    Eine Middleware nimmt uns einen großen Teil dieser Arbeit ab, indem sie unter anderem bereits
                     ein Anwendungsprotokoll implementiert und sich auch sonst um verschiedene Dinge kümmert, die
                     eigentlich so gut wie immer benötigt werden. Sie kann uns daher auch bei der Einhaltung der
                     Transparenzarten von <a href="#7">Folie 7</a> helfen:
@@ -2320,13 +2320,13 @@
                     <li>
                         <b>Nebenläufigkeitstransparenz:</b> Hier gibt es die größten Unterschiede zwischen den
                         verschiedenen Middlewarearten. Manche Middlewares lösen das Problem, indem der Client bei
-                        eine Anfrage an den Server so lange wartet, bis er eine Antwort erhält. Andere Middlewares
-                        gehen von vornherein davon aus, dass entweder gar keine Antwort oder die Antwort irgendwann
-                        zeitversetzt eintreffen wird.
+                        einer Anfrage an den Server so lange wartet, bis er eine Antwort erhält. Andere Middlewares
+                        gehen von vornherein davon aus, dass entweder gar keine Antwort oder die Antwort zeitversetzt
+                        erfolgen wird.
                     </li>
                     <li>
                         <b>Orts- und Mobilitätstransparenz:</b> Die meisten Middlewarearten enthalten einen sogenannten
-                        Namensdienst, in dem die Position entfernte Ressourcen nachgeschlagen werden kann. Dadurch
+                        Namensdienst, in dem der Zugriffspfad entfernter Ressourcen nachgeschlagen werden kann. Dadurch
                         werden die Zieladressen nicht hartcodiert und können jederzeit angepasst werden.
                     </li>
                     <li>
@@ -2346,12 +2346,12 @@
                 <h2>Zwei Arten von Middleware</h2>
                 <p>
                     Ganz allgemein betrachtet gibt es zwei Arten von Middleware, die wir beide in der Vorlesung
-                    kennen lernen werden: Kommunikationsorientierte Middleware und Anwendungsorientierte Middleware:
+                    kennen lernen werden: Kommunikationsorientierte Middleware und anwendungsorientierte Middleware:
                 </p>
                 <ul>
                     <li>
-                        <b>Kommunikationsorientiert:</b> Einfache Klassenbibliothek, die sich nur um alle
-                        Aufgaben rund um die Kommunikation kümmert.
+                        <b>Kommunikationsorientiert:</b> Einfache Klassenbibliothek, die sich nur um die Aufgaben
+                        rund um die Kommunikation kümmert.
                     </li>
                     <li>
                         <b>Anwendungsorientiert:</b> Vollwertiger Applikationsserver, der zusätziche Funktionen
@@ -2359,8 +2359,8 @@
                     </li>
                 </ul>
                 <p>
-                    Bei ersterer müssen wir nur die richtigen Klassen in unsere Programme einbinden und aufrufen.
-                    Bei letzterer schreiben wir zumindest serverseitig gar keine klassischen Programme mehr,
+                    Bei ersterer müssen wir nur die richtigen Klassen in unsere Programme einbauen und aufrufen.
+                    Bei letzterer schreiben wir zumindest für den Server gar keine klassischen Programme mehr,
                     sondern implementieren nur einzelne Klassen mit den Anwendungsfunktionen.
                 </p>
 
@@ -2410,7 +2410,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="img-thumbnail" style="padding: 0.5em; height: 100%; display: flex; flex-direction: column;">
-                                <h2>Paket Switching</h2>
+                                <h2>Packet Switching</h2>
                                 <table style="margin-bottom: 1em;">
                                     <tr>
                                         <td style="padding-right: 0.5em;">
@@ -2433,7 +2433,8 @@
                                             📦
                                         </td>
                                         <td>
-                                            Anschluss des Computers hierfür an einen IMP
+                                            Anschluss des Computers hierfür an einen
+                                            <a href="https://en.wikipedia.org/wiki/Interface_Message_Processor" target="_blank">IMP</a>
                                         </td>
                                     </tr>
                                 </table>
@@ -2567,7 +2568,7 @@
                     Programmierung, bei der ein Programm direkt die Prozeduren¹ eines anderen Programms auf einem anderen Rechner
                     aufrufen konnte. Somit musste man nur noch die Funktionen definieren, die man entfernt aufrufbar machen wollte, ohne
                     sich über den genauen Ablauf und die hierfür zu übertragenden Daten Gedanken machen zu müssen. Bis heute hat sich
-                    dieser Programmierstil daher gehalten, auch wenn zwischenzeitlich natürlich viele Alternativen dazu entstanden.
+                    dieser Programmierstil daher gehalten, auch wenn zwischenzeitlich natürlich viele Alternativen entstanden sind.
                 </p>
                 <p>
                     <small>
@@ -2582,10 +2583,10 @@
                     zeigte sich dann schnell, dass sie alle ähnliche Anforderungen wie eine Benutzer- und Rechteverwaltung oder
                     den Zugriff auf relationale Datenbanken besaßen. Ab Mitte der 1990er-Jahre entstanden deshalb die heute bekannten
                     Applikationsserver. Ihnen liegt zugrunde, dass der Server bereits als fertiges Programm einschließlich aller
-                    Grundfunktionen vorliegt und nur noch um fachliche Funktionalität erweitert werden muss.
+                    Grundfunktionen vorliegt und nur noch um fachliche Funktionalitäten erweitert werden muss.
                 </p>
                 <p>
-                    Anfangs wurden weiterhin RPC-artige Methodenaufrufe für die Kommunikation mit den Applikationsservern genutzt.
+                    Anfangs wurden weiterhin RPC-artige Methodenaufrufe für die Kommunikation mit dem Applikationsserver genutzt.
                     Ab den 2000ern wurden diese jedoch mehr und mehr durch Webservices verdrängt, so dass der Aufruf via RPC
                     in vielen Bereichen heute eher selten geworden ist. Jedoch setzte zeitgleich eine weitere Entwicklung ein, die
                     eine neue Nische für RPC schaffen sollte: Die Erfindung von
@@ -2660,7 +2661,7 @@
                                             🎙️
                                         </td>
                                         <td>
-                                            Jedoch kann nicht jede Middleware alle Sprachen
+                                            Jedoch kennt nicht jede Middleware alle Sprachen
                                         </td>
                                     </tr>
                                 </table>
@@ -2695,7 +2696,7 @@
                                             🎙️
                                         </td>
                                         <td>
-                                            SOAP- und REST heute relevant
+                                            SOAP und REST als relevante Standards
                                         </td>
                                     </tr>
                                 </table>
@@ -2742,8 +2743,8 @@
             <aside>
                 <p>
                     Heute sind im Wesentlichen vier Arten von Middleware von Bedeutung: Applikationsserver,
-                    Entfernte Methodenaufrufe, Webservices und Message Broker. Sie alle werden wir in der
-                    Vorlesung kennenlernen und für eigene Anwendungen nutzen. Damit du weißt, was da auf
+                    Entfernte Methodenaufrufe, Webservices und Message Broker. In der Vorlesung werden wir
+                    uns deshalb alle anschauen und für eigene Anwendungen nutzen. Damit du weißt, was da auf
                     dich zukommt, haben wir hier eine kurze Übersicht zusammengestellt.
                 </p>
 
@@ -2751,9 +2752,8 @@
                 <p>
                     Anwendungsserver haben wir eben ja schon ein wenig kennengelernt. Es handelt sich dabei um
                     die einzige Art anwendungsorientierter Middleware. Angefangen haben sie als eine Erweiterung
-                    der klassischen Middleware um Datenbankfunktionen für den Zugriff auf SQL-Datenbanken.
-                    Anwendungsserver werden daher überwiegend für Informationssysteme mit folgenden Eigenschaften
-                    genutzt:
+                    der klassischen Middleware um relationale Datenbankfunktionen. Anwendungsserver werden daher
+                    überwiegend für Informationssysteme mit folgenden Eigenschaften genutzt:
                 </p>
                 <ul>
                     <li>
@@ -2784,7 +2784,7 @@
                 <p>
                     Entfernte Methodenaufrufe können entweder durch eine Klassenbibliothek als kommunikationsorientierte
                     Middleware oder durch einen Applikationsserver bereitgestellt werden. Grundidee dahinter ist, dass
-                    der Server eine Sammlung von Objekten enthält, deren Methoden auch über Rechnergrenzen hinweg aufgerufen
+                    der Server eine Sammlung von Objekten enthält, deren Methoden über Rechnergrenzen hinweg aufgerufen
                     werden können. Die Middleware versucht dabei, die Unterschiede zwischen lokalen und entfernten Aufrufen
                     so gut es geht zu verstecken. Die Programmierung ist daher sehr einfach. Das Konzept bringt jedoch mit
                     sich, dass ein Client bei einem entfernten Aufruf warten muss, bis der Server eine Antwort liefert.
@@ -2795,22 +2795,21 @@
                 <h4 class="dhbw-lightblue">Webservices</h4>
                 <p>
                     Webservices sind in den ausgehenden 1990ern als gedanklicher Nachfolger der entfernten Methodenaufrufe
-                    entstanden. Die Grundidee ist im Prinzip dieselbe, nur anstelle proprietärer Protokolle werden
-                    ausschließlich offene Webstandards genutzt. Der Transport der Aufrufe erfolgt daher über HTTP und
-                    als Datenformat kommt entweder XML und JSON zum Einsatz. Heute unterscheidet man dabei zwischen zwei
-                    den beiden konkurrierenden Ansätzen SOAP und REST. Da sie beide im jeweiligen Umfeld eine große Bedeutung
-                    haben, werden wir uns beide Arten anschauen.
+                    entstanden. Die Grundidee ist im Prinzip dieselbe, nur anstelle proprietärer Protokolle werden ausschließlich
+                    offene Webstandards genutzt. Der Transport erfolgt daher über HTTP und als Datenformat kommen XML und JSON
+                    zum Einsatz. Heute unterscheidet man dabei zwischen zwei den beiden konkurrierenden Ansätzen SOAP und REST.
+                    Da sie beide im ihrem jeweiligen Kontext eine große Bedeutung haben, werden wir uns beide Arten anschauen.
                 </p>
 
                 <h4 class="dhbw-lightblue">Message Broker</h4>
                 <p>
                     Message Broker fallen im Vergleich zu entfernten Aufrufen und Webservices ein wenig aus der Reihe.
                     Zwar handelt es sich dabei auch um eine kommunikationsorientierte Middleware, jedoch wird dafür ein
-                    zentraler Messageserver (Message Broker) genannt, der eine asynchrone Kommunikation zwischen den
-                    Kommunikationspartnern herstellt. Die Programmierung erfolgt deshalb nicht „innerhalb” des Servers
-                    wie bei den Anwendungsservern sondern wie gewohnt in Form ganz normaler (Java-)Programme, die sich
-                    mit dem Server verbinden, um Nachrichten zu senden und zu empfangen. 📨 Die Nachrichten werden dabei
-                    in unterschiedlichen FIFO-Warteschlangen gesammelt 📥 und von dort zeitversetzt an einen oder mehrere
+                    zentraler Messageserver (Message Broker genannt) verwendet, der eine asynchrone Kommunikation zwischen
+                    den Programmen herstellt. Die Programmierung erfolgt deshalb nicht „innerhalb” des Servers wie bei
+                    den Anwendungsservern sondern wie gewohnt in Form ganz normaler (Java-)Programme, die sich mit dem
+                    Server verbinden, um Nachrichten zu senden und zu empfangen. 📨 Die Nachrichten werden dabei in
+                    unterschiedlichen FIFO-Warteschlangen gesammelt 📥 und von dort zeitversetzt an einen oder mehrere
                     Empfänger weitergeleitet. 📤 Sender und Empfänger bleiben dadurch sehr performant, jedoch muss man
                     beim Programmieren etwas umdenken. Im IoT-Umfeld sind Message Broker daher sehr verbreitet, was
                     wir uns gegen Ende der Vorlesung ebenfalls anschauen werden.
@@ -2860,7 +2859,7 @@
                         Setzt direkt auf den Socketfunktionen des Betriebssystems auf.
                     </li>
                     <li>
-                        Beinhaltet eine Laufzeitumgebung die Klassen einer Anwendung.
+                        Beinhaltet eine Laufzeitumgebung für die Klassen einer Anwendung.
                     </li>
                 </ol>
 
@@ -2928,7 +2927,7 @@
                 </ol>
 
                 <p>
-                    c) Welche Aussage beschreibt am Besten die Grundidee hinter Webservices?
+                    c) Welche Aussage beschreibt am besten die Grundidee hinter Webservices?
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
@@ -3033,7 +3032,7 @@
                             ✔️
                         </td>
                         <td>
-                            Secure Shell (entfernter Konsolenzugriff auf einen Rechner)
+                            Wartungszugang auf einen Rechner per Secure Shell
                         </td>
                     </tr>
                     <tr>
@@ -3041,7 +3040,7 @@
                             ✔️
                         </td>
                         <td>
-                            Zugriff auf eine E-Mailpostfach mit IMAP
+                            Zugriff auf ein E-Mailpostfach mit IMAP
                         </td>
                     </tr>
                     <tr>
@@ -3057,7 +3056,7 @@
                             ✔️
                         </td>
                         <td>
-                            WebDAV-Zugriff auf einen mit Owncloud geteilten Ordner
+                            WebDAV-Zugriff auf einen geteilten Onlineordner
                         </td>
                     </tr>
                 </table>
@@ -3065,17 +3064,17 @@
             <aside>
                 <p>
                     Mehr Anwendungen als man denkt nutzen tatsächlich nur eine einfache Client/Server-Architektur
-                    mit nur einem Server. Es handelt sich dabei sozusagen um die einfachste Art eines verteilten
-                    Anwendung, die man überhaupt schreiben kann. 🐈 In vielen Fällen reicht dies jedoch völlig aus,
-                    beispielsweise, wenn einfach nur eine bisher lokale Anwendung auf einem Server für mehrere
-                    Benutzer zur Verfügung gestellt werden soll.
+                    mit nur einem Server. Es handelt sich dabei sozusagen um die einfachste Art einer verteilten
+                    Anwendung, die man überhaupt schreiben kann. 🐈 In vielen Fällen reicht dies auch völlig aus,
+                    beispielsweise, wenn einfach nur eine bisher lokale Anwendung für mehrere Benutzer zur Verfügung
+                    gestellt werden soll.
                 </p>
                 <p>
                     Hinsichtlich der Programmierung gilt, dass derartige Anwendungen sehr häufig komplett ohne
-                    Middleware realisiert werden, um wirklich kein Übertragungsvolumen zu verschenken und um
-                    sich nicht von einem fremden Softwareanbieter abhängig zu machen. Prinzipiell kann aber auch
-                    eine RPC- oder Webservice-basierte Middleware genutzt werden. Aus dem Browser heraus werden
-                    stattdessen entweder AJAX- oder Websocket-Aufrufe verwendet.
+                    Middleware realisiert werden, um kein Übertragungsvolumen zu verschenken und um sich nicht
+                    von einem fremden Softwareanbieter abhängig zu machen. Prinzipiell kann aber auch eine RPC-
+                    oder Webservice-basierte Middleware genutzt werden. Falls es sich um eine Webanwendung handelt,
+                    werden aus dem Browser heraus stattdessen oft AJAX- oder Websocket-Aufrufe verwendet.
                 </p>
                 <p>
                     Mögliche Fallbeispiele könnten sein:
@@ -3088,16 +3087,16 @@
                         Browser App mit Zugriff auf den Server via Websockets
                     </li>
                     <li>
-                        Secure Shell (entfernter Konsolenzugriff auf einen Rechner)
+                        Wartungszugang auf einen Rechner per Secure Shell
                     </li>
                     <li>
-                        Zugriff auf eine E-Mailpostfach mit IMAP
+                        Zugriff auf ein E-Mailpostfach mit IMAP
                     </li>
                     <li>
                         Zentrale Quellcodeverwaltung mit einem Git-Server
                     </li>
                     <li>
-                        WebDAV-Zugriff auf einen mit Owncloud geteilten Ordner
+                        WebDAV-Zugriff auf einen geteilten Onlineordner
                     </li>
                 </ul>
             </aside>
@@ -3173,7 +3172,7 @@
                                         ✔️
                                     </td>
                                     <td>
-                                        Sehr viele ERP- und CRM-Systeme
+                                        Die meisten ERP- und CRM-Systeme
                                     </td>
                                 </tr>
                                 <tr>
@@ -3216,7 +3215,7 @@
                                         ✔️
                                     </td>
                                     <td>
-                                        Java-Webanwendung mit getrenntem Deployment der Servlets und EJBs
+                                        Java-Webanwendung mit getrenntem Deployment von Servlets und EJBs
                                     </td>
                                 </tr>
                             </table>
