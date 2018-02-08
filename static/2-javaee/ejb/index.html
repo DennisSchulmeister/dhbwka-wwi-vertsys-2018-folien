@@ -25,15 +25,15 @@
                 <ul>
                     <li>
                         erklären, was die <span class="dhbw-lightblue font-weight-bold">Java Enterprise Edition</span>
-                        ist und wie sie sich von der Java Standard Edition unterscheidet.
+                        (Java&nbsp;EE) ist und wie sie sich von der Java Standard Edition unterscheidet.
                     </li>
                     <li>
                         die wichtigsten, <span class="dhbw-lightblue font-weight-bold">über eine einfache Middleware
-                        hinausgehenden Dienste</span> von Java EE benennen.
+                        hinausgehenden Dienste</span> von Java&nbsp;EE benennen.
                     </li>
                     <li>
                         aufzeigen, mit welchen <span class="dhbw-lightblue font-weight-bold">Schnittstellentechnologien</span>
-                        sich ein Java-Applikationsserver in eine bestehende IT-Landschaft integrieren kann.
+                        sich Java&nbsp;EE in eine bestehende IT-Landschaft integrieren kann.
                     </li>
                     <li>
                         die wichtigsten <span class="dhbw-lightblue font-weight-bold">APIs</span> zur Programmierung mit
@@ -46,6 +46,15 @@
                     <li>
                         eine minimale Webanwendung nach dem MVC-Prinzip programmieren.
                     </li>
+<!-- START: Eventuell in die Vorlesung verlagern -->
+                    <li>
+                        erklären, warum Webanwendungen mit <span class="dhbw-lightblue font-weight-bold">Spring MVC</span>
+                        einfacher zu programmieren sind als nur mit Servlets.
+                    </li>
+                    <li>
+                        eine minimale Webanwendung mit Spring MVC programmieren.
+                    </li>
+<!-- ENDE: Eventuell in die Vorlesung verlagern -->
                     <li>
                         die Vor- und Nachteile der verschiedenen Arten von <span class="dhbw-lightblue font-weight-bold">Enterprise
                         Java Beans</span> gegeneinander abwägen.
@@ -54,30 +63,51 @@
                         entscheiden, wann eine Enterprise Java Bean ein <span class="dhbw-lightblue font-weight-bold">Local Interface</span>,
                         ein <span class="dhbw-lightblue font-weight-bold">Remote Interface</span> oder keines davon benötigt.
                     </li>
-                    <li>
-                        erklären, warum Webanwendungen mit <span class="dhbw-lightblue font-weight-bold">Spring MVC</span>
-                        einfacher zu programmieren sind als nur mit Servlets.
-                    </li>
-                    <li>
-                        Eine mininmale Webanwendung mit Spring MVC programmieren.
-                    </li>
                 </ul>
                 <span style="font-size: 240px; color: white;" class="dhbw-text-shadow" >🏁</span>
             </article>
             <aside>
                 <p>
-                    …
+                    Ohne Zweifel handelt es sich beim World Wide Web die um die größte verteilte Anwendung überhaupt.
+                    Was liegt also näher, als sich auch in der Vorlesung Verteilte Systeme damit auseinanderzusetzen
+                    und die Dinge abzuschließen, die wir letztes Semester begonnen haben? Beginnen werden wir die
+                    Einheit daher mit einem kurzen Überblick über die <b>Java Enterprise Edition</b>, die uns als echte
+                    anwendungsorientierte Middleware gleich eine ganze Reihe an <b>Applikationsservern</b> zur Verfügung
+                    stellt. 🎁 Wir werden daher sehen, was die Java Enterprise Edition genau ist und welche <b>APIs und
+                    Funktionen</b> sie beinhaltet. Auch werden wir sehen, wie ein so ein Anwendungsserver aufgebaut
+                    ist und was er außer Servlets und JSP noch so alles kann.
+                </p>
+                <p>
+                    Mit diesem Wissen tasten wir uns dann an <b>Model-View-Controller</b> heran und lernen, wie eine
+                    Webanwendung mit Java sinnvoll aufgebaut sein muss. Für einen kurzen Augenblick werden wir daher
+                    zu den guten alten <b>Servlets und Java Server Pages</b> zurückkehren und zeigen, dass diese erst
+                    durch <b>Enterprise Java Beans</b> und <b>Persistence Entities</b> wirklich komplett sind.
+<!-- START: Eventuell in die Vorlesung verlagern -->
+                    Jedoch werden wir dabei auch sehen, dass Servlets doch ziemlich umständlich sind. Ein kurzer Ausflug 🚵‍
+                    in Richtung <b>Spring MVC</b> hilft uns dann aber, die Entwicklung deutlich zu vereinfachen.
+<!-- ENDE: Eventuell in die Vorlesung verlagern -->
+                </p>
+                <p>
+                    Von Datenbankzugriffen einmal abgesehen¹ weißt du an dieser Stelle 🎌 dann auch schon alles, was du
+                    für die Entwicklung serverseitiger Webanwendungen in Java brauchst. Abschließen werden wir die Einheit
+                    daher mit einem tieferen Blick auf Enterprise Java Beans, da diese auch allgemein und damit für die
+                    weitere Vorlesung ganz interessant sind.
+                </p>
+                <p>
+                    <small>
+                        ¹ Diese schauen wir uns im nächsten Foliensatz separat an.
+                    </small>
                 </p>
             </aside>
         </section>
 
         <!--
-            ==============
-            ERSTES KAPITEL
-            ==============
+            ====================
+            JAVA EE IM ÜBERBLICK
+            ====================
         -->
         <section data-chapter data-background-image="../../trennfolie.jpg">
-            <h1>Erstes Kapitel</h1>
+            <h1>Java&nbsp;EE im Überblick</h1>
             <article>
                 <small>
                     <small>
@@ -89,7 +119,256 @@
         </section>
 
         <section>
-            <h1>…</h1>
+            <h1>Was ist die Java Enterprise Edition?</h1>
+            <article>
+                <img src="appserver-schnittstellen.svg" alt="" style="width: 100%; margin-bottom: 1em;" />
+                <p>
+                    … abbildung aus folie 9 vereinfacht ... stichpunkte
+                </p>
+            </article>
+            <aside>
+                <p>
+                    Letztes Semester haben wir schon gesehen, dass es <a href="../../../webprog/4-servlet/http/#6">mehre Möglichkeiten</a>
+                    gibt, den Serverteil einer Webanwendung in Java zu entwickeln. Der klassische Ansatz besteht darin, einen Webcontainer
+                    (Applikationsserver) zu verwenden und seine Webanwendung in Form eines Webarchivs 📦 in diesem zum Laufen zu bringen.
+                    Dies hat den Vorteil, dass man sich keine Gedanken über die „Infrastruktur” machen muss, da diese durch den Server
+                    bereits gegeben ist.¹ Zusätzlich kann man innerhalb des Servers noch weitere Webanwendungen zum Laufen bringen und somit
+                    ein großes Webprojekt in kleine, übersichtliche Teilanwendungen zerlegen. Was wir dabei noch nicht so sehr betont haben
+                    ist, dass Webcontainer zur Java Enterprise Edition gehören, die ganz allgemein darauf abzielt, Client/Server-Anwendungen
+                    im Unternehmensumfeld zu entwickeln.
+                </p>
+                <p>
+                    <small>
+                        ¹ Microservices hingegen gehen meistens nach dem Prinzip „Put a Webserver In Your Application" bzw. „Bring Your Own Webserver”
+                        vor. Sie verschmelzen quasi Webanwendung und Server in einem Javaprogramm, das dann wie andere Javaprogramme direkt gestartet
+                        werden kann. In diesem Fall werden meistens andere APIs als die der Java Enterprise Edition genutzt.
+                    </small>
+                </p>
+                <p>
+                    Da das normale Java in seiner Langform „Java Standard Edition” (Java SE) heißt, könnte man auf die Idee kommen, dass die
+                    Standard Edition eine Art kleines Java für den Desktop 🐁 und Java&nbsp;EE ein großes Java für den Server. 🐘 Tatsächlich ist
+                    das aber nicht so. Java&nbsp;SE ist stattdessen einfach die Programmiersprache selbst, die wirklich immer benötigt wird,
+                    und Java&nbsp;EE eine Sammlung zusätzlicher APIs² zur Entwicklung datenbasierter Webanwendungen und Informationssysteme.
+                    Es handelt sich daher „nur” um eine Erweiterung der Java-Klassenbibliothek und keine Spracherweiterung. 💬
+                </p>
+                <p>
+                    <small>
+                        ² API = Application Programming Interface. Gemeint sind zusätzlich Interfaces, Klassen und Methoden, die nicht zum
+                        Standardumfang von Java gehören.
+                    </small>
+                </p>
+                <p>
+                    Um die Verwirrung darüber hinaus noch komplett zu machen, gibt es gar keine Java Enterprise Edition. die man einfach herunterladen
+                    und installieren könnte. Denn, wie für Java typisch, handelt es sich bei Java&nbsp;EE nur um eine Spezifikation, die im Rahmen des
+                    <a href="https://de.wikipedia.org/wiki/Java_Community_Process" target="_blank">Java Community Process</a> als offener Standard
+                    entwickelt wird und zu der es viele Implementierungen verschiedener Hersteller gibt. An dieser Stelle kommen dann auch die
+                    Applikationsserver ins Spiel, da sie die Spezifikation umsetzen. Produkte wie
+                    <a href="https://tomee.apache.org" target="_blank">Apache TomEE</a>³,
+                    <a href="https://javaee.github.io/glassfish/" target="_blank">Oracle Glassfish</a> oder
+                    <a href="http://www.wildfly.org/" target="_blank">RedHat Wildfly</a>
+                    sind also alles Implementierungen der Java Enterprise Edition, die jeweils in Form eines eigenen Anwendungsservers daher kommen.
+                    Sie alle können daher wie folgt genutzt werden:
+                </p>
+                <ul>
+                    <li>
+                        Als <b>Webserver</b> zur Entwicklung javabasierter Webanwendungen
+                    </li>
+                    <li>
+                        Als <b>Backend-Server</b> für beliebige, verteilte Anwendungen, auch wenn diese keine Weboberfläche besitzen
+                    </li>
+                </ul>
+                <p>
+                    Denn neben einer reinen HTTP-Schnittstelle für Servlets haben sie noch folgende Technologien an Board 🚢, um eine möglichst breite
+                    Konnektivität mit anderen Anwendungsservern und unterschiedlichsten Clients herzustellen. Sie ermöglich es, die fachlichen
+                    Anwendungsklassen auf folgende Arten aufzurufen:
+                </p>
+                <ul>
+                    <li>
+                        Per entferntem Methodenaufruf
+                    </li>
+                    <li>
+                        Als SOAP-Webservice
+                    </li>
+                    <li>
+                        Als REST-Webservice
+                    </li>
+                    <li>
+                        Als Nachrichtenempfänger über einen Message Broker
+                    </li>
+                </ul>
+                <p>
+                    Zusätzlich stellen sie, da es sich ja um eine anwendungsorientierte Middleware handelt, noch folgende Zusatzfunktionen zur
+                    Verfügung, auf die wir beim Programmieren zugreifen können:
+                </p>
+                <ul>
+                    <li>
+                        Verschiedene Arten der Benutzerverwaltung (Datenbankbasiert, LDAP, …)
+                    </li>
+                    <li>
+                        Ein rollenbasiertes Berechtigungskonzept
+                    </li>
+                    <li>
+                        Einen <a href="https://en.wikipedia.org/wiki/Object-relational_mapping" target="_blank">O/R-Mapper</a> für Datenbankzugriffe
+                    </li>
+                    <li>
+                        Die Möglichkeit, Nachrichten an einen Message Broker zu senden
+                    </li>
+                    <li>
+                        Eine API zum Versand von E-Mails
+                    </li>
+                    <li>
+                        Einen Timer zur Einplanung von Hintergrundaktivitäten
+                    </li>
+                    <li>
+                        Und noch vieles mehr 🌠
+                    </li>
+                </ul>
+                <p>
+                    Tatsächlich also, alles was das Herz begehrt 💖, was die Java Enterprise Edition gleichzeitig aber auch sehr groß
+                    und leider auch ressourcenhungrig macht.
+                </p>
+            </aside>
+        </section>
+
+        <section>
+            <h1>Aufbau eines Applikationsservers</h1>
+            <article>
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "appserver-uebersicht-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#appserver-uebersicht"
+                                role          = "tab"
+                                aria-controls = "appserver-uebersicht"
+                                aria-expanded = "true"
+                            >
+                                Übersicht
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "appserver-apis-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#appserver-apis"
+                                role          = "tab"
+                                aria-controls = "appserver-apis"
+                            >
+                                Enthaltene APIs
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Übersicht -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "appserver-uebersicht"
+                            role            = "tabpanel"
+                            aria-labelledby = "appserver-uebersicht-tab"
+                        >
+                            … skizze aus konzept
+                        </div>
+                        <!-- Enthaltene APIs -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "appserver-apis"
+                            role            = "tabpanel"
+                            aria-labelledby = "appserver-apis-tab"
+                        >
+                            … folie 8
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <aside>
+                <p>
+                    … metapher werkzeugkiste
+                </p>
+            </aside>
+        </section>
+
+        <section>
+            <h1>Fallbeispiele für Java auf dem Server</h1>
+            <article>
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "fallbeispiele-pos-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#fallbeispiele-pos"
+                                role          = "tab"
+                                aria-controls = "fallbeispiele-pos"
+                                aria-expanded = "true"
+                            >
+                                Point-Of-Sale
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "fallbeispiele-reiseportal-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#fallbeispiele-reiseportal"
+                                role          = "tab"
+                                aria-controls = "fallbeispiele-reiseportal"
+                            >
+                                Reiseportal
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Point-Of-Sale -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "fallbeispiele-pos"
+                            role            = "tabpanel"
+                            aria-labelledby = "fallbeispiele-pos-tab"
+                        >
+                            Inhalt für Reiter 1
+                        </div>
+                        <!-- Reiseportal -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "fallbeispiele-reiseportal"
+                            role            = "tabpanel"
+                            aria-labelledby = "fallbeispiele-reiseportal-tab"
+                        >
+                            Inhalt für Reiter 2
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <aside>
+                <p>
+                    …
+                </p>
+            </aside>
+        </section>
+
+        <!--
+            ===========================
+            MVC-WEBANWENDUNGEN MIT JAVA
+            ===========================
+        -->
+        <section data-chapter data-background-image="../../trennfolie.jpg">
+            <h1>MVC-Webanwendungen mit Java</h1>
+            <article>
+                <small>
+                    <small>
+                        Bildnachweis:
+                        <a href="https://pixabay.com/en/adult-break-business-caucasian-2398561/" target="_blank">Pixabay: rawpixel</a>
+                    </small>
+                </small>
+            </article>
+        </section>
+
+        <section>
+            <h1>Wiederholung: Die drei Arten von Webanwendungen</h1>
             <article>
                 …
             </article>
@@ -101,7 +380,7 @@
         </section>
 
         <section>
-            <h1>…</h1>
+            <h1>Alle guten Dinge sind drei: Model, View &amp; Controller</h1>
             <article>
                 …
             </article>
@@ -113,7 +392,7 @@
         </section>
 
         <section>
-            <h1>…</h1>
+            <h1>Beispiel: MVC mit Servlets und JSP</h1>
             <article>
                 …
             </article>
@@ -125,7 +404,42 @@
         </section>
 
         <section>
-            <h1>…</h1>
+            <h1>Wo geht's denn hier zur IDE?</h1>
+            <article>
+                …
+            </article>
+            <aside>
+                <p>
+                    …
+                </p>
+            </aside>
+        </section>
+
+        <section data-background-color="rgb(231, 221, 141)">
+            <h1>Aufgabe 1: Deine erste Enterprise Java Bean</h1>
+            <article>
+                …
+            </article>
+            <aside>
+                <p>
+                    … einleitung …
+                </p>
+                <img src="../../github_atom.png" class="img-fluid d-block"/>
+                <p>
+                    <small>
+                        Bildnachweis:
+                        <a href="https://atom.io/" target="_blank">Atom Webseite</a>
+                    </small>
+                </p>
+                <p>
+                    … weitere hinweise …
+                </p>
+            </aside>
+        </section>
+
+<!-- START: Eventuell in die Vorlesung verlagern -->
+        <section>
+            <h1>Spring MVC – Viel einfacher als Servlets</h1>
             <article>
                 …
             </article>
@@ -137,7 +451,68 @@
         </section>
 
         <section>
-            <h1>…</h1>
+            <h1>Spring MVC in Netbeans einbinden</h1>
+            <article>
+                …
+            </article>
+            <aside>
+                <p>
+                    …
+                </p>
+            </aside>
+        </section>
+
+        <section data-background-color="rgb(231, 221, 141)">
+            <h1>Aufgabe 2: Probefahrt mit Spring MVC</h1>
+            <article>
+                …
+            </article>
+            <aside>
+                <p>
+                    … einleitung …
+                </p>
+                <img src="../../github_atom.png" class="img-fluid d-block"/>
+                <p>
+                    <small>
+                        Bildnachweis:
+                        <a href="https://atom.io/" target="_blank">Atom Webseite</a>
+                    </small>
+                </p>
+            </aside>
+        </section>
+<!-- ENDE: Eventuell in die Vorlesung verlagern -->
+
+        <section data-background-color="rgb(231, 221, 141)">
+            <h1>Aufgabe 3: Ein kleines MVC-Quiz</h1>
+            <article>
+                …
+            </article>
+            <aside>
+                <p>
+                    …
+                </p>
+            </aside>
+        </section>
+
+        <!--
+            ===============================
+            ENTERPRISE JAVA BEANS IM DETAIL
+            ===============================
+        -->
+        <section data-chapter data-background-image="../../trennfolie.jpg">
+            <h1>Enterprise Java Beans im Detail</h1>
+            <article>
+                <small>
+                    <small>
+                        Bildnachweis:
+                        <a href="https://pixabay.com/en/adult-break-business-caucasian-2398561/" target="_blank">Pixabay: rawpixel</a>
+                    </small>
+                </small>
+            </article>
+        </section>
+
+        <section>
+            <h1>Über Session Beans und Persistence Entities</h1>
             <article>
                 …
             </article>
@@ -149,7 +524,7 @@
         </section>
 
         <section>
-            <h1>…</h1>
+            <h1>Nur für Zuhause: EJBs mit No-Interface-View</h1>
             <article>
                 …
             </article>
@@ -161,7 +536,7 @@
         </section>
 
         <section>
-            <h1>…</h1>
+            <h1>Wann braucht man ein Local Interface?</h1>
             <article>
                 …
             </article>
@@ -173,7 +548,7 @@
         </section>
 
         <section>
-            <h1>…</h1>
+            <h1>Und wann ein Remote Interface?</h1>
             <article>
                 …
             </article>
@@ -185,7 +560,7 @@
         </section>
 
         <section>
-            <h1>…</h1>
+            <h1>Woher kommen eigentlich die EJB-Objekte?</h1>
             <article>
                 …
             </article>
@@ -196,8 +571,9 @@
             </aside>
         </section>
 
+<!-- START: Eventuell in die Vorlesung verlagern -->
         <section>
-            <h1>…</h1>
+            <h1>Fallbeispiel: Entwurf einer neuen Webanwendung</h1>
             <article>
                 …
             </article>
@@ -207,45 +583,10 @@
                 </p>
             </aside>
         </section>
+<!-- ENDE: Eventuell in die Vorlesung verlagern -->
 
-        <section>
-            <h1>…</h1>
-            <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
-                </p>
-            </aside>
-        </section>
-
-        <section>
-            <h1>…</h1>
-            <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
-                </p>
-            </aside>
-        </section>
-
-        <section>
-            <h1>…</h1>
-            <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
-                </p>
-            </aside>
-        </section>
-
-        <section>
-            <h1>…</h1>
+        <section data-background-color="rgb(231, 221, 141)">
+            <h1>Aufgabe 4: Ein kleines EJB-Quiz</h1>
             <article>
                 …
             </article>
