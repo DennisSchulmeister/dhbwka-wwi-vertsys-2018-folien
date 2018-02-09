@@ -121,21 +121,63 @@
         <section>
             <h1>Was ist die Java Enterprise Edition?</h1>
             <article>
-                <img src="appserver-schnittstellen.svg" alt="" style="width: 100%; margin-bottom: 1em;" />
+                <img src="appserver-schnittstellen.png" alt="Grober Aufbau eines Java-Applikationsservers" style="width: 100%; margin-bottom: 1em;" />
                 <p>
-                    … abbildung aus folie 9 vereinfacht ... stichpunkte
+                    Die Java Enterprise Edition ist keine Erweiterung von Java sondern ein offener Standard für javabasierte Anwendungsserver.
+                    Diese werden von unterschiedlichen Herstellern angeboten:
                 </p>
+                <ul>
+                    <li>
+                        <a href="https://tomee.apache.org" target="_blank">Apache TomEE</a>
+                    </li>
+                    <li>
+                        <a href="https://javaee.github.io/glassfish/" target="_blank">Oracle Glassfish</a>
+                    </li>
+                    <li>
+                        <a href="http://www.wildfly.org/" target="_blank">RedHat Wildfly</a>
+                    </li>
+                    <li>
+                        …
+                    </li>
+                </ul>
+                <p>
+                    Jeder Anwendungsserver besitzt dabei einen <b>Webcontainer</b> zur Bereitstellung von Webinhalten sowie eine
+                    <b>EJB-Container</b> zur Ausführung der fachlichen Anwendungsklassen. Darüber hinaus bietet er viele eingebaute
+                    Zusatzfunktionen:
+                </p>
+                <ul>
+                    <li>
+                        Verschiedene Arten der Benutzerverwaltung (Datenbankbasiert, LDAP, …)
+                    </li>
+                    <li>
+                        Ein rollenbasiertes Berechtigungskonzept
+                    </li>
+                    <li>
+                        Einen <a href="https://en.wikipedia.org/wiki/Object-relational_mapping" target="_blank">O/R-Mapper</a> für Datenbankzugriffe
+                    </li>
+                    <li>
+                        Die Möglichkeit, Nachrichten an einen Message Broker zu senden
+                    </li>
+                    <li>
+                        Eine API zum Versand von E-Mails
+                    </li>
+                    <li>
+                        Einen Timer zur Einplanung von Hintergrundaktivitäten
+                    </li>
+                    <li>
+                        Und noch vieles mehr 🌠
+                    </li>
+                </ul>
             </article>
             <aside>
                 <p>
-                    Letztes Semester haben wir schon gesehen, dass es <a href="../../../webprog/4-servlet/http/#6">mehre Möglichkeiten</a>
-                    gibt, den Serverteil einer Webanwendung in Java zu entwickeln. Der klassische Ansatz besteht darin, einen Webcontainer
-                    (Applikationsserver) zu verwenden und seine Webanwendung in Form eines Webarchivs 📦 in diesem zum Laufen zu bringen.
-                    Dies hat den Vorteil, dass man sich keine Gedanken über die „Infrastruktur” machen muss, da diese durch den Server
-                    bereits gegeben ist.¹ Zusätzlich kann man innerhalb des Servers noch weitere Webanwendungen zum Laufen bringen und somit
-                    ein großes Webprojekt in kleine, übersichtliche Teilanwendungen zerlegen. Was wir dabei noch nicht so sehr betont haben
-                    ist, dass Webcontainer zur Java Enterprise Edition gehören, die ganz allgemein darauf abzielt, Client/Server-Anwendungen
-                    im Unternehmensumfeld zu entwickeln.
+                    Letztes Semester haben wir schon gesehen, dass es <a href="../../../webprog/4-servlet/http/#6">mehre Möglichkeiten</a> gibt,
+                    den Serverteil einer Webanwendung in Java zu entwickeln. Der klassische Ansatz besteht darin, einen Webcontainer (Applikationsserver)
+                    zu verwenden und die Anwendung in Form eines Webarchivs 📦 in diesem zum Laufen zu bringen. Dies hat den Vorteil, dass man sich
+                    keine Gedanken über die „Infrastruktur” machen muss, da diese durch den Server bereits gegeben ist.¹ Zusätzlich kann man
+                    innerhalb des Servers noch weitere Webanwendungen zum Laufen bringen und somit ein großes Webprojekt in kleine, übersichtliche
+                    Teilanwendungen zerlegen. Was wir dabei noch nicht so sehr betont haben ist, dass Webcontainer zur Java Enterprise Edition gehören,
+                    die ganz allgemein darauf abzielt, Client/Server-Anwendungen im Unternehmensumfeld zu entwickeln.
                 </p>
                 <p>
                     <small>
@@ -233,60 +275,287 @@
         <section>
             <h1>Aufbau eines Applikationsservers</h1>
             <article>
-                <div>
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item">
-                            <a
-                                id            = "appserver-uebersicht-tab"
-                                class         = "nav-link active"
-                                data-toggle   = "tab"
-                                href          = "#appserver-uebersicht"
-                                role          = "tab"
-                                aria-controls = "appserver-uebersicht"
-                                aria-expanded = "true"
-                            >
-                                Übersicht
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a
-                                id            = "appserver-apis-tab"
-                                class         = "nav-link"
-                                data-toggle   = "tab"
-                                href          = "#appserver-apis"
-                                role          = "tab"
-                                aria-controls = "appserver-apis"
-                            >
-                                Enthaltene APIs
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
-                        <!-- Übersicht -->
-                        <div
-                            class           = "tab-pane fade show active"
-                            id              = "appserver-uebersicht"
-                            role            = "tabpanel"
-                            aria-labelledby = "appserver-uebersicht-tab"
-                        >
-                            … skizze aus konzept
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md">
+                            <img src="appserver-aufbau.png" alt="Interne Bestandteile eines Java-Applikationsservers" style="width: 100%; margin-bottom: 2em;" />
                         </div>
-                        <!-- Enthaltene APIs -->
-                        <div
-                            class           = "tab-pane fade"
-                            id              = "appserver-apis"
-                            role            = "tabpanel"
-                            aria-labelledby = "appserver-apis-tab"
-                        >
-                            … folie 8
+                    </div>
+
+                    <!-- Webprogrammierung -->
+                    <div class="row">
+                        <div class="col-md">
+                            <h2>Webprogrammierung</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Servlets</h4>
+                            Grundlegende Klassenbibliothek zur Reaktion auf HTTP-Anfragen. Es handelt sich dabei um
+                            die Basistechnologie, die allen höheren Webframeworks für Java&nbsp;EE zugrunde liegt.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Java Server Pages</h4>
+                            Serverseitige Erweiterung von HTML. Erlaubt es, Teile der Seite dynamisch auf dem Server
+                            zu erzeugen, bevor sie an den Browser geschickt wird.
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Java Server Faces</h4>
+                            Von Oracle entwickeltes, mit Java EE ausgeliefertes Webframework. Nutzt eine an HTML
+                            angelehnte Beschreibungssprache zur Definition des Layouts.
+                        </div>
+                    </div>
+
+                    <!-- Anwendungslogik -->
+                    <div class="row">
+                        <div class="col-md">
+                            <h2>Anwendungslogik</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Enterprise Java Beans</h4>
+                            Spezielle Laufzeitumgebung für die fachlichen Klassen einer Anwendung. Sie ermöglichen es,
+                            Services zu definieren, die von lokalen und entfernten Clients genutzt werden können.
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Java Database Connection</h4>
+                            Allgemeine Klassenbibliothek für den Zugriff auf SQL-Datenbanken. Sie bildet die Grundlage
+                            für JPA und JTA und wird heutzutage selten direkt genutzt.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Java Persistence API</h4>
+                            O/R-Mapper zur Vereinfachung des Datenbankzugriffes. Die Feöder einer Tabelle werden
+                            automatisch auf die Attribute einer Javabean gemappt.
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Java Transaction API</h4>
+                            Framework für von der Datenbank unabhängige, verteilte Transaktionen.
+                        </div>
+                    </div>
+
+                    <!-- Schnittstellen -->
+                    <div class="row">
+                        <div class="col-md">
+                            <h2>Schnittstellen</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Java API for XML-Webservices</h4>
+                            Klassenbibliothek zum Erstellen und Aufrufen von SOAP-Webservices.
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Java API for REST-Webservices</h4>
+                            Klassenbibliothek zum Erstellen und Aufrufen von REST-Webservices.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Java Message Services</h4>
+                            Klassenbibliothek für den Zugriff auf einen Message Broker.
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Java Mail API</h4>
+                            Hilfsklassen zum Versenden von E-Mails.
+                        </div>
+                    </div>
+
+                    <!-- Sonstiges -->
+                    <div class="row">
+                        <div class="col-md">
+                            <h2>Sonstiges</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <h4>Java Authentication &amp; Authorization Service</h4>
+                            Rollenbasierte Benutzer- und Berechtigungsverwaltung. Erlaubt es, die Benutzer entweder in einer
+                            Datenbanktabelle abzulegen oder auf externe Provider, wie zum Beispiel LDAP-Verzeichnisse,
+                            zuzugreifen.
                         </div>
                     </div>
                 </div>
+
             </article>
             <aside>
                 <p>
-                    … metapher werkzeugkiste
+                    Ein einfachsten lässt sich der Aufbau eines Anwendungsservers verstehen, indem man sich vor Augen hält,
+                    dass es sich dabei im Grunde genommen um nichts anderes als ein gewöhnliches Javaprogramm handelt,
+                    das zwar schon sehr viele Funktionen enthält, von sich aus aber noch gar nichts nützliches macht. 🛋️
+                    Als Programmierer muss man dem Programm erst noch die gewünschten Features hinzufügen, indem man hierfür
+                    entsprechende Klassen schreibt und innerhalb des Applikationsservers zum Laufen bringt,m wofür folgende
+                    Begriffe wichtig zu verstehen sind:
                 </p>
+                <dl>
+                    <dt>
+                        Softwarekomponente
+                    </dt>
+                    <dd>
+                        <p>
+                            Manche Quellen sprechen im Zusammenhang mit Java&nbsp;EE von einer komponentenbasierten Architektur
+                            und nennen die zu erstellenden Klassen auch Softwarekomponenten. Damit soll zum Ausdruck gebracht werden,
+                            dass jede Klasse folgende Eigenschaften erfüllen muss:
+                        </p>
+                        <ul>
+                            <li>
+                                <b>In sich geschlossen:</b> Die Klasse soll einen funktionalen Teilbereich der Anwendung
+                                abdecken und alle hierfür benötigten Methoden enthalten.
+                            </li>
+                            <li>
+                                <b>Nur lose gekoppelt:</b> Die Klasse sollte so wenig wie möglich von den anderen Klassen
+                                der Anwendung abhängen. Idealerweise ist jede Klasse für sich genommen alleine lauffähig.
+                            </li>
+                            <li>
+                                <b>Wiederverwendbar:</b> Die Klasse soll möglichst allgemeingültig gehalten werden, so
+                                dass sie auch in anderen Anwendungen mit ähnlichen Anforderungen einsetzbar ist.
+                            </li>
+                            <li>
+                                <b>Austauschbar:</b> Die Methoden der Klasse sollen in einem von der Klasse getrennten
+                                Interface definiert werden und alle Verwender der Klasse sollen nur gegen das Interface
+                                programmiert werden. Somit kann die implementierende Klasse später jederzeit ersetzt werden.
+                            </li>
+                        </ul>
+                    </dd>
+
+                    <dt>
+                        Container
+                    </dt>
+                    <dd>
+                        <p>
+                            Softwarekomponenten benötigen immer eine Laufzeitumgebung (auch Container genannt), in der sie ausgeführt
+                            werden können, wobei sich der Container mindestens um die Erzeugung der Objektinstanzen kümmert. Der
+                            Container kann daher vorschreiben, dass eine Klasse ein bestimmtes Interface implementieren, bestimmte
+                            Methoden beinhalten oder bestimmte Annotationen verwenden muss. Dadurch wird der Container in die Lage
+                            versetzt, zum richtigen Zeitpunkt die benötigten Objektinstanzen zu erzeugen und ihre Methoden aufzurufen.
+                        </p>
+                    </dd>
+
+                    <dt>
+                        Deployment
+                    </dt>
+                    <dd>
+                        <p>
+                            Dies ist der Vorgang, beidem alle Klassen einer Anwendung zu einem Archiv verpackt und an den Server
+                            übergeben werden. Hierfür muss das Archiv, das natürlich einen vorgeschriebenen Aufbau besitzen muss, in
+                            aller Regel nur in ein hierfür vorgesehenes Verzeichnis kopiert werden, damit der Server es erkennt.
+                        </p>
+                    </dd>
+                </dl>
+
+                <p>
+                    Die selbst zu entwickelnden Klassen lassen sich wiederum in folgende Kategorien einteilen:
+                </p>
+                <ul>
+                    <li>
+                        🌍 <b>Servlets und JSP</b> laufen innerhalb des Webcontainers und dienen dazu, auf HTTP-Anfragen zu reagieren
+                        bzw. eine Weboberfläche zu entwickeln.
+                    </li>
+                    <li>
+                        ⚙️ <b>Enterprise Java Beans</b> wiederum kapseln die fachliche Logik der Anwendung, unabhängig davon, wie
+                        die Funktionen in der Benutzeroberfläche aussehen werden. Mit Hilfe von EJBs werden daher einfach nur
+                        Services definiert, die von den verschiedenen Clients aufgerufen werden können. Technisch geshen wird
+                        dabei zwischen <b>Stateless Session Beans</b>, <b>Stateful Session Beans</b> und <b>Message Driven Beans</b>
+                        unterschieden. Was das ist schauen wir uns allerdings erst weiter hinten an.
+                    </li>
+                    <li>
+                        🛢 <b>Persistence Entities</b> dienen schließlich dem Lesen und Schreiben von Daten in einer Datenbank.
+                        Die Entities sind hierfür als gewöhnliche Javabeans definiert, deren Objekte immer einer Zeile in
+                        einer Tabelle entsprechen.
+                    </li>
+                </ul>
+                <p>
+                    Das Grobgerüst einer Java-Enterprise-Anwendung könnte daher so aussehen:
+                </p>
+                <source-code language="java">
+                    // Servlet
+                    // Gehört zur Weboberfläche der Anwendung
+                    public class ShoppingCartServlet extends HttpServlet {
+                        @EJB
+                        ShoppingCartBean shoppingCart;
+
+                        public void doGet(…) { … }
+                        public void doPost(…) { … }
+                    }
+
+                    // Enterprise Java Bean
+                    // Beinhaltet die fachlichen Funktionen
+                    @Stateles
+                    public class ShoppingCartBean {
+                        public List&lt;Article&gt; getContent() { … }
+                        public void addArticle(int id, int amount) { … }
+                        public void removeArticle(int id) { … }
+                        public void checkout() { … }
+                    }
+
+                    // Persistence Entity
+                    // Definiert eine Datenbanktabelle
+                    @Entity
+                    public class Article {
+                        @Id
+                        @GeneratedValue
+                        long id;
+
+                        String name;
+                        …
+
+                        public void setId(long id) { … }
+                        public long getId() { … }
+                        public void setName(String name) { … }
+                        public String getName() { … }
+                    }
+                </source-code>
+                <p>
+                    Wie du siehst, ist das gar nicht so kompliziert, auch wenn wir uns hier noch nicht um die
+                    Einzelheiten kümmern wollen. Zumindest kann man aber schon erkennen, dass eine klare
+                    Aufgabenteilung zwischen den Klassen zu herrschen scheint. Abschließend bleibt hier dann
+                    nur noch zu sagen, dass Java&nbsp;EE eine ganze Reihe von APIs definiert, auf die innerhalb
+                    der Klassen zugegriffen werden kann. Welche das sind, siehst du auf der Folie.
+                </p>
+
+
+
+
+                <!-- <dl>
+                    <dt>
+                        Webcontainer
+                    </dt>
+                    <dd>
+                        <ul>
+                            <li>
+                                <b>:</b>
+                            </li>
+                        </ul>
+                    </dd>
+
+                    <dt>
+                        Enterprise Java Beans
+                    </dt>
+                    <dd>
+                        <ul>
+                            <li>
+                                <b>:</b>
+                            </li>
+                        </ul>
+                    </dd>
+
+                    <dt>
+                        Webcontainer
+                    </dt>
+                    <dd>
+                        <ul>
+                            <li>
+                                <b>:</b>
+                            </li>
+                        </ul>
+                    </dd>
+                </dl> -->
+
+                <!-- werkzeugkiste -->
             </aside>
         </section>
 
@@ -329,7 +598,27 @@
                             role            = "tabpanel"
                             aria-labelledby = "fallbeispiele-pos-tab"
                         >
-                            Inhalt für Reiter 1
+                            <p>
+                                Im Unternehmensumfeld geht es häufig darum, mit unterschiedlichen Endgeräten eine gemeinsame Datenbasis zur
+                                Dokumentation aller Geschäftsvorgänge zu pflegen. Anwendungen wie diese besitzen daher ein ausgefeiltes Datenmodell
+                                und darauf aufbauend sehr viele Services, welche die Geschäftsprozesse des Unternehmens abbilden. Das Datenmodell
+                                wird dabei durch die <b>Persistence Entity</b>-Klassen modelliert, während die Services in <b>Enterprise Java Beans</b>
+                                enthalten sind. Fremde Clientprogramme können die EJBs über Rechnergrenzen hinweg direkt aufrufen. Innerhalb des
+                                Applikationsservers stehen sie aber auch zur Nutzung in Webanwendungen zur Verfügung.
+                            </p>
+                            <img src="fallbeispiel-pos.jpg" alt="Architekturskizze einer Point-Of-Sale-Anwendung" style="width: 100%; margin-bottom: 1em;" />
+                            <p>
+                                <small>
+                                    <small>
+                                        Bildnachweise:
+                                        <a href="https://de.wikipedia.org/wiki/Datei:Quorion_concerto.jpg" target="_blank">Wikipedia: Tokaito</a>,
+                                        <a href="https://pixabay.com/en/isolated-money-euro-cash-finance-3118531/" target="_blank">Pixabay: Snap_it</a>,
+                                        <a href="https://pixabay.com/en/imac-computer-apple-mac-calculator-1999642/" target="_blank">Pixabay: Nick_H</a>,
+                                        <a href="https://pixabay.com/en/gps-navigation-garmin-yellow-295077/" target="_blank">Pixabay: Clker-Free-Vector-Images</a>,
+                                        <a href="https://pixabay.com/en/wireless-signal-icon-image-vector-1119306/" target="_blank">Pixabay: Samuel1983</a>
+                                    </small>
+                                </small>
+                            </p>
                         </div>
                         <!-- Reiseportal -->
                         <div
@@ -338,15 +627,81 @@
                             role            = "tabpanel"
                             aria-labelledby = "fallbeispiele-reiseportal-tab"
                         >
-                            Inhalt für Reiter 2
+                        <p>
+                            Dieses Beispiel zeigt ein großes Webportal mit mehreren, von der restlichen Anwendungslogik entkoppelten Webfrontends.
+                            Zur besseren Skalierung wurden sie in einem eigenen <b>Webcontainer</b> genannten Anwendungsserver deployed.
+                            Zusätzlich werden die Dienste fremder Anbieter per Webserviceaufruf in das Portal integriert.
+                        </p>
+                        <p style="line-height: 1; margin-bottom: 1em;">
+                            <small>
+                                <small>
+                                    ¹ Vollwertige Java&nbsp;EE-Applikationsserver bestehen im Grunde genommen aus nichts anderem als einem
+                                    Webcontainer und einem EJB-Container, wobei der Webcontainer die Servlet- und webbezogenen APIs zur
+                                    Verfügung stellt und der EJB-Container den Rest. Wenn man aber weiß, dass man die mit dem EJB-Container
+                                    vorausgelieferten Klassen nicht nutzen will, weil man sie nicht braucht oder weil man sich nicht darauf
+                                    verlassen will, dass der Server die richtigen Versionen bereitstellt, kann man auch nur einen Webcontainer
+                                    installieren.
+                                </small>
+                            </small>
+                        </p>
+                        <img src="fallbeispiel-reiseportal.jpg" alt="Architekturskizze eines großen Reiseportals" style="width: 100%; margin-bottom: 1em;" />
+                        <p>
+                            <small>
+                                <small>
+                                    Bildnachweise:
+                                    <a href="https://pixabay.com/en/computer-laptop-blank-empty-screen-3036166/" target="_blank">Pixabay: www_slon_pics</a>,
+                                    <a href="https://pixabay.com/en/polynesia-french-polynesia-tahiti-3021072/" target="_blank">Pixabay: Julius_Silver</a>,
+                                    <a href="https://pixabay.com/en/tropical-sunset-summer-beach-sunset-1651426/" target="_blank">Pixabay: TheDigitalArtist</a>,
+                                    <a href="https://pixabay.com/en/train-railway-s-bahn-transport-797072/" target="_blank">Pixabay: Didgeman</a>,
+                                    <a href="https://pixabay.com/en/transportation-system-vehicle-3064387/" target="_blank">Pixabay: joe137</a>,
+                                    <a href="https://pixabay.com/en/hotel-room-bed-pillows-room-hotel-1447201/" target="_blank">Pixabay: Olichel</a>
+                                </small>
+                            </small>
+                        </p>
                         </div>
                     </div>
                 </div>
             </article>
             <aside>
                 <p>
-                    …
+                    Auf dieser Folie siehst du zwei typische Anwendungsbeispiele für die Java Enterprise Edition: Eine Geschäftsanwendung,
+                    wie sie als interne Anwendung in einem Supermarkt betrieben werden könnte sowie ein großes Webportal mit mehreren
+                    Frontends und Schnittstellen zu externen Webserviceanbietern. In beiden Fällen eignet sich die Java Enterprise Edition
+                    aufgrund folgender Eigenschaften besonders gut:
                 </p>
+                <ul>
+                    <li>
+                        <b>Persistence Entities:</b> Dank der Java Persistence API kann mit einfachen Beanklassen ein ausgefeiltes Datenmodell
+                        realisiert werden, bei dem Java automatisch die Objekte dieser Klassen in der Datenbank ablegen und von dort wieder
+                        rausholen kann. Ebenso unterstützt Java eine mächtige Anfragesprache, mit der relativ einfach auch komplexe Suchen auf
+                        der Datenbank ausgeführt werden können.
+                    </li>
+                    <li>
+                        <b>Enterprise Java Beans:</b> Sämtliche Geschäftsvorgänge lassen sich losgelöst von ihrer späteren Darstellung sowie
+                        ihrer späteren Verwender in einfachen Beanklassen implementieren. Die Klassen sind dabei so flexibel, dass ihre Methoden
+                        aus einer internen Webanwendung heraus, per Webservice oder per entferntem Methodenaufruf aufrufbar sind.
+                    </li>
+                    <li>
+                        <b>Message Driven Beans:</b> Über den Applikationsserver können auch Nachrichten an einen externen Message Broker
+                        gesendet und von diesem abgerufen werden.
+                    </li>
+                    <li>
+                        <b>Webcontainer:</b> Jeder Applikationsserver beinhaltet bereits einen Webcontainer, in dem neben statischen Webseiten
+                        auch in javabasierte Webanwendungen ausführbar sind.
+                    </li>
+
+                    <li>
+                        <b>Webservices:</b> Mit der Java Enterprise Edition können sowohl fremde Webservices aufgerufen als auch eigene Webservices
+                        angeboten werden. Für die Erstellung der Webservices müssen hierfür nur eine Hand voll Annotationen in die vorhandenen
+                        EJBs aufgenommen werden.
+                    </li>
+                    <li>
+                        <b>Flexibles Deployment:</b>
+                        Das Deployment von Java&nbsp;EE ist so flexibel, dass entweder alle Bestandteile einer Anwendung in einem gemeinsamen
+                        oder einem getrennten Applikationsserver zum Laufen gebracht werden können. Falls die Anwendung sauber programmiert
+                        wurde, sind hierfür keine Änderungen an der Software erforderlich.
+                    </li>
+                </ul>
             </aside>
         </section>
 
