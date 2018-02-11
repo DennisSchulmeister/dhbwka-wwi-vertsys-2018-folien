@@ -11,6 +11,9 @@
     <body class="slides invisible" data-title="Enterprise Java Beans" tabindex="0">
         <header>
             <h2>Inhaltsverzeichnis</h2>
+            <p>
+                …
+            </p>
         </header>
 
         <!--
@@ -46,15 +49,6 @@
                     <li>
                         eine minimale Webanwendung nach dem MVC-Prinzip programmieren.
                     </li>
-<!-- START: Eventuell in die Vorlesung verlagern -->
-                    <li>
-                        erklären, warum Webanwendungen mit <span class="dhbw-lightblue font-weight-bold">Spring MVC</span>
-                        einfacher zu programmieren sind als nur mit Servlets.
-                    </li>
-                    <li>
-                        eine minimale Webanwendung mit Spring MVC programmieren.
-                    </li>
-<!-- ENDE: Eventuell in die Vorlesung verlagern -->
                     <li>
                         die Vor- und Nachteile der verschiedenen Arten von <span class="dhbw-lightblue font-weight-bold">Enterprise
                         Java Beans</span> gegeneinander abwägen.
@@ -82,10 +76,6 @@
                     Webanwendung mit Java sinnvoll aufgebaut sein muss. Für einen kurzen Augenblick werden wir daher
                     zu den guten alten <b>Servlets und Java Server Pages</b> zurückkehren und zeigen, dass diese erst
                     durch <b>Enterprise Java Beans</b> und <b>Persistence Entities</b> wirklich komplett sind.
-<!-- START: Eventuell in die Vorlesung verlagern -->
-                    Jedoch werden wir dabei auch sehen, dass Servlets doch ziemlich umständlich sind. Ein kurzer Ausflug 🚵‍
-                    in Richtung <b>Spring MVC</b> hilft uns dann aber, die Entwicklung deutlich zu vereinfachen.
-<!-- ENDE: Eventuell in die Vorlesung verlagern -->
                 </p>
                 <p>
                     Von Datenbankzugriffen einmal abgesehen¹ weißt du an dieser Stelle 🎌 dann auch schon alles, was du
@@ -121,7 +111,7 @@
         <section>
             <h1>Was ist die Java Enterprise Edition?</h1>
             <article>
-                <img src="appserver-schnittstellen.png" alt="Grober Aufbau eines Java-Applikationsservers" style="width: 100%; margin-bottom: 1em;" />
+                <img src="appserver-schnittstellen.png" alt="Grober Aufbau eines Java-Applikationsservers" class="d-block" style="width: 100%; margin-bottom: 1em;" />
                 <p>
                     Die Java Enterprise Edition ist keine Erweiterung von Java sondern ein offener Standard für javabasierte Anwendungsserver.
                     Diese werden von unterschiedlichen Herstellern angeboten:
@@ -278,7 +268,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md">
-                            <img src="appserver-aufbau.png" alt="Interne Bestandteile eines Java-Applikationsservers" style="width: 100%; margin-bottom: 2em;" />
+                            <img src="appserver-aufbau.png" alt="Interne Bestandteile eines Java-Applikationsservers" class="d-block" style="width: 100%; margin-bottom: 2em;" />
                         </div>
                     </div>
 
@@ -516,46 +506,6 @@
                     nur noch zu sagen, dass Java&nbsp;EE eine ganze Reihe von APIs definiert, auf die innerhalb
                     der Klassen zugegriffen werden kann. Welche das sind, siehst du auf der Folie.
                 </p>
-
-
-
-
-                <!-- <dl>
-                    <dt>
-                        Webcontainer
-                    </dt>
-                    <dd>
-                        <ul>
-                            <li>
-                                <b>:</b>
-                            </li>
-                        </ul>
-                    </dd>
-
-                    <dt>
-                        Enterprise Java Beans
-                    </dt>
-                    <dd>
-                        <ul>
-                            <li>
-                                <b>:</b>
-                            </li>
-                        </ul>
-                    </dd>
-
-                    <dt>
-                        Webcontainer
-                    </dt>
-                    <dd>
-                        <ul>
-                            <li>
-                                <b>:</b>
-                            </li>
-                        </ul>
-                    </dd>
-                </dl> -->
-
-                <!-- werkzeugkiste -->
             </aside>
         </section>
 
@@ -606,7 +556,7 @@
                                 enthalten sind. Fremde Clientprogramme können die EJBs über Rechnergrenzen hinweg direkt aufrufen. Innerhalb des
                                 Applikationsservers stehen sie aber auch zur Nutzung in Webanwendungen zur Verfügung.
                             </p>
-                            <img src="fallbeispiel-pos.jpg" alt="Architekturskizze einer Point-Of-Sale-Anwendung" style="width: 100%; margin-bottom: 1em;" />
+                            <img src="fallbeispiel-pos.jpg" alt="Architekturskizze einer Point-Of-Sale-Anwendung" class="d-block" style="width: 100%; margin-bottom: 1em;" />
                             <p>
                                 <small>
                                     <small>
@@ -644,7 +594,7 @@
                                 </small>
                             </small>
                         </p>
-                        <img src="fallbeispiel-reiseportal.jpg" alt="Architekturskizze eines großen Reiseportals" style="width: 100%; margin-bottom: 1em;" />
+                        <img src="fallbeispiel-reiseportal.jpg" alt="Architekturskizze eines großen Reiseportals" class="d-block" style="width: 100%; margin-bottom: 1em;" />
                         <p>
                             <small>
                                 <small>
@@ -705,6 +655,26 @@
             </aside>
         </section>
 
+        <section data-background-color="rgb(231, 221, 141)">
+            <h1>Aufgabe 1: Ein kleines Java-EE-Quiz</h1>
+            <article>
+                …
+                <!--
+                    Zu welcher Middlewareart zählt die Java Enterprise Edition? (komm. / anwend.)
+                    Wo gibt es die Java Enterprise Edition zum Herunterladen? (Bei Oracle dem Entwickler von Java, Bei Microsoft aber nur für Windows, Bei den Herrstellern der Appserver, Gar nicht es ist im normalen Java enthalten)
+                    Welche der folgenden Schnittstellen bietet ein typischer Java-Anwendungsserver? (RPC, SOAP, REST, HTTP)?
+                    Eigenschaften von Komponenten
+                    Was bedeutet, dass eine Komponente möglichst wiederverwendbar sein soll?
+                -->
+            </article>
+            <aside>
+                <p>
+                    Okay, so viel haben wir bis jetzt noch gar nicht gelernt. Trotzdem wollen wir
+                    mal sehen, ob du dir alles gemerkt hast. 🎭
+                </p>
+            </aside>
+        </section>
+
         <!--
             ===========================
             MVC-WEBANWENDUNGEN MIT JAVA
@@ -723,13 +693,129 @@
         </section>
 
         <section>
-            <h1>Wiederholung: Die drei Arten von Webanwendungen</h1>
+            <h1>Welche Aufgaben übernimmt der Server?</h1>
             <article>
-                …
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "webanwendungen-serverseitig-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#webanwendungen-serverseitig"
+                                role          = "tab"
+                                aria-controls = "webanwendungen-serverseitig"
+                                aria-expanded = "true"
+                            >
+                                Alles auf dem Server
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "webanwendungen-clientseitig-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#webanwendungen-clientseitig"
+                                role          = "tab"
+                                aria-controls = "webanwendungen-clientseitig"
+                            >
+                                Der Server als Funktionsbibliothek
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Alles auf dem Server -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "webanwendungen-serverseitig"
+                            role            = "tabpanel"
+                            aria-labelledby = "webanwendungen-serverseitig-tab"
+                        >
+                            <img src="webanwendung-serverseitig.png" class="d-block" style="width: 100%; margin-bottom: 1em;" />
+                            <ul>
+                                <li>
+                                    <b class="dhbw-lightblue">Der Klassiker:</b> Die Anwendungslogik liegt komplett auf dem Server.
+                                </li>
+                                <li>
+                                    JavaScript kommt im Browser wenn überhaupt nur sehr sparsam zum Einsatz.
+                                </li>
+                                <li>
+                                    Stattdessen führt jede Aktion dazu, dass eine neue Seite vom Server geladen wird.
+                                </li>
+                                <li>
+                                    Der Server führt dabei die Anwendungslogik aus und generiert das anzuzeigende HTML.
+                                </li>
+                            </ul>
+                            <p style="color: darkred">
+                                Das schauen wir uns heute etwas genauer an.
+                            </p>
+                        </div>
+                        <!-- Der Server als Funktionsbibliothek -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "webanwendungen-clientseitig"
+                            role            = "tabpanel"
+                            aria-labelledby = "webanwendungen-clientseitig-tab"
+                        >
+                            <img src="webanwendung-clientseitig.png" class="d-block" style="width: 100%; margin-bottom: 1em;" />
+                            <ul>
+                                <li>
+                                    <b class="dhbw-lightblue">Das Beste beider Welten:</b> Browser und Server beinhalten je einen Teil der Anwendungslogik.
+                                </li>
+                                <li>
+                                    Der initiale HTML-Code kann vom Server generiert werden oder in einer einfachen HTML-Datei liegen.
+                                </li>
+                                <li>
+                                    Bei verschiedenen Aktionen werden mit JavaScript weitere Daten mit dem Server ausgetauscht.
+                                </li>
+                                <li>
+                                    Die empfangenen Daten werden dabei durch geschickte DOM-Manipulation sichtbar gemacht.
+                                </li>
+                            </ul>
+                            <p style="color: darkred">
+                                Dieses Modell behandeln im Kapitel über REST-Webservices.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    Um dir einen kurzen Überblick zu geben, womit wir uns im folgenden nun beschäftigen werden, haben wir hier
+                    nochmal die zwei Arten zusammengefasst, wie die serverseitige Logik einer Webanwendung realisiert werden kann.
+                    Dabei läuft es im Wesentlichen auf die Frage hinaus, ob die fachlichen Anwendungsfunktionen untrennbar mit dem
+                    Rest der Anwendung verschmolzen sind oder ob beide Teile unabhängig voneinander existieren können. Insbesondere
+                    steht dabei die Frage im Raum, ob der angezeigte HTML-Code bereits auf dem Server oder erst im Browser generiert
+                    wird und ob die Fachfunktionen auch für andere Clients zur Verfügung stehen.
+                </p>
+                <ul>
+                    <li>
+                        <b>Rein serverseitige Webanwendungen:</b> In klassischen Webanwendungen liegt die komplette Logik auf dem
+                        Server und auch der HTML-Code wird komplett auf dem Server generiert. Dies liegt darin begründet, dass
+                        Javascript in früheren Browsern längst nicht so leistungsfähig wie heute war und es viele Inkompatiblitäten
+                        zwischen den Browsern gab.
+                    </li>
+                    <li>
+                        <b>Clientseitige Webanwendungen mit Backendserver:</b> Moderne Webanwendungen sehen eine strikte Trennung
+                        zwischen den fachlichen Funktionen auf dem Server und der Benutzeroberfläche im Browser vor. Technisch
+                        gesehen handelt es sich daher um zwei getrennte Anwendungen, die losgelöst voneinander häufig auch von
+                        unterschiedlichen Teams entwickelt werden. Der Server bietet hierfür eine Reihe von Webservices, die der
+                        Browser bei Bedarf aufrufen kann.
+                    </li>
+                </ul>
+                <p>
+                    Auch wenn hier von klassischen und modernen Webanwendungen die Rede ist, haben beide Arten ihre jeweiligen
+                    Vor- und Nachteile, so dass es falsch wäre, sich pauschal auf eine davon zu versteifen. Klassische Webanwendungen
+                    haben den Vorteil, dass sie einfach zu entwickeln sind, schnell zu guten Ergebnissen führen und auch von einem
+                    kleinen Team betreut werden können. Nachteilig daran ist, dass die Fachfunktionen meist sehr eng mit der Anwendung
+                    verflochten sind und, da der Browser sehr häufig eine neue Seite vom Server laden muss, die Performance nicht so
+                    gut wie bei rein clientseitigen Anwendungen ist. Moderne Webanwendungen mit getrenntem Serverbackend haben diese
+                    Nachteile nicht, jedoch sind sie aufwändiger in der Entwicklung, sowohl was den Browserteil angeht als auch die
+                    Webservice-Schnittstelle zur Kapselung der fachlichen Logik.
+                </p>
+                <p>
+                    In diesem Kapitel schauen wir uns nur rein serverseitige Webanwendungen an. Später bei den REST-Webservices kommen
+                    wir dann auch auf die andere Art zurück.
                 </p>
             </aside>
         </section>
@@ -737,11 +823,248 @@
         <section>
             <h1>Alle guten Dinge sind drei: Model, View &amp; Controller</h1>
             <article>
-                …
+                <div class="container-fluid">
+                    <!-- Model, View, Controller -->
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="img-thumbnail" style="padding: 0.5em; height: 100%; display: flex; flex-direction: column;">
+                                <h2>Model</h2>
+                                <ul>
+                                    <li>
+                                        Enterprise Java Beans
+                                    </li>
+                                    <li>
+                                        Persistence Entities
+                                    </li>
+                                </ul>
+                                <div style="flex: 1;"></div>
+                                <p>
+                                    Kapseln die fachliche Logik und das Datenmodell.
+                                </p>
+                                <img src="mvc-bilder-model.jpg" alt="" class="d-block" style="width: 100%;" />
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="img-thumbnail" style="padding: 0.5em; height: 100%; display: flex; flex-direction: column;">
+                                <h2>View</h2>
+                                <ul>
+                                    <li>
+                                        HTML, CSS, JS-Dateien
+                                    </li>
+                                    <li>
+                                        Java Server Pages
+                                    </li>
+                                </ul>
+                                <div style="flex: 1;"></div>
+                                <p>
+                                    Übernehmen die Darstellung auf dem Bildschirm.
+                                </p>
+                                <img src="mvc-bilder-view.jpg" alt="" class="d-block" style="width: 100%;" />
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="img-thumbnail" style="padding: 0.5em; height: 100%; display: flex; flex-direction: column;">
+                                <h2>Controller</h2>
+                                <ul>
+                                    <li>
+                                        Servlets
+                                    </li>
+                                </ul>
+                                <div style="flex: 1;"></div>
+                                <p>
+                                    Reagieren auf HTTP-Anfragen und vermitteln zwischen
+                                    Model und View.
+                                </p>
+                                <img src="mvc-bilder-controller.jpg" alt="" class="d-block" style="width: 100%;" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Karusell mit dem schematischen Ablauf -->
+                    <div class="row">
+                        <div class="col-md">
+                            <ul class="dhbw-carousel-links">
+                                <li>
+                                    <a href="#mvc-carousel" role="button" data-slide="next">Nächstes Bild</a>
+                                </li>
+                                <li>
+                                    <a href="#mvc-carousel" role="button" data-slide="prev">Vorheriges Bild</a>
+                                </li>
+                                <li>
+                                    <a href="#mvc-carousel" role="button" data-slide-to="0">Nochmal von vorne</a>
+                                </li>
+                            </ul>
+                            <div id="mvc-carousel" class="carousel" data-interval="false">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item img-thumbnail active">
+                                        <p>
+                                            Schauen wir uns an, wie Model, View und Controller beim Aufruf einer Webseite zusammenarbeiten.
+                                            Hierfür gibt der Anwender eine URL ein und schickt die Anfrage ab.
+                                        </p>
+                                        <img class="active d-block w-100" src="mvc-ablauf-01.png" />
+                                    </div>
+                                    <div class="carousel-item img-thumbnail">
+                                        <p>
+                                            Anhand der URL ermittelt der Server ein <b>Servlet</b>, das die Anfrage bearbeitet.
+                                        </p>
+                                        <img class="active d-block w-100" src="mvc-ablauf-02.png" />
+                                    </div>
+                                    <div class="carousel-item img-thumbnail">
+                                        <p>
+                                            Da das Servlet keine fachliche Logik enthalten darf, ruft es eine oder mehrere <b>Enterprise Java Beans</b> auf,
+                                            die die eigentliche Arbeit erledigen.
+                                        </p>
+                                        <img class="active d-block w-100" src="mvc-ablauf-03.png" />
+                                    </div>
+                                    <div class="carousel-item img-thumbnail">
+                                        <p>
+                                            Die Enterprise Java Beans wiederum nutzen <b>Persistence Entities</b>, um Daten aus der Datenbank zu
+                                            lesen oder zu schreiben.
+                                        </p>
+                                        <img class="active d-block w-100" src="mvc-ablauf-04.png" />
+                                    </div>
+                                    <div class="carousel-item img-thumbnail">
+                                        <p>
+                                            Das Servlet legt die eben erhaltenen Daten im <b>Request Context</b> ab und leitet die Anfrage
+                                            an eine <b>Java Server Page</b> weiter.
+                                        </p>
+                                        <img class="active d-block w-100" src="mvc-ablauf-05.png" />
+                                    </div>
+                                    <div class="carousel-item img-thumbnail">
+                                        <p>
+                                            Die Java Server Page wiederum generiert den HTML-Code, der an den Browser geschickt wird.
+                                        </p>
+                                        <img class="active d-block w-100" src="mvc-ablauf-06.png" />
+                                    </div>
+                                    <div class="carousel-item img-thumbnail">
+                                        <p>
+                                            Der Browser zeigt die empfangene Seite an und der Anwender freut sich. 😊
+                                        </p>
+                                        <img class="active d-block w-100" src="mvc-ablauf-07.jpg" />
+                                    </div>
+                                    <div class="carousel-item img-thumbnail">
+                                        <p>
+                                            Auf der nächsten Folie zeigen wir dir, wie der Quellcode hierfür aussehen muss. ⌨️
+                                        </p>
+                                        <img class="active d-block w-25 m-auto" src="../../finish.svg" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bildnachweise -->
+                    <div class="row">
+                        <div class="col-md">
+                            <small>
+                                <small>
+                                    Bildnachweise:
+                                    <a href="https://pixabay.com/en/coffee-espresso-caffeine-the-drink-3132755/" target="_blank">Pixabay: fotostrobi</a>,
+                                    <a href="https://pixabay.com/en/brushes-painter-work-shop-bowl-3129361/" target="_blank">Pixabay: Skitterphoto</a>,
+                                    <a href="https://pixabay.com/en/pug-puppy-dog-animal-cute-690566/" target="_blank">Pixabay: Free-Photos</a>,
+                                    <a href="https://pixabay.com/en/browser-internet-tab-new-tab-1666995/" target="_blank">Pixabay: JuralMin</a>,
+                                    <a href="https://pixabay.com/en/pegasus-horse-winged-mythology-586124/" target="_blank">Pixabay: Stevebidmead</a>,
+                                    <a href="https://pixabay.com/en/symbol-gui-internet-internet-page-2480163/" target="_blank">Pixabay: janf93</a>
+                                </small>
+                            </small>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    Bei der Webentwicklung hat sich in besonderem Maße die Strukturierung einer Anwendung nach dem
+                    <a href="https://de.wikipedia.org/wiki/Model_View_Controller" target="_blank">Model-View-Controller</a>-Ansatz
+                    etabliert, so dass heute beinahe jede Webanwendung nach diesem Muster aufgebaut ist. So ist es kein Wunder, dass
+                    auch fast jedes Webframework mit MVC wirbt, obwohl die Meinungen darüber, was zum Model, zur View oder zum Controller
+                    gehört, doch schon sehr auseinander gehen. 🙄 Interessant dabei ist jedoch, dass das Konzept gar nicht für das Web
+                    entwickelt wurde, sondern bereits 1979 am <a href="Xeroc PARC https://de.wikipedia.org/wiki/Xerox_PARC" target="_blank">Xerox PARC</a>
+                    für die Programmiersprache <a href="https://de.wikipedia.org/wiki/Smalltalk_(Programmiersprache)" target="_blank">Smalltalk</a>
+                    und den <a href="https://de.wikipedia.org/wiki/Xerox_Alto" target="_blank">Xeror Alto</a>-Computer¹, der allgemein als
+                    der erste Computer mit grafischer Benutzeroberfläche, Desktop und Maus 🖱️ gilt, erfunden wurde.
+                </p>
+                <p>
+                    <small>
+                        ¹ Eine schöne Beschreibung des Xerox Alto mit vielen Bildern gibt es auf der Seite des
+                        <a href="http://www.computerhistory.org/revolution/input-output/14/347" target="_blank">Computer History Museum</a>.
+                        Auf <a href="https://www.youtube.com/watch?v=M0zgj2p7Ww4" target="_blank">Youtube</a> gibt es darüber hinaus auch
+                        einen kurzen Werbefilm, der unter anderem auch eine frühe Form der E-Mail zeigt. Weitere Erfindungen am PARC waren
+                        Ethernet, der Laserdrucker, Postscript, WYSIWYG und das Notebook.
+                    </small>
+                </p>
+                <p>
+                    Um zu verstehen, wie sich MVC entwickelt hat, muss man wissen, dass die frühen Computer längst nicht so weit entwickelt
+                    waren wie heute. Damals konnte man mit sehr viel Programmierarbeit lediglich einzelne Pixel auf den Bildschirm zeichnen
+                    oder den Status von Tastatur und Maus abfragen. Selbst einfache Benutzeroberflächen mussten daher sehr aufwändig und mit
+                    teilweise sehr undurchsichtigem Code entwickelt werden. Fertige Widget Libraries wie heute gab es damals noch nicht.
+                    Um daher etwas mehr Ordnung in das Chaos zu bringen, teilte man den Quellcode zur Erzeugung eines einfachen UI-Elements
+                    (zum Beispiel eines Eingabefelds) in drei Teile auf:
+                </p>
+                <ul>
+                    <li>
+                        Das <b>Model</b>, welches die darzustellenden Daten enthält,
+                    </li>
+                    <li>
+                        Die <b>View</b>, welche die Daten irgendwie auf den Bildschirm bringt,
+                    </li>
+                    <li>
+                        Sowie den <b>Controller</b>, der Tastatur und Maus abfrägt, daraufhin das Model aktualisiert und die View beauftragt, sich neu zu zeichnen.
+                    </li>
+                </ul>
+                <p>
+                    Die drei Einheiten gehören dabei immer zusammen, so wie die drei Schichten eines Doppelkeks: 🍪
+                </p>
+                <img src="doppelkeks.jpg" alt="Doppelkekse zur Verdeutlichung des MVC-Ansatzes" class="d-block" style="width: 100%; margin: 0 auto;" />
+                <p>
+                    <small>
+                        Bildnachweis:
+                        <a href="https://commons.wikimedia.org/wiki/File:Leibniz_Pick-Up_4.jpg" target="_blank">Wikimedia Commons: SKopp</a>
+                    </small>
+                </p>
+                <p>
+                    Da die Programmierung heutiger Anwendungen nicht mehr so mühselig ist, werden die Begriffe Model, View und Controller
+                    heutzutage etwas allgemeiner ausgelegt:
+                </p>
+                <ul>
+                    <li>
+                        <b>Model:</b> Manche Autoren verstehen hierunter das Datenmodell und somit einfach die Daten einer Anwendung.
+                        Im erweiterten Sinne macht es jedoch mehr Sinn, sämtliche fachlichen Aufgaben einer Anwendung hierunter zu verstehen.
+                    </li>
+                    <li>
+                        <b>View:</b> Die View ist nach wie vor für die Darstellung auf dem Bildschirm zuständig, wobei heute natürlich
+                        viel komfortablere Möglichkeiten zur Verfügung stehen.
+                    </li>
+                    <li>
+                        <b>Controller:</b> Er ist die Schokolade, die Model und View zusammenhält. Der Controller kümmert sich daher um
+                        die Vermittlung zwischen View und Model, indem er zum richtigen Zeitpunkt die richtigen Methoden aufruft.
+                    </li>
+                </ul>
+                <p>
+                    Hinzu kommt, dass keine Abhängigkeiten vom Model zur View oder dem Controller bestehen dürfen. Das Model stellt lediglich
+                    Funktionen bereit, die von den anderen beiden Schichten aufgerufen werden, um somit die Möglichkeit offen zu halten,
+                    später weitere Benutzeroberflächen mit demselben Model zu entwickeln. Umgekehrt ist es jedoch oftmals erlaubt, dass die
+                    View direkt auf das Model zugreift.
+                </p>
+                <p>
+                    Soweit die Theorie. Bezogen auf Webanwendungen mit Java heißt das folgendes:
+                </p>
+                <ul>
+                    <li>
+                        <b>Enterprise Java Beans</b> und <b>Persistence Entities</b> kapsel die fachliche Logik einer Webanwendung und
+                        bilden daher das Model.
+                    </li>
+                    <li>
+                        <b>Java Server Pages</b> und <b>HTML</b> dienen der Darstellung und bilden daher die View.
+                    </li>
+                    <li>
+                        <b>Servlets</b> reagieren auf alle HTTP-Anfragen und sorgen dafür, dass das Model und die View zum richtigen
+                        Zeitpunkt aufgerufen werden. Sie sind daher die Controller.
+                    </li>
+                </ul>
+                <p>
+                    In welcher Reihenfolge daher was passiert, siehst du auf der Folie. Generell handelt es sich dabei aber um denselben
+                    Ablauf, den wir bereits in <a href="../../../webprog/4-server/servlets/#2" target="_blank">Webprogrammierung</a>
+                    kennengelernt haben.
                 </p>
             </aside>
         </section>
@@ -749,11 +1072,569 @@
         <section>
             <h1>Beispiel: MVC mit Servlets und JSP</h1>
             <article>
-                …
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "mvc-beispiel-netbeans-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#mvc-beispiel-netbeans"
+                                role          = "tab"
+                                aria-controls = "mvc-beispiel-netbeans"
+                                aria-expanded = "true"
+                            >
+                                Netbeans-Projekt
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "mvc-beispiel-entity-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#mvc-beispiel-entity"
+                                role          = "tab"
+                                aria-controls = "mvc-beispiel-entity"
+                                aria-expanded = "true"
+                            >
+                                Entity
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "mvc-beispiel-ejb-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#mvc-beispiel-ejb"
+                                role          = "tab"
+                                aria-controls = "mvc-beispiel-ejb"
+                                aria-expanded = "true"
+                            >
+                                EJB
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "mvc-beispiel-servlet-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#mvc-beispiel-servlet"
+                                role          = "tab"
+                                aria-controls = "mvc-beispiel-servlet"
+                                aria-expanded = "true"
+                            >
+                                Servlet
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "mvc-beispiel-jsp-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#mvc-beispiel-jsp"
+                                role          = "tab"
+                                aria-controls = "mvc-beispiel-jsp"
+                            >
+                                JSP
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "mvc-beispiel-css-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#mvc-beispiel-css"
+                                role          = "tab"
+                                aria-controls = "mvc-beispiel-css"
+                            >
+                                CSS
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "mvc-beispiel-ergebnis-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#mvc-beispiel-ergebnis"
+                                role          = "tab"
+                                aria-controls = "mvc-beispiel-ergebnis"
+                            >
+                                Ergebnis
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Netbeans-Projekt -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "mvc-beispiel-netbeans"
+                            role            = "tabpanel"
+                            aria-labelledby = "mvc-beispiel-netbeans-tab"
+                        >
+                            <p>
+                                So sieht das Netbeans-Projekt aus. Wir bauen ein kleines Gästebuch.
+                            </p>
+                            <img src="mvc-beispiel-netbeans.png" class="d-block" style="width: 100%" />
+                        </div>
+                        <!-- Entity -->
+                        <div
+                            class           = "tab-pane fade show"
+                            id              = "mvc-beispiel-entity"
+                            role            = "tabpanel"
+                            aria-labelledby = "mvc-beispiel-entity-tab"
+                        >
+                            <p>
+                                Diese <b>Persistence Entity</b> entspricht einem in der Datenbank gespeicherten Eintrag.
+                            </p>
+                            <source-code language="java">
+                                package dhbwka.wwi.vertsys.javee.guestbook;
+
+                                import java.io.Serializable;
+                                import java.sql.Date;
+                                import java.sql.Time;
+                                import javax.persistence.Entity;
+                                import javax.persistence.GeneratedValue;
+                                import javax.persistence.GenerationType;
+                                import javax.persistence.Id;
+
+                                /**
+                                * Persistenzklasse für einen Gästebucheintrag.
+                                */
+                                @Entity
+                                public class GuestbookEntry implements Serializable {
+
+                                    private static final long serialVersionUID = 1L;
+                                    @Id
+                                    @GeneratedValue(strategy = GenerationType.AUTO)
+                                    private Long id;
+
+                                    private String name = "";
+                                    private Date visitDate = new Date(System.currentTimeMillis());
+                                    private Time visitTime = new Time(System.currentTimeMillis());
+
+                                    public GuestbookEntry() {
+                                    }
+
+                                    public GuestbookEntry(String name) {
+                                    this.name = name;
+                                    }
+
+                                    //&lt;editor-fold defaultstate="collapsed" desc="Setter und Getter"&gt;
+                                    public Long getId() {
+                                        return id;
+                                    }
+
+                                    public void setId(Long id) {
+                                        this.id = id;
+                                    }
+
+                                    public String getName() {
+                                        return name;
+                                    }
+
+                                    public void setName(String name) {
+                                        this.name = name;
+                                    }
+
+                                    public Date getVisitDate() {
+                                        return visitDate;
+                                    }
+
+                                    public void setVisitDate(Date visitDate) {
+                                        this.visitDate = visitDate;
+                                    }
+
+                                    public Time getVisitTime() {
+                                        return visitTime;
+                                    }
+
+                                    public void setVisitTime(Time visitTime) {
+                                        this.visitTime = visitTime;
+                                    }
+                                    //&lt;/editor-fold&gt;
+
+                                }
+                            </source-code>
+                        </div>
+                        <!-- EJB -->
+                        <div
+                            class           = "tab-pane fade show"
+                            id              = "mvc-beispiel-ejb"
+                            role            = "tabpanel"
+                            aria-labelledby = "mvc-beispiel-ejb-tab"
+                        >
+                            <p>
+                                Dies ist eine <b>Enterprise Java Bean</b>. Sie enthält die Methoden zum Lesen und Schreiben der Einträge.
+                            </p>
+                            <source-code language="java">
+                                package dhbwka.wwi.vertsys.javee.guestbook;
+
+                                import java.util.List;
+                                import javax.ejb.Stateless;
+                                import javax.persistence.EntityManager;
+                                import javax.persistence.PersistenceContext;
+
+                                /**
+                                 * Enterprise Java Bean zum Auslesen und Speichern von Gästebucheinträgen.
+                                 */
+                                @Stateless
+                                public class GuestbookBean {
+
+                                    @PersistenceContext
+                                    EntityManager em;
+
+                                    /**
+                                     * @return Liste mit allen Gästebucheinträgen
+                                     */
+                                    public List&lt;GuestbookEntry&gt; findAllEntries() {
+                                        return em.createQuery("SELECT e FROM GuestbookEntry e "
+                                                            + "  ORDER BY e.visitDate DESC, "
+                                                            + "           e.visitTime DESC")
+                                                .getResultList();
+                                    }
+
+                                    /**
+                                     * Speichert einen neuen Gästebucheintrag.
+                                     * @param name Name des Besuchers
+                                     * @return Der gespeicherte Eintrag
+                                     */
+                                    public GuestbookEntry createNewEntry(String name) {
+                                        GuestbookEntry entry = new GuestbookEntry(name);
+                                        em.persist(entry);
+                                        return em.merge(entry);
+                                    }
+                                }
+                            </source-code>
+                        </div>
+                        <!-- Servlet -->
+                        <div
+                            class           = "tab-pane fade show"
+                            id              = "mvc-beispiel-servlet"
+                            role            = "tabpanel"
+                            aria-labelledby = "mvc-beispiel-servlet-tab"
+                        >
+                            <p>
+                                Dies ist das Servlet, dass bei jeder <tt>GET</tt>- und <tt>POST</tt>-Anfrage durchlaufen wird.
+                            </p>
+                            <source-code language="java">
+                                package dhbwka.wwi.vertsys.javee.guestbook;
+
+                                import java.io.IOException;
+                                import java.util.List;
+                                import javax.ejb.EJB;
+                                import javax.servlet.ServletException;
+                                import javax.servlet.annotation.WebServlet;
+                                import javax.servlet.http.HttpServlet;
+                                import javax.servlet.http.HttpServletRequest;
+                                import javax.servlet.http.HttpServletResponse;
+                                import javax.servlet.http.HttpSession;
+
+                                /**
+                                 * Servlet für die Gästebuchseite
+                                 */
+                                @WebServlet(urlPatterns = {"/index.html"})
+                                public class GuestbookServlet extends HttpServlet {
+
+                                    @EJB
+                                    GuestbookBean guestbookBean;
+
+                                    @Override
+                                    public void doGet(HttpServletRequest request, HttpServletResponse response)
+                                    throws ServletException, IOException {
+                                        // Alle vorhandenen Einträge aus der Datenbank lesen und im Request
+                                        // Context ablegen, damit sie in der JSP zur Verfügung stehen
+                                        List&lt;GuestbookEntry&gt; entries = this.guestbookBean.findAllEntries();
+                                        request.setAttribute("entries", entries);
+
+                                        // Anfrage an die JSP weiterleiten
+                                        request.getRequestDispatcher("guestbook.jsp").forward(request, response);
+
+                                        // In der Session liegende Fehlermeldung verwerfen, damit wir beim
+                                        // nächsten Aufruf wieder mit einem leeren Eingabefeld anfangen
+                                        HttpSession session = request.getSession();
+                                        session.removeAttribute("fehler");
+                                        session.removeAttribute("name");
+                                    }
+
+                                    @Override
+                                    public void doPost(HttpServletRequest request, HttpServletResponse response)
+                                    throws ServletException, IOException {
+                                        // Prüfen, ob der Anwender seinen Namen eingegeben hat
+                                        HttpSession session = request.getSession();
+
+                                        String fehler = "";
+                                        String name = request.getParameter("name");
+
+                                        if (name == null || name.trim().isEmpty()) {
+                                            fehler = "Bitte gib erst deinen Namen ein.";
+                                            session.setAttribute("fehler", fehler);
+                                            session.setAttribute("name", name);
+                                        }
+
+                                        // Neuen Eintrag speichern
+                                        if (fehler.isEmpty()) {
+                                            this.guestbookBean.createNewEntry(name);
+                                        }
+
+                                        // Browser auffordern, die Seite neuzuladen
+                                        response.sendRedirect(request.getContextPath());
+                                    }
+
+                                }
+                            </source-code>
+                        </div>
+                        <!-- JSP -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "mvc-beispiel-jsp"
+                            role            = "tabpanel"
+                            aria-labelledby = "mvc-beispiel-jsp-tab"
+                        >
+                            <p>
+                                Hier die Datei <tt>WEB-INF/guestbook.jsp</tt> mit dem JSP-Code zur Anzeige der Seite.
+                            </p>
+                            <source-code language="html">
+                                &lt;%@page contentType="text/html" pageEncoding="UTF-8"%&gt;
+
+                                &lt;%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%&gt;
+                                &lt;%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%&gt;
+
+                                &lt;!DOCTYPE html&gt;
+                                &lt;html&gt;
+                                    &lt;head&gt;
+                                        &lt;meta charset="utf-8"&gt;
+                                        &lt;title&gt;Gästebuch MVC-Beispiel&lt;/title&gt;
+                                        &lt;link rel="stylesheet" href="style.css"&gt;
+                                    &lt;/head&gt;
+                                    &lt;body&gt;
+                                        &lt;div class="container"&gt;
+                                            &lt;h1&gt;Mein kleines Gästebuch&lt;/h1&gt;
+
+                                            &lt;form method="POST"&gt;
+                                                &lt;input type="text" name="name" placeholder="Dein Name" value="${name}"/&gt;
+                                                &lt;button type="submit"&gt;Abschicken&lt;/button&gt;
+                                            &lt;/form&gt;
+
+                                            &lt;c:if test="${!empty fehler}"&gt;
+                                                &lt;p class="error"&gt;
+                                                    ${fehler}
+                                                &lt;/p&gt;
+                                            &lt;/c:if&gt;
+
+                                            &lt;ul&gt;
+                                                &lt;c:forEach items="${entries}" var="entry"&gt;
+                                                    &lt;li&gt;
+                                                        ${entry.visitDate}, ${entry.visitTime}: ${entry.name}
+                                                    &lt;/li&gt;
+                                                &lt;/c:forEach&gt;
+                                            &lt;/ul&gt;
+                                        &lt;/div&gt;
+                                    &lt;/body&gt;
+                                &lt;/html&gt;
+                            </source-code>
+                        </div>
+                        <!-- CSS -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "mvc-beispiel-css"
+                            role            = "tabpanel"
+                            aria-labelledby = "mvc-beispiel-css-tab"
+                        >
+                        <p>
+                            Damit es ordentlich aussieht, nutzen wir ein kleines Stylesheet namens <tt>style.css</tt>.
+                        </p>
+                        <source-code language="css">
+                            html, body {
+                                font-family: sans-serif;
+                                font-size: 12pt;
+                                height: 100%;
+
+                                margin: 0;
+                                padding: 0;
+                            }
+
+                            html {
+                                background-image: url(https://picsum.photos/1024/?image=871);
+                                background-repeat: no-repeat;
+                                background-position: center center;
+                                background-size: cover;
+                            }
+
+                            body {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
+
+                            .container {
+                                background: rgba(255,255,255,0.8);
+                                border-radius: 0.5em;
+                                padding: 1em;
+                                margin: 2em;
+                            }
+
+                            h1, h2 {
+                                color: crimson;
+                                text-shadow: 0 0 1px rgba(0,0,0,0.5);
+                                margin: 0 0 0.5em 0;
+                            }
+
+                            h2 {
+                                color: deepskyblue;
+                            }
+
+                            input[type="text"] {
+                                display: block;
+                                width: 25em;
+                                box-sizing: border-box;
+                                border: 1px solid grey;
+                                margin-bottom: 0.5em;
+                            }
+
+                            ul {
+                                list-style: none;
+                                margin: 1em 0 0 0;
+                                padding: 0;
+                                font-size: 90%;
+                            }
+
+                            li {
+                                margin: 0 0 0.75em 0;
+                                padding: 0;
+                            }
+
+                            .error {
+                                color: red;
+                                font-weight: bold;
+                                margin: 0 0 0.75em 0;
+                            }
+                        </source-code>
+                        </div>
+                        <!-- Ergebnis -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "mvc-beispiel-ergebnis"
+                            role            = "tabpanel"
+                            aria-labelledby = "mvc-beispiel-ergebnis-tab"
+                        >
+                            <p>
+                                Und so sieht die Anwendung aus, wenn sie fertig ist.
+                            </p>
+                            <img src="mvc-beispiel-ergebnis.jpg" class="d-block" style="width: 100%;" />
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    Bist du bereit für ein wenig Quellcode? Auf dieser Folie siehst du eine einfache Webanwendung, deren einzige Seite
+                    nach Model-View-Controller strukturiert wurde. Die gute Nachricht daran ist: Es sieht eigentlich nicht wirklich
+                    anders aus, als das was wir zuletzt in <a href="../../../webprog/4-server/servlets/#8" target="_blank">Webprogrammierung</a>
+                    gemacht haben. 🤗 Die schlechte Nachricht ist: JSP, Stylesheet und Servlet werden wir hier daher nicht sonderlich
+                    erklären. 🤐 Diese kannst du ja einen Folien von letztem Semester nachlesen.
+                </p>
+
+                <h2>Am Anfang steht das Datenmodell</h2>
+                <p>
+                    Linux Torvalds wird das Zitat zugeschrieben „gute Programmierer scheren sich nicht um Algorithmen, sondern um
+                    Datenstrukturen”. 💬 Vor allem anderen sollten wir uns daher erst das Datenmodell unserer kleinen Anwendung
+                    überlegen. Für den Anfang soll es nichts Kompliziertes sein. Ein Gästebuch, in dem jeder Eintrag die folgenden
+                    drei Felder besitzt, reicht fürs Erste:
+                </p>
+                <ul>
+                    <li>
+                        <tt>name:</tt> Der Name des Besuchers
+                    </li>
+                    <li>
+                        <tt>visitDate:</tt> Datum des Besuchs
+                    </li>
+                    <li>
+                        <tt>visitTime:</tt> Uhrzeit des Besuchs
+                    </li>
+                </ul>
+                <p>
+                    Hierfür legen wir eine <b>Persistence Entity</b> ein, was eigentlich nur ein wichtig klingender Begriff für eine
+                    langweilige Javabean ist. Ihre Objekte kann Java in einer Datenbank ablegen, wofür die Bean folgenden Aufbau
+                    haben muss:
+                </p>
+                <source-code language="java">
+                    @Entity
+                    public class GuestbookEntry {
+                        @ID
+                        @GeneratedValue
+                        private long id;
+
+                        private String name = "";
+                        private Date visitDate = new Date(…);
+                        private Time visitTime = new Time(…);
+
+                        // Konstruktoren …
+                        // Setter und Getter …
+                    }
+                </source-code>
+                <p>
+                    Du siehst: An der Klasse ist eigentlich gar nichts besonderes dran. Lediglich die Annotation
+                    <src-code language="java">@Entity</src-code> muss davor stehen und sie muss eine ID als
+                    Schlüsselfeld besitzen. Das reicht bereits völlig aus, damit Java eine dazu passende Tabelle für uns
+                    anlegt. Natürlich kann man hier noch viel mehr machen, das schauen wir uns aber erst im nächsten
+                    Foliensatz an.
+                </p>
+
+                <h2>Wir brauchen einen Service</h2>
+                <p>
+                    Als nächstes folgt die Fachlogik unserer Anwendung. Diese ist zum Glück ebenfalls sehr einfach.
+                    Wir brauchen lediglich zwei Methoden, um alle Einträge auszulesen und einen neuen Eintrag zu speichern.
+                    Diese Methoden packen wir in eine <b>Enterprise Java Bean</b>, die hierfür folgenden Aufbau haben
+                    muss:
+                </p>
+                <source-code language="java">
+                    @Stateless
+                    public class GuestbookBean {
+
+                        // Damit greifen wir auf die Datenbank zu
+                        @PersistenceContext
+                        EntityManager em;
+
+                        public List&lt;GuestbookEntry&gt; findAllEntries() { … }
+                        public GuestbookEntry createNewEntry(String name) { … }
+                    }
+                </source-code>
+                <p>
+                    Das ist ja noch viel einfacher! 🤠 Enterprise Java Beans sind tatsächlich ganz normale Klassen
+                    mit ganz normalen Methoden. Einzig die Annotation <src-code language="java">@Stateless</src-code> verät,
+                    dass es sich um eine EJB handelt. Die zwei Zeilen oberhalb der Methoden haben damit schon wieder gar nichts
+                    mehr zu tun. Sie könnten auch in einem Servlet stehen und dienen nur dem Zugriff auf die Datenbank. Auch das
+                    schauen wir uns im nächsten Foliensatz genauer an.
+                </p>
+
+                <h2>Der dritte Mann: Servlet und JSP</h2>
+                <p>
+                    Und hier sind wir schon wieder in gewohntem Territorium. Da wir eine Webanwendung programmieren wollen,
+                    brauchen wir ein Servlet, eine JSP und ein Stylesheet. Tatsächlich könnten wir sie auch weglassen, wenn wir
+                    nur einen Webservice anbieten wollten, der von entfernten Clients aufgerufen werden kann. Darauf kommen wir
+                    ein anderes mal nochmal zurück. Jetzt aber zu unserem Servlet:
+                </p>
+                <source-code language="java">
+                    public class GuestbookServlet extends HttpServler {
+
+                        @EJB
+                        GuestbookBean guestbookBean
+
+                        public void doGet(…) { … }
+                        public void doPost(…) { … }
+
+                    }
+                </source-code>
+                <p>
+                    Das Serlvet sollte eigentlich keine Überraschungen für dich bieten. Einzig neu ist das
+                    <src-code language="java">@EJB</src-code>, mit dem wir uns eine Referenz auf die Enterprise Java Bean
+                    besorgen. Auf den ersten Blick sieht das zwar wie ein Fehler aus, aber tatsächlich sorgt Java durch die
+                    Annotation dafür, dass die Variable mit einer Referenz versorgt wird, wobei die Bean hierfür auf dem
+                    eigenen oder gar einem anderen Server liegen könnte.
+                </p>
+                <p>
+                    Das ist tatsächlich schon alles, ganz ehrlich. Um das zu beweisen, zeigen wir dir auf der
+                    nächsten Folie, wie du das Projekt in Netbeans nachbauen kannst.
                 </p>
             </aside>
         </section>
@@ -761,23 +1642,203 @@
         <section>
             <h1>Wo geht's denn hier zur IDE?</h1>
             <article>
-                …
+                <ul class="dhbw-carousel-links">
+                    <li>
+                        <a href="#mvc-netbeans-carousel" role="button" data-slide="next">Nächstes Bild</a>
+                    </li>
+                    <li>
+                        <a href="#mvc-netbeans-carousel" role="button" data-slide="prev">Vorheriges Bild</a>
+                    </li>
+                    <li>
+                        <a href="#mvc-netbeans-carousel" role="button" data-slide-to="0">Nochmal von vorne</a>
+                    </li>
+                </ul>
+                <div id="mvc-netbeans-carousel" class="carousel slide" style="margin-bottom: 1em;" data-interval="false">
+                    <div class="carousel-inner">
+                        <div class="carousel-item img-thumbnail active">
+                            <p>
+                                Starte Netbeans und wähle im <tt>File</tt>-Menü <tt>New Project…</tt> aus.
+                            </p>
+                            <img class="active d-block w-100" src="mvc-beispiel-01.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Als Projekttyp solltest du <b>Web Application</b> in der Kategorie <b>Maven</b> nehmen.
+                            </p>
+                            <img class="active d-block w-100" src="mvc-beispiel-02.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Gib im nächsten Schritt den Namen des Projekts ein und ändere ggf. die <tt>Project Location</tt>
+                                und das <tt>Package</tt>.
+                            </p>
+                            <img class="active d-block w-100" src="mvc-beispiel-03.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Die Einträge im letzten Schritt sollten bereits richtig sein. Du kannst das Projekt daher nun anlegen.
+                            </p>
+                            <img class="active d-block w-100" src="mvc-beispiel-04.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Die Datei <tt>index.html</tt> solltest du löschen. Wir ersetzen sie durch ein Servlet und eine JSP.
+                            </p>
+                            <img class="active d-block w-100" src="mvc-beispiel-05.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Doch zunächst legen wir eine Persistence Entity an. In Netbeans heißt der Eintrag <tt>Entity Class…</tt>.
+                            </p>
+                            <img class="active d-block w-100" src="mvc-beispiel-06.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Nenne die neue Klasse <tt>GuestbookEntry</tt> und gehe weiter.
+                            </p>
+                            <img class="active d-block w-100" src="mvc-beispiel-07.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Ändere dein Eintrag bei <tt>Persistence Unit Name</tt> auf <tt>default</tt>. <br />
+                                Im Feld <tt>Data Source</tt> musst du <tt>jdbc/__default</tt> auswählen.
+                            </p>
+                            <img class="active d-block w-100" src="mvc-beispiel-08.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Den Quellcode kannst du aus der vorherigen Folie kopieren.
+                            </p>
+                            <img class="active d-block w-100" src="mvc-beispiel-09.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Weiter geht es mit der Enterprise Java Bean. Hierfür legst du am besten einfach eine leere Klasse an.
+                            </p>
+                            <img class="active d-block w-100" src="mvc-beispiel-10.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Nenne die Klasse <tt>GuestbookBean</tt> und bestätige das Fenster.
+                            </p>
+                            <img class="active d-block w-100" src="mvc-beispiel-11.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Auch hier kannst du den Quellcode aus der vorherigen Folie kopieren.
+                            </p>
+                            <img class="active d-block w-100" src="mvc-beispiel-12.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Weiter geht es mit dem Servlet. Lege auch hierfür eine <tt>Empty Class…</tt> anstelle eines <tt>Servlet…</tt> an.
+                                Denn sonst generiert Netbeans viel zu viel unnötigen Quellcode!
+                            </p>
+                            <img class="active d-block w-100" src="mvc-beispiel-13.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Die Klasse heißt (Trommelwirbel bitte 🥁): <tt>GuestbookServlet</tt>.
+                            </p>
+                            <img class="active d-block w-100" src="mvc-beispiel-14.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Nun kommt die Java Server Page.
+                            </p>
+                            <img class="active d-block w-100" src="mvc-beispiel-15.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Sie heißt einfach nur <tt>guestbook</tt>. Die Dateiendung ergänzt Netbeans von alleine.
+                            </p>
+                            <img class="active d-block w-100" src="mvc-beispiel-16.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Das Stylesheet kannst du in eine neue, leere Datei mit dem Namen <tt>style.css</tt> kopieren.
+                            </p>
+                            <img class="active d-block w-100" src="mvc-beispiel-17.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Nun solltest du die Anwendung über das grüne Play-Symbol
+                                <span style="color: lawngreen; text-shadow: 1px 1px 1px rgba(0,0,0,0.5);">▶️</span> starten können.
+                            </p>
+                            <img class="active d-block w-100" src="mvc-beispiel-18.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Wenn alles gute geht, sollte der Browser dann folgendes Bild anzeigen.
+                            </p>
+                            <img class="active d-block w-100" src="mvc-beispiel-ergebnis.jpg" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Das war's auch schon. <br />
+                                Zwar waren das jetzt schon einige Schritte. <br />
+                                Du musstest aber auch gleich fünf Dateien übernehmen. <br />
+                                &nbsp;&nbsp;
+                                1️⃣ &nbsp;&nbsp;
+                                2️⃣ &nbsp;&nbsp;
+                                3️⃣ &nbsp;&nbsp;
+                                4️⃣ &nbsp;&nbsp;
+                                5️⃣ &nbsp;&nbsp;
+                            </p>
+                            <img class="active d-block w-25 m-auto" src="../../finish.svg" />
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                    <small>
+                        <small>
+                            Bildnachweis für das Endesymbol: <a href="https://pixabay.com/en/symbol-gui-internet-internet-page-2480163/" target="_blank">Pixabay: janf93</a>
+                        </small>
+                    </small>
+                </p>
             </article>
             <aside>
                 <p>
-                    …
+                    Auf dieser Folie siehst du Schritt für Schritt, wie du das Beispiel von Eben nachbauen kannst. ⛰️
+                    Im Prinzip ist es ganz einfach. Du legst einfach ein neues Webprojekt an und kopierst die Quellcodes
+                    aus der vorherigen Folie hinein. In Vorbereitung auf spätere Projekte nutzen wir hier allerdings
+                    den Projekttyp <b>Web Application</b> aus der Kategorie <b>Maven</b>. Am Anfang macht das zwar noch
+                    keinen Unterschied. Später können wir dadurch aber ganz einfach die benötigten Zusatzbibliotheken
+                    in unsere Projekte einbinden, ohne sie manuell herunterladen zu müssen.
                 </p>
             </aside>
         </section>
 
         <section data-background-color="rgb(231, 221, 141)">
-            <h1>Aufgabe 1: Deine erste Enterprise Java Bean</h1>
+            <h1>Aufgabe 2: Deine erste Enterprise Java Bean</h1>
             <article>
-                …
+                <p>
+                    Lege in Netbeans ein <a href="../http/#8" target="_blank">Maven Java-Webprojekt</a> an und probiere folgende Sachen aus:
+                </p>
+
+                <ol>
+                    <li>
+                        Lösche die Datei <tt>index.html</tt> aus dem Ordner <tt>Web Pages.</tt>
+                    </li>
+                    <li>
+                        Stattdessen kopiere die Dateien <tt>guestbook.jsp</tt> und <tt>style.css</tt> in das Projekt.
+                    </li>
+                    <li>
+                        Lege die Klassen <tt>GuestbookEntry</tt>, <tt>GuestbookBean</tt> und <tt>GuestbookSerlvet</tt> wie gezeigt an.
+                    </li>
+                    <li>
+                        Starte die Anwendung und schaue, ob alles fehlerfrei funktioniert.
+                    </li>
+                </ol>
+
+                <img src="mvc-beispiel-netbeans.png" class="d-block img-thumbnail" style="width: 100%;" />
             </article>
             <aside>
                 <p>
-                    … einleitung …
+                    Bevor wir weiter in den Quellcode eintauchen, solltest du erst versuchen, das eben
+                    gezeigte Beispiel zum Laufen zu bekommen. Starte daher Netbeans und befolge alle
+                    Schritte wie eben gesehen. 🐈
                 </p>
                 <img src="../../github_atom.png" class="img-fluid d-block"/>
                 <p>
@@ -786,56 +1847,8 @@
                         <a href="https://atom.io/" target="_blank">Atom Webseite</a>
                     </small>
                 </p>
-                <p>
-                    … weitere hinweise …
-                </p>
             </aside>
         </section>
-
-<!-- START: Eventuell in die Vorlesung verlagern -->
-        <section>
-            <h1>Spring MVC – Viel einfacher als Servlets</h1>
-            <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
-                </p>
-            </aside>
-        </section>
-
-        <section>
-            <h1>Spring MVC in Netbeans einbinden</h1>
-            <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
-                </p>
-            </aside>
-        </section>
-
-        <section data-background-color="rgb(231, 221, 141)">
-            <h1>Aufgabe 2: Probefahrt mit Spring MVC</h1>
-            <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    … einleitung …
-                </p>
-                <img src="../../github_atom.png" class="img-fluid d-block"/>
-                <p>
-                    <small>
-                        Bildnachweis:
-                        <a href="https://atom.io/" target="_blank">Atom Webseite</a>
-                    </small>
-                </p>
-            </aside>
-        </section>
-<!-- ENDE: Eventuell in die Vorlesung verlagern -->
 
         <section data-background-color="rgb(231, 221, 141)">
             <h1>Aufgabe 3: Ein kleines MVC-Quiz</h1>
@@ -844,7 +1857,9 @@
             </article>
             <aside>
                 <p>
-                    …
+                    Na zum Glück war vieles eine Wiederholung aus Webprogrammierung.
+                    Ein paar Sachen waren dann doch aber neu, so dass wir den neu
+                    erworbenes Wissen gleich mal testen wollen. 🥞
                 </p>
             </aside>
         </section>
@@ -867,7 +1882,7 @@
         </section>
 
         <section>
-            <h1>Über Session Beans und Persistence Entities</h1>
+            <h1>Stateless, Stateful und Singleton Beans</h1>
             <article>
                 …
             </article>
@@ -926,20 +1941,6 @@
             </aside>
         </section>
 
-<!-- START: Eventuell in die Vorlesung verlagern -->
-        <section>
-            <h1>Fallbeispiel: Entwurf einer neuen Webanwendung</h1>
-            <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
-                </p>
-            </aside>
-        </section>
-<!-- ENDE: Eventuell in die Vorlesung verlagern -->
-
         <section data-background-color="rgb(231, 221, 141)">
             <h1>Aufgabe 4: Ein kleines EJB-Quiz</h1>
             <article>
@@ -947,7 +1948,8 @@
             </article>
             <aside>
                 <p>
-                    …
+                    Inzwischen solltest du dich schon ganz gut mit der Java Enterprise Edition auskennen.
+                    Zur Kontrolle haben wir hier ein paar Fragen für dich. 🍯
                 </p>
             </aside>
         </section>
