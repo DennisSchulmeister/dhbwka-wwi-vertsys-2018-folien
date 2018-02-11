@@ -12,7 +12,9 @@
         <header>
             <h2>Inhaltsverzeichnis</h2>
             <p>
-                …
+                Endlich wieder Programmieren. 💻 An dieser Stelle kehren wir noch einmal
+                zu letztem Semester zurück und vertiefen die Entwicklung serverseitiger
+                Webanwendungen mit der Java Enterprise Edition.
             </p>
         </header>
 
@@ -658,14 +660,119 @@
         <section data-background-color="rgb(231, 221, 141)">
             <h1>Aufgabe 1: Ein kleines Java-EE-Quiz</h1>
             <article>
-                …
-                <!--
-                    Zu welcher Middlewareart zählt die Java Enterprise Edition? (komm. / anwend.)
-                    Wo gibt es die Java Enterprise Edition zum Herunterladen? (Bei Oracle dem Entwickler von Java, Bei Microsoft aber nur für Windows, Bei den Herrstellern der Appserver, Gar nicht es ist im normalen Java enthalten)
-                    Welche der folgenden Schnittstellen bietet ein typischer Java-Anwendungsserver? (RPC, SOAP, REST, HTTP)?
-                    Eigenschaften von Komponenten
-                    Was bedeutet, dass eine Komponente möglichst wiederverwendbar sein soll?
-                -->
+                <h2>Aufgabe 1.1: Die Java Enterprise Edition</h2>
+
+                <p>
+                    a) Um was für eine Middleware handelt es sich bei der Java Enterprise Edition?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Kommunikationsorientierte Middleware
+                    </li>
+                    <li>
+                        Anwendungsorientierte Middleware
+                    </li>
+                </ol>
+
+                <p>
+                    b) Wo gibt es die Java Enterprise Edition zum herunterladen?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Bei Oracle, dem Entwickler von Java
+                    </li>
+                    <li>
+                        Bei Microsoft, allerdings nur für Windows
+                    </li>
+                    <li>
+                        Bei den Herstellern der Applikationsserver
+                    </li>
+                    <li>
+                        Gar nicht, sie ist in der Sprache Java enthalten
+                    </li>
+                </ol>
+
+                <p>
+                    c) Welche der folgenden Schnittstellen bietet ein typischer Anwendungsserver?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Entfernte Methodenaufrufe
+                    </li>
+                    <li>
+                        SOAP-Webservices
+                    </li>
+                    <li>
+                        REST-Webservices
+                    </li>
+                    <li>
+                        Nachrichten über einen Message Broker
+                    </li>
+                    <li>
+                        HTTP zum Aufruf von Webanwendungen
+                    </li>
+                </ol>
+
+                <h2>Aufgabe 1.2: Komponentenbasierte Entwicklung</h2>
+
+                <p>
+                    a) Welche Eigenschaften besitzt eine Klasse, wenn sie eine Softwarekomponente ist?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Alle Methoden und Attribute sind <src-code>public</src-code>.
+                    </li>
+                    <li>
+                        Sie kapselt eine in sich geschlossene Funktionalität.
+                    </li>
+                    <li>
+                        Sie hängt nur lose von anderen Komponentenklassen ab.
+                    </li>
+                    <li>
+                        Sie implementiert das Interface <code>WebComponent</code>.
+                    </li>
+                    <li>
+                        Idealerweise kann sie in mehreren Anwendungen genutzt werden.
+                    </li>
+                    <li>
+                        Sie besitzt einen parameterlosen Konstruktor.
+                    </li>
+                    <li>
+                        Sie kann häufig gegen eine alternative Implementierung getauscht werden.
+                    </li>
+                </ol>
+
+                <p>
+                    b) Was schätzt du, was für eine austauschbare Softwarekomponente zutreffen muss?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Sie besitzt ein Interface, das ihre fachlichen Methoden definiert.
+                    </li>
+                    <li>
+                        Die Klasse darf nicht von einer anderen Klasse erben.
+                    </li>
+                    <li>
+                        Die Klasse muss so geschrieben sein, dass mehrere Implementierungen zulässig sind.
+                    </li>
+                    <li>
+                        Die Verwender der Klasse müssen gegen ein Interface und nicht gegen die Klasse programmiert werden.
+                    </li>
+                    <li>
+                        Die Softwarekomponente sollte auf einem eigenen Applikationsserver deployed werden.
+                    </li>
+                    <li>
+                        Die Klasse sollte eine bestimmte UI-Technologie auf Seiten der Clients vorschreiben.
+                    </li>
+                </ol>
+
+                <hr />
+
+                <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                    <small>
+                        <b>Lösung:</b> Aufgabe 1.1: 2, 3, alle; Aufgabe 1.2: 2 + 3 + 5 + 7, 1 + 3 + 4
+                    </small>
+                </p>
             </article>
             <aside>
                 <p>
@@ -1184,7 +1291,7 @@
                             aria-labelledby = "mvc-beispiel-entity-tab"
                         >
                             <p>
-                                Diese <b>Persistence Entity</b> entspricht einem in der Datenbank gespeicherten Eintrag.
+                                Diese <b>Persistence Entity</b> entspricht einem Eintrag in der Datenbank.
                             </p>
                             <source-code language="java">
                                 package dhbwka.wwi.vertsys.javee.guestbook;
@@ -1204,6 +1311,7 @@
                                 public class GuestbookEntry implements Serializable {
 
                                     private static final long serialVersionUID = 1L;
+
                                     @Id
                                     @GeneratedValue(strategy = GenerationType.AUTO)
                                     private Long id;
@@ -1216,7 +1324,7 @@
                                     }
 
                                     public GuestbookEntry(String name) {
-                                    this.name = name;
+                                        this.name = name;
                                     }
 
                                     //&lt;editor-fold defaultstate="collapsed" desc="Setter und Getter"&gt;
@@ -1518,7 +1626,7 @@
                             aria-labelledby = "mvc-beispiel-ergebnis-tab"
                         >
                             <p>
-                                Und so sieht die Anwendung aus, wenn sie fertig ist.
+                                Und so sieht die fertige Anwendung aus:
                             </p>
                             <img src="mvc-beispiel-ergebnis.jpg" class="d-block" style="width: 100%;" />
                         </div>
@@ -1536,7 +1644,7 @@
 
                 <h2>Am Anfang steht das Datenmodell</h2>
                 <p>
-                    Linux Torvalds wird das Zitat zugeschrieben „gute Programmierer scheren sich nicht um Algorithmen, sondern um
+                    Linus Torvalds wird das Zitat zugeschrieben „gute Programmierer scheren sich nicht um Algorithmen, sondern um
                     Datenstrukturen”. 💬 Vor allem anderen sollten wir uns daher erst das Datenmodell unserer kleinen Anwendung
                     überlegen. Für den Anfang soll es nichts Kompliziertes sein. Ein Gästebuch, in dem jeder Eintrag die folgenden
                     drei Felder besitzt, reicht fürs Erste:
@@ -1574,18 +1682,16 @@
                 </source-code>
                 <p>
                     Du siehst: An der Klasse ist eigentlich gar nichts besonderes dran. Lediglich die Annotation
-                    <src-code language="java">@Entity</src-code> muss davor stehen und sie muss eine ID als
-                    Schlüsselfeld besitzen. Das reicht bereits völlig aus, damit Java eine dazu passende Tabelle für uns
-                    anlegt. Natürlich kann man hier noch viel mehr machen, das schauen wir uns aber erst im nächsten
-                    Foliensatz an.
+                    <src-code language="java">@Entity</src-code> muss davor stehen und sie muss eine ID als Schlüsselfeld
+                    besitzen. Das reicht bereits völlig aus, damit Java eine dazu passende Tabelle für uns anlegen kann.
+                    Natürlich kann man hier noch viel mehr machen, das schauen wir uns aber erst im nächsten Foliensatz an.
                 </p>
 
                 <h2>Wir brauchen einen Service</h2>
                 <p>
                     Als nächstes folgt die Fachlogik unserer Anwendung. Diese ist zum Glück ebenfalls sehr einfach.
                     Wir brauchen lediglich zwei Methoden, um alle Einträge auszulesen und einen neuen Eintrag zu speichern.
-                    Diese Methoden packen wir in eine <b>Enterprise Java Bean</b>, die hierfür folgenden Aufbau haben
-                    muss:
+                    Diese Methoden packen wir in eine <b>Enterprise Java Bean</b>:
                 </p>
                 <source-code language="java">
                     @Stateless
@@ -1609,10 +1715,9 @@
 
                 <h2>Der dritte Mann: Servlet und JSP</h2>
                 <p>
-                    Und hier sind wir schon wieder in gewohntem Territorium. Da wir eine Webanwendung programmieren wollen,
-                    brauchen wir ein Servlet, eine JSP und ein Stylesheet. Tatsächlich könnten wir sie auch weglassen, wenn wir
-                    nur einen Webservice anbieten wollten, der von entfernten Clients aufgerufen werden kann. Darauf kommen wir
-                    ein anderes mal nochmal zurück. Jetzt aber zu unserem Servlet:
+                    Und hier sind wir schon wieder in gewohntem Territorium. Da wir eine Webanwendung schreiben, brauchen wir ein
+                    Servlet, eine JSP und ein Stylesheet. Tatsächlich könnten wir sie auch weglassen, wenn wir nur einen Webservice
+                    ohne UI anbieten wollten. Darauf kommen wir ein anderes mal nochmal zurück. Jetzt aber zu unserem Servlet:
                 </p>
                 <source-code language="java">
                     public class GuestbookServlet extends HttpServler {
@@ -1626,11 +1731,11 @@
                     }
                 </source-code>
                 <p>
-                    Das Serlvet sollte eigentlich keine Überraschungen für dich bieten. Einzig neu ist das
-                    <src-code language="java">@EJB</src-code>, mit dem wir uns eine Referenz auf die Enterprise Java Bean
-                    besorgen. Auf den ersten Blick sieht das zwar wie ein Fehler aus, aber tatsächlich sorgt Java durch die
-                    Annotation dafür, dass die Variable mit einer Referenz versorgt wird, wobei die Bean hierfür auf dem
-                    eigenen oder gar einem anderen Server liegen könnte.
+                    Das Serlvet sollte eigentlich keine Überraschungen bieten. Einzig neu ist die Annotation
+                    <src-code language="java">@EJB</src-code>, mit der wir uns eine Referenz auf die Enterprise Java Bean
+                    besorgen. Auf den ersten Blick sieht das zwar wie ein Fehler aus, aber tatsächlich sorgt Java dafür,
+                    dass die Variable immer mit einer Referenz belegt ist, wobei die Bean hierfür sogar einem anderen Server
+                    liegen könnte.
                 </p>
                 <p>
                     Das ist tatsächlich schon alles, ganz ehrlich. Um das zu beweisen, zeigen wir dir auf der
@@ -1853,7 +1958,200 @@
         <section data-background-color="rgb(231, 221, 141)">
             <h1>Aufgabe 3: Ein kleines MVC-Quiz</h1>
             <article>
-                …
+                <h2>Aufgabe 3.1: Allgemeine Fragen</h2>
+
+                <p>
+                    a) Welche Architekturansätze kommen für serverseitige Webanwendungen in Frage?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Alle Logik auf dem Server belassen und auch das HTML auf dem Server generieren.
+                    </li>
+                    <li>
+                        Das HTML im Browser generieren, jedoch die fachlichen Funktionen auf dem Server lassen.
+                    </li>
+                    <li>
+                        Das HTML im Browser generieren und auch die fachlichen Funktionen im Browser ausführen.
+                    </li>
+                    <li>
+                        Einen Native Client für unterschiedliche Betriebssysteme mit dem Server als Backend entwickeln.
+                    </li>
+                </ol>
+
+                <p>
+                    b) Wofür steht die Abkürzung MVC?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Model-View-Component
+                    </li>
+                    <li>
+                        Make-Visual-Controllers
+                    </li>
+                    <li>
+                        Many-Versatile-Classes
+                    </li>
+                    <li>
+                        Model-View-Controller
+                    </li>
+                    <li>
+                        Jeden Morgen viel Chaos
+                    </li>
+                </ol>
+
+                <p>
+                    c) Welche Aufgaben übernimmt der Controller bei MVC?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Er beinhaltet die fachliche Anwendungslogik.
+                    </li>
+                    <li>
+                        Er beinhaltet das Datenmodell der Anwendung.
+                    </li>
+                    <li>
+                        Er vermittelt zwischen Model und View.
+                    </li>
+                    <li>
+                        Er reagiert auf entfernte Methodenaufrufe.
+                    </li>
+                </ol>
+
+                <p>
+                    d) Welche Aufgaben übernimmt das Model bei MVC?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Es ist schön anzusehen. 👒
+                    </li>
+                    <li>
+                        Es beinhaltet die fachliche Anwendungslogik.
+                    </li>
+                    <li>
+                        Es beinhaltet das Datenmodell der Anwendung.
+                    </li>
+                    <li>
+                        Es vermittelt zwischen View und Controller.
+                    </li>
+                    <li>
+                        Es reagiert auf Webservice-Aufrufe.
+                    </li>
+                </ol>
+
+                <h2>Aufgabe 3.2: MVC-Webanwendungen mit Java</h2>
+
+                <p>
+                    a) Welcher Teil einer Webanwendung entspricht dem Model?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Die Servlets
+                    </li>
+                    <li>
+                        Die Java Server Pages und HTML-Seiten
+                    </li>
+                    <li>
+                        Die Enterprise Java Beans
+                    </li>
+                    <li>
+                        Die Persistence Entities
+                    </li>
+                    <li>
+                        Die sonstigen Klassen der Anwendung
+                    </li>
+                </ol>
+
+                <p>
+                    b) Welcher Teil einer Webanwendung entspricht dem Controller?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Die Servlets
+                    </li>
+                    <li>
+                        Die Java Server Pages und HTML-Seiten
+                    </li>
+                    <li>
+                        Die Enterprise Java Beans
+                    </li>
+                    <li>
+                        Die Persistence Entities
+                    </li>
+                    <li>
+                        Die sonstigen Klassen der Anwendung
+                    </li>
+                </ol>
+
+                <p>
+                    c) Welche Annotation kennzeichnet eine Persistence Entity?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        <code>@PersistenceUnit</code>
+                    </li>
+                    <li>
+                        <code>@EntityManager</code>
+                    </li>
+                    <li>
+                        <code>@DatabaseTable</code>
+                    </li>
+                    <li>
+                        <code>@Entity</code>
+                    </li>
+                    <li>
+                        <code>@ORMappedBean</code>
+                    </li>
+                </ol>
+
+                <p>
+                    d) Welche Annotation kennzeichnet eine Stateless Session Bean?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        <code>@Stateless</code>
+                    </li>
+                    <li>
+                        <code>@Bean</code>
+                    </li>
+                    <li>
+                        <code>@SessionBean</code>
+                    </li>
+                    <li>
+                        <code>@EJB</code>
+                    </li>
+                    <li>
+                        <code>@ModelBean</code>
+                    </li>
+                </ol>
+
+                <p>
+                    e) Mit welcher Annotation erhält man eine Referenz auf eine Enterprise Java Bean?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        <code>@Object</code>
+                    </li>
+                    <li>
+                        <code>@Reference</code>
+                    </li>
+                    <li>
+                        <code>@Inject</code>
+                    </li>
+                    <li>
+                        <code>@Bean</code>
+                    </li>
+                    <li>
+                        <code>@EJB</code>
+                    </li>
+                </ol>
+
+                <hr />
+
+                <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                    <small>
+                        <b>Lösung:</b> Aufgabe 3.1: 1 + 2, 4, 3, 2 + 3; Aufgabe 3.2: 3 + 4, 1, 4, 1, 5
+                    </small>
+                </p>
             </article>
             <aside>
                 <p>
@@ -1882,49 +2180,637 @@
         </section>
 
         <section>
-            <h1>Stateless, Stateful und Singleton Beans</h1>
+            <h1>Mehr als nur Stateless Session Beans</h1>
             <article>
-                …
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="img-thumbnail" style="padding: 0.5em; height: 100%; display: flex; flex-direction: column;">
+                                <h3 class="dhbw-lightblue">Singleton Session Beans</h3>
+                                <table style="margin-bottom: 1em;">
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">☕</td>
+                                        <td>
+                                            Eine Instanz für alle Clients
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">☕</td>
+                                        <td>
+                                            Threadsicherheit beachten!
+                                        </td>
+                                    </tr>
+                                </table>
+                                <source-code language="java">
+                                    @Singleton
+                                    public class CityBean {
+                                        // …
+                                    }
+                                </source-code>
+                                <div style="flex: 1;"></div>
+                                <img src="ejb-singleton.png" alt="" class="d-block" style="width: 100%;" />
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="img-thumbnail" style="padding: 0.5em; height: 100%; display: flex; flex-direction: column;">
+                                <h3 class="dhbw-lightblue">Stateless Session Beans</h3>
+                                <table style="margin-bottom: 1em;">
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">☕</td>
+                                        <td>
+                                            Geteilte Instanzen für alle Clients
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">☕</td>
+                                        <td>
+                                            Meistens die beste Wahl
+                                        </td>
+                                    </tr>
+                                </table>
+                                <source-code language="java">
+                                    @Stateless
+                                    public class CountryBean {
+                                        // …
+                                    }
+                                </source-code>
+                                <div style="flex: 1;"></div>
+                                <img src="ejb-stateless.png" alt="" class="d-block" style="width: 100%;" />
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="img-thumbnail" style="padding: 0.5em; height: 100%; display: flex; flex-direction: column;">
+                                <h3 class="dhbw-lightblue">Stateful Session Beans</h3>
+                                <table style="margin-bottom: 1em;">
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">☕</td>
+                                        <td>
+                                            Jedem Kind sein Luftballon 🎈
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 0.5em;">☕</td>
+                                        <td>
+                                            Verbraucht viele Ressourcen
+                                        </td>
+                                    </tr>
+                                </table>
+                                <source-code language="java">
+                                    @Stateful
+                                    public class RiverBean {
+                                        // …
+                                    }
+                                </source-code>
+                                <div style="flex: 1;"></div>
+                                <img src="ejb-stateful.png" alt="" class="d-block" style="width: 100%;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <p>
+                                <b>Doch Vorsicht!</b> Der Client einer Bean ist immer nur ihr direkter Verwender.
+                                Gerade bei <span style="color: darkred;">Stateful Session Beans</span> macht das
+                                einen Unterschied, wie die folgende Abbildung zeigt. <code>@Stateful</code> alleine
+                                reicht nicht aus, um eine Bean einem einzelnen Besucher einer Webseite zuzuordnen.
+                                Hierfür muss die Bean manuell erzeugt und in der Session abgelegt werden.
+                            </p>
+                            <img src="ejb-clients.png" alt="Verschiedene Aufrufketten für EJBs" class="d-block" style="width: 100%;" />
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    <code>@Stateless</code> ist nicht die einzige Annotation, die eine Klasse zur Enterprise Java Bean macht.
+                    Sie kennzeichnet eigentlich nur eine bestimmte Art von EJBs, nämlich die <b>Stateless Session Beans</b>.
+                    Insgesamt gibt es noch folgende Arten:
+                </p>
+                <ul>
+                    <li>
+                        <code>@Singleton</code>: Singleton Session Beans
+                    </li>
+                    <li>
+                        <code>@Stateles</code>: Stateless Session Beans
+                    </li>
+                    <li>
+                        <code>@Stateful</code>: Stateful Session Beans
+                    </li>
+                    <li>
+                        <code>@MessageDriven</code>: Message Driven Beans
+                    </li>
+                </ul>
+                <p>
+                    Anstelle von <code>@Stateless</code> verwendet man dan einfach eine der anderen
+                    Annotationen¹, zum Beispiel so:
+                </p>
+                <source-code language="java">
+                    @Singleton
+                    public class VisitorCounterBean {
+                        // Fachliche Methoden der Bean
+                    }
+                </source-code>
+
+                <h2>Die verschiedenen Beantypen</h2>
+                <p>
+                    Soweit alles schön und gut. Doch was hat es mit diesen verschiedenen Beantypen auf sich? 🤔
+                    Warum gibt es überhaupt verschiedene Arten und welche soll man nehmen?
+                </p>
+
+                <h3>Singleton Session Beans</h3>
+                <p>
+                    Dies ist die einfachste Art von allen. Der Server erzeugt genau ein Objekt von der Klasse
+                    (vgl. <a href="https://de.wikipedia.org/wiki/Singleton_(Entwurfsmuster)" target="_blank">Singleton-Entwurfsmuster</a>)
+                    und lässt die Clients darauf zugreifen. Arbeiten mehrere Clients gleichzeitig mit der Bean, startet der Server
+                    hierfür unterschiedliche Threads. Die Klasse muss daher absolut und 100%ig threadsicher programmiert sein!
+                </p>
+
+                <h3>Stateless Session Beans</h3>
+                <p>
+                    Bei Stateless Session Beans sind die Anforderungen an die Threadsicherheit nicht ganz so streng, da jeder Client
+                    eine eigene Objektinstanz auf dem Server zugewiesen bekommt. Es kann also nicht passieren, dass die Methoden ein
+                    und derselben Instanz in unterschiedlichen Threads gleichzeitig ausgeführt werden. Jedoch kann es passieren, dass
+                    die verschiedenen Instanzen in unterschiedlichen Threads laufen. <span style="color: crimson">♨️</span>
+                    Die Klasse muss im Zweifelsfall also immer noch threadsicher sein.
+                </p>
+                <p>
+                    Hinzu kommt, dass sich ein Client niemals darauf verlassen kann, bei mehreren Methodenaufrufen immer dieselbe Objektinstanz
+                    zugewiesen zu bekommen. Denn im Hintergrund erzeugt der Server gleich mehrere Objekte (einen sogenannten Pool) und
+                    weist dem Client bei jedem Aufruf eine Instanz zu, die zu diesem Zeitpunkt gerade nicht verwendet wird.¹ Man kann sich
+                    in der Klasse also nicht mal eben einen Wert für später merken. Dies muss immer in der HTTP-Session des Servlets oder
+                    in der Datenbank erfolgen.
+                </p>
+
+                <h3>Stateful Session Beans</h3>
+                <p>
+                    Stateful Session Beans, man kann es sich schon denken, gehören immer genau einem Client. Hier erzeugt der Server für
+                    jeden Client ein eigenes Objekt und stellt sicher, dass alle Methodenaufrufe immer von derselben Objektinstanz
+                    beantwortet werden. Sie belegen daher deutlich mehr Ressourcen auf dem Server und sollten daher nur verwendet werden,
+                    wenn es wirklich zwingend erforderlich ist.
+                </p>
+                <p>
+                    Besonders trickreich könnte man jetzt auf die Idee kommen, trotzdem einfach alle EJBs als Stateful Session Beans zu
+                    kennzeichnen. 🦊 Doch genau das funktioniert bei Webanwendungen leider nicht wie erhofft und ist daher ein beliebter
+                    Anfängerfehler. 🦆 Denn aus Sicht der EJBs ist der Client nicht der Anwender vor dem Bildschirm sondern das Servlet,
+                    das die EJB verwendet. Und genau da liegt das Problem. Die meisten Server erzeugen genau eine Servletinstanz, die
+                    dann auch nur eine EJB-Instanz zugewiesen bekommt. Der einzig richtige Weg ist daher, die Bean in der Session
+                    abzulegen, wenn sie genau einem Anwender gehören soll.¹
+                </p>
+                <p>
+                    <small>
+                        ¹ Nein, <code>@SessionScoped</code> funktioniert hier leider auch nicht. Siehe die beiden Beispiele auf Moodle.
+                    </small>
+                </p>
+                <p>
+                    Willst du in einem Servlet wirklich eine Stateful Session Bean verwenden, um sie einem bestimmten Benutzer zuzuweisen,
+                    musst du das daher so anstellen:
+                </p>
+                <source-code language="java">
+                    @WebServlet
+                    public class StatefulBeanServlet extends HttpServlet {
+
+                        @Override
+                        public void doGet(…) {
+                            // Bean-Instanz besorgen und im Session Context ablegen
+                            HttpSession session = request.getSession();
+                            MisterBean misterBean = (MisterBean) session.getAttribute("misterBean");
+
+                            if (misterBean == null) {
+                                try {
+                                    InitialContext ctx = new InitialContext();
+                                    misterBean = (MisterBean) ctx.lookup("java:global/NameDerApp/NameDerBean");
+                                } catch (NamingException ex) {
+                                    throw new ServletException(ex);
+                                }
+
+                                session.setAttribute("misterBean", misterBean);
+                            }
+
+                            // Bean verwenden
+                            …
+                        }
+                    }
+                </source-code>
+
+                <p>
+                    Damit greifst du über die Klasse <code>InitialContext</code> auf
+                    <a href="https://de.wikipedia.org/wiki/Java_Naming_and_Directory_Interface" target="_blank">den Namensdienst des Servers</a>
+                    zu und besorgst dir eine neue Objektinstanz der Bean. Welchen Namen du dabei bei <code>ctx.lookup()</code> mitgegeben musst,
+                    siehst du, wenn du das Serverprotokoll beim Start der Anwendung durchschaust. Stichwort: „Portable JNDI Name”.
+                </p>
+
+                <h3>Message Driven Beans</h3>
+                <p>
+                    Der Name verät schon, dass es sich hierbei nicht um Session Beans wie bei all den anderen handelt.
+                    Und das ist auch richtig so, denn im Gegensatz zu den anderen Beans kann man hier nicht einfach
+                    irgendwelche Business Methoden definieren und irgendwo innerhalb der Anwendung aufrufen. Stattdessen
+                    verbindet sich eine Message Driven Bean mit einem Message Broker (Vgl. <a href="#4">Folie 4</a>)
+                    und empfängt über ihn asynchrone Nachrichten. 📨 Dieses Programmiermodell schauen wir uns aber erst
+                    ganz am Ende der Vorlesung an. 🔭
+                </p>
+
+                <h2>Und welche soll ich nehmen?</h2>
+                <p>
+                    Das ist eigentlich ganz einfach. Eigentlich solltest du immer <b>Stateless Session Beans</b> nehmen,
+                    es sei denn, du bist dir ganz sicher, einen anderen Typ zu benötigen. <b>Stateful Session Beans</b>
+                    solltest du hingegen möglichst vermeiden, da sie bei Webanwendungen nicht an die Benutzersession
+                    gebunden sind und sich daher komplett anders verhalten, als man es intuitiv erwarten würde. Sie ermöglichen
+                    es gerade nicht, benutzerabhängig Werte auf dem Server zwischenzuspeichern.
+                </p>
+                <p>
+                    <b>Singleton Session Beans</b> können eine leichtgewichtige Alternative zu Stateless Session Beans
+                    sein, wenn du dir absolut sicher bist, dass deine Klasse threadsicher ist. Doch vorzeitige Optimierung
+                    ist ja bekanntlich die Wurzel allen übels. Wenn es also keinen konkreten Grund gibt, solltest du
+                    einfach bei Stateless Session Beans bleiben.
+                </p>
+                <p>
+                    Und die <b>Message Driven Beans</b> tanzen sowieso aus der Reihe, so dass sie hier zunächst nicht in
+                    Betracht kommen. 💃🏻
                 </p>
             </aside>
         </section>
 
         <section>
-            <h1>Nur für Zuhause: EJBs mit No-Interface-View</h1>
+            <h1>Nur für Zuhause: EJBs mit No-Interface View</h1>
             <article>
-                …
+                <p>
+                    So haben unsere Enterprise Java Beans bisher ausgesehen:
+                </p>
+                <source-code language="java">
+                    @Stateless
+                    public class ArticleInformationBean {
+
+                        public Article findArticle(long id) { … }
+                        public List&lt;Article&gt; searchArticles(String search) { … }
+                        …
+
+                    }
+                </source-code>
+                <table style="margin-bottom: 1em;">
+                    <tr>
+                        <td style="padding-right: 0.5em;">🔰</td>
+                        <td>
+                            Sie besitzen kein Interface und erben von keiner Klasse.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em;">🔰</td>
+                        <td>
+                            Sie sind deshalb nicht wirklich austauschbar.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em;">🔰</td>
+                        <td>
+                            Sie können nicht über Rechnergrenzen hinweg aufgerufen werden.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em;">🔰</td>
+                        <td>
+                            Auch nicht aus anderen Webanwendungen desselben Servers heraus.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em;">🔰</td>
+                        <td>
+                            Sie existieren lediglich innerhalb der eigenen Webanwendung.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em;">☺️</td>
+                        <td>
+                            Und das ist völlig okay so!
+                        </td>
+                    </tr>
+                </table>
             </article>
             <aside>
                 <p>
-                    …
+                    Auf <a href="#4">Folie 4</a> steht, dass Softwarekomponenten austauschbar sein sollten, so dass man
+                    ohne großen Aufwand eine vorhandene Komponente später durch eine andere ersetzen kann. Beispielsweise
+                    könnte man eine Komponente zur Zahlungsabwicklung in ein paar Jahren durch eine verbesserte Version
+                    mit weiteren Zahlungsoptionen austauschen wollen. Doch wie soll das gehen, wenn unsere Enterprise
+                    Java Beans ganz einfache Javaklassen sind, die weder von einer anderen Klasse erben noch irgendein
+                    Interface implementieren? 🤔
+                </p>
+                <p>
+                    Die Antwort ist: Es geht nicht und das ist auch gut so.
+                </p>
+                <p>
+                    <i>
+                        – Wirklich!? Aber man müsste doch alle Stellen anpassen, an denen eine EJB verwendet wird, um
+                        sie auszutauschen …
+                    </i>
+                    <span style="font-weight: bold; color: crimson; text-shadow: 1px 1px 1px rgba(0,0,0,0.5);">❓❓❓</span>
+                </p>
+                <p>
+                    Ja das müsste man und das wäre auch ziemlich aufwändig. 😎
+                </p>
+                <p>
+                    <i>
+                        – Aber warum soll das dann gut sein?
+                    </i>
+                </p>
+                <p>
+                    Weil Java einen nicht zwingt, austauschbare Komponenten zu schreiben, wenn man sie nicht braucht.
+                    Unsere bisherigen EJBs besitzen kein sogenanntes <b>Business Interface</b> und sind somit nicht
+                    einfach austauschbar. Sie können auch nur innerhalb der eigenen Webanwendung verwendet und nicht
+                    über Rechnergrenzen hinweg aufgerufen werden. Das ist aber völlig okay, denn oftmals will man das
+                    auch gar nicht und dann schreibt man eben Beans ohne Interface. Auf fachchinesisch heißt das
+                    <b>Local No-Interface View</b>.
                 </p>
             </aside>
         </section>
 
         <section>
-            <h1>Wann braucht man ein Local Interface?</h1>
+            <h1>Wann braucht man ein Business Interface?</h1>
             <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
-                </p>
-            </aside>
-        </section>
+                <table style="margin-bottom: 2em;">
+                    <tr>
+                        <td style="padding-right: 0.5em;">🐦</td>
+                        <td>
+                            Soll eine EJB austauschbar sein, müssen ihre Methoden in einem Business Interface deklariert werden.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em;">🐦</td>
+                        <td>
+                            Das Interface kann dabei ein <b>Local Interface</b> oder ein <b>Remote Interface</b> sein.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em;">🐦</td>
+                        <td>
+                            Die Verwender der Bean dürfen sich dann nur auf das Interface und niemals auf die Klasse beziehen.
+                        </td>
+                    </tr>
+                </table>
 
-        <section>
-            <h1>Und wann ein Remote Interface?</h1>
-            <article>
-                …
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "interfaces-local-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#interfaces-local"
+                                role          = "tab"
+                                aria-controls = "interfaces-local"
+                                aria-expanded = "true"
+                            >
+                                Local Interface
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "interfaces-remote-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#interfaces-remote"
+                                role          = "tab"
+                                aria-controls = "interfaces-remote"
+                            >
+                                Remote Interface
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "interfaces-mehrere-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#interfaces-mehrere"
+                                role          = "tab"
+                                aria-controls = "interfaces-mehrere"
+                            >
+                                Mehrere Implementierungen
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Local Interface -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "interfaces-local"
+                            role            = "tabpanel"
+                            aria-labelledby = "interfaces-local-tab"
+                        >
+                            <p>
+                                Ein Local Interface definiert Methoden, die innerhalb derselben JVM aufrufbar sind.
+                                Der Aufrufer kann dabei auch Teil einer anderen Anwendung sein, solange sie im selben Server
+                                in derselben JVM läuft.
+                            </p>
+                            <source-code language="java">
+                                /**
+                                 * Deklaration der verfügbaren Business Methoden
+                                 */
+                                @Local
+                                public interface Payment {
+                                    List&lt;String&gt; getSupportedPaymentMethods();
+                                    PaymentResult payDueAmount(String method, double amount);
+                                }
+
+                                /**
+                                 * Erste Version unseres Bezahldienstes
+                                 */
+                                @Stateless
+                                public class PaymentBeanV1 implements Payment {
+                                    List&lt;String&gt; getSupportedPaymentMethods() { … }
+                                    PaymentResult payDueAmount(String method, double amount) { … }
+                                }
+
+                                /**
+                                 * Verwendung des Dienstes innerhalb einer anderen EJB
+                                 */
+                                @Stateless
+                                public class ShoppingCartBean {
+
+                                    // Hier nur das Interface angeben!
+                                    @EJB
+                                    Payment payment;
+                                    …
+                                }
+                            </source-code>
+                        </div>
+                        <!-- Remote Interface -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "interfaces-remote"
+                            role            = "tabpanel"
+                            aria-labelledby = "interfaces-remote-tab"
+                        >
+                            <p>
+                                Ein Remote Interface definiert Methoden, die auch über JVM- und Rechnergrenzen hinweg aufrufbar sind.
+                                Dies wird heutzutage zugunsten von Webservices aber nur noch selten gemacht.
+                            </p>
+                            <source-code language="java">
+                                /**
+                                 * Deklaration der entfernt aufrufbaren Business Methoden
+                                 */
+                                @Remote
+                                public interface MovieSearch {
+                                    List&lt;Movie&gt; searchMovies(String search);
+                                }
+
+                                /**
+                                 * Implementierende Enterprise Java Bean
+                                 */
+                                @Stateless
+                                public class MovieSearchBean implements MovieSearch {
+                                    List&lt;Movie&gt; searchMovies(String search) { … }
+                                }
+
+                                /**
+                                 * Verwendung der Bean in einem Servlet
+                                 */
+                                @WebServlet(urlPatterns={"/search/"})
+                                public class MovieSearchServlet extends HttpServlet {
+
+                                    // Hier nur das Interface angeben
+                                    @EJB
+                                    MovieSearch search;
+                                    …
+                                }
+                            </source-code>
+                        </div>
+                        <!-- Mehrere Implementierungen -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "interfaces-mehrere"
+                            role            = "tabpanel"
+                            aria-labelledby = "interfaces-mehrere-tab"
+                        >
+                            <p>
+                                Gibt es mehrere Implementierungen zum selben Interface, müssen diese über einen zusätzlichen Namen
+                                auseinander gehalten werden. Der Name muss innerhalb der gesamten Anwendung eindeutig sein und
+                                darf nur für eine EJB-Klasse verwendet werden.
+                            </p>
+                            <source-code language="java">
+                                /**
+                                 * Ein einfaches Business Interface
+                                 */
+                                @Local
+                                public interface ReadProductData {
+                                    public Map&lt;String, String&gt; getProductData(long articleId);
+                                }
+
+                                /**
+                                 * Besondere Implementierung für Administratoren
+                                 */
+                                @Stateless(name="ReadProductData-Admin")
+                                public class ReadProductDataAdminBean implements ReadProductData {
+                                    public Map&lt;String, String&gt; getProductData(long articleId) { … }
+                                }
+
+                                /**
+                                 * Einfache Version für normale Anwender
+                                 */
+                                @Stateless(name="ReadProductData-SimpleUser")
+                                public class ReadProductDataSimpleUserBean implements ReadProductData {
+                                    public Map&lt;String, String&gt; getProductData(long articleId) { … }
+                                }
+
+                                /**
+                                 * Verwendung der Version für Administratoren
+                                 */
+                                @WebServlet(urlPatterns={"/admin/product/*"})
+                                public class UserProfileAdminServlet extends HttpServlet {
+
+                                    // Interface plus der richtige Name
+                                    @EJB(beanName="ReadProductData-Admin")
+                                    ReadProductData readProductData;
+                                    …
+                                }
+                            </source-code>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    Falls man dann doch einmal austauschbare Komponenten schreiben will, kann man die Methoden
+                    der EJBs ganz einfach in einem <b>Business Interface</b> deklarieren und eine oder mehrere
+                    Enterprise Java Beans schreiben, die das Interface implementieren. Auf Seiten der Verwender
+                    muss man dann nur aufpassen, dass man sich schön auf das Interface und niemals auf einer der
+                    Klassen bezieht. Jedoch steht man noch vor der Wahl, ob man das Interface als Local oder
+                    Remote kennzeichnet (beides zusammen ist nicht erlaubt):
+                </p>
+                <ul>
+                    <li>
+                        Ein <b>Local Interface</b> schreibt Methoden vor, die nur innerhalb derselben JVM¹
+                        aufgerufen werden können. Der Aufrufer muss dabei nicht zur selben Anwendung gehören,
+                        muss aber im selben Server innerhalb derselben JVM laufen.
+                    </li>
+                    <li>
+                        Die Methoden eines <b>Remote Interface</b> hingegen können auch über JVM- und Rechnergrenzen
+                        hinweg aufgerufen werden. Dies wird heutzutage aber zugunsten von Webservices gar nicht mehr
+                        so häufig genutzt.
+                    </li>
+                </ul>
+                <p>
+                    <small>
+                        ¹ Java Virtual Machine
+                    </small>
+                </p>
+                <p>
+                    Wurde diese Entscheidung getroffen, muss man eigentlich nur noch <code>@Local</code> oder
+                    <code>@Remote</code> vor das Interface schreiben. Ungefähr so:
+                </p>
+                <source-code language="java">
+                    @Local
+                    public interface ProductRating {
+                        void rateProduct(long productId, int amountStars);
+                        double getAverageStars(long productId);
+                    }
+
+                    @Stateless
+                    public class SimpleProductRatingBean
+                    implements ProductRating {
+                        void rateProduct(long productId, int amountStars) { … }
+                        double getAverageStars(long productId) { … }
+                    }
+                </source-code>
+                <p>
+                    Als Verwender bezieht man sich dann nur auf das Interface:
+                </p>
+                <source-code language="java">
+                    @WebServlet(urlPatterns={"index.html"})
+                    public class ProductRatingServlet extends HttpServlet {
+
+                        @EJB
+                        ProductRating productRatingBean;
+                        …
+                    }
+                </source-code>
+                <p>
+                    Hat man hingegen mehrere Klassen, die dasselbe Interface implementieren, muss man sie
+                    über einen zusätzlichen Namen außeinanderhalten. Der Name muss dabei innerhalb der
+                    gesamten Anwendung eindeutig sein und darf nur für eine EJB-Klasse verwendet werden.
+                </p>
+                <source-code language="java">
+                    @Stateless(name="ProductRating-Simple")
+                    public class SimpleProductRatingBean
+                    implements ProductRating {
+                        …
+                    }
+
+                    @Stateless(name="ProductRating-Sophisticated")
+                    public class SophisticatedProductRatingBean
+                    implements ProductRating {
+                        …
+                    }
+
+                    @WebServlet(urlPatterns={"index.html"})
+                    public class ProductRatingServlet extends HttpServlet {
+
+                        // Interface plus der richtige Name
+                        @EJB(beanName="ProductRating-Simple")
+                        ProductRating productRatingBean;
+                        …
+                    }
+                </source-code>
+                <p>
+                    Und schwuppdiwupp hat man austauschbare Softwarekomponenten. 💫
                 </p>
             </aside>
         </section>
@@ -1932,11 +2818,198 @@
         <section>
             <h1>Woher kommen eigentlich die EJB-Objekte?</h1>
             <article>
-                …
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md">
+                            <img src="dependency-injection-01.jpg" alt="" class="d-block img-thumbnail" style="width: 100%;" />
+                            <small>
+                                Woher kommen die EJB-Objekte!?
+                            </small>
+                        </div>
+                        <div class="col-md">
+                            <img src="dependency-injection-02.jpg" alt="" class="d-block img-thumbnail" style="width: 100%;" />
+                            <small>
+                                Die Variablen müssten doch leer sein.
+                            </small>
+                        </div>
+                        <div class="col-md">
+                            <img src="dependency-injection-03.jpg" alt="" class="d-block img-thumbnail" style="width: 100%;" />
+                            <small>
+                                Ist es Zauberei?
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md">
+                            <p>
+                                Natürlich ist es keine Zauberei. 👻
+                                Das Prinzip, dass alle mit <code>@EJB</code> ausgezeichneten Variablen automatisch mit Inhalten versorgt werden,
+                                nennt sich <b>Dependency Injection</b>. Es handelt sich dabei um eine Anwendung von Inversion of Control bzw. dem
+                                Hollywood-Prinzip. Um zu verstehen, was hier passiert, musst du den Lebenszyklus von Enterprise Java Beans kennen:
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 0;">
+                        <div class="col-md">
+                            <source-code language="java">
+                                @Stateful
+                                public class GenieTheGhostBean {
+
+                                    @EJB
+                                    MagicLampBean lamp;
+
+                                    public GenieTheGhostBean {
+                                        // Konstruktor: Hier ist this.lamp noch null!
+                                    }
+
+                                    @PostConstruct
+                                    public void onInit() {
+                                        // Ersatz für den Konstruktor: Hier ist this.lamp gefüllt!
+                                    }
+
+                                    @PreDestroy
+                                    public void onDestroy() {
+                                        // Die Bean wird gleich verworfen
+                                    }
+
+                                    public void placeFirstWish(String wish) {
+                                        // Normale Business Methode
+                                    }
+
+                                    public void placeSecondWish(String wish) {
+                                        // Normale Business Methode
+                                    }
+
+                                    @Remove
+                                    public void placeThirdWish(String wish) {
+                                        // Nachdem der Client diese Methode aufgerufen hat, verschwindet die Bean.
+                                        // @Remove ist daher nur in Stateful Session Beans erlaubt.
+                                    }
+
+                                    @Remove
+                                    public void leaveMeAlone() {
+                                        // Bewirkt ebenfalls, dass die Bean verschwindet.
+                                    }
+                                }
+                            </source-code>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md">
+                            <small>
+                                <small>
+                                    Bildnachweise:
+                                    <a href="https://pixabay.com/en/suit-business-man-business-man-673697/" target="_blank">Pixabay: RyanMcGuire</a>,
+                                    <a href="https://pixabay.com/en/architecture-bridge-building-travel-3121009/" target="_blank">Pixabay: KarstenBergmann</a>,
+                                    <a href="https://pixabay.com/en/suit-fashion-businessman-business-3137825/" target="_blank">Pixabay: lebone</a>,
+                                    <a href="https://pixabay.com/en/genie-lamp-magic-magical-wishes-1129640/" target="_blank">Pixabay: JooJoo41</a>
+                                </small>
+                            </small>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    Und wohin gehen sie, wenn sie nicht mehr gebraucht werden? 🌈 Die ganze Zeit schon haben wir gesehen, dass
+                    man sich mit <code>@EJB</code> eine Referenz auf eine Enterprise Java Bean besorgen kann, was aber nur geht,
+                    wenn die Annotation direkt innerhalb einer Klasse sowie vor einer passend deklarierten Variable steht. Also
+                    ungefähr so:
+                </p>
+                <source-code language="java">
+                    @Stateless
+                    public class ProductCatalogueBean {
+
+                        @EJB
+                        ShoppingCartBean shoppingCart;
+                        …
+                    }
+                </source-code>
+                <p>
+                    Dieses Vorgehen nennt sich <b>Dependency Injection</b> und ist ein Musterbeispiel für einen Programmierstil,
+                    der sich
+                    <a href="https://en.wikipedia.org/wiki/Inversion_of_control" target="_blank">Inversion of Control</a>
+                    oder auch <b>Hollywood-Prinzip</b> nennt. Frei nach dem Motto „Don't call us, we'll call you”.
+                </p>
+                <div class="embed-responsive embed-responsive-16by9" style="margin-bottom: 1em">
+                    <iframe src="https://www.youtube-nocookie.com/embed/fHDNWf_ws38" allow="encrypted-media" allowfullscreen></iframe>
+                </div>
+                <p>
+                    Im Grunde genommen gibt es hier eigentlich gar nichts besonderes zu beachten. Man muss nur wissen, dass
+                    dadurch natürlich nicht die Grundgesetze der Sprache Java aufgehoben werden. Das heißt, bevor im obigen
+                    Beispiel die Dependency Injection laufen kann, muss natürlich erst mal von allen beteiligten Klassen ein
+                    Objekt erzeugt werden. Dies hat zur Folge, dass die Variable zu dem Zeitpunkt, wenn der Konstruktor läuft,
+                    noch leer ist:
+                </p>
+                <source-code language="java">
+                    @Stateless
+                    public class ProductCatalogueBean {
+
+                        @EJB
+                        ShoppingCartBean shoppingCart;
+
+                        public ProductCatalogueBean() {
+                            // this.shoppingCart ist hier noch null!
+                        }
+                    }
+                </source-code>
+                <p>
+                    Aus diesem Grund sollten EJBs eigentlich keinen Konstruktor haben. Stattdessen zeichnet man einfach eine
+                    beliebige <code>public</code>-Methode ohne Parameter und ohne Rückgabewert mit <code>@PostConstruct</code>
+                    aus:
+                </p>
+                <source-code language="java">
+                    @Stateless
+                    public class ProductCatalogueBean {
+
+                        @EJB
+                        ShoppingCartBean shoppingCart;
+
+                        @PostConstruct
+                        public void onInit() {
+                            // Hier ist this.shoppingCart gefüllt!
+                        }
+                    }
+                </source-code>
+                <p>
+                    Analog dazu kann man eine Methode mit <code>@PreDestroy</code> auszeichnen, um den Zeitpunkt abzufangen,
+                    kurz bevor das Objekt verschwindet. Doch wann ist das immer der Fall? Logischerweise immer dann, wenn der
+                    Server gestoppt wird, oder bei einer Stateful Session Bean, wenn der Client die Bean nicht mehr benötigt.
+                    Es gibt aber noch einen anderen Weg. Nämlich immer dann, wenn der Client eine Methode aufruft, die mit
+                    <code>@Remove</code> ausgezeichnet wurde (ebenfalls nur bei Stateful Session Beans). Also ungefähr so:
+                </p>
+                <source-code language="java">
+                    @Stateful
+                    public class WishListBean {
+
+                        @PostConstruct
+                        public void onInit() {
+                            // Die Bean wird gerade instantiiert
+                        }
+
+                        @PreDestroy
+                        public void onDestroy() {
+                            // Die Bean wird gleich verworfen
+                        }
+
+                        @Remove
+                        public void finishCurrentProcess() {
+                            // Sobald der Client diese Methode aufruft, weiß Java,
+                            // dass die Bean nicht mehr benötigt wird
+                        }
+
+                        @Remove
+                        public void abortProcess() {
+                            // Bewirkt ebenfalls, dass die Bean verschwindet
+                        }
+                    }
+                </source-code>
+                <p>
+                    Und damit kennst du … die wahre Geschichte. 🎩 Oder besser gesagt: Den Lebenszyklus einer Enterprise
+                    Java Bean.
                 </p>
             </aside>
         </section>
@@ -1944,22 +3017,384 @@
         <section data-background-color="rgb(231, 221, 141)">
             <h1>Aufgabe 4: Ein kleines EJB-Quiz</h1>
             <article>
-                …
+                <h2>Aufgabe 4.1: Die verschiedenen Beantypen</h2>
+
+                <p>
+                    a) Welche der folgenden Annotationen zeichnet eine Klasse nicht als EJB aus?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        <code>@Stateless</code>
+                    </li>
+                    <li>
+                        <code>@Stateful</code>
+                    </li>
+                    <li>
+                        <code>@Singleton</code>
+                    </li>
+                    <li>
+                        <code>@EJB</code>
+                    </li>
+                    <li>
+                        <code>@MessageDriven</code>
+                    </li>
+                </ol>
+
+                <p>
+                    b) Welche Aussage trifft am ehesten auf Stateless Session Beans zu?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Der Server verwaltet einen Pool von Instanzen, die zwischen allen Clients geteilt werden.
+                    </li>
+                    <li>
+                        Jeder Client greift immer auf dieselbe Objektinstanz zu.
+                    </li>
+                    <li>
+                        Der Server hält nur eine Instanz vor, die sich alle Clients teilen.
+                    </li>
+                </ol>
+
+                <p>
+                    c) Und welche Aussage trifft am ehesten auf Stateful Session Beans zu?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Der Server verwaltet einen Pool von Instanzen, die zwischen allen Clients geteilt werden.
+                    </li>
+                    <li>
+                        Jeder Client greift immer auf dieselbe Objektinstanz zu.
+                    </li>
+                    <li>
+                        Der Server hält nur eine Instanz vor, die sich alle Clients teilen.
+                    </li>
+                </ol>
+
+                <p>
+                    d) Was passiert, wenn ein Servlet mit <code>@EJB</code> auf eine Stateful Session Bean zugrefit?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Jeder Aufrufer des Servlets bekommt seine eigene EJB-Instanz zugewiesen.
+                    </li>
+                    <li>
+                        Bei den meisten Servern arbeiten alle Aufrufer mit derselben EJB-Instanz.
+                    </li>
+                    <li>
+                        Die EJB-Instanz wird bei jedem Aufruf des Servlets neu erzeugt.
+                    </li>
+                </ol>
+
+                <h2>Aufgabe 4.2: Business Interfaces für EJBs</h2>
+
+                <p>
+                    a) Eine EJB benötigt immer ein Business Interface.
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Wahr
+                    </li>
+                    <li>
+                        Falsch
+                    </li>
+                </ol>
+
+                <p>
+                    b) Welche Annotation kennzeichnet ein Local Interface?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        <code>@EJB</code>
+                    </li>
+                    <li>
+                        <code>@LocalInterface</code>
+                    </li>
+                    <li>
+                        <code>@Local</code>
+                    </li>
+                    <li>
+                        <code>@Interface</code>
+                    </li>
+                </ol>
+
+                <p>
+                    c) Und welche Annotation kennzeichnet ein Remote Interface?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        <code>@EJB</code>
+                    </li>
+                    <li>
+                        <code>@Remote</code>
+                    </li>
+                    <li>
+                        <code>@Interface</code>
+                    </li>
+                    <li>
+                        <code>@RemoteInterface</code>
+                    </li>
+                </ol>
+
+                <p>
+                    d) Was ist zu tun, wenn mehrere EJB-Klassen dasselbe Business Interface implementieren?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Die Klassen sind über die <code>@EJB</code>-Annotation mit eindeutigen Namen zu versehen.
+                    </li>
+                    <li>
+                        Nichts, Java erkannt am Klassennamen, welches Objekt gemeint ist.
+                    </li>
+                    <li>
+                        Nichts, dieser Fall ist nicht erlaubt.
+                    </li>
+                </ol>
+
+                <h2>Aufgabe 4.2: Der EJB-Lebenszyklus</h2>
+
+                <p>
+                    a) Ab welchem Zeitpunkt sind die mit <code>@EJB</code> gekennzeichneten Variablen gefüllt?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Schon bevor der Konstruktor läuft
+                    </li>
+                    <li>
+                        Bereit während der Konstruktor läuft
+                    </li>
+                    <li>
+                        Spätestens wenn die <code>@PostConstruct</code>-Methode läuft
+                    </li>
+                    <li>
+                        Sobald die erste Business Methode aufgerufen wird
+                    </li>
+                </ol>
+
+                <p>
+                    b) Was bewirkt eine mit <code>@PreDestroy</code> ausgezeichnete Methode?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Sie sorgt dafür, dass die EJB verschwindet, sobald ein Client sie aufruft.
+                    </li>
+                    <li>
+                        Sie kann für Aufräumarbeiten genutzt werden, bevor eine EJB-Instanz verschwindet.
+                    </li>
+                    <li>
+                        Sie sorgt dafür, dass die komplette Anwendung beendet wird.
+                    </li>
+                    <li>
+                        Sie muss aufgerufen werden, bevor die <code>@Destroy</code>-Methode gerufen wird.
+                    </li>
+                </ol>
+
+                <p>
+                    b) Und was bewirkt eine mit <code>@Remove</code> ausgezeichnete Methode?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Sie sorgt dafür, dass die EJB verschwindet, sobald ein Client sie aufruft.
+                    </li>
+                    <li>
+                        Sie kann für Aufräumarbeiten genutzt werden, bevor eine EJB-Instanz verschwindet.
+                    </li>
+                    <li>
+                        Sie sorgt dafür, dass die komplette Anwendung beendet wird.
+                    </li>
+                    <li>
+                        Sie muss aufgerufen werden, bevor die <code>@PostRemove</code>-Methode gerufen wird.
+                    </li>
+                </ol>
+
+                <p>
+                    c) Welche Beantypen dürfen eine <code>@Remove</code>-Methode besitzen?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Alle Enterprise Java Beans
+                    </li>
+                    <li>
+                        Nur Stateless Session Beans
+                    </li>
+                    <li>
+                        Nur Stateful Session Beans
+                    </li>
+                    <li>
+                        Nur Message Driven Beans
+                    </li>
+                    <li>
+                        Stateless und Stateful Session Beans
+                    </li>
+                </ol>
+
+                <p>
+                    d) Eine EJB darf mehr wie eine <code>@Remove</code>-Methode besitzen.
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Wahr
+                    </li>
+                    <li>
+                        Falsch
+                    </li>
+                </ol>
+
+                <hr />
+
+                <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                    <small>
+                        <b>Lösung:</b> Aufgabe 4.1: 4, 1, 2, 2; Aufgabe 4.2: 2, 3, 2, 1; Aufgabe 4.3: 3, 2, 1, 3, 1
+                    </small>
+                </p>
             </article>
             <aside>
                 <p>
                     Inzwischen solltest du dich schon ganz gut mit der Java Enterprise Edition auskennen.
-                    Zur Kontrolle haben wir hier ein paar Fragen für dich. 🍯
+                    Zur Kontrolle haben wir hier ein paar Fragen für dich. 👸🏻
+                </p>
+                <p style="font-size: 7em;">
+                    🏰
                 </p>
             </aside>
         </section>
 
         <!--
-            ==============
-            RECHTSHINWEISE
-            ==============
+            ====================
+            HINWEISE ZUM SCHLUSS
+            ====================
         -->
-        <section data-chapter data-background-color="rgb(158, 203, 231)">
+        <section data-chapter data-background-image="../../trennfolie.jpg">
+            <h1>Hinweise zum Schluss</h1>
+            <article>
+                <small>
+                    <small>
+                        Bildnachweis:
+                        <a href="https://pixabay.com/en/adult-break-business-caucasian-2398561/" target="_blank">Pixabay: rawpixel</a>
+                    </small>
+                </small>
+            </article>
+        </section>
+
+        <section data-background-color="rgb(153, 190, 137)">
+            <h1>Do &amp; Don't</h1>
+            <article>
+                <h4>Auswahl des richtigen Architekturansatzes</h4>
+                <ul>
+                    <li>
+                        Mache dich mit dem Funktionsumfang von Java&nbsp;EE vertraut.
+                    </li>
+                    <li>
+                        Schaue dich auch nach Alternativen für andere Programmiersprachen um.
+                    </li>
+                    <li>
+                        Treffe eine bewusste Entscheidung für oder wider einer rein serverseitigen Webanwendung.
+                    </li>
+                    <li>
+                        Überlege dir, ob du wirklich ein getrenntes Deployment für das Webfrontend benötigst.
+                    </li>
+                    <li>
+                        Fange immer mit der einfachst möglichen Lösung an.
+                    </li>
+                </ul>
+
+                <h4>Strukturierung des Quellcodes</h4>
+                <ul>
+                    <li>
+                        Strukturiere deine Webanwendung immer nach Model-View-Controller.
+                    </li>
+                    <li>
+                        Widerstehe der Versuchung, das Servlet wegzulassen oder Javacode in eine JSP einzubauen.
+                    </li>
+                    <li>
+                        Kapsele alle fachlichen Aufgaben in Enterprise Java Beans.
+                    </li>
+                    <li>
+                        Programmiere fachliche Funktionen niemals in einem Servlet aus.
+                    </li>
+                    <li>
+                        Definiere erst das Datenmodell, bevor die zu Programmieren anfängst.
+                    </li>
+                    <li>
+                        Baue deine Enterprise Java Beans immer um das Datenmodell herum.
+                    </li>
+                    <li>
+                        Sorge für eine klare Aufgabenteilung zwischen den Enterprise Java Beans.
+                    </li>
+                </ul>
+
+                <h4>Implementierung der Enterprise Java Beans</h4>
+                <ul>
+                    <li>
+                        Nutze wenn möglich immer nur Stateless Session Beans.
+                    </li>
+                    <li>
+                        Vermeide Stateful Session Beans wo immer du nur kannst.
+                    </li>
+                    <li>
+                        Programmiere deine Servlets und Enterprise Java Beans immer threadsicher.
+                    </li>
+                    <li>
+                        Definiere Local Interfaces und Remote Interfaces, wenn du sie brauchst.
+                    </li>
+                    <li>
+                        Lagere die Local Interfaces und Remote Interfaces immer in ein eigenes Projekt aus.
+                    </li>
+                    <li>
+                        Verwende <code>@PostConstruct</code> anstelle eines Konstruktors in deinen EJB-Klassen.
+                    </li>
+                </ul>
+
+                <h4>Sonstige Tipps</h4>
+                <ul>
+                    <li>
+                        Mache dich mit dem Benutzer- und Rollenkonzept von Java&nbsp;EE vertraut.
+                    </li>
+                    <li>
+                        Sichere deine Enterprise Java Beans durch Berechtigungsabfragen.
+                    </li>
+                    <li>
+                        Nutze die Java Transaction API, wenn du eine verteilte Transaktion brauchst.
+                    </li>
+                    <li>
+                        Überlege dir aber erst, ob du den Prozess auch eventuell-konsistent gestalten kannst.
+                    </li>
+                    <li>
+                        Setze dich mit JUnit und Test Driven Development auseinander.
+                    </li>
+                    <li>
+                        Nutze moderne Werkzeuge wie git und Maven für die Entwicklung.
+                    </li>
+                    <li>
+                        Schreibe sauberen Quellcode mit ordentlicher Formatierung und guten Kommentaren.
+                    </li>
+                    <li>
+                        Mache dir über Deployment und Betrieb deiner Anwendung Gedanken.
+                    </li>
+                    <li>
+                        Versuche, so viele Schritte wie möglich zu automatisieren.
+                    </li>
+                    <li>
+                        Setze für den Echtbetrieb ein Performance-Monitoring für deine Anwendung auf.
+                    </li>
+                </ul>
+            </article>
+            <aside>
+                <p>
+                    Dies sind sie: Die berühmten letzten Worte. 📄 Auf dieser Folie haben wir ein paar allgemeine
+                    Tipps zusammengestellt, worauf du bei der Entwicklung serverseitiger Webanwendungen mit Java
+                    achten solltest.
+                </p>
+                <img src="../../do-dont.svg" class="d-block" style="width: 20em; max-width: 100%; margin-bottom: 0.5em;" />
+                <p>
+                    <small>
+                        Bildnachweis:
+                        <a href="https://pixabay.com/en/dialog-tip-advice-hint-speaking-148815/" target="_blank" style="color: rgb(25, 68, 49);">Pixabay: OpenClipart-Vectors</a>
+                    </small>
+                </p>
+            </aside>
+        </section>
+
+        <section data-background-color="rgb(158, 203, 231)">
             <h1>Rechtshinweise</h1>
             <article>
                 <h4>Creative Commons Namensnennung 4.0 International</h4>
