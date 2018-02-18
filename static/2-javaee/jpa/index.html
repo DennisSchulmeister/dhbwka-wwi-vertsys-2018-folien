@@ -174,8 +174,6 @@
                                 statement.close();
 
                                 return buch;
-                            } catch (SQLException ex) {
-                                throw ex;
                             }
                         }
 
@@ -222,13 +220,13 @@
                     }
                 </source-code>
                 <p>
-                    Hm, das sieht schon viel besser aus. Fast zu einfach. 😌 Doch ja, es ist wirklich so einfach. Die
-                    Grundidee ist schlicht, dass es zu jeder Tabelle eine Javaklasse gibt, deren Objekte den Zeilen
-                    der Tabelle entsprechen. Wollen wir eine Zeile auslesen, erzeugt der O/R-Mapper automatisch ein
-                    solches Objekt und übergibt ihm die Werte aus der Datenbank. Soll stattdessen ein neuer Datensatz
-                    geschrieben werden, erzeugen wir das Objekt einfach selbst und übergeben es dem O/R-Mapper. Die
-                    ganzen hässlichen Einzelheiten, wie wir sie oben gesehen haben, brauchen wir dabei nicht beachten.
-                    Das macht der O/R-Mapper für uns. Wir müssen lediglich eine Bean² mit den richtigen Feldern bereitstellen:
+                    Hm, das sieht schon viel besser aus. Fast zu einfach. 😌 Doch ja, es ist wirklich so. Die Grundidee
+                    ist schlicht, dass es zu jeder Tabelle eine Javaklasse gibt, deren Objekte den Zeilen der Tabelle
+                    entsprechen. Wollen wir eine Zeile auslesen, erzeugt der O/R-Mapper automatisch ein solches Objekt
+                    und übergibt ihm die Werte aus der Datenbank. Soll stattdessen ein neuer Datensatz geschrieben werden,
+                    erzeugen wir das Objekt einfach selbst und übergeben es dem O/R-Mapper. Die ganzen hässlichen Einzelheiten,
+                    wie wir sie oben gesehen haben, brauchen wir dabei nicht beachten.Das macht der O/R-Mapper für uns.
+                    Wir müssen lediglich eine Bean² mit den richtigen Feldern bereitstellen:
                 </p>
                 <p>
                     <small>
@@ -737,7 +735,7 @@
                         <div class="carousel-item img-thumbnail">
                             <p>
                                 Sobald die Verbindung hergestellt ist, werden links die vorhandenen Datenbankschemas mit ihren Tabellen
-                                angezeigt. Unsere Tabelle befinden sich alle im Schema <i>APP</i>.
+                                angezeigt. Unsere Tabellen befinden sich alle im Schema <i>APP</i>.
                             </p>
                             <img class="active d-block w-100" src="netbeans-dbtools-05.png" />
                         </div>
@@ -787,7 +785,7 @@
                         <div class="carousel-item img-thumbnail">
                             <p>
                                 Es öffnet sich ein Reiter, der im oberen Teil die ausgeführte SQL-Anweisung und unten ihr Ergebnis zeigt.
-                                Über die Toolbar können weiter Einträge eingefügt oder gelöscht werden.
+                                Über die Toolbar können weitere Einträge eingefügt oder gelöscht werden.
                             </p>
                             <img class="active d-block w-100" src="netbeans-dbtools-13.png" />
                         </div>
@@ -816,7 +814,7 @@
             </article>
             <aside>
                 <p>
-                    Nicht nur, dass Netbeans bereits ein fix und fertige Datenbank mitliefert, die wir beim Programmieren unserer
+                    Nicht nur, dass Netbeans bereits eine fix und fertige Datenbank mitliefert, die wir beim Programmieren unserer
                     Anwendungen benutzen können, es hat auch so noch ein paar Tricks parat, die hin und wieder nützlich sind.
                     Auf den nachfolgenden Bildern siehst du daher, wie du …
                 </p>
@@ -825,7 +823,7 @@
                         eine manuelle Verbindung zu Datenbank herstellen kannst.
                     </li>
                     <li>
-                        Tabellen von hand anlegen und bearbeiten kannst.
+                        Tabellen von Hand anlegen und bearbeiten kannst.
                     </li>
                     <li>
                         Tabellen wieder löschen kannst.
@@ -840,8 +838,7 @@
                 <img src="netbeans-databases.png" alt="Menüpunkt „Datebases” in Netbeans" class="d-block" style="max-width: 100%; margin-bottom: 1em;" />
                 <p>
                     All dies versteckt sich hinter dem Punkt <i>Databases</i> im Reiter <i>Services</i> sowie den dazugehörigen
-                    Kontextmenüs. Wie du in der Folie siehst, verstecken sich die meisten Funktionen hinter einem einfachen
-                    Rechtsklick.
+                    Kontextmenüs. Wie du in der Folie siehst, bringt ein einfacher Rechtsklick die schönsten Funktionen zu Tage.
                 </p>
             </aside>
         </section>
@@ -874,25 +871,7 @@
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
-                        Sie legt passende Tabelle für die Persistence Entities an.
-                    </li>
-                    <li>
-                        Sie dient als Low-Level API dazu, SQL-Befehle an die Datenbank zu schicken.
-                    </li>
-                    <li>
-                        Sie spricht einen O/R-Mapper an, der Tabelleneinträge in Javaobjekte umwandeln kann.
-                    </li>
-                    <li>
-                        Sie dient der Nutzung von Persistence Entities innerhalb der EJBs.
-                    </li>
-                </ol>
-
-                <p>
-                    b) Und welche Funktion erfüllt die „Java Persistence API”?
-                </p>
-                <ol class="dhbw-liste-mit-viel-text">
-                    <li>
-                        Sie legen passende Tabelle für die Persistence Entities an.
+                        Sie legen passende Tabellen für die Persistence Entities an.
                     </li>
                     <li>
                         Sie dienen als Low-Level API dazu, SQL-Befehle an die Datenbank zu schicken.
@@ -902,6 +881,24 @@
                     </li>
                     <li>
                         Sie dienen der Nutzung von Persistence Entities innerhalb der EJBs.
+                    </li>
+                </ol>
+
+                <p>
+                    c) Und welche Funktion erfüllt die „Java Persistence API”?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                   <li>
+                        Sie legt passende Tabellen für die Persistence Entities an.
+                    </li>
+                    <li>
+                        Sie dient als Low-Level API dazu, SQL-Befehle an die Datenbank zu schicken.
+                    </li>
+                    <li>
+                        Sie spricht einen O/R-Mapper an, der Tabelleneinträge in Javaobjekte umwandeln kann.
+                    </li>
+                    <li>
+                        Sie dient der Nutzung von Persistence Entities innerhalb der EJBs.
                     </li>
                 </ol>
 
