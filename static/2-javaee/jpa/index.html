@@ -30,16 +30,13 @@
                 <h3>Nach Abschluss dieser Einheit kannst du …</h3>
                 <ul>
                     <li>
-                        alle Schritte zur Entwicklung einer neuen Anwendung beschreiben.
-                    </li>
-                    <li>
                         erklären, welche <span class="dhbw-lightblue font-weight-bold">Klassenbibliotheken für den Datenbankzugriff</span> Java bietet.
                     </li>
                     <li>
                         erklären, was ein <span class="dhbw-lightblue font-weight-bold">O/R-Mapper</span> ist und welche Vor- und Nachteile er hat.
                     </li>
                     <li>
-                        beschreiben, was eine <span class="dhbw-lightblue font-weight-bold">Persistence Unit</span> ist und wofür wie sie benötigen.
+                        alle Schritte zur Entwicklung einer neuen Anwendung beschreiben.
                     </li>
                     <li>
                         die <span class="dhbw-lightblue font-weight-bold">Datenbankwerkzeuge von Netbeans</span> bedienen.
@@ -55,6 +52,9 @@
                     </li>
                     <li>
                         <span class="dhbw-lightblue font-weight-bold">Fremdschlüsselbeziehungen</span> zwischen zwei Entities sauber abbilden.
+                    </li>
+                    <li>
+                        beschreiben, was eine <span class="dhbw-lightblue font-weight-bold">Persistence Unit</span> ist und wofür wie sie benötigen.
                     </li>
                     <li>
                         den <span class="dhbw-lightblue font-weight-bold">Entity Manager</span> zum lesen, schreiben und löschen von Daten benutzen.
@@ -118,25 +118,529 @@
         </section>
 
         <section>
-            <h1>Von der Idee zur fertigen Anwendung</h1>
+            <h1>Wie Java mit der Datenbank spricht</h1>
             <article>
-                …
+                <img src="or-mapping.svg" alt="O/R-Mapping in Java" class="d-block" style="width: 100%; margin-bottom: 1em;" />
+                <table>
+                    <tr>
+                        <td style="padding-right: 0.5em">
+                            🛢️
+                        </td>
+                        <td>
+                            <b>JDBC:</b> Allgemeine API für den Zugriff auf relationale Datenbanken
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em">
+                            🛢️
+                        </td>
+                        <td>
+                            <b>JPA:</b> Auf JDBC aufbauende API für O/R-Mapper, die Javaobjekte in Tabelleneinträge und umgekehrt umwandeln
+                        </td>
+                    </tr>
+                </table>
             </article>
             <aside>
                 <p>
-                    …
+                    Die Java Enterprise Edition kennt zwei Klassenbibliotheken für den Datenbankzugriff: JDBC und JPA. JDBC steht dabei
+                    für <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/" target="_blank">Java Database Connection</a>
+                    und ist eine allgemeine API, mit der SQL-Befehle an eine Datenbank gesendet werden können. Es handelt sich dabei um die
+                    zugrunde liegende Schnittstelle, die immer genutzt wird, wenn auf eine Datenbank zugegriffen wird. Jedoch ist die
+                    Programmierung nicht ganz einfach, wie das folgende Beispiel zeigt:
+                </p>
+                <source-code language="java">
+                    @Stateless
+                    public class VielZuKompliziert {
+                        @Resource(mappedName="jdbc__/default")
+                        DataSource dataSource;
+
+                        public Buch findBuchByIsbn(String isbn)
+                        throws SQLException {
+                            try (Connection con = dataSource.getConnection()) {
+                                String select = "SELECT * FROM Buch WHERE isbn = ?";
+                                PrepatedStatement statement = con.prepareStatement(select);
+                                statement.setString(1, isbn);
+
+                                ResultSet result = statement.executeQuery();
+                                Buch buch = new Buch();
+
+                                while (result.next()) {
+                                    Buch.setIsbn(result.getString("isbn"));
+                                    Buch.setTitel(result.getString("titel"));
+                                    break;
+                                }
+
+                                result.close();
+                                statement.close();
+
+                                return buch;
+                            } catch (SQLException ex) {
+                                throw ex;
+                            }
+                        }
+
+                        // Weitere Methoden …
+                    }
+                </source-code>
+                <p>
+                    Ui, schrecklich! 👹 Bitte nicht! Das ist ja mega aufwändig! Und fehleranfällig! Und sonst noch was!
+                    Vor Java&nbsp;EE&nbsp;5 im Jahr 2006 war das tatsächlich die einzige offizielle API, um auf eine
+                    Datenbank zuzugreifen. Doch schon damals war das nicht wirklich schön, so dass sogleich alternative
+                    APIs wie <a href="http://hibernate.org/" target="_blank">Hibernate</a> entstanden, die wesentlich
+                    einfacher zu nutzen waren. Wir wollen das Ganze daher schnell wieder vergessen. Einzig, dass im
+                    Hintergrund immer noch JDBC werkelt, wenn wir mit der Datenbank reden, ist noch ganz interessant
+                    zu wissen.¹
+                </p>
+                <p>
+                    <small>
+                        ¹ Tatsächlich sieht die native API vieler Datenbanken für irgend eine Programmiersprache oftmals
+                        relativ ähnlich aus. Dies ist einer der Gründe, warum man als Anwendungsentwickler die nativen
+                        APIs niemals direkt verwenden sollte.
+                    </small>
+                </p>
+                <p>
+                    Viel angenehmer ist da JPA, was für <b>Java Persistence API</b> steht. Dabei handelt es sich um eine
+                    Klassenbibliothek, die zur Nutzung eines sogenannten O/R-Mappers dient, der zwischen den relationalen
+                    Welt der Datenbank und der objektorientierten Welt von Java vermittelt. Dadurch wird es möglich,
+                    Code wie folgenden zu schreiben:
+                </p>
+                <source-code language="java">
+                    @Statelss
+                    public class GanzEinfach {
+                        @PersistenceContext
+                        EntityManager em;
+
+                        public Buch findBuchByIsbn(String isbn) {
+                            return em.find(Buch.class, isbn);
+                        }
+
+                        public void saveNewBuch(Buch buch) {
+                            em.persist(buch);
+                        }
+
+                        // Weitere Methoden …
+                    }
+                </source-code>
+                <p>
+                    Hm, das sieht schon viel besser aus. Fast zu einfach. 😌 Doch ja, es ist wirklich so einfach. Die
+                    Grundidee ist schlicht, dass es zu jeder Tabelle eine Javaklasse gibt, deren Objekte den Zeilen
+                    der Tabelle entsprechen. Wollen wir eine Zeile auslesen, erzeugt der O/R-Mapper automatisch ein
+                    solches Objekt und übergibt ihm die Werte aus der Datenbank. Soll stattdessen ein neuer Datensatz
+                    geschrieben werden, erzeugen wir das Objekt einfach selbst und übergeben es dem O/R-Mapper. Die
+                    ganzen hässlichen Einzelheiten, wie wir sie oben gesehen haben, brauchen wir dabei nicht beachten.
+                    Das macht der O/R-Mapper für uns. Wir müssen lediglich eine Bean² mit den richtigen Feldern bereitstellen:
+                </p>
+                <p>
+                    <small>
+                        ² Eine Javaklasse, die für jedes Feld eine Set- und eine Get-Methode besitzt.
+                    </small>
+                </p>
+                <source-code language="java">
+                    @Entity
+                    public class Buch {
+                        @Id
+                        private String isbn;
+
+                        private String titel;
+                        private String untertitel;
+
+                        // Setter und Getter …
+                    }
+                </source-code>
+                <p>
+                    Das ist alles, was der O/R-Mapper braucht. Einfache Methoden wie <src-code language="java">em.find()</src-code> oder
+                    <src-code language="java">em.persist()</src-code> dienen dann dem Lesen und Schreiben von Datensätzen.
                 </p>
             </aside>
         </section>
 
         <section>
-            <h1>Wie Java mit der Datenbank spricht</h1>
+            <h1>Von der Idee zur fertigen Anwendung</h1>
             <article>
-                …
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "vorgehen-uebersicht-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#vorgehen-uebersicht"
+                                role          = "tab"
+                                aria-controls = "vorgehen-uebersicht"
+                                aria-expanded = "true"
+                            >
+                                Übersicht
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "vorgehen-datenmodell-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#vorgehen-datenmodell"
+                                role          = "tab"
+                                aria-controls = "vorgehen-datenmodell"
+                            >
+                                Datenmodell
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "vorgehen-services-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#vorgehen-services"
+                                role          = "tab"
+                                aria-controls = "vorgehen-services"
+                            >
+                                Services
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "vorgehen-benutzeroberflaeche-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#vorgehen-benutzeroberflaeche"
+                                role          = "tab"
+                                aria-controls = "vorgehen-benutzeroberflaeche"
+                            >
+                                Benutzeroberfläche
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Übersicht -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "vorgehen-uebersicht"
+                            role            = "tabpanel"
+                            aria-labelledby = "vorgehen-uebersicht-tab"
+                        >
+                            <p>
+                                Die untenstehende Zeichnung zeigt die wesentlichen Schritte, die bei der Entwicklung einer Java-EE-Anwendung anfallen.
+                                Die wichtigsten davon schauen wir uns anhand eines kleinen Fallbeispiels auf den folgenden Reitern etwas genauer an.
+                            </p>
+                            <img src="vorgehen-uebersicht.svg" alt="Schritte während der Entwicklung" class="d-block" style="width: 100%;" />
+                        </div>
+                        <!-- Datenmodell -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "vorgehen-datenmodell"
+                            role            = "tabpanel"
+                            aria-labelledby = "vorgehen-datenmodell-tab"
+                        >
+                            <p>
+                                Zunächst brauchen wir ein gutes Datenmodell, das nicht zu kompliziert aber dennoch flexibel ist. Unsere kleine Anwendung modelliert
+                                eine Buchsammlung. Wir haben daher Entitäten wie <span class="dhbw-lightblue">Buch</span>, <span class="dhbw-lightblue">Autor</span>
+                                oder <span class="dhbw-lightblue">Verlag</span>, die in Beziehung zueinander stehen. Zusätzlich hat jeder Autor und jeder Verlag eine
+                                <span class="dhbw-lightblue">Adresse</span>.
+                            </p>
+                            <img
+                                src   = "vorgehen-datenmodell.svg"
+                                alt   = "Datenmodell mit den Entitäten Buch, Autor, Verlag und Adresse"
+                                class = "d-block"
+                                style = "width: 35em; max-width: 100%; margin: 0 auto; margin-top: 1em; margin-bottom: 1em;"
+                            />
+                            <p>
+                                In Javacode sieht das ganze ungefähr so aus. Die Details dazu schauen wir uns natürlich noch an.
+                            </p>
+                            <source-code language="java">
+                                @Entity
+                                public class Buch {
+                                    @Id
+                                    private String isbn = "";
+
+                                    private String titel = "";
+                                    private String untertitel = "";
+                                    private BuchKategorie kategorie = BuchKategorie.UNBEKANNT;
+                                    private int anzahlSeiten = 0;
+
+                                    @ManyToMany
+                                    List&lt;Autor&gt; autoren = new ArrayList&lt;&gt;();
+
+                                    @ManyToOne
+                                    private Verlag verlag = null;
+
+                                    // Setter und Getter …
+                                }
+
+                                public enum BuchKategorie {
+                                    UNBEKANNT, BELLETRISTIK, FACHBUCH, SAMMELBAND, ZEITSCHRIFT;
+                                }
+
+                                @Entity
+                                public class Autor {
+                                    @Id
+                                    @GeneratedValue
+                                    private long id;
+
+                                    private String vorname;
+                                    private String nachname;
+                                    private String titel;
+
+                                    @OneToOne
+                                    Adresse adresse = null;
+
+                                    @ManyToMany(mappedBy="autoren")
+                                    List&lt;Buch&gt; buecher = new ArrayList&lt;&gt;();
+
+                                    // Setter und Getter …
+                                }
+
+                                @Entity
+                                public class Verlag {
+                                    @Id
+                                    @GeneratedValue
+                                    private long id;
+
+                                    private String name;
+                                    private String rechtsform;
+
+                                    @OneToOne
+                                    Adresse adresse = null;
+
+                                    @OneToMany(mappedBy="verlag")
+                                    List&lt;Buch&gt; buecher = new ArrayList&lt;&gt;();
+
+                                    // Setter und Getter …
+                                }
+
+                                @Entity
+                                public class Adresse {
+                                    @Id
+                                    @GeneratedValue
+                                    private long id;
+
+                                    private String strasse = "";
+                                    private String hausnummer = "";
+                                    private String postleitzahl = "";
+                                    private String ort = "";
+                                    private String land = "";
+
+                                    // Setter und Getter …
+                                }
+                            </source-code>
+                        </div>
+                        <!-- Services -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "vorgehen-services"
+                            role            = "tabpanel"
+                            aria-labelledby = "vorgehen-services-tab"
+                        >
+                            <p>
+                                Darauf aufbauend können wir nun Services definieren, die sinnvolle Funktionen rund um die Entitäten zur Verfügung stellen.
+                                Im einfachsten Fall bieten wir hierfür die üblichen CRUD-Operationen: <span class="dhbw-lightblue">Create</span>,
+                                <span class="dhbw-lightblue">Read</span>, <span class="dhbw-lightblue">Update</span> und <span class="dhbw-lightblue">Delete</span>.
+                            </p>
+
+                            <img
+                                src   = "vorgehen-services.svg"
+                                alt   = "Klassendiagramm der Klassen BuchService, AutorService, VerlagService"
+                                class = "d-block"
+                                style = "width: 42em; max-width: 100%; margin: 0 auto; margin-top: 1em; margin-bottom: 1em;"
+                            />
+
+                            <source-code language="java">
+                                @Stateless
+                                public class BuchService {
+                                    @PersistenceContext
+                                    EntityManager em;
+
+                                    // Bücher selektieren
+                                    public Buch findByIsbn(String isbn) { … }
+                                    public List&lt;Buch&gt; findByAutor(Autor autor) { … }
+                                    public List&lt;Buch&gt; findByVerlag(Verlag verlag) { … }
+                                    public List&lt;Buch&gt; findByTitleContains(String title) { … }
+
+                                    // Neue Bücher speichern
+                                    public Buch saveNew(Buch buch) { … }
+
+                                    // Bücher Verlage ändern
+                                    public Buch update(Buch buch) { … }
+                                    public void delete(Buch buch) { … }
+                                }
+
+                                @Stateless
+                                public class VerlagService {
+                                    …
+                                }
+
+                                @Stateless
+                                public class AutorService {
+                                    …
+                                }
+                            </source-code>
+                        </div>
+                        <!-- Benutzeroberfläche -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "vorgehen-benutzeroberflaeche"
+                            role            = "tabpanel"
+                            aria-labelledby = "vorgehen-benutzeroberflaeche-tab"
+                        >
+                            <p>
+                                Und last but not least eine schöne Benutzeroberfläche, entweder als serverseitige MVC-Webanwendung,
+                                als clientseitige Webanwendung oder als Native Client. Oder jede beliebige Kombination daraus,
+                                ganz wie du willst.
+                            </p>
+                            <img
+                                src   = "vorgehen-ui.png"
+                                alt   = "Benutzeroberflächen für Smartphone, Tablet, Desktop und Notebook"
+                                class = "d-block"
+                                style = "width: 100%; margin-top: 1em;"
+                            />
+
+                            <source-code language="java">
+                                @WebServlet(urlPatterns={"/start/"})
+                                public class StartPageServlet extends HttpServlet {
+                                    @EJB
+                                    BuchService buchService;
+
+                                    @EJB
+                                    AutorService autorService;
+
+                                    @EJB
+                                    VerlagService verlagService;
+
+                                    @Override
+                                    public void doGet(HttpServletRequest request, HttpServletResponse)
+                                    throws ServletException, IOException {
+                                        …
+                                    }
+                                }
+                            </source-code>
+
+                            <p>
+                                <small>
+                                    <small>
+                                        Bildnachweise:
+                                        <a href="https://pixabay.com/de/imac-ipad-iphone-macbook-laptop-1999636/" target="_blank">Pixabay: Nick_H</a>,
+                                        <a href="https://pixabay.com/de/buch-rack-regal-m%C3%B6bel-design-holz-2943383/" target="_blank">Pixabay: JuralMin</a>
+                                    </small>
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    Ordnung ist das halbe Leben. Was im Alltag gilt, gilt natürlich auch bei der Entwicklung großer Anwendungen,
+                    wie sie bei Java&nbsp;EE häufig vorkommen. Bevor du also einfach so drauf los programmierst, solltest du eine
+                    möglichst genaue Vorstellung davon haben, was für eine Anwendung du schreiben willst, wie der Quellcode aufgebaut
+                    sein muss und wie du hierfür am besten vorgehst. Kurz um: Du brauchst einen Plan, damit du dich nicht in eine Ecke
+                    programmierst, aus der du nur schwer wieder herauskommst: 🙃
+                </p>
+                <a href="https://xkcd.com/1513/" target="_blank">
+                    <img src="https://imgs.xkcd.com/comics/code_quality.png" class="d-block" style="width: 100%;" />
+                </a>
+                <p>
+                    <small>
+                        I honestly didn't think you could even USE emoji in variable names. <br />
+                        Or that there were so many different crying ones. <br />
+                        Bildnachweis: <a href="https://xkcd.com/1513/" target="_blank">Randall Munroe, xkcd 1513</a>
+                    </small>
+                </p>
+                <p>
+                    Das Gute daran ist, dass das gar nicht so schwer ist, wie du jetzt vielleicht denken magst. Denn immerhin gibt es
+                    die Java Enterprise Edition nun schon so lange, dass reichlich viel Erfahrung in ihre Entwicklung geflossen ist.
+                    Ein klein wenig strukturiertes Vorgehen gepaart mit ein paar einfachen Regeln und hier und da bewährten Techniken
+                    aus dem Software-Engingeering-Fundus und schon ergibt der Rest fast von alleine. 🦋
+                </p>
+                <p>
+                    Anfangen solltest du daher immer mit dem Datenmodell, denn es ist das Fundament, auf dem alles andere aufbaut. Bevor
+                    du also auch nur daran denkst, die IDE zu starten, solltest du erst das Datenmodell definieren und so genau wie möglich
+                    beschreiben. <a href="https://de.wikipedia.org/wiki/Entity-Relationship-Modell" target="_blank">ER-Diagramme</a> können
+                    dabei eine große Hilfe sein, aber natürlich tut es auch jede andere Darstellungsform. Wichtig ist nur, dass alle Tabellen
+                    mit allen Feldern gut durchdacht sind, es keine Redundanzen gibt und das Datenmodell nicht komplexer als unbedingt nötig
+                    ist. Reicht zum Beispiel ein Feld für die Telefonnummer oder muss sie in ihre einzelnen Bestandteile¹ zerlegt werden?
+                    Hat eine Firma nur eine Adresse oder müssen auch ihre Niederlassungen abgespeichert werden? Reicht dabei die aktuelle
+                    Adresse oder werden auch historische Adressen benötigt? Solche Fragen musst du dir stellen und beantworten, bevor zu
+                    programmieren anfängst.
+                </p>
+                <p>
+                    <small>
+                        ¹ Ländervorwahl, Ortsvorwahl, Anschlussnummer, Durchwahl
+                    </small>
+                </p>
+                <p>
+                    Als nächstes gilt es dann, das Datenmodell im Quellcode abzubilden, also <b>Persistence Entities</b> zu schreiben,
+                    wobei du dir aussuchen kannst, ob du erst die Klassen schreibst und daraus dann Tabellen generieren lässt, oder
+                    ob du erst die Tabellen anlegst und daraus dann die Klassen generierst. Alternativ kannst du natürlich auch sowohl
+                    die Klassen als auch die Tabellen manuell anlegen, je nachdem, was dir lieber ist. In der Vorlesung machen wir es
+                    uns jedoch einfach und schreiben nur die Klassen. Den Rest darf Java&nbsp;EE alleine machen. 😋 Wie die Klassen
+                    hierfür aussehen müssen, schauen wir uns gleich genauer an. Für den Anfang reicht es aber zu wissen, dass es sich
+                    um ganz normale Javaklassen handelt, von denen je ein Objekt einer Tabellenzeile entspricht. Die Klassen müssen
+                    hierfür lediglich mit <code>@Entity</code> gekennzeichnet werden und für jedes Tabellenfeld ein Attribut mit
+                    Settern und Gettern enthalten:
+                </p>
+                <source-code language="java">
+                    @Entity
+                    public class Buch {
+                        @Id
+                        private String isbn;
+
+                        public String getIsbn() {
+                            return this.isbn;
+                        }
+
+                        public void setIsbn(String isbn) {
+                            this.isbn = isbn;
+                        }
+
+                        …
+                    }
+                </source-code>
+                <p>
+                    Als nächstes folgen <b>Enterprise Java Beans</b>, die sinnvolle Methoden rund um das Datenmodell definieren.
+                    Sie bilden sozusagen die Schnittstelle, mit der auf die Daten zugegriffen werden kann. Die Beans sollten daher
+                    die üblichen CRUD-Methoden zum Anlegen, Lesen, Aktualisieren und Löschen von Einträgen beinhalten. Darüber hinaus
+                    können Sie natürlich noch alle möglichen, weiteren Methoden umfassen, die für den Umgang mit den Daten nützlich sind.
+                </p>
+                <source-code language="java">
+                    @Stateless
+                    public class BuchService {
+                        @PersistenceContext
+                        EntityManager em;
+
+                        // Bücher selektieren
+                        public Buch findByIsbn(String isbn) { … }
+                        public List&lt;Buch&gt; findByTitleContains(String title) { … }
+
+                        // Neue Bücher speichern
+                        public Buch saveNew(Buch buch) { … }
+
+                        // Bücher Verlage ändern
+                        public Buch update(Buch buch) { … }
+                        public void delete(Buch buch) { … }
+                    }
+                </source-code>
+                <p>
+                    Auf dieser Ebene würde man dann auch <a href="https://de.wikipedia.org/wiki/Modultest" target="_blank">Unit Tests</a>
+                    schreiben, um jederzeit die richtige Funktionsweise der Beans überprüfen zu können. Zusätzlich können die Beans mit
+                    ganz wenig Aufwand zu Webservices ausgebaut werden, um somit auch von entfernten Clients aufgerufen werden zu können.
+                    Die Details dazu schauen wir uns im Webservice-Kapitel an. Um dir zu zeigen, dass es aber wirklich ganz einfach geht,
+                    hier ein minimales Beispiel:
+                </p>
+                <source-code language="java">
+                    @Stateless
+                    @WebService
+                    public class BuchService {
+                        @PersistenceContext
+                        EntityManager em;
+
+                        @WebMethod
+                        @WebResult(name="buch")
+                        public Buch findByIsbn(@WebParam(name="isbn") String isbn) {
+                            …
+                        }
+                    }
+                </source-code>
+                <p>
+                    Fehlt dann nur noch die Benutzeroberfläche, wobei dir hier das volle Programm zur Verfügung steht: Serverseitige
+                    Webanwendungen, clientseitige Webanwendungen oder Native Clients für verschiedene Betriebssysteme. Alles ist erlaubt.
                 </p>
             </aside>
         </section>
@@ -144,23 +648,25 @@
         <section>
             <h1>Welche Datenbank nutzen wir eigentlich?</h1>
             <article>
-                …
-            </article>
-            <aside>
                 <p>
-                    …
+                    Netbeans enthält die Datenbank <a href="https://db.apache.org/derby/" target="_blank">Apache Derby</a>.
+                    Selbstverständlich können wir auch jede andere Datenbank verwenden, wenn wir sie selbst konfigurieren.
+                    Aber wozu? Derby funktioniert prima.
                 </p>
-            </aside>
-        </section>
-
-        <section>
-            <h1>Ohne Persistence Unit geht es nicht</h1>
-            <article>
-                …
+                <img src="netbeans-derby.png" alt="Netbeans mit gestarteter Derby-Datenbank" class="d-block" style="width: 100%;" />
             </article>
             <aside>
                 <p>
-                    …
+                    Tja, das ist eine gute Frage. Dank der weiten Verbreitung von Java und JDBC können wir eigentlich jede beliebige
+                    Datenbank verwenden. Jede Datenbank, die etwas auf sich hält, kommt auch mit einem JDBC-Treiber, auf den der
+                    Applikationsserver zugreifen kann.
+                </p>
+                <p>
+                    Für den Produktiveinsatz unserer Anwendungen ist das wichtig zu wissen. Für die Entwicklung ist es und jedoch
+                    ein Stück weit egal, da Netbeans bereits eine Datenbank samt passender Glassfish-Konfiguration mitliefert.
+                    Sie hört auf den Namen <a href="https://db.apache.org/derby/" target="_blank">Apache Derby</a>, ist in Java
+                    geschrieben und wird automatisch mitgestartet, wenn wir unsere Anwendungen laufen lassen. Es ist schon alles
+                    fix und fertig eingerichtet, wir müssen nichts tun. Wie schön. ☺️
                 </p>
             </aside>
         </section>
@@ -168,23 +674,388 @@
         <section>
             <h1>Über die Datenbankwerkzeuge in Netbeans</h1>
             <article>
-                …
+                <ul class="dhbw-carousel-links">
+                    <li>
+                        <a href="#netbeans-dbtools-carousel" role="button" data-slide="next">Nächstes Bild</a>
+                    </li>
+                    <li>
+                        <a href="#netbeans-dbtools-carousel" role="button" data-slide="prev">Vorheriges Bild</a>
+                    </li>
+                    <li>
+                        <a href="#netbeans-dbtools-carousel" role="button" data-slide-to="0">Nochmal von vorne</a>
+                    </li>
+                </ul>
+                <ul class="dhbw-carousel-links">
+                    <li>
+                        <small>
+                            <a href="#netbeans-dbtools-carousel" role="button" data-slide-to="0">Verbindung herstellen</a>
+                        </small>
+                    </li>
+                    <li>
+                        <small>
+                            <a href="#netbeans-dbtools-carousel" role="button" data-slide-to="5">Tabellen bearbeiten</a>
+                        </small>
+                    </li>
+                    <li>
+                        <small>
+                            <a href="#netbeans-dbtools-carousel" role="button" data-slide-to="11">Inhalte anzeigen und ändern</a>
+                        </small>
+                    </li>
+                </ul>
+                <div id="netbeans-dbtools-carousel" class="carousel slide" style="margin-bottom: 1em;" data-interval="false">
+                    <div class="carousel-inner">
+                        <div class="carousel-item img-thumbnail active">
+                            <p>
+                                Bevor die Datenbank genutzt werden kann, muss sie gestartet werden. Am einfachst startest du hierfür
+                                eine Webanwendung. Die Datenbank wird dann automatisch mitgestartet.
+                            </p>
+                            <img class="active d-block w-100" src="netbeans-dbtools-01.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Links findest du den Reiter <i>Services</i> mit dem Menüpunkt <i>Databases</i>. Dort sollte die Datenbank bereits
+                                eingetragen sein, so dass du dich nur noch mit Rechtsklick und <i>Connect…</i> verbinden musst. Benutzername und
+                                Passwort lauten jeweils <b>app</b>.
+                            </p>
+                            <img class="active d-block w-100" src="netbeans-dbtools-02.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Fehlt der Eintrag, klappe den Eintrag <i>Drivers</i> auf, mache einen Rechtsklick auf <i>Java DB (Network)</i> und
+                                wähle den Menüpunkt <i>Connect Using…</i> aus.
+                            </p>
+                            <img class="active d-block w-100" src="netbeans-dbtools-03.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Daraufhin öffnet sich folgendes Fenster. Übernimm die Werte aus dem Screenshot und teste die Verbindung mit
+                                <i>Test Connection</i>. Wenn alles in Ordnung ist, klicke auf <i>Finish</i>. Benutzername und Passwort lauten
+                                weiterhin jeweils <b>app</b>.
+                            </p>
+                            <img class="active d-block w-100" src="netbeans-dbtools-04.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Sobald die Verbindung hergestellt ist, werden links die vorhandenen Datenbankschemas mit ihren Tabellen
+                                angezeigt. Unsere Tabelle befinden sich alle im Schema <i>APP</i>.
+                            </p>
+                            <img class="active d-block w-100" src="netbeans-dbtools-05.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Per Rechtsklick auf den Eintrag <i>Table</i> lässt sich eine neue Tabelle anlegen.
+                            </p>
+                            <img class="active d-block w-100" src="netbeans-dbtools-06.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Dadurch öffnet sich ein Fenster, in dem der Name der Tabelle sowie ihre Spalten hinterlegt werden.
+                            </p>
+                            <img class="active d-block w-100" src="netbeans-dbtools-07.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Mit einem Rechtsklick auf eine Tabelle lassen sich nachträglich weitere Felder anhängen.
+                            </p>
+                            <img class="active d-block w-100" src="netbeans-dbtools-08.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                So sieht dann das Fenster zum Anhängen eines weiteren Felds aus.
+                            </p>
+                            <img class="active d-block w-100" src="netbeans-dbtools-09.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Einzelne Felder lassen sich per Rechtsklick und <i>Delete</i> auch wieder löschen.
+                            </p>
+                            <img class="active d-block w-100" src="netbeans-dbtools-10.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Genau wie die ganze Tabelle, wenn es sein muss. Manchmal kannst du dadurch Probleme beim Starten der Anwendung lösen, wenn
+                                die Entityklassen nicht mehr zu den Tabellen passen.
+                            </p>
+                            <img class="active d-block w-100" src="netbeans-dbtools-11.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Rechtsklick auf eine Tabelle und dann <i>View Data…</i> dient der Anzeige vorhandener Tabelleneinträge.
+                            </p>
+                            <img class="active d-block w-100" src="netbeans-dbtools-12.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Es öffnet sich ein Reiter, der im oberen Teil die ausgeführte SQL-Anweisung und unten ihr Ergebnis zeigt.
+                                Über die Toolbar können weiter Einträge eingefügt oder gelöscht werden.
+                            </p>
+                            <img class="active d-block w-100" src="netbeans-dbtools-13.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Das Kontextmenü enthält ebenfalls ein paar interessante Einträge.
+                            </p>
+                            <img class="active d-block w-100" src="netbeans-dbtools-14.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Du siehst: Netbeans hat echt mächtige Datenbankwerkzeuge an Board. 🦄
+                            </p>
+                            <img class="active d-block w-25 m-auto" src="../../finish.svg" />
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                    <small>
+                        <small>
+                            Bildnachweis für das Endesymbol: <a href="https://pixabay.com/en/symbol-gui-internet-internet-page-2480163/" target="_blank">Pixabay: janf93</a>
+                        </small>
+                    </small>
+                </p>
             </article>
             <aside>
                 <p>
-                    …
+                    Nicht nur, dass Netbeans bereits ein fix und fertige Datenbank mitliefert, die wir beim Programmieren unserer
+                    Anwendungen benutzen können, es hat auch so noch ein paar Tricks parat, die hin und wieder nützlich sind.
+                    Auf den nachfolgenden Bildern siehst du daher, wie du …
+                </p>
+                <ul>
+                    <li>
+                        eine manuelle Verbindung zu Datenbank herstellen kannst.
+                    </li>
+                    <li>
+                        Tabellen von hand anlegen und bearbeiten kannst.
+                    </li>
+                    <li>
+                        Tabellen wieder löschen kannst.
+                    </li>
+                    <li>
+                        die Inhalte einer Tabelle anzeigen kannst.
+                    </li>
+                    <li>
+                        sowie Tabellenzeilen einfügen, bearbeiten und löschen kannst.
+                    </li>
+                </ul>
+                <img src="netbeans-databases.png" alt="Menüpunkt „Datebases” in Netbeans" class="d-block" style="max-width: 100%; margin-bottom: 1em;" />
+                <p>
+                    All dies versteckt sich hinter dem Punkt <i>Databases</i> im Reiter <i>Services</i> sowie den dazugehörigen
+                    Kontextmenüs. Wie du in der Folie siehst, verstecken sich die meisten Funktionen hinter einem einfachen
+                    Rechtsklick.
                 </p>
             </aside>
         </section>
 
         <section data-background-color="rgb(231, 221, 141)">
-            <h1>Aufgabe 1: Ein kleines O/R-Mapping-Quiz</h1>
+            <h1>Aufgabe 1: Ein kleines Datenbank-Quiz</h1>
             <article>
-                …
+                <h2>Aufgabe 1.1: Datenbankzugriffe mit Java</h2>
+
+                <p>
+                    a) Welche beiden Datenbank-APIs kennt die Java Enterprise Edition?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        JPA und JDBB
+                    </li>
+                    <li>
+                        JDK und JDBC
+                    </li>
+                    <li>
+                        JFK und JDCB
+                    </li>
+                    <li>
+                        JPA und JDBC
+                    </li>
+                </ol>
+
+                <p>
+                    b) Welche Funktion erfüllen die „Java Database Connection”-Klassen?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Sie legt passende Tabelle für die Persistence Entities an.
+                    </li>
+                    <li>
+                        Sie dient als Low-Level API dazu, SQL-Befehle an die Datenbank zu schicken.
+                    </li>
+                    <li>
+                        Sie spricht einen O/R-Mapper an, der Tabelleneinträge in Javaobjekte umwandeln kann.
+                    </li>
+                    <li>
+                        Sie dient der Nutzung von Persistence Entities innerhalb der EJBs.
+                    </li>
+                </ol>
+
+                <p>
+                    b) Und welche Funktion erfüllt die „Java Persistence API”?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Sie legen passende Tabelle für die Persistence Entities an.
+                    </li>
+                    <li>
+                        Sie dienen als Low-Level API dazu, SQL-Befehle an die Datenbank zu schicken.
+                    </li>
+                    <li>
+                        Sie sprechen einen O/R-Mapper an, der Tabelleneinträge in Javaobjekte umwandeln kann.
+                    </li>
+                    <li>
+                        Sie dienen der Nutzung von Persistence Entities innerhalb der EJBs.
+                    </li>
+                </ol>
+
+                <h2>Aufgabe 1.2: Vorgehen bei der Entwicklung</h2>
+
+                <p>
+                    a) In welcher Reihenfolge sind die folgenden Schritte während der Entwicklung durchzuführen?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Enterprise Java Beans entwickeln
+                    </li>
+                    <li>
+                        Benutzeroberfläche oder Clients entwickeln
+                    </li>
+                    <li>
+                        Datenmodell definieren
+                    </li>
+                    <li>
+                        Tabellen anlegen (falls von Hand erledigt)
+                    </li>
+                    <li>
+                        Serviceschicht definieren
+                    </li>
+                    <li>
+                        Persistence Entities anlegen
+                    </li>
+                    <li>
+                        Webservices anlegen
+                    </li>
+                </ol>
+
+                <p>
+                    b) Entfernte Clients können die Persistence Entities direkt nutzen, um Daten zu lesen oder zu schreiben?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Wahr
+                    </li>
+                    <li>
+                        Falsch
+                    </li>
+                </ol>
+
+                <p>
+                    c) Welche Methoden sollten die Enterprise Java Beans in aller Regel beinhalten?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Create, Read, Unlock, Delete
+                    </li>
+                    <li>
+                        Create, Rest, Update, Dismiss
+                    </li>
+                    <li>
+                        Create, Read, Update, Delete
+                    </li>
+                    <li>
+                        Create, Read, Update, Discard
+                    </li>
+                </ol>
+
+                <h2>Aufgabe 1.3: Datenkbanken in Netbeans</h2>
+
+                <p>
+                    a) Welche Datenbanken werden von Netbeans unterstüzt?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Apache Derby
+                    </li>
+                    <li>
+                        PostgreSQL, mySQL und MariaDB
+                    </li>
+                    <li>
+                        Alle Datenbanken, für die es JDBC-Treiber gibt
+                    </li>
+                </ol>
+
+                <p>
+                    b) Welche Datenbank liefert Netbeans praktischerweise schon mit aus?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Apache Derby
+                    </li>
+                    <li>
+                        MariaDB
+                    </li>
+                    <li>
+                        Microsoft SQL Server
+                    </li>
+                    <li>
+                        Oracle Express Edition
+                    </li>
+                    <li>
+                        Oracle mySQL
+                    </li>
+                    <li>
+                        PostgreSQL
+                    </li>
+                    <li>
+                        SQLite
+                    </li>
+                    <li>
+                        Keine
+                    </li>
+                </ol>
+
+                <p>
+                    c) Welche der folgenden Datenbankoperationen können mit Netbeans ausgeführt werden?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Tabellen anlegen
+                    </li>
+                    <li>
+                        Tabellen bearbeiten
+                    </li>
+                    <li>
+                        Tabellen löschen
+                    </li>
+                    <li>
+                        Tabelleninhalte anzeigen
+                    </li>
+                    <li>
+                        Tabelleninhalte einfügen
+                    </li>
+                    <li>
+                        Tabelleninhalte ändern
+                    </li>
+                    <li>
+                        Tabelleninhalte löschen
+                    </li>
+                    <li>
+                        SQL-Befehle abschicken
+                    </li>
+                </ol>
+
+                <hr />
+
+                <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                    <small>
+                        <b>Lösung:</b> <br />
+                        Aufgabe 1.1: 4, 2, 3 <br />
+                        Aufgabe 1.2: 3 → 4 → 6 → 5 → 1 → 7 → 2, 2, 3 <br />
+                        Aufgabe 1.3: 3, 1, alle
+                    </small>
+                </p>
             </article>
             <aside>
                 <p>
-                    …
+                    So, das erste wäre geschafft. 👏🏼 Zeit für eine kurze Pause und ein kleines Quiz. 🍨
+                    Danach schauen wir uns die Programmierung an.
                 </p>
             </aside>
         </section>
@@ -305,6 +1176,18 @@
                     </small>
                 </small>
             </article>
+        </section>
+
+        <section>
+            <h1>Ohne Persistence Unit geht es nicht</h1>
+            <article>
+                …
+            </article>
+            <aside>
+                <p>
+                    …
+                </p>
+            </aside>
         </section>
 
         <section>
