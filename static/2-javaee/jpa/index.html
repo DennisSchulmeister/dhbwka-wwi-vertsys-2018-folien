@@ -3122,7 +3122,7 @@
             </article>
             <aside>
                 <p>
-                    <i>Guten Tag, Manager mein Name. Entity Manager. Ich bediene sie heute. Was würden Sie denn gerne bestellen?
+                    <i>Guten Tag, Manager mein Name. Entity Manager. Ich bediene Sie heute. Was würden Sie denn gerne bestellen?
                     Ah, einmal den Film Nummer 7, sehr gern. </i> So oder so ähnlich würde es klingen, wenn wir uns wirklich mit
                     Java unterhalten könnten. 📞 Denn der Entity Manager ist das Objekt, das uns die ganze schreckliche
                     JDBC-Programmierung aus <a href="#3">Folie 3</a> vom Hals hält. Oder anders gesagt: Er ist der O/R-Mapper,
@@ -3276,7 +3276,7 @@
                                                         "SELECT f FROM Film f"
                                                       + "    WHERE f.name LIKE :name"
                                                       + "      AND f.jahr BETWEEN :von AND :bis"
-                                                      + "      AND g.gnre = :genre"
+                                                      + "      AND g.genre = :genre"
                                                      )
                                                      .setParameter("name", name)
                                                      .setParameter("von", vonJahr)
@@ -3655,7 +3655,7 @@
                     mit Java&nbsp;EE oder ähnlichen Plattformen hat und ein gutes Stück weit lässt sich auch gar
                     keine allgemeingültige Antwort auf diese Frage finden. Dennoch hat es sich in der Praxis bewährt,
                     einen gewissen Grundstock an EJBs anzubieten, der sich einfach an den vorhandenen Persistence
-                    Entities orientiert.  Die Überlegung dahinter ist, dass die sehr viele Benutzeroberflächen und
+                    Entities orientiert.  Die Überlegung dahinter ist, dass sehr viele Benutzeroberflächen und
                     Clients eigentlich nur folgende Dinge tun:
                 </p>
                 <table style="margin-bottom: 1em;">
@@ -3693,7 +3693,7 @@
                     </tr>
                 </table>
                 <p>
-                    Also genau die vier CRUD-Operationen alle datenzentrischer Anwendungen: Create, Read, Update
+                    Also genau die vier CRUD-Operationen aller datenzentrischer Anwendungen: Create, Read, Update
                     und Delete. Wie wir schon gesehen haben, lassen sich diese Operationen danke dem Entity Manager
                     relativ einfach ausprogrammieren. Unser Vorschlag ist daher, zu jeder Persistence Entity eine
                     gleichlautende EJB zu entwickeln, welche die auf der Folie gezeigten Methoden beinhaltet:
@@ -3779,7 +3779,7 @@
                         >
                             <p>
                                 Nimm die beiden Entitäten <i>Film</i> und <i>Mitwirkender</i> von <a href="#aufgabe2">Aufgabe 2</a>
-                                schreibe je eine Enterprise Java Bean, mit den folgenden Methoden.
+                                und schreibe je eine Enterprise Java Bean, mit folgenden Methoden.
                             </p>
 
                             <h4 class="dhbw-lightblue">Klasse FilmBean</h4>
@@ -3824,7 +3824,7 @@
                             </ul>
 
                             <p>
-                                Programmiere die beiden Klassen erst komplett von Hand aus, bevor du ein zweite Version auf
+                                Programmiere die beiden Klassen erst komplett von Hand aus, bevor du eine zweite Version auf
                                 Grundlage der eben gezeigten, abstrakten <a href="#19">EntityBean</a> schreibst.
                             </p>
                         </div>
@@ -4036,7 +4036,7 @@
                 </ol>
 
                 <p>
-                    d) Welche Vorteile hat die Java Query Persistent Language gegenüber SQL?
+                    d) Welche Vorteile hat die Java Persistence Query Language gegenüber SQL?
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
@@ -4051,7 +4051,7 @@
                 </ol>
 
                 <p>
-                    e) Und welche Nachteile hat die Java Persistent Query Language gegenüber SQL?
+                    e) Und welche Nachteile hat die Java Persistence Query Language gegenüber SQL?
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
@@ -4175,7 +4175,7 @@
                         Definiere Indizies für sehr häufg gebrauchte Selektionen.
                     </li>
                     <li>
-                        Lege komplexe oder an mehreren Stellen benötigte Selektionen in Entityklasse als <code>@NamedQuery</code> an.
+                        Lege komplexe oder an mehreren Stellen benötigte Selektionen in der Entityklasse als <code>@NamedQuery</code> an.
                     </li>
                     <li>
                         Belege alle Attribute mit einem sinnvollen Startwert vor.
@@ -4187,7 +4187,7 @@
                         Spendiere jeder Persistence Entity mehrere Konstruktoren, um ihre Benutzung zu vereinfachen.
                     </li>
                     <li>
-                        Übergabe eine automatisch generierte Id niemals an einen Konstruktor.
+                        Übergabe die Id nicht an den Konstruktor, wenn sie automatisch generiert werden soll.
                     </li>
                 </ul>
 
@@ -4197,7 +4197,7 @@
                         Überlege dir, die Tabellen im Produktivbetrieb von Hand anzulegen, um sie zu optimieren.
                     </li>
                     <li>
-                        Auf jeden Fall achte darauf, die richige <b>Table Generation Strategy</b> zu wählen.
+                        Auf jeden Fall achte darauf, die richtige <b>Table Generation Strategy</b> zu wählen.
                     </li>
                     <li>
                         Nutze <code>@Table</code> und <code>@Column</code>, um die Namen von Tabellen und Feldern anzupassen.
@@ -4210,7 +4210,7 @@
                         Definiere gute Enterprise Java Beans zur Verwendung der Persistence Entities.
                     </li>
                     <li>
-                        Lagere sich häufig wiederholenden Code in einer allgemeine Basisklasse aus.
+                        Lagere sich häufig wiederholenden Code in einer allgemeinen Basisklasse aus.
                     </li>
                     <li>
                         Nutze immer <code>addParameter()</code>, um Feldwerte in eine <code>WHERE</code>-Bedingung einzubauen.
@@ -4225,7 +4225,7 @@
                         Programmiere besonders performancekritische Sachen mit Native SQL.
                     </li>
                     <li>
-                        Biete gleichzeitig aber immer auch eine JQL-Version für nicht kompatible Datenbanken.
+                        Biete gleichzeitig aber immer auch eine JQL-Version für nicht-kompatible Datenbanken.
                     </li>
                 </ul>
             </article>
