@@ -2185,7 +2185,7 @@
             </aside>
         </section>
 
-        <section data-background-color="rgb(231, 221, 141)">
+        <section data-background-color="rgb(231, 221, 141)" id="aufgabe2">
             <h1>Aufgabe 2: Wir eröffnen ein Kino</h1>
             <article>
                 <div>
@@ -2422,6 +2422,7 @@
                                     @GeneratedValue
                                     private long id = 0;
 
+                                    private Wochentag wochentag = Wochentag.UNBEKANNT;
                                     private Time vonUhrzeit = new Time();
                                     private Time bisUhrzeit = new Time();
                                     private String kinosaal = "";
@@ -2820,11 +2821,127 @@
         <section>
             <h1>Ohne Persistence Unit geht es nicht</h1>
             <article>
-                …
+                <ul class="dhbw-carousel-links">
+                    <li>
+                        <a href="#persistence-unit-carousel" role="button" data-slide="next">Nächstes Bild</a>
+                    </li>
+                    <li>
+                        <a href="#persistence-unit-carousel" role="button" data-slide="prev">Vorheriges Bild</a>
+                    </li>
+                    <li>
+                        <a href="#persistence-unit-carousel" role="button" data-slide-to="0">Nochmal von vorne</a>
+                    </li>
+                </ul>
+                <div id="persistence-unit-carousel" class="carousel slide" style="margin-bottom: 1em;" data-interval="false">
+                    <div class="carousel-inner">
+                        <div class="carousel-item img-thumbnail active">
+                            <p>
+                                Angenommen, du hast gerade ein neues Webprojekt in Netbeans erstellt.
+                            </p>
+                            <img class="active d-block w-100" src="persistence-unit-01.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Dann sieht das Projekt am Anfang natürlich noch ziemlich leer aus. Vor allem fehlt uns eine
+                                <b>Persistence Unit</b>, die definiert, mit welcher Datenbank wir arbeiten.
+                            </p>
+                            <img class="active d-block w-100" src="persistence-unit-02.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Per Rechtsklick auf den Namen des Projekts lässt sie sich ganz einfach anlegen.
+                            </p>
+                            <img class="active d-block w-100" src="persistence-unit-03.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Im darauf folgenden Fenster musst du die folgenden Werte übernehmen, damit hinterher alles
+                                so läuft, wie es soll. 🚶🏿
+                            </p>
+                            <img class="active d-block w-100" src="persistence-unit-04.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Im Menü links taucht nun die Datei <tt>persistence.xml</tt> auf. Netbeans bietet hierfür
+                                auch gleich einen praktischen Editor.
+                            </p>
+                            <img class="active d-block w-100" src="persistence-unit-05.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                So sieht der XML-Code der Datei aus. Der grafische Editor ist aber einfacher zu bedienen.
+                            </p>
+                            <img class="active d-block w-100" src="persistence-unit-06.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Jetzt kann es los gehen. 🏁 Lass uns ein paar Daten selektieren.
+                            </p>
+                            <img class="active d-block w-25 m-auto" src="../../finish.svg" />
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                    <small>
+                        <small>
+                            Bildnachweis für das Endesymbol: <a href="https://pixabay.com/en/symbol-gui-internet-internet-page-2480163/" target="_blank">Pixabay: janf93</a>
+                        </small>
+                    </small>
+                </p>
             </article>
             <aside>
                 <p>
-                    …
+                    Bisher sind wir immer davon ausgegangen, dass der Applikationsserver mit nur einer Datenbank verbunden ist und daher
+                    einfach alles seinen richtigen Weg läuft. Das muss aber nicht so sein, ein Applikationsserver kann durchaus mit mehreren
+                    Datenbanken verbunden sein, so dass jede darauf laufende Anwendung seine eigene Datenbank nutzt. Ja, das ist sogar der
+                    Normalfall, selbst wenn die Datenbanken alle vom selben Datenbankserver verwaltet werden.¹ 🐄
+                </p>
+                <p>
+                    <small>
+                        ¹ Typische Datenbankserver wie <a href="https://mariadb.org/" target="_blank">MariaDB</a> oder
+                        <a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a> können mehrere, logische Datenbanken verwalten,
+                        um somit mehrere Anwendungen sauber zu isolieren. Dadurch ist es dann auch kein Problem, wenn zwei Datenbanken
+                        gleichnamige Tabellen beinhalten.
+                    </small>
+                </p>
+                <p>
+                    Aus diesem Grund benötigt jede Java-EE-Anwendung mindestens eine sogenannte <b>Persistence Unit</b>, die definiert,
+                    welche Datenbank sie verwendet. Technisch gesehen bedeutet das, dass Anwendung eine Datei mit dem Namen
+                    <tt>persistence.xml</tt> beinhalten muss, in der mindestens eine solche Persistence Unit definiert ist.
+                    Doch anstatt jetzt die XML-Syntax zu erklären, zeigen dir die Bilder auf der Folie, wie die Datei mit Netbeans
+                    angelegt und bearbeitet werden kann.
+                </p>
+                <p>
+                    Die Felder im Anlagewizard haben dabei folgende Bedeutung:
+                </p>
+                <ul>
+                    <li>
+                        <b>Persistence Unit Name:</b> Name der Persistence Unit, unter der sie im Quellcode angesprochen wird.
+                        Der Name sollte daher kurz und einprägsam sein, auch wenn er bei vorliegen von nur einer Persistence
+                        Unit nicht weiter benötigt wird.
+                    </li>
+                    <li>
+                        <b>Persistence Provider:</b> Die verwendete O/R-Mapper-Implementierung. Die Vorauswahl <i>EclipseLink</i>
+                        geht völlig in Ordnung. Wie an den meisten Stellen erlaubt Java eben, dass es mehrere Implementierungen
+                        zu einer API gibt.
+                    </li>
+                    <li>
+                        <b>Data Source:</b> Der Name der Datenbank, so wie sie im Applikationsserver konfiguriert wurde. Im
+                        Echtbetrieb müssten wir die Konfiguration erst anlegen, für die Übungen reicht aber die von Netbeans
+                        bereitgestellte Konfiguration <tt>jdbc/__default</tt>.
+                    </li>
+                    <li>
+                        <b>Table Generation Strategy:</b> Wer legt die Tabellen an und wie oft geschieht dies? Legst du die
+                        Tabellen selbst an (None) oder sollen sie beim ersten Start der Anwendung automatisch angelegt werden?
+                        Falls ja, soll dies nur einmalig erfolgen (Create) oder bei jedem Start der Anwendung erneut (Drop and Create)?
+                    </li>
+                </ul>
+                <p>
+                    Für die Übungen bietet es sich an, als Anlagestrategie <i>Create</i> zu wählen, damit die Inhalte der Tabellen
+                    nicht verloren gehen. Jedoch musst du dann hin und wieder die Tabellen von Hand löschen, da nicht jede Änderung
+                    an den Persistence Entities immer in den Tabellen nachgezogen wird. Komischen Fehlermeldungen beim Lesen oder
+                    Schreiben, beispielsweise dass die Tabelle ein bestimmtes Feld nicht enthält, können hier ein Hinweis sein. 🔔
                 </p>
             </aside>
         </section>
@@ -2832,11 +2949,271 @@
         <section>
             <h1>Der Entity Manager stellt sich vor</h1>
             <article>
-                …
+                <table style="margin-bottom: 1em;">
+                    <tr>
+                        <td style="padding-right: 0.5em;">
+                            🗄️
+                        </td>
+                        <td>
+                            Sämtliche Datenbankzugriffe werden von einem <code>EntityManager</code>-Objekt durchgeführt.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em;">
+                            🗄️
+                        </td>
+                        <td>
+                            Dieses Objekt stellt aus Anwendungssicht den O/R-Mapper dar, der Daten lesen und schreiben kann.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em;">
+                            🗄️
+                        </td>
+                        <td>
+                            Mit der Annotation <code>@PersistenceContext</code> können wir uns das Objekt geben lassen.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em;">
+                            🗄️
+                        </td>
+                        <td>
+                            Die Annotation funktioniert in Serlvets und in EJBs, sollte aber nur in EJBs verwendet werden.
+                        </td>
+                    </tr>
+                </table>
+
+                <source-code language="java">
+                    @Stateless
+                    public class KinoBean {
+                        @PersistenceContext
+                        EntityManager em;
+                        …
+                    }
+                </source-code>
+
+                <div style="margin-top: 1em;">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "entitymanager-methoden-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#entitymanager-methoden"
+                                role          = "tab"
+                                aria-controls = "entitymanager-methoden"
+                                aria-expanded = "true"
+                            >
+                                Häufig benötigte Methoden
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "entitymanager-beispiel-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#entitymanager-beispiel"
+                                role          = "tab"
+                                aria-controls = "entitymanager-beispiel"
+                            >
+                                Beispiel
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Häufig benötigte Methoden -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "entitymanager-methoden"
+                            role            = "tabpanel"
+                            aria-labelledby = "entitymanager-methoden-tab"
+                        >
+                            <p>
+                                <src-code language="java">
+                                    &lt;T&gt; T find(Class&lt;T&gt; entityClass, Object primaryKey)
+                                </src-code>
+                                <br />
+                                Auslesen eines Objekts anhand seines Primärschlüssels
+                            </p>
+
+                            <p>
+                                <src-code language="java">
+                                    void persist(Object entity)
+                                </src-code>
+                                <br />
+                                Speichern eines <b>neuen</b> Datensatzes.
+                            </p>
+
+                            <p>
+                                <src-code language="java">
+                                    &lt;T&gt; T merge(&lt;T&gt; entity)
+                                </src-code>
+                                <br />
+                                Aktualisieren eines <b>vorhandenen</b> Datensatzes.
+                            </p>
+
+                            <p>
+                                <src-code language="java">
+                                    void remove(Object entity)
+                                </src-code>
+                                <br />
+                                Löschen eines vorhandenen Datensatzes.
+                            </p>
+
+                            <hr />
+
+                            <p>
+                                <src-code language="java">
+                                    Query createQuery(String qlString)
+                                </src-code>
+                                <br />
+                                Erzeugen einer neuen Datenbankanfrage (vgl. <a href="#18">nächste Folie</a>)
+                            </p>
+                        </div>
+                        <!-- Beispiel -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "entitymanager-beispiel"
+                            role            = "tabpanel"
+                            aria-labelledby = "entitymanager-beispiel-tab"
+                        >
+                            <source-code language="java">
+                                @Stateless
+                                public class MitarbeiterBean {
+                                    @PersistenceContext
+                                    EntityManager em;
+
+                                    /**
+                                     * Auslesen eines einzelnen Mitarbeiters
+                                     */
+                                    public Mitarbeiter findById(long id) {
+                                        return this.em.find(Mitarbeiter.class, id);
+                                    }
+
+                                    /**
+                                     * Speichern eines neuen Mitarbeiters und den gespeicherten
+                                     * Satz zurückgeben, damit der Aufrufer die ID erfährt.
+                                     */
+                                    public Mitarbeiter saveNew(Mitarbeiter mitarbeiter) {
+                                        em.persist(mitarbeiter);
+                                        return em.merge(mitarbeiter);
+                                    }
+
+                                    /**
+                                     * Änderungen an einem vorhandenen Mitarbeiter speichern.
+                                     */
+                                    public Mitarbeiter update(Mitarbeiter mitarbeiter) {
+                                        return em.merge(mitarbeiter);
+                                    }
+
+                                    /**
+                                     * Wie lange arbeiten Sie schon hier, morgen nicht mehr
+                                     * mitgerechnet? 🙇
+                                     */
+                                    public void delete(Mitarbeiter mitarbeiter) {
+                                        return em.remove(mitarbeiter);
+                                    }
+                                }
+                            </source-code>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    <i>Guten Tag, Manager mein Name. Entity Manager. Ich bediene sie heute. Was würden Sie denn gerne bestellen?
+                    Ah, einmal den Film Nummer 7, sehr gern. </i> So oder so ähnlich würde es klingen, wenn wir uns wirklich mit
+                    Java unterhalten könnten. 📞 Denn der Entity Manager ist das Objekt, das uns die ganze schreckliche
+                    JDBC-Programmierung aus <a href="#3">Folie 3</a> vom Hals hält. Oder anders gesagt: Er ist der O/R-Mapper,
+                    der weiß, wie man Javaobjekte zu Tabellenzeilen konvertiert und umgekehrt. ↕️
+                </p>
+                <p>
+                    Doch bevor es losgehen kann, brauchen wir erst mal eine Referenz, die wir uns innerhalb jedes Servlets und
+                    jeder Enterprise Java Bean mit folgenden Zeilen besorgen können. Innerhalb eines Servlets sollte das aber
+                    eigentlich vermieden werden.
+                </p>
+                <source-code language="java">
+                    @Stateless
+                    public class MisterBean {
+                        @PersistenceContext
+                        EntityManager em;
+                        …
+                    }
+                </source-code>
+                <p>
+                    Ist das einmal geschafft, können wir die auf der Folie dargestellten Methoden verwenden, um Datensätze
+                    auszulesen, zu schreiben oder zu löschen. Es ist wirklich ziemlich einfach, wie das folgende Beispiel zeigt:
+                </p>
+                <source-code language="java">
+                    @Stateless
+                    public class MitarbeiterBean {
+                        @PersistenceContext
+                        EntityManager em;
+
+                        /**
+                         * Auslesen eines einzelnen Mitarbeiters
+                         */
+                        public Mitarbeiter findById(long id) {
+                            // Sucht einen Mitarbeiter anhand seiner Schlüsselwerte
+                            return this.em.find(Mitarbeiter.class, id);
+                        }
+
+                        /**
+                         * Gehaltserhöhung für einen Mitarbeiter vornhehmen
+                         */
+                        public Mitarbeiter gehaltErhoehen(long id, long faktor) {
+                            // Auslesen des Mitarbeiters
+                            Mitarbeiter ma = this.em.find(Mitarbeiter.class, id);
+
+                            // Abbruch, wenn er nicht gefunden wurde
+                            if (ma == null) return;
+
+                            // Neues Gehalt berechnen
+                            ma.setGehalt(ma.getGehalt() * faktor);
+
+                            // Mitarbeiter speichern
+                            return this.em.merge(ma);
+                        }
+
+                        /**
+                         * Neuen Mitarbeiter anlegen
+                         */
+                        public Mitarbeiter saveNew(Mitarbeiter ma) {
+                            // Neuen Mitarbeiter speichern
+                            this.em.persist(ma);
+
+                            // Mitarbeiter aktualisieren, so dass das ID-Feld
+                            // gefüllt ist
+                            return this.em.merge(ma);
+                        }
+                    }
+                </source-code>
+                <p>
+                    Wollten wir nun einen neuen Mitarbeiter anlegen, müssten wir nur eine neues Objekt erzeugen,
+                    es mit Werten füllen und die Methode <code>saveNew</code> der obigen EJB aufrufen. Ungefähr so:
+                </p>
+                <source-code language="java">
+                    @WebServet(urlPatterns={"/neuer-mitarbeiter/"})
+                    public class NeuerMitarbeiterServlet extends HttpServlet {
+                        @EJB
+                        MitarbeiterBean mitarbeiterBean
+
+                        public void doGet(…) {
+                            // Neuen Mitarbeiter erzeugen
+                            Mitarbeiter ma = new Mitarbeiter();
+                            ma.setVorname("Frank");
+                            ma.setNachname("Columbo");
+                            ma.setGehalt(2500.00);
+
+                            // Datensatz speichern
+                            ma = this.mitarbeiterBean.saveNew(ma);
+                        }
+                    }
+                </source-code>
+                <p>
+                    Den Rest übernimmt dann der Entity Manager für uns, ohne dass wir auch nur in die Nähe eines
+                    SQL-Statements kommen. Das ist wirklich klasse! 💫
                 </p>
             </aside>
         </section>
@@ -2844,11 +3221,161 @@
         <section>
             <h1>Komplexe Anfragen formulieren</h1>
             <article>
-                …
+                <div class="container-fluid">
+                    <!-- Bilder -->
+                    <div class="row">
+                        <div class="col-md">
+                            <img src="jql1.jpg" alt="" class="d-block img-thumbnail" style="width: 100%;" />
+                            Jede Datenbank hat ihren eigenen SQL-Dialekt, was oftmals ziemlich verwirrend sein kann.
+                        </div>
+                        <div class="col-md">
+                            <img src="jql2.jpg" alt="" class="d-block img-thumbnail" style="width: 100%;" />
+                            JQL hilft uns deshalb und definiert neutrale Anweisungen, die immer funktionieren.
+                        </div>
+                    </div>
+
+                    <!-- Beispielselektionen -->
+                    <div class="row">
+                        <div class="col-md">
+                            <p class="dhbw-lightblue">
+                                Selektion mit Parametern in SQL:
+                            </p>
+                            <source-code language="sql">
+                                SELECT * FROM Film
+                                    WHERE filmname = ?
+                                      AND jahr BETWEEN ? AND ?
+                                      AND genre = ?
+                            </source-code>
+                        </div>
+                        <div class="col-md">
+                            <p class="dhbw-lightblue">
+                                Selektion mit Parametern in JQL:
+                            </p>
+                            <source-code language="sql">
+                                SELECT f FROM Film f
+                                    WHERE f.name = :name
+                                      AND f.jahr BETWEEN :von AND :bis
+                                      AND f.genre = :genre
+                            </source-code>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md">
+                            <hr />
+                            <h4 class="dhbw-lightblue" style="margin-bottom: 1em;">Vollständiges Beispiel</h4>
+
+                            <source-code language="java">
+                                @Statless
+                                public class JqlSelectBeispiel {
+                                    @PersistenceContext
+                                    EntityManager em;
+
+                                    public List&lt;Film&gt; sucheFilm(String name, int vonJahr, int bisJahr, Genre genre) {
+                                            return em.createQuery(
+                                                        "SELECT f FROM Film f"
+                                                      + "    WHERE f.name LIKE :name"
+                                                      + "      AND f.jahr BETWEEN :von AND :bis"
+                                                      + "      AND g.gnre = :genre"
+                                                     )
+                                                     .setParameter("name", name)
+                                                     .setParameter("von", vonJahr)
+                                                     .setParameter("bis", bisJahr)
+                                                     .setParameter("genre", genre)
+                                                     .getResultList();
+                                        }
+                                }
+                            </source-code>
+                        </div>
+                    </div>
+
+                    <!-- Bildnachweise -->
+                    <div class="row">
+                        <div class="col-md">
+                            <small>
+                                <small>
+                                    Bildnachweise:
+                                    <a href="https://pixabay.com/de/kinder-m%C3%A4dchen-wei%C3%9F-kind-attraktiv-3041378/" target="_blank">Pixabay: Khamkhor</a>,
+                                    <a href="https://pixabay.com/de/im-freien-kinder-natur-hund-3067805/" target="_blank">Pixabay: tohidabbasy</a>
+                                </small>
+                            </small>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    Manchmal macht es natürlich Sinn, nicht einfach nur einzelne Datensätze aus der Datenbank zu lesen
+                    oder zu schreiben, sondern gleich mehrere Sätze auf einen Schlag. Zum Beispiel, wenn der Anwender
+                    einen Suchbegriff eingibt und wir ihm eine Liste der möglichen Kandidaten zurückliefern wollen.
+                    Oder wenn wir an tausenden Einträgen dieselbe Änderung vornehmen wollten. Da wäre es natürlich pure
+                    Zeitverschwendung, jeden Datensatz einzeln zu lesen, zu verändern und dann zu speichern.
+                </p>
+                <p>
+                    In diesem Fällen würde man normalerweise anfangen, auf den jeweiligen Anwendungsfall optimierte
+                    SQL-Befehle zu verwenden, doch leider gibt es da ein Problem: Die SQL-Anweisungen unterscheiden sich
+                    von Hersteller zu Hersteller. Zwar sind die meisten Statements im Kern normiert, jeder Hersteller
+                    bietet aber eigene Spracherweiterungen, die nur mit seinen Produkten funktionieren. Komplexe
+                    SQL-Anfragen können daher nur bedingt datenbankneutral formuliert werden. 🤦
+                </p>
+                <p>
+                    Die Java Persistence API löst dieses Problem, indem sie eine eigene, an SQL angelehnte Query Language
+                    namens <b>Java Persistence Query Language</b>, kurz JQL, zur Verfügung stellt und die so formulierten
+                    Anfragen zur Laufzeit in herstellerspezifische SQL-Anweisungen umwandelt.
+                    Auf <a href="https://en.wikibooks.org/wiki/Java_Persistence/JPQL" target="_blank">Wikibooks</a> gibt
+                    es eine ziemlich umfangreiche Sammlung mit Beispielen. Hier sollen uns ein paar einfache Selektionen
+                    genügen.
+                </p>
+                <p>
+                    Ähnlich wie in SQL gibt es auch in JQL ein <code>SELECT</code>-Statement. Die Syntax ist allerdings
+                    leicht anders. Hier siehst du gleich den vollen Aufruf, so wie die Anfrage an den Entity Manager
+                    übergeben werden muss, um alle Ergebnisse zurück zu bekommen:
+                </p>
+                <source-code language="java">
+                    @Statless
+                    public class SelectBeispiel1 {
+                        @PersistenceContext
+                        EntityManager em;
+
+                        public List&lt;Film&gt; sucheNameUndJahr(
+                            String name, int vonJahr, int bisJahr) {
+
+                                return em.createQuery(
+                                            "SELECT f FROM Film f"
+                                          + "  WHERE f.name LIKE :name"
+                                          + "    AND f.jahr BETWEEN :von AND :bis"
+                                         )
+                                         .setParameter("name", name)
+                                         .setParameter("von", vonJahr)
+                                         .setParameter("bis", bisJahr)
+                                         .getResultList();
+                            }
+                    }
+                </source-code>
+                <p>
+                    Mit der Punktsyntax können sogar die Felder aus den Beziehungen abgefragt werden:
+                </p>
+                <source-code language="java">
+                    @Statless
+                    public class SelectBeispiel2 {
+                        @PersistenceContext
+                        EntityManager em;
+
+                        public List&lt;Film&gt; filmeAnWochentag(Wochentag wochentag) {
+                            return em.createQuery(
+                                        "SELECT f FROM Film f"
+                                      + "  WHERE f.vorfuehrungen.wochentag = :wochentag"
+                                     )
+                                     .setParameter("wochentag", wochentag)
+                                     .getResultList();
+                        }
+                    }
+                </source-code>
+                <p>
+                    Und so weiter und sofort. Schau dir den Link auf
+                    <a href="https://en.wikibooks.org/wiki/Java_Persistence/JPQL" target="_blank">Wikibooks</a>
+                    an, wenn du weitere Beispiele insbesondere auch zum Aktualisieren und Löschen sehen willst.
+                    <span style="font-weight: bold; color: darkgreen; text-shadow: 1px 1px 1px rgba(0,0,0,0.5);">✅</span>
                 </p>
             </aside>
         </section>
@@ -2856,46 +3383,744 @@
         <section>
             <h1>Sinnvolle Methoden für die EJBs</h1>
             <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
-                </p>
-            </aside>
-        </section>
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "ejb-methoden-uebersicht-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#ejb-methoden-uebersicht"
+                                role          = "tab"
+                                aria-controls = "ejb-methoden-uebersicht"
+                                aria-expanded = "true"
+                            >
+                                Übersicht
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "ejb-methoden-copypaste-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#ejb-methoden-copypaste"
+                                role          = "tab"
+                                aria-controls = "ejb-methoden-copypaste"
+                            >
+                                Copy&amp;Paste-Version
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "ejb-methoden-vererbung-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#ejb-methoden-vererbung"
+                                role          = "tab"
+                                aria-controls = "ejb-methoden-vererbung"
+                            >
+                                Vererbung und Generics
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Übersicht -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "ejb-methoden-uebersicht"
+                            role            = "tabpanel"
+                            aria-labelledby = "ejb-methoden-uebersicht-tab"
+                        >
+                            <p>
+                                Gute Enterprise Java Beans zu definieren, ist oftmals gar nicht so leicht. Für viele Anwendungen
+                                reicht es jedoch, wenn du je Entity eine Bean mit folgenden Methoden anbietest. Dadurch können
+                                die Clients ganz einfach Dantesätze suchen, anlegen, ändern und löschen. Die Typen <code>Entity</code>
+                                und <code>EntityId</code> musst du natürlich durch eigene Klassen ersetzen.
+                            </p>
 
-        <section>
-            <h1>Beispiel: Geht eine EJB ins Kino</h1>
-            <article>
-                …
+                            <div style="display: flex; justify-content: center;">
+                                <ul>
+                                    <li>
+                                        <src-code language="java">Entity findById(EntityId id)</src-code>
+                                    </li>
+                                    <li>
+                                        <src-code language="java">List&lt;Entity&gt; findByXYZ(…)</src-code>
+                                    </li>
+                                    <li>
+                                        <src-code language="java">List&lt;Entity&gt; findAll()</src-code>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>
+                                        <src-code language="java">Entity saveNew(Entity entity)</src-code>
+                                    </li>
+                                    <li>
+                                        <src-code language="java">Entity update(Entity entity)</src-code>
+                                    </li>
+                                    <li>
+                                        <src-code language="java">void delete(Entity entity)</src-code>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <hr />
+
+                            <h4 class="dhbw-lightblue">Vorhandene Datensätze finden</h4>
+                            <p>
+                                <src-code language="java">Entity findById(EntityId id)</src-code>
+                                <br />
+                                Auslesen eines einzelnen Datensatzes anhand seiner ID
+                            </p>
+                            <p>
+                                <src-code language="java">List&lt;Entity&gt; findByXYZ(…)</src-code>
+                                <br />
+                                Spezielle Suchmethoden nach Datensätzen anhand irgendwelcher Kriterien
+                            </p>
+                            <p>
+                                <src-code language="java">List&lt;Entity&gt; findAll()</src-code>
+                                <br />
+                                Einache Methode zum Auslesen aller Datensätze (nur, wenn es nicht zu viele werden können!)
+                            </p>
+
+                            <hr />
+
+                            <h4 class="dhbw-lightblue">Datensätze speichern, ändern, löschen</h4>
+                            <p>
+                                <src-code language="java">Entity saveNew(Entity entity)</src-code>
+                                <br />
+                                Speichern eines komplett neuen Datensatzes, des es zuvor nocht nicht gab
+                            </p>
+                            <p>
+                                <src-code language="java">Entity update(Entity entity)</src-code>
+                                <br />
+                                Änderungen an einem zuvor ausgelesenen Datensatz speichern
+                            </p>
+                            <p>
+                                <src-code language="java">void delete(Entity entity)</src-code>
+                                <br />
+                                Löschen eines zuvor ausgelesenen Datensatzes
+                            </p>
+
+                            <hr />
+
+                            <p>
+                                Darüber hinaus kannst du natürlich noch beliebige, weitere Methoden definieren.
+                            </p>
+                        </div>
+                        <!-- Copy&Paste-Version -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "ejb-methoden-copypaste"
+                            role            = "tabpanel"
+                            aria-labelledby = "ejb-methoden-copypaste-tab"
+                        >
+                            <p>
+                                Das nachfolgende Beispiel zeigt für jede Methode eine einfache Implementierung.
+                            </p>
+                            <source-code language="java">
+                                @Stateless
+                                public class StandortBean {
+                                    @PersistenceContext
+                                    EntityManager em;
+
+                                    //
+                                    // Vorhandene Datensätze finden
+                                    //
+                                    public Standort findById(long id) {
+                                        return em.find(Standort.class, id);
+                                    }
+
+                                    public List&lt;Standort&gt; findByOrt(String ort) {
+                                        return em.createQuery("SELECT s FROM Standort s WHERE s.adresse.ort = :ort")
+                                                 .setParameter("ort", ort)
+                                                 .getResultList();
+                                    }
+
+                                    public List&lt;Standort&gt; findAll() {
+                                        return em.createQuery("SELECT s FROM Standort s")
+                                                 .getResultList();
+                                    }
+
+                                    //
+                                    // Datensätze speichern, ändern, löschen
+                                    //
+                                    public Standort saveNew(Standort standort) {
+                                        em.persist(standort);
+                                        return em.merge(standort);
+                                    }
+
+                                    public Standort update(Standort standort) {
+                                        return em.merge(standort);
+                                    }
+
+                                    public void delete(Standort standort) {
+                                        em.remove(standort);
+                                    }
+                                }
+                            </source-code>
+                        </div>
+                        <!-- Vererbung und Generics -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "ejb-methoden-vererbung"
+                            role            = "tabpanel"
+                            aria-labelledby = "ejb-methoden-vererbung-tab"
+                        >
+                            <p>
+                                Ein wenig Zauberei ✨ mit Vererbung und Generics können dir helfen, dass du nicht immer und immer
+                                wieder dieselben Methoden ausprogrammieren musst. Denn das ganze Lesen, Schreiben und Löschen
+                                einzelner Entities unterscheidet sich doch im Grunde genommen nur durch den Namen der Entity.
+                                So könnte die Basisklasse daher aussehen:
+                            </p>
+                            <source-code language="java">
+                                /**
+                                 * Abstrakte Basisklasse für EJBs, die einfach nur Standardmethoden zum Lesen
+                                 * und Schreiben eines Entity-Typs bietet.
+                                 *
+                                 * @param &lt;Entity&gt; Basisklasse der Entität
+                                 * @param &lt;EntityId&gt; Datentyp oder Klasse für die Schlüsselwerte
+                                 */
+                                public abstract class EntityBean&lt;Entity, EntityId&gt; {
+
+                                    @PersistenceContext
+                                    EntityManager em;
+
+                                    private final Class&lt;Entity&gt; entityClass;
+
+                                    public EntityBean(Class&lt;Entity&gt; entityClass) {
+                                        this.entityClass = entityClass;
+                                    }
+
+                                    //
+                                    // Vorhandene Datensätze finden
+                                    //
+                                    public Entity findById(EntityId id) {
+                                        return em.find(entityClass, id);
+                                    }
+
+                                    public List&lt;Entity&gt; findAll() {
+                                        String select = "SELECT s FROM $C s".replace("$C", this.entityClass.getName());
+                                        return em.createQuery(select).getResultList();
+                                    }
+
+                                    //
+                                    // Datensätze speichern, ändern, löschen
+                                    //
+                                    public Entity saveNew(Entity entity) {
+                                        em.persist(entity);
+                                        return em.merge(entity);
+                                    }
+
+                                    public Entity update(Entity entity) {
+                                        return em.merge(entity);
+                                    }
+
+                                    public void delete(Entity entity) {
+                                        em.remove(entity);
+                                    }
+                                }
+                            </source-code>
+                            <p>
+                                Okay, durch die Generics ist die Klasse nicht ganz so einfach. Eine neue EJB für eine bestimmte
+                                Entity zu definieren, wird damit aber echt zum Kinderspiel. 🎎 <code>Vorfuehrung</code> ist hier
+                                der Name der Entität und <code>Long</code> der Datentyp ihres Primärschlüssels.
+                            </p>
+                            <source-code language="java">
+                                @Stateless
+                                public class VorfuehrungBean extends EntityBean&lt;Vorfuehrung, Long&gt; {
+
+                                    public VorfuehrungBean() {
+                                        super(Vorfuehrung.class);
+                                    }
+
+                                    public List&lt;Vorfuehrung&gt; findByWochentag(Wochentag wochentag) {
+                                        return em.createQuery("SELECT v FROM Vorfuehrung v WHERE v.wochentag = :wochentag")
+                                                 .setParameter("wochentag", wochentag)
+                                                 .getResultList();
+                                    }
+
+                                    // Alle anderen Methoden sind automatisch vorhanden!
+                                }
+                            </source-code>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    Enterprise Java Beans beinhalten die fachliche Logik einer Anwendung und stellen den Clients
+                    daher Services zur Verfügung, die diese aufrufen können. Diesen Satz haben wir jetzt schon so
+                    oft gehöhrt. Doch wonach soll man die EJBs unterscheiden und welche Methoden sollen sie
+                    besitzen? 😓 Das ist gar nicht so leicht zu beantworten, wenn man noch nicht so viel Erfahrung
+                    mit Java&nbsp;EE oder ähnlichen Plattformen hat und ein gutes Stück weit lässt sich auch gar
+                    keine allgemeingültige Antwort auf diese Frage finden. Dennoch hat es sich in der Praxis bewährt,
+                    einen gewissen Grundstock an EJBs anzubieten, der sich einfach an den vorhandenen Persistence
+                    Entities orientiert.  Die Überlegung dahinter ist, dass die sehr viele Benutzeroberflächen und
+                    Clients eigentlich nur folgende Dinge tun:
+                </p>
+                <table style="margin-bottom: 1em;">
+                    <tr>
+                        <td style="padding-right: 0.5em;">
+                            📄
+                        </td>
+                        <td>
+                            Sie zeigen eine Liste aller Datensätze an.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em;">
+                            🔎
+                        </td>
+                        <td>
+                            Sie erlauben die Suche nach Datensätzen anhand einzelner Felder.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em;">
+                            🖊️
+                        </td>
+                        <td>
+                            Sie besitzen ein Formular zum Anlegen und Bearbeiten von Datensätzen.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em;">
+                            🗑️
+                        </td>
+                        <td>
+                            Sie löschen einzelne Datensätze.
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                    Also genau die vier CRUD-Operationen alle datenzentrischer Anwendungen: Create, Read, Update
+                    und Delete. Wie wir schon gesehen haben, lassen sich diese Operationen danke dem Entity Manager
+                    relativ einfach ausprogrammieren. Unser Vorschlag ist daher, zu jeder Persistence Entity eine
+                    gleichlautende EJB zu entwickeln, welche die auf der Folie gezeigten Methoden beinhaltet:
+                </p>
+                <ul>
+                    <li>
+                        <src-code language="java">Entity findById(EntityId id)</src-code>
+                    </li>
+                    <li>
+                        <src-code language="java">List&lt;Entity&gt; findByXYZ(…)</src-code>
+                    </li>
+                    <li>
+                        <src-code language="java">List&lt;Entity&gt; findAll()</src-code>
+                    </li>
+                    <li>
+                        <src-code language="java">Entity saveNew(Entity entity)</src-code>
+                    </li>
+                    <li>
+                        <src-code language="java">Entity update(Entity entity)</src-code>
+                    </li>
+                    <li>
+                        <src-code language="java">void delete(Entity entity)</src-code>
+                    </li>
+                </ul>
+                <p>
+                    Die Folie zeigt dabei zwei Möglichkeiten sie auszuprogrammieren. Einmal durch Copy&amp;Paste für
+                    jede einzelne EJB oder mit etwas Zauberei als abstrakte Basisklasse. Letzterer Weg spart natürlich
+                    eine ganze Menge Schreibarbeit.
                 </p>
             </aside>
         </section>
 
         <section data-background-color="rgb(231, 221, 141)">
-            <h1>Aufgabe 4: Ein kleines Entity-Manager-Quiz</h1>
+            <h1>Aufgabe 4: Geht eine EJB ins Kino</h1>
             <article>
-                …
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "aufgabe4-aufgabe-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#aufgabe4-aufgabe"
+                                role          = "tab"
+                                aria-controls = "aufgabe4-aufgabe"
+                                aria-expanded = "true"
+                            >
+                                Aufgabe
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "aufgabe4-loesung1-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#aufgabe4-loesung1"
+                                role          = "tab"
+                                aria-controls = "aufgabe4-loesung1"
+                            >
+                                Lösung 1
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "aufgabe4-loesung2-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#aufgabe4-loesung2"
+                                role          = "tab"
+                                aria-controls = "aufgabe4-loesung2"
+                            >
+                                Lösung 2
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Aufgabe -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "aufgabe4-aufgabe"
+                            role            = "tabpanel"
+                            aria-labelledby = "aufgabe4-aufgabe-tab"
+                        >
+                            <p>
+                                Nimm die beiden Entitäten <i>Film</i> und <i>Mitwirkender</i> von <a href="#aufgabe2">Aufgabe 2</a>
+                                schreibe je eine Enterprise Java Bean, mit den folgenden Methoden.
+                            </p>
+
+                            <h4 class="dhbw-lightblue">Klasse FilmBean</h4>
+                            <ul>
+                                <li>
+                                    <src-code language="java">Film findById(long id)</src-code>
+                                </li>
+                                <li>
+                                    <src-code language="java">List&lt;Film&gt; findByJahr(int jahr)</src-code>
+                                </li>
+                                <li>
+                                    <src-code language="java">List&lt;Film&gt; findAll()</src-code>
+                                </li>
+                                <li>
+                                    <src-code language="java">Film saveNew(Film film)</src-code>
+                                </li>
+                                <li>
+                                    <src-code language="java">Film update(Film film)</src-code>
+                                </li>
+                                <li>
+                                    <src-code language="java">void delete(Film film)</src-code>
+                                </li>
+                            </ul>
+
+                            <h4 class="dhbw-lightblue">Klasse MitwirkenderBean</h4>
+                            <ul>
+                                <li>
+                                    <src-code language="java">Mitwirkender findById(long id)</src-code>
+                                </li>
+                                <li>
+                                    <src-code language="java">List&lt;Mitwirkender&gt; findAll()</src-code>
+                                </li>
+                                <li>
+                                    <src-code language="java">Mitwirkender saveNew(Mitwirkender mitwirkender)</src-code>
+                                </li>
+                                <li>
+                                    <src-code language="java">Mitwirkender update(Mitwirkender mitwirkender)</src-code>
+                                </li>
+                                <li>
+                                    <src-code language="java">void delete(Mitwirkender mitwirkender)</src-code>
+                                </li>
+                            </ul>
+
+                            <p>
+                                Programmiere die beiden Klassen erst komplett von Hand aus, bevor du ein zweite Version auf
+                                Grundlage der eben gezeigten, abstrakten <a href="#19">EntityBean</a> schreibst.
+                            </p>
+                        </div>
+                        <!-- Lösung 1 -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "aufgabe4-loesung1"
+                            role            = "tabpanel"
+                            aria-labelledby = "aufgabe4-loesung1-tab"
+                        >
+                            <p>
+                                Hier die Musterlösung für die Version mit Copy&amp;Paste.
+                            </p>
+                            <source-code language="java">
+                                @Stateless
+                                public class FilmBean {
+                                    @PersistenceContext
+                                    EntityManager em;
+
+                                    //
+                                    // Vorhandene Datensätze finden
+                                    //
+                                    public Standort findById(long id) {
+                                        return em.find(Film.class, id);
+                                    }
+
+                                    public List&lt;Film&gt; findByJahr(int jahr) {
+                                        return em.createQuery("SELECT f FROM Film f WHERE f.jahr = :jahr")
+                                                 .setParameter("jahr", jahr)
+                                                 .getResultList();
+                                    }
+
+                                    public List&lt;Film&gt; findAll() {
+                                        return em.createQuery("SELECT f FROM Film f")
+                                                 .getResultList();
+                                    }
+
+                                    //
+                                    // Datensätze speichern, ändern, löschen
+                                    //
+                                    public Film saveNew(Film film) {
+                                        em.persist(film);
+                                        return em.merge(film);
+                                    }
+
+                                    public Film update(Film film) {
+                                        return em.merge(film);
+                                    }
+
+                                    public void delete(Film film) {
+                                        em.remove(film);
+                                    }
+                                }
+
+                                @Stateless
+                                public class MitwirkenderBean {
+                                    @PersistenceContext
+                                    EntityManager em;
+
+                                    //
+                                    // Vorhandene Datensätze finden
+                                    //
+                                    public Mitwirkender findById(long id) {
+                                        return em.find(Mitwirkender.class, id);
+                                    }
+
+                                    public List&lt;Mitwirkender&gt; findAll() {
+                                        return em.createQuery("SELECT m FROM Mitwirkender m")
+                                                 .getResultList();
+                                    }
+
+                                    //
+                                    // Datensätze speichern, ändern, löschen
+                                    //
+                                    public Mitwirkender saveNew(Mitwirkender mitwirkender) {
+                                        em.persist(mitwirkender);
+                                        return em.merge(mitwirkender);
+                                    }
+
+                                    public Mitwirkender update(Mitwirkender mitwirkender) {
+                                        return em.merge(mitwirkender);
+                                    }
+
+                                    public void delete(Mitwirkender mitwirkender) {
+                                        em.remove(mitwirkender);
+                                    }
+                                }
+                            </source-code>
+                        </div>
+                        <!-- Lösung 2 -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "aufgabe4-loesung2"
+                            role            = "tabpanel"
+                            aria-labelledby = "aufgabe4-loesung2-tab"
+                        >
+                            <p>
+                                Und hier die vereinfachte Version auf Basis unserer selbst-entworfenen <a href="#19">EntityBean</a>.
+                            </p>
+                            <source-code language="java">
+                                @Stateless
+                                public class FilmBean extends EntityBean&lt;Film, Long&gt; {
+                                    @PersistenceContext
+                                    EntityManager em;
+
+                                    public FilmBean {
+                                        super(Film.class);
+                                    }
+
+                                    public List&lt;Film&gt; findByJahr(int jahr) {
+                                        return em.createQuery("SELECT f FROM Film f WHERE f.jahr = :jahr")
+                                                 .setParameter("jahr", jahr)
+                                                 .getResultList();
+                                    }
+                                }
+
+                                @Stateless
+                                public class MitwirkenderBean extends EntityBean&lt;Mitwirkender, Long&gt; {
+
+                                    public MitwirkenderBean {
+                                        super(Mitwirkender.class);
+                                    }
+                                }
+                            </source-code>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <aside>
+                <p>
+                    Hier kannst du das eben gelernte gleich praktisch Anwenden, indem du ein paar Enterprise
+                    Java Beans zum Lesen und Schreiben von Datensätzen definierst. Gerne in Netbeans, wenn du
+                    willst aber auch gerne einfach auf Papier. 📃
+                </p>
+                <img src="../../github_atom.png" class="img-fluid d-block"/>
+                <p>
+                    <small>
+                        Bildnachweis:
+                        <a href="https://atom.io/" target="_blank">Atom Webseite</a>
+                    </small>
+                </p>
+            </aside>
+        </section>
+
+        <section data-background-color="rgb(231, 221, 141)">
+            <h1>Aufgabe 5: Ein kleines Entity-Manager-Quiz</h1>
+            <article>
+                <p>
+                    a) Was ist eine Persistence Unit?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Ein alter Name für Persistence Entities
+                    </li>
+                    <li>
+                        Eine Maßeinheit für die Dauer der Speicherung
+                    </li>
+                    <li>
+                        Eine Konfiguration der zu nutzenden Datenbank
+                    </li>
+                </ol>
+
+                <p>
+                    b) Wie kannst du eine Referenz auf den Entity Manager bekommen?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        <source-code language="java">
+                            @EntityManager
+                            PersistenceContext pc;
+                        </source-code>
+                    </li>
+                    <li>
+                        <source-code language="java">
+                            @PersistenceContext
+                            EntityManager em;
+                        </source-code>
+                    </li>
+                    <li>
+                        <source-code language="java">
+                            @DataSource("jdbc/__default")
+                            @EntityManager em;
+                        </source-code>
+                    </li>
+                    <li>
+                        <source-code language="java">
+                            @PersistenceUnit
+                            ObjectMapper om;
+                        </source-code>
+                    </li>
+                </ol>
+
+                <p>
+                    c) Welche der folgenden Methoden bietet der Entity Manager für die üblichen CRUD-Operationen?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        find(), persist(), update(), delete()
+                    </li>
+                    <li>
+                        find(), persist(), merge(), remove()
+                    </li>
+                    <li>
+                        select(), exist(), update(), delete()
+                    </li>
+                    <li>
+                        find(), persist(), search(), complete()
+                    </li>
+                </ol>
+
+                <p>
+                    d) Welche Vorteile hat die Java Query Persistent Language gegenüber SQL?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Keine, da JQL nur eine spezieller SQL-Dialekt ist.
+                    </li>
+                    <li>
+                        Die Selektionen laufen schneller als mit nativem SQL.
+                    </li>
+                    <li>
+                        Es bietet eine über alle Datenbankhersteller einheitliche Syntax.
+                    </li>
+                </ol>
+
+                <p>
+                    e) Und welche Nachteile hat die Java Persistent Query Language gegenüber SQL?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Es ist nicht ganz so schnellt wie natives SQL.
+                    </li>
+                    <li>
+                        Es gibt kein <code>UPDATE</code> und <code>DELETE</code>.
+                    </li>
+                    <li>
+                        Es funktioniert nicht mit jeder Datenbank.
+                    </li>
+                </ol>
+
+                <p>
+                    f) Welches ist keine gültige JQL-Anfrage?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        <source-code language="sql">
+                            SELECT * FROM Film f
+                                WHERE f.name LIKE ?
+                                  AND f.jahr BETWEEN ? AND ?
+                        </source-code>
+                    </li>
+                    <li>
+                        <source-code language="sql">
+                            SELECT f FROM Film f
+                                WHERE f.genre = :genre
+                                  AND f.vorfuehrung.wochentag = :wochentag
+                        </source-code>
+                    </li>
+                </ol>
+
+                <p>
+                    g) Welche der folgenden Methoden sollte die EJB zu einer Entity mindestens besitzen?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        <src-code language="java">Entity findById(EntityId id)</src-code>
+                    </li>
+                    <li>
+                        <src-code language="java">List&lt;Entity&gt; findByXYZ(…)</src-code>
+                    </li>
+                    <li>
+                        <src-code language="java">List&lt;Entity&gt; findAll()</src-code>
+                    </li>
+                    <li>
+                        <src-code language="java">Entity saveNew(Entity entity)</src-code>
+                    </li>
+                    <li>
+                        <src-code language="java">Entity update(Entity entity)</src-code>
+                    </li>
+                    <li>
+                        <src-code language="java">void delete(Entity entity)</src-code>
+                    </li>
+                </ol>
 
                 <hr />
 
-                <p style="transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
                     <small>
-                        <b>Lösung:</b> <br />
-                        Aufgabe 4.1: X;
-                        Aufgabe 4.2: X;
-                        Aufgabe 4.3: X
+                        <b>Lösung:</b> 3, 2, 2, 3, 1, 1, alle bis auf 2 und 3
                     </small>
                 </p>
             </article>
             <aside>
                 <p>
-                    …
+                    Puh, endlich geschafft! 🌬️ Letzte Folie, oder so. Wie immer zum Abschluss einer Einheit gibt
+                    es hier ein paar Wiederholungsfragen für dich.
                 </p>
             </aside>
         </section>
@@ -2920,17 +4145,94 @@
         <section data-background-color="rgb(153, 190, 137)">
             <h1>Do &amp; Don't</h1>
             <article>
-                <h4>Darauf solltest du achten</h4>
+                <h4>Erstellung des Datenmodells</h4>
                 <ul>
                     <li>
-                        …
+                        Nutze E/R-Diagramme und andere Techniken zur Modellierung des Datenmodells.
+                    </li>
+                    <li>
+                        Achte darauf, das Datenmodell zu normalisieren und Redundanzen zu vermeiden.
+                    </li>
+                    <li>
+                        Gestalte das Datenmodell so einfach wie möglich, so komplex wie nötig.
+                    </li>
+                    <li>
+                        Bilde Fremdschlüssel immer als Objektreferenz in Java ab.
+                    </li>
+                    <li>
+                        Vermeide bidirektionale Beziehungen, wenn du sie nicht wirklich brauchst.
+                    </li>
+                    <li>
+                        Nutze Lzay Loading für Beziehungen, wenn ihre Daten nicht bei jedem Aufruf benötigt werden.
+                    </li>
+                    <li>
+                        Mache regen Gebrauch von <code>@Column</code> zur Spezifizierung der Tabellenfelder.
+                    </li>
+                    <li>
+                        Versuche <code>@Lob</code>-Felder immer zu vermeiden, wenn du sie nicht brauchst.
+                    </li>
+                    <li>
+                        Definiere Indizies für sehr häufg gebrauchte Selektionen.
+                    </li>
+                    <li>
+                        Lege komplexe oder an mehreren Stellen benötigte Selektionen in Entityklasse als <code>@NamedQuery</code> an.
+                    </li>
+                    <li>
+                        Belege alle Attribute mit einem sinnvollen Startwert vor.
+                    </li>
+                    <li>
+                        Vermeide es, Tabellenfelder mit <b>nullable=True</b> zu definieren.
+                    </li>
+                    <li>
+                        Spendiere jeder Persistence Entity mehrere Konstruktoren, um ihre Benutzung zu vereinfachen.
+                    </li>
+                    <li>
+                        Übergabe eine automatisch generierte Id niemals an einen Konstruktor.
+                    </li>
+                </ul>
+
+                <h4>Konfiguration des O/R-Mappers</h4>
+                <ul>
+                    <li>
+                        Überlege dir, die Tabellen im Produktivbetrieb von Hand anzulegen, um sie zu optimieren.
+                    </li>
+                    <li>
+                        Auf jeden Fall achte darauf, die richige <b>Table Generation Strategy</b> zu wählen.
+                    </li>
+                    <li>
+                        Nutze <code>@Table</code> und <code>@Column</code>, um die Namen von Tabellen und Feldern anzupassen.
+                    </li>
+                </ul>
+
+                <h4>Nutzung der Persistence Entities</h4>
+                <ul>
+                    <li>
+                        Definiere gute Enterprise Java Beans zur Verwendung der Persistence Entities.
+                    </li>
+                    <li>
+                        Lagere sich häufig wiederholenden Code in einer allgemeine Basisklasse aus.
+                    </li>
+                    <li>
+                        Nutze immer <code>addParameter()</code>, um Feldwerte in eine <code>WHERE</code>-Bedingung einzubauen.
+                    </li>
+                    <li>
+                        Biete spezielle Suchmethoden für häufiger benötigte Selektionen.
+                    </li>
+                    <li>
+                        Überlege dir, die maximale Anzahl rückgegebener Sätze zu begrenzen und die Sätze vorzusortieren.
+                    </li>
+                    <li>
+                        Programmiere besonders performancekritische Sachen mit Native SQL.
+                    </li>
+                    <li>
+                        Biete gleichzeitig aber immer auch eine JQL-Version für nicht kompatible Datenbanken.
                     </li>
                 </ul>
             </article>
             <aside>
                 <p>
-                    Dies sind sie: Die berühmten letzten Worte. 📄 Auf dieser Folie haben wir ein paar allgemeine
-                    Tipps zusammengestellt, worauf du bei …
+                    Dies sind sie: Die zehn Gebote. 📄 Auf dieser Folie haben wir ein paar allgemeine Tipps
+                    zusammengestellt, worauf du bei bei der Programmierung mit der Java Persistence API
                     achten solltest.
                 </p>
                 <img src="../../do-dont.svg" class="d-block" style="width: 20em; max-width: 100%; margin-bottom: 0.5em;" />
