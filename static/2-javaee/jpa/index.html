@@ -345,7 +345,7 @@
                             </p>
                             <source-code language="java">
                                 @Entity
-                                public class Buch {
+                                public class Buch implements Serializable {
                                     @Id
                                     private String isbn = "";
 
@@ -368,7 +368,7 @@
                                 }
 
                                 @Entity
-                                public class Autor {
+                                public class Autor implements Serializable {
                                     @Id
                                     @GeneratedValue
                                     private long id;
@@ -387,7 +387,7 @@
                                 }
 
                                 @Entity
-                                public class Verlag {
+                                public class Verlag implements Serializable {
                                     @Id
                                     @GeneratedValue
                                     private long id;
@@ -405,7 +405,7 @@
                                 }
 
                                 @Entity
-                                public class Adresse {
+                                public class Adresse implements Serializable {
                                     @Id
                                     @GeneratedValue
                                     private long id;
@@ -1077,11 +1077,320 @@
         <section>
             <h1>Anatomie einer Persistence Entity</h1>
             <article>
-                …
+                <p>
+                    Persistence Entities sind einfache Beans, die mit <code>@Entity</code> gekennzeichnet werden.
+                    Außerdem wird empfohlen, dass sie das <code>Serializable</code>-Interface implementieren.
+                </p>
+                <source-code language="java">
+                    @Entity
+                    public class Autor implements Serializable {
+                </source-code>
+                <div style="margin: 0 0 1em 2em;">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "anatomie-schluessel-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#anatomie-schluessel"
+                                role          = "tab"
+                                aria-controls = "anatomie-schluessel"
+                                aria-expanded = "true"
+                            >
+                                Schlüssel
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "anatomie-felder-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#anatomie-felder"
+                                role          = "tab"
+                                aria-controls = "anatomie-felder"
+                            >
+                                Felder
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "anatomie-konstruktoren-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#anatomie-konstruktoren"
+                                role          = "tab"
+                                aria-controls = "anatomie-konstruktoren"
+                            >
+                                Konstruktoren
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "anatomie-setget-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#anatomie-setget"
+                                role          = "tab"
+                                aria-controls = "anatomie-setget"
+                            >
+                                Setter und Getter
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "anatomie-alles-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#anatomie-alles"
+                                role          = "tab"
+                                aria-controls = "anatomie-alles"
+                            >
+                                Alles zusammen
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Schlüssel -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "anatomie-schluessel"
+                            role            = "tabpanel"
+                            aria-labelledby = "anatomie-schluessel-tab"
+                        >
+                            <p>
+                                Häufig besitzen sie als einzigen Schlüsselwert ein Feld namens <code>id</code>, das automatisch
+                                mit einer fortlaufenden Nummer versorgt wird. Dies wird durch die beiden Annotationen <code>@Id</code>
+                                und <code>@GeneratedValue</code> ausgedrückt.
+                            </p>
+                            <source-code language="java">
+                                @Id
+                                @GeneratedValue
+                                private long id = 0;
+                            </source-code>
+                        </div>
+                        <!-- Felder -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "anatomie-felder"
+                            role            = "tabpanel"
+                            aria-labelledby = "anatomie-felder-tab"
+                        >
+                            <p>
+                                Alle weiteren Felder sind automatisch Nichtschlüsselfelder. Sie benötigen im einfachsten Fall keine
+                                Annotationen, können aber welche besitzen, um die Feldeigenschaften genauer zu spezifizieren.
+                                Das schauen wir uns auf <a href="#11">Folie 11</a> nochmal an. Die Felder sollten <code>private</code>
+                                oder <code>protected</code> sein.
+                            </p>
+                            <source-code language="java">
+                                private String vorname = "";
+                                private String nachname = "";
+                                private String titel = "";
+                            </source-code>
+                        </div>
+                        <!-- Konstruktoren -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "anatomie-konstruktoren"
+                            role            = "tabpanel"
+                            aria-labelledby = "anatomie-konstruktoren-tab"
+                        >
+                            <p>
+                                Jede Persistence Entity sollte mindestens einen öffentlichen, parameterlosen Konstruktor besitzen, in dem
+                                alle Felder mit leeren Werten vorbelegt werden. In diesem Beispiel ist der Konstruktor leer, da den Feldern
+                                bereits bei ihrer Deklaration ein Wert zugewiesen wird.
+                            </p>
+                            <source-code language="java">
+                                public Autor() {
+                                }
+                            </source-code>
+                            <p>
+                                Darüber hinaus können beliebige weitere Konstruktoren definiert werden, um die Anlage neuer Objekte zu vereinfachen.
+                                Vorgaben gibt es hierfür keine, oftmals hat man aber noch einen Konstruktor, der für jedes Feld einen Parameter besitzt.
+                            </p>
+                            <source-code language="java">
+                                public Autor(String vorname, String nachname, String titel) {
+                                    this.vorname = vorname;
+                                    this.nachname = nachname;
+                                    this.titel = titel;
+                                }
+                            </source-code>
+                        </div>
+                        <!-- Setter und Getter -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "anatomie-setget"
+                            role            = "tabpanel"
+                            aria-labelledby = "anatomie-setget-tab"
+                        >
+                            <p>
+                                Und damit es eine echte Bean ist, muss es zu jedem Feld mindestens einen Getter  geben. In der Regel gibt
+                                es je Feld auch einen Stter, bei berechneten Feldern, deren Wert nicht in der Datenbank gespeichert wird,
+                                kann er aber auch ausbleiben.
+                            </p>
+                            <source-code language="java">
+                                //
+                                // Normale Felder mit Setter und Getter
+                                //
+                                public void setId(long id) {
+                                    this.id = id;
+                                }
+
+                                public long getId() {
+                                    return this.id;
+                                }
+
+                                public void setVorname(String vorname) {
+                                    this.vorname = vorname;
+                                }
+
+                                public String getVorname() {
+                                    return this.vorname;
+                                }
+
+                                public void setNachname(String nachname) {
+                                    this.nachname = nachname;
+                                }
+
+                                public String getNachname() {
+                                    return this.nachname;
+                                }
+
+                                public void setTitel(String titel) {
+                                    this.titel = titel;
+                                }
+
+                                public String getTitel() {
+                                    return this.titel;
+                                }
+
+                                //
+                                // Berechnete Felder ohne Setter
+                                //
+                                public String getNameKomplett() {
+                                    String name = this.titel + " " + this.vorname + " " + this.nachname;
+                                    return name.trim();
+                                }
+                            </source-code>
+                        </div>
+                        <!-- Alles zusammen -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "anatomie-alles"
+                            role            = "tabpanel"
+                            aria-labelledby = "anatomie-alles-tab"
+                        >
+                            <source-code language="java">
+                                //
+                                // Schlüssel
+                                //
+                                @Id
+                                @GeneratedValue
+                                private long id = 0;
+
+                                //
+                                // Felder
+                                //
+                                private String vorname = "";
+                                private String nachname = "";
+                                private String titel = "";
+
+                                //
+                                // Konstruktoren
+                                //
+                                public Autor() {
+                                }
+
+                                public Autor(String vorname, String nachname, String titel) {
+                                    this.vorname = vorname;
+                                    this.nachname = nachname;
+                                    this.titel = titel;
+                                }
+
+                                //
+                                // Normale Felder mit Setter und Getter
+                                //
+                                public void setId(long id) {
+                                    this.id = id;
+                                }
+
+                                public long getId() {
+                                    return this.id;
+                                }
+
+                                public void setVorname(String vorname) {
+                                    this.vorname = vorname;
+                                }
+
+                                public String getVorname() {
+                                    return this.vorname;
+                                }
+
+                                public void setNachname(String nachname) {
+                                    this.nachname = nachname;
+                                }
+
+                                public String getNachname() {
+                                    return this.nachname;
+                                }
+
+                                public void setTitel(String titel) {
+                                    this.titel = titel;
+                                }
+
+                                public String getTitel() {
+                                    return this.titel;
+                                }
+
+                                //
+                                // Berechnete Felder ohne Setter
+                                //
+                                public String getNameKomplett() {
+                                    String name = this.titel + " " + this.vorname + " " + this.nachname;
+                                    return name.trim();
+                                }
+                            </source-code>
+                        </div>
+                    </div>
+                </div>
+                <source-code language="java">
+                    }
+                </source-code>
             </article>
             <aside>
                 <p>
-                    …
+                    Persistence Entities zu schreiben ist wirklich einfach, da es sich um ganz normale Javaklassen
+                    handelt, die einfach einen Datensatz einer Tabelle abbilden. 📖 Das heißt, sie besitzen einfach für
+                    jedes Tabellenfeld ein gleichnamiges Attribut mit dazu passenden Setter- und Getter-Methoden. Hinzu
+                    kommen noch ein paar kleine Annotationen, um sie als Entity zu kennzeichnen und die Schlüsselwerte
+                    zu definieren und das war es auch schon. Zusätzlich wird empfohlen, dass sie das Interface
+                    <code>Serializable</code> implementieren.
+                </p>
+                <source-code language="java">
+                    @Entity
+                    public class Autor
+                    implements Serializable {
+                        @Id
+                        @GeneratesValue
+                        private long id = 0;
+
+                        public void setId(long id) {
+                            this.id = id;
+                        }
+
+                        public long getId() {
+                            return this.id;
+                        }
+                    }
+                </source-code>
+                <p>
+                    Hier sehen wir auch gleich, wie der Tabellenschlüssel definiert wird. Die beiden Annotationen <code>@Id</code>
+                    und <code>@GeneratedValue</code> legen fest, dass es sich bei dem Feld <code>id</code> um ein Schlüsselfeld
+                    handelt und dass der Wert beim Speichern automatisch vergeben wird, wenn er leer ist.
+                </p>
+                <p>
+                    Hinzu kommen dann einfach noch ein paar weitere Nichtschlüsselfelder (die immer <code>private</code> oder
+                    <code>protected</code> sein sollten) samt Settern und Gettern sowie mindestens ein öffentlicher, parameterloser
+                    Konstruktor und fertig ist unsere Klasse. Also eigentlich ganz einfach, wie du auf der Folie siehst. 😎
                 </p>
             </aside>
         </section>
@@ -1089,11 +1398,102 @@
         <section>
             <h1>Darf's ein bisschen mehr sein?</h1>
             <article>
-                …
+                <table style="margin-bottom: 1em;">
+                    <tr>
+                        <td style="padding-right: 0.5em;">
+                            🐪
+                        </td>
+                        <td>
+                            Ohne weitere Angaben, darf eine Persistence Entity nur ein Schlüsselfeld besitzen:
+                        </td>
+                    </tr>
+                </table>
+                <source-code language="java">
+                    @Entity
+                    public class Verlag {
+                        @Id
+                        @GeneratedValue
+                        private long id = 0;
+
+                        …
+                    }
+                </source-code>
+                <table style="margin-bottom: 1em;">
+                    <tr>
+                        <td style="padding-right: 0.5em;">
+                            🐪
+                        </td>
+                        <td>
+                            Mehrere Schlüsselwerte müssen in einer eigenen Klasse definiert werden.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em;">
+                            🐪
+                        </td>
+                        <td>
+                            Die Klasse muss mit <code>@IdClass</code> der Entity zugeordnet werden.
+                        </td>
+                    </tr>
+                </table>
+                <source-code language="java">
+                    public class BuchId {
+                        private String isbn = "";
+                        private int auflage = 0;
+
+                        // Konstruktoren …
+                        // Setter und Getter …
+                    }
+
+                    @Entity
+                    @IdClass(BuchId.class)
+                    public class Buch {
+                        @Id
+                        private String isbn = "";
+
+                        @Id
+                        private int auflage = 0;
+
+                        // Der ganze Rest …
+                    }
+                </source-code>
             </article>
             <aside>
                 <p>
-                    …
+                    So, wie es in der vorherigen Folie gezeigt wurde, kann eine Persistence Entity immer nur ein
+                    Schlüsselfeld besitzen:
+                </p>
+                <source-code language="java">
+                    @Entity
+                    public class Verlag {
+                        @Id
+                        @GeneratedValue
+                        private long id = 0;
+
+                        …
+                    }
+                </source-code>
+                <p>
+                    Häufiger als man denkt, reicht das auch völlig aus. Manchmal kommt man aber um einen zusammengesetzten
+                    Schlüssel mit mehreren Feldern nicht herum. Im Prinzip muss man dafür einfach nur mehrere Felder mit
+                    <code>@Id</code> auszeichnen, zusätzlich braucht man aber noch eine weitere Klasse, die nur den Schlüssel 🗝️
+                    definiert.
+                </p>
+                <p>
+                    Im Beispiel auf der Folie sieht man schön, wie das Klasse <code>BuchId</code> die beiden Felder <code>isbn</code>
+                    und <code>auflage</code> definiert. Es handelt sich um die beiden Schlüsselfelder, mit denen eine ganz bestimmte
+                    Auflage eines Buchs identifiziert wird. Vor der Klasse <code>Buch</code> steht daher die Annotation
+                    <src-code language="java">@IdClass(BuchId.class)</src-code>, um zu definieren, dass die Klasse <code>BuchId</code>
+                    die Schlüsselfelder vorschreibt. Zusätzlich befinden sich innerhalb von <code>Buch</code> ebenfalls die beiden Werte
+                    <code>isbn</code> und <code>auflage</code>, jeweils mit <code>@Id</code> ausgestattet, damit sie auch tatsächlich in
+                    der Datenbank gespeichert werden.
+                </p>
+
+                <h2>Warum so kompliziert?</h2>
+                <p>
+                    Warum das so kompliziert ist, höre ich dich fragen? Warum man nicht einfach auf die zweite Klasse verzichten kann? 🤔
+                    Das sehen wir später, wenn wir einzelne Objekte aus der Datenbank auslesen wollen. Hier brauchen wir dann die neue
+                    Klasse, um die Schlüsselwerte des zu lesenden Datensatzes zu übergeben.
                 </p>
             </aside>
         </section>
@@ -1101,47 +1501,1005 @@
         <section>
             <h1>Definition der Tabellen- und Feldeigenschaften</h1>
             <article>
-                …
+                <h4>Benötigte Annotationen</h4>
+                <table style="margin-bottom: 1em;">
+                    <tr>
+                        <td style="padding-right: 0.5em;">
+                            📎
+                        </td>
+                        <td>
+                            <code>@Table</code>
+                        </td>
+                        <td>
+                            Steht vor der Klasse und definiert weitere Tabelleneigenschaften.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em;">
+                            📎
+                        </td>
+                        <td>
+                            <code>@Index</code>
+                        </td>
+                        <td>
+                            Definiert die Felder eines Index auf die Tabelle.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em;">
+                            📎
+                        </td>
+                        <td>
+                            <code>@Column</code>
+                        </td>
+                        <td>
+                            Steht vor einem Feld und definiert weitere Feldeigenschaften.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em;">
+                            📎
+                        </td>
+                        <td>
+                            <code>@Lob</code>
+                        </td>
+                        <td>
+                            Kennzeichnet eine Feld als <i>Large Object</i> mit unbegrenzter Länge.
+                        </td>
+                    </tr>
+                </table>
+
+                <hr />
+
+                <h4>Praktisches Beispiel</h4>
+                <source-code language="java">
+                    @Entity
+                    @Table(
+                        name    = "T_BUCH",
+                        schema  = "BUCHSAMMLUNG",
+                        indexes = {
+                            @Index(
+                                name       = "I_AUTOR_JAHR",
+                                columnList = "autor, jahr DESC"
+                            ),
+                            @Index(
+                                name       = "I_JAHR",
+                                columnList = "jahr DESC"
+                            )
+                        }
+                    )
+                    public class Buch implements Serializable {
+                        @Id
+                        @Column(length=30)
+                        private String isbn = "";
+
+                        @Column(nullable=false, length=50)
+                        private String autor;
+
+                        @Column(nullable=false, precision=4)
+                        private long jahr;
+
+                        @Column(nullable=false, precision=7, scale=2)
+                        private long preis;
+
+                        @Lob
+                        private String klappentext = "";
+
+                        // Und so weiter …
+                    }
+                </source-code>
             </article>
             <aside>
                 <p>
-                    …
+                    In vielen Fällen kann Java aus dem Namen einer Klasse und ihrer Felder sowie den dazugehörigen Datentypen genug
+                    herauslesen, um sinnvolle Tabellen in der Datenbank anzulegen. Lässt man die Tabellen jedoch nicht automatisch
+                    anlegen, sondern schreibt Entities zu bereits vorhandenen Tabellen, muss man Java hier und da ein wenig auf die
+                    Sprünge helfen, 🏇 damit beides auch wirklich zusammen passt. Dasselbe gilt auch, wenn man Sachen definieren
+                    will, die sich aus dem Javacode alleine nicht ableiten lassen, beispielsweise die maximale Länge eines Stringfelds. 📏
                 </p>
+                <p>
+                    Der allgemeinen Logik von Java&nbsp;EE folgenden müssen hierfür nur ein paar mehr Annotationen in die Klassen
+                    eingebaut werden. Ein etwas größeres Beispiel könnte daher wie auf der Folie dargestellt aussehen. Die Annotationen
+                    haben dabei folgende Bedeutung:
+                </p>
+                <dl>
+                    <dt>
+                        <code>@Table</code>
+                    </dt>
+                    <dd>
+                        <p>
+                            Steht vor einer Klasse und definiert weitere Eigenschaften zur Tabelle:
+                        </p>
+                        <ul>
+                            <li>
+                                <b>name:</b> Name der Tabelle
+                            </li>
+                            <li>
+                                <b>schama:</b> Datenbankschema, in dem die Tabelle angelegt wird (wenn die Datenbank mehrere Schemas
+                                besitzt und nicht das Standardschema verwendet werden soll)
+                            </li>
+                            <li>
+                                <b>indexes:</b> Mit <code>@Index</code> definierte Indizes zur Beschleunigung häufiger Lesezugriffe
+                            </li>
+                        </ul>
+                    </dd>
+
+                    <dt>
+                        <code>@Index</code>
+                    </dt>
+                    <dd>
+                        <p>
+                            Definiert die Feldes eines anzulegenden Index. Die Felder werden durch Komma getrennt und können wahlweise
+                            mit <code>ASC</code> und <code>DESC</code> auf- oder absteigend sortiert werden. Ohne diese Angabe werden
+                            die Felder aufsteigend sortiert.
+                        </p>
+                    </dd>
+                    <dt>
+                        <code>@Column</code>
+                    </dt>
+                    <dd>
+                        <p>
+                            Steht vor einem einzelnen Feld und definiert weiter Eigenschaften des Felds.
+                        </p>
+                        <ul>
+                            <li>
+                                <b>name:</b> Name des Felds
+                            </li>
+                            <li>
+                                <b>length:</b> Maximale Feldlänge
+                            </li>
+                            <li>
+                                <b>precision:</b> Anzahl Ziffern bei numerischen Feldern (inkl. Nachkommastellen!)
+                            </li>
+                            <li>
+                                <b>scale:</b> Anzahl der Nachkommastellen bei nummerischen Feldern
+                            </li>
+                            <li>
+                                <b>nullable:</b> Boolean, ob das Feld Null-Werte beinhalten darf
+                            </li>
+                            <li>
+                                <b>insertable:</b> Boolean, ob das Feld beim Einfügen neuer Sätze berücksichtigt wird
+                            </li>
+                        </ul>
+                    </tdd>
+
+                    <dt>
+                        <code>@Lob</code>
+                    </dt>
+                    <dd>
+                        Steht vor einem Feld und legt fest, dass das Feld ein <i>Large Object</i> mit unbegrenzter
+                        Länge ist. Dies ist wichtig, da Strings standardmäßig als <code>VARCHR(255)</code> und eben
+                        nicht als unbegrenzt lange Felder angelegt werden. Allerdings reduzieren solche Felder die
+                        Performance der Datenbank erheblich und sollten daher nur sehr sparsam 💸 benutzt werden.
+                        Auch kann man nicht nach ihnen selektieren.
+                    </dd>
+                </dl>
             </aside>
         </section>
 
         <section>
             <h1>Fremdschlüsselbeziehungen richtig abbilden</h1>
             <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
-                </p>
-            </aside>
-        </section>
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "fremdschluessel-uebersicht-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#fremdschluessel-uebersicht"
+                                role          = "tab"
+                                aria-controls = "fremdschluessel-uebersicht"
+                                aria-expanded = "true"
+                            >
+                                Übersicht
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "fremdschluessel-1zu1-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#fremdschluessel-1zu1"
+                                role          = "tab"
+                                aria-controls = "fremdschluessel-1zu1"
+                            >
+                                1:1-Beziehungen
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "fremdschluessel-1zuN-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#fremdschluessel-1zuN"
+                                role          = "tab"
+                                aria-controls = "fremdschluessel-1zuN"
+                            >
+                                1:n-Beziehungen
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "fremdschluessel-Nzu1-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#fremdschluessel-Nzu1"
+                                role          = "tab"
+                                aria-controls = "fremdschluessel-Nzu1"
+                            >
+                                n:1-Beziehungen
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "fremdschluessel-NzuM-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#fremdschluessel-NzuM"
+                                role          = "tab"
+                                aria-controls = "fremdschluessel-NzuM"
+                            >
+                                n:m-Beziehungen
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Übersicht -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "fremdschluessel-uebersicht"
+                            role            = "tabpanel"
+                            aria-labelledby = "fremdschluessel-uebersicht-tab"
+                        >
+                            <table style="margin-bottom: 1em;">
+                                <tr>
+                                    <td style="padding-right: 0.5em;">
+                                        🔑
+                                    </td>
+                                    <td>
+                                        Fremdschlüssel werden als Objektreferenzen in Java abgebildet.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-right: 0.5em;">
+                                        🔑
+                                    </td>
+                                    <td>
+                                        Eine Beziehung kann dabei die Kardinalitäten 1:1, 1:n, n:1 oder n:m besitzen.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-right: 0.5em;">
+                                        ➡️
+                                    </td>
+                                    <td>
+                                        Unidirektionale Beziehungen verweisen einfach von einer Klasse auf eine andere.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-right: 0.5em;">
+                                        ↔️
+                                    </td>
+                                    <td>
+                                        Bei bidirektionalen Beziehungen verweisen beide Klassen gegenseitig aufeinander.
+                                    </td>
+                                </tr>
+                            </table>
 
-        <section>
-            <h1>Beispiel: Wir eröffnen ein Kino</h1>
-            <article>
-                …
+                            <table style="margin-bottom: 2em;">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Kardinalität
+                                        </th>
+                                        <th>
+                                            Einfache Verknüpfung
+                                        </th>
+                                        <th>
+                                            Optionale Rückverknüpfung
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>
+                                        1:1
+                                    </td>
+                                    <td>
+                                        <code>@OneToOne</code>
+                                    </td>
+                                    <td>
+                                        <code>@OneToOne(mappedBy="feldname")</code>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        1:n
+                                    </td>
+                                    <td>
+                                        <code>@OneToMany</code>
+                                    </td>
+                                    <td>
+                                        <code>@ManyToOne(mappedBy="feldname")</code>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        n:1
+                                    </td>
+                                    <td>
+                                        <code>@ManyToOne</code>
+                                    </td>
+                                    <td>
+                                        <code>@OneToMany(mappedBy="feldname")</code>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        n:m
+                                    </td>
+                                    <td>
+                                        <code>@ManyToMany</code>
+                                    </td>
+                                    <td>
+                                        <code>@ManyToMany(mappedBy="feldname")</code>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <h4 style="margin-bottom: 0.5em;">Beispiel</h4>
+
+                            <source-code language="java">
+                                @Entity
+                                public class Buch {
+                                    …
+                                    @ManyToOne(                      // Viele Bücher haben einen Verlag
+                                        optional = false,            // Es muss immer einen Verlag geben
+                                        fetch    = FetchType.LAZY    // Daten erst bei einem Zugriff darauf laden
+                                    )
+                                    Verlag verlag = null;
+
+                                    @ManoToOne(
+                                        optional = false,
+                                        fetch    = FetchType.EAGER   // Daten so früh wie möglich laden
+                                    )
+                                    Autor autor = null;
+                                }
+                            </source-code>
+                        </div>
+                        <!-- 1:1-Beziehungen -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "fremdschluessel-1zu1"
+                            role            = "tabpanel"
+                            aria-labelledby = "fremdschluessel-1zu1-tab"
+                        >
+                            <h3>Unidirektionale Verknüpfung</h3>
+                            <p>
+                                Eine Entity kann mit <code>@OneToOne</code> auf eine beliebige andere Entity verweisen, um einen Fremdschlüssel
+                                mit 1:1-Kardinalität abzubilden. In der Tabelle entsteht dadurch ein <b>Fremdschlüsselfeld</b>.
+                            </p>
+                            <source-code language="java">
+                                @Entity
+                                public class Autor {
+                                    …
+                                    @OneToOne
+                                    Adresse adresse = null;
+                                }
+
+                                @Entity
+                                public class Adresse {
+                                    @Id
+                                    @GeneratedValue
+                                    private long id = 0;
+                                    …
+                                }
+                            </source-code>
+
+                            <h3>Verknüpfung über dieselben Schlüsselfelder</h3>
+                            <p>
+                                Das Fremdschlüsselfeld in der Tabelle kann entfallen, wenn beide Tabellen <b>identische Schlüsselwerte</b>
+                                besitzen. In diesem Fall kommt zu <code>@OneToOne</code> noch die Annotation <code>@MapsId</code> hinzu.
+                            </p>
+                            <source-code language="java">
+                                @Entity
+                                public class Autor {
+                                    @Id
+                                    @GeneratedValue
+                                    private long id = 0;
+
+                                    @OneToOne
+                                    @MapsId
+                                    Adresse adresse = null;
+                                }
+
+                                @Entity
+                                public class Adresse {
+                                    @Id
+                                    private long autorId = 0;
+                                    …
+                                }
+                            </source-code>
+
+                            <h3>Bidirektionale Verknüpfung</h3>
+                            <p>
+                                Eine bidirektionale Verknüpfung entsteht, indem zusätzlich zur Verknüpfung von der einen Klasse auf die andere,
+                                die zweite Klasse mit <code>@OneToOne(mappedBy="…")</code> auf das Feld der ersten Klasse zurückverweist.
+                                In der Datenbank entsteht dadurch <b>kein zweiter Fremdschlüssel</b>.
+                            </p>
+                            <source-code language="java">
+                                @Entity
+                                public class Autor {
+                                    …
+                                    @OneToOne
+                                    Adresse adresse = null;
+                                }
+
+                                @Entity
+                                public class Adresse {
+                                    …
+                                    @OneToOne(mappedBy="adresse")
+                                    Autor autor = null;
+                                }
+                            </source-code>
+                        </div>
+                        <!-- 1:n -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "fremdschluessel-1zuN"
+                            role            = "tabpanel"
+                            aria-labelledby = "fremdschluessel-1zuN-tab"
+                        >
+                            <h3>Unidirektionale Verknüpfung</h3>
+                            <p>
+                                1:n-Beziehungen funktionieren grundsätzlich nicht anders als 1:1-Beziehungen. Doch anstelle einer
+                                einfachen Referenz gibt es nun eine ganze Liste, auf die eine Entity verweisen kann. In der Datenbank
+                                wird dies durch ein <b>Fremdschlüsselfeld in der Zieltabelle</b> abgebildet.
+                            </p>
+                            <source-code language="java">
+                                @Entity
+                                public class Buch {
+                                    …
+                                    @OneToMany
+                                    List&lt;Bewertung&gt; bewertungen = new ArrayList&lt;&gt;();
+                                }
+
+                                @Entity
+                                public class Bewertung {
+                                    …
+                                }
+                            </source-code>
+
+                            <h3>Bidirektionale Verknüpfung</h3>
+                            <p>
+                                Durch <code>@ManyToOne(mappedBy="…")</code> kann die Zielklasse wieder eine rückwärtsgerichtete
+                                Beziehung zur Quellklasse herstellen, ohne dass diese in der Datenbank abgelegt wird. Der Verweis
+                                zeigt auf eine einzelne Referenz.
+                            </p>
+                            <source-code language="java">
+                                @Entity
+                                public class Buch {
+                                    …
+                                    @OneToMany
+                                    List&lt;Bewertung&gt; bewertungen = new ArrayList&lt;&gt;();
+                                }
+
+                                @Entity
+                                public class Bewertung {
+                                    …
+                                    @ManyToOne(mappedBy="bewertungen")
+                                    Buch buch = null;
+                                }
+                            </source-code>
+                        </div>
+                        <!-- n:1-Beziehungen -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "fremdschluessel-Nzu1"
+                            role            = "tabpanel"
+                            aria-labelledby = "fremdschluessel-Nzu1-tab"
+                        >
+                            <h3>Unidirektionale Verknüpfung</h3>
+                            <p>
+                                n:1 ist das Gegenteil von 1:n, logisch. Technisch gesehen ist es aber mehr mit 1:1 verwandt,
+                                da auch hier einfach <b>ein Fremdschlüsselfeld in der Quelltabelle</b> entsteht. Allerdings
+                                ist es hier erlaubt, dass mehrere Datensätze auf dieselbe Zielentität verweisen.
+                            </p>
+                            <source-code language="java">
+                                @Entity
+                                public class Buch {
+                                    …
+                                    @ManyToOne
+                                    Verlag verlag = null:
+                                }
+
+                                @Entity
+                                public class Verlag {
+                                    …
+                                }
+                            </source-code>
+
+                            <h3>Bidirektionale Verknüpfung</h3>
+                            <p>
+                                Und auch hier gibt es die Möglichkeit, mit <code>@OneToMany(mappedBy="…")</code> eine inverse
+                                Verknüpfung zu definieren. Die Annotation muss dabei vor einer Liste stehen.
+                            </p>
+                            <source-code language="java">
+                                @Entity
+                                public class Buch {
+                                    …
+                                    @ManyToOne
+                                    Verlag verlag = null:
+                                }
+
+                                @Entity
+                                public class Verlag {
+                                    …
+                                    @OneToMany(mappedBy="verlag")
+                                    List&lt;Buch&gt; buecher = new ArrayList&lt;&gt;();
+                                }
+                            </source-code>
+                        </div>
+                        <!-- n:m-Beziehungen -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "fremdschluessel-NzuM"
+                            role            = "tabpanel"
+                            aria-labelledby = "fremdschluessel-NzuM-tab"
+                        >
+                            <h3>Unidirektionale Verknüpfung</h3>
+                            <p>
+                                Nach all den vorherigen Beispielen, wie wird da wohl eine n:m-Beziehung aussehen? Richtig, wir verwenden
+                                <code>@ManyToMany</code> vor einer Liste. In der Datenbank entsteht dadurch eine <b>Verknüpfungstabelle</b>.
+                            </p>
+                            <source-code language="java">
+                                @Entity
+                                public class Buch {
+                                    …
+                                    @ManyToMany
+                                    List&lt;Autor&gt; autoren = new ArrayList&lt;&gt;();
+                                }
+
+                                @Entity
+                                public class Autor {
+                                    …
+                                }
+                            </source-code>
+
+                            <h3>Bidirektionale Verknüpfung</h3>
+                            <p>
+                                Und wie immer auch mit Rückfahrticket, in diesem Fall <code>@ManyToMany(mappendBy="…")</code> ebenfalls
+                                vor einer Liste.
+                            </p>
+                            <source-code language="java">
+                                @Entity
+                                public class Buch {
+                                    …
+                                    @ManyToMany
+                                    List&lt;Autor&gt; autoren = new ArrayList&lt;&gt;();
+                                }
+
+                                @Entity
+                                public class Autor {
+                                    …
+                                    @ManyToMany(mappedBy="autoren")
+                                    List&lt;Buch&gt; buecher = new ArrayList&lt;&gt;();
+                                }
+                            </source-code>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    Fremdschlüsselbeziehungen gehören zu den großen Stärken relationaler Datenbanken und natürlich kann auch
+                    die Java Persistence API damit umgehen. Doch im Gegensatz zu den Datenbanken legt JPA hier noch eine Schippe
+                    an Komfort drauf und bildet die Beziehungen zwischen zwei Entities nicht einfach durch Übernehmen der
+                    Schlüsselwerte der einen Entity in die andere Entity ab. Kurz, so läuft es nicht: 🙃
+                </p>
+                <source-code language="java">
+                    @Entity
+                    public class Verlag {
+                        @Id
+                        @GeneratedValue
+                        private long id = 0;
+                        …
+                    }
+
+                    @Entity
+                    public class Buch {
+                        @Id
+                        private String isbn = "";
+
+                        // Vermeintlicher Fremdschlüssel
+                        private long verlagId = 0;
+                        …
+                    }
+                </source-code>
+                <p>
+                    Stattdessen werden die Beziehungen über Objektreferenzen abgebildet, so dass im obigen Beispiel ein <code>Buch</code>
+                    einen direkten Verweis auf seinen <code>Verlag</code> hätte. Zusätzlich kommt eine spezielle Annotation zum Einsatz,
+                    die besagt, um was für eine Verknüpfung (1:1, 1:n, n:1 oder n:m) es sich handelt:
+                </p>
+                <source-code language="java">
+                    @Entity
+                    public class Buch {
+                        @Id
+                        private String isbn = "";
+
+                        // Richtiger Fremdschlüssel
+                        @ManyToOne
+                        private Verlag verlag = null;
+                        …
+                    }
+                </source-code>
+                <p>
+                    Das ist wirklich elegant! 👒 Wir brauchen nämlich nur ein Objekt vom Typ <code>Buch</code> aus der Datenbank lesen
+                    und bekommen alle Daten zum <code>Verlag</code> kostenlos mit dazu, ohne eine zweite Datenbankabfrage absetzen
+                    zu müssen. Das macht der O/R-Mapper bereits im Hintergrund, ohne dass wir uns darum kümmern müssen. Allerdings sollten
+                    wir ihm deshalb auch sagen, wenn der die Daten vorerst nicht zu laden braucht, da sie ohnehin nicht immer benötigt
+                    werden:
+                </p>
+                <source-code language="java">
+                    @Entity
+                    public class Buch {
+                        @Id
+                        private String isbn = "";
+
+                        // Richtiger Fremdschlüssel
+                        @ManyToOne(fetchType=FetchType.LAZY)
+                        private Verlag verlag = null;
+                        …
+                    }
+                </source-code>
+                <p>
+                    In diesem Fall würden die meisten O/R-Mapper die Daten zum Verlag erst nachladen, wenn wir wirklich auf das Attribut
+                    <code>verlag</code> des Buchs zugreifen.
+                </p>
+                <p>
+                    Des weiteren können wir in Java auch sogenannte <b>bidirektionale Beziehungen</b> herstellen, was es so in der
+                    Datenbankwelt nicht gibt. Damit ist gemeint, dass nicht nur die Entität A auf B verweisen sondern auch B zurück
+                    auf A verweisen kann. Ohne dass dieser zusätzliche Verweis in der Datenbank abgelegt wird. Möglich macht das das
+                    Attribut <code>mappedBy</code> der verwendeten Annotationen, das immer den Feldnamen innerhalb der Quellentität
+                    enthält.
+                </p>
+                <source-code language="java">
+                    @Entity
+                    public class Buch {
+                        …
+                        @ManyToOne
+                        Verlag verlag = null;
+                    }
+
+                    @Entity
+                    public class Verlag {
+                        …
+                        @OneToMany(mappedBy="verlag")
+                        List&lt;Buch&gt; buecher = new ArrayList&lt;&gt;();
+                    }
+                </source-code>
+                <p>
+                    Wenn dir das soweit klar ist, hast du bereits alles Wesentliche verstanden. 🤝 Auf der Folie findest du dann
+                    weitere Beispiele und Erklärungen darüber, wie die verschiedenen Beziehungstypen in Java nachgebaut werden.
                 </p>
             </aside>
         </section>
 
         <section data-background-color="rgb(231, 221, 141)">
-            <h1>Aufgabe 2: Deine ersten Persistence Entities</h1>
+            <h1>Aufgabe 2: Wir eröffnen ein Kino</h1>
             <article>
-                …
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "aufgabe2-diagramm-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#aufgabe2-diagramm"
+                                role          = "tab"
+                                aria-controls = "aufgabe2-diagramm"
+                                aria-expanded = "true"
+                            >
+                                E/R-Diagramm
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "aufgabe2-standort-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#aufgabe2-standort"
+                                role          = "tab"
+                                aria-controls = "aufgabe2-standort"
+                            >
+                                Standort &amp; Co.
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "aufgabe2-spielplan-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#aufgabe2-spielplan"
+                                role          = "tab"
+                                aria-controls = "aufgabe2-spielplan"
+                            >
+                                Spielplan &amp; Co.
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "aufgabe2-loesung-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#aufgabe2-loesung"
+                                role          = "tab"
+                                aria-controls = "aufgabe2-loesung"
+                            >
+                                Lösung
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- E/R-Diagramm -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "aufgabe2-diagramm"
+                            role            = "tabpanel"
+                            aria-labelledby = "aufgabe2-diagramm-tab"
+                        >
+                            <p>
+                                Hier ist es: Unser Datenmodell in seiner vollen Pracht. 🌅 Um die Aufgabe etwas leichter zu machen, haben wir den
+                                Beziehungen eine Richtung gegeben und kleine Bezeichnungen hinzugefügt. Schaue dir das Modell in aller Ruhe an und
+                                versuche, so viel wie möglich nachzuvollziehen. 🤔
+                                <br />
+                                <small>
+                                    <small>
+                                        Falls du dich wunderst, warum es eine Tabelle mit Standorten gibt: Der ehemalige Besitzer der
+                                        <a href="http://www.schauburg.de" target="_blank">Schauburg</a>,
+                                        <a href="https://ka.stadtwiki.net/Georg_Fricker" target="_blank">Georg Fricker</a>,
+                                        war bis zum Schluss auch Geschäftsführer vom
+                                        <a href="http://www.filmpalast.net/" target="_blank">Filmpalast am ZKM</a>.
+                                    </small>
+                                </small>
+                            </p>
+                            <img src="aufgabe2-komplett.svg" alt="Komplettes E/R-Diagramm unseres Kinobeispiels" class="d-block" style="width: 100%; margin-top: 1em;" />
+                        </div>
+                        <!-- Standort & Co. -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "aufgabe2-standort"
+                            role            = "tabpanel"
+                            aria-labelledby = "aufgabe2-standort-tab"
+                        >
+                            <p>
+                                Als kleine Anschubfinanzierung haben wir den oberen Teil rund um die Standorte des Kinos 🎞️ bereits in Java umgesetzt. Unten findest
+                                du den Quellcode.
+                            </p>
+                            <img src="aufgabe2-standort.svg" alt="Entitäten Standort, Mitarbeiter, Adresse und Öffnungszeit" class="d-block" style="width: 100%; margin-top: 1em;" />
+                            <source-code language="java">
+                                @Entity
+                                public class Standort implements Serializable {
+                                    @Id
+                                    @GeneratedValue
+                                    private long id = 0;
+
+                                    private String name = "";
+
+                                    @OneToMany
+                                    List&lt;Oeffnungszeit&gt; oeffnungszeiten = new ArrayList&lt;&gt;();
+
+                                    @OneToOne
+                                    Adresse adresse = new Adresse();
+
+                                    @OneToMany(mappedBy="standort")
+                                    List&lt;Mitarbeiter&gt; mitarbeiter = new ArrayList&lt;&gt;();
+
+                                    @OneToMany
+                                    List&lt;Spielplan&gt; = spielplaene new ArrayList&lt;&gt;();
+
+                                    // Konstruktoren …
+                                    // Setter und Getter …
+                                }
+
+                                @Entity
+                                public class Oeffnungszeit implements Serializable {
+                                    @Id
+                                    @GeneratedValue
+                                    private long id = 0;
+
+                                    private Wochentag wochentag = Wochentag.UNBEKANNT;
+                                    private Time vonUhrzeit = new Time();
+                                    private Time bisUhrzeit = new Time();
+
+                                    @ManyToOne(mappedBy="oeffnungszeiten")
+                                    Standort standort = new Standort();
+
+                                    // Konstrukturen …
+                                    // Setter und Getter …
+                                }
+
+                                public enum Wochentag {
+                                    UNBEKANNT, MONTAG, DIENSTAG, MITTWOCH,
+                                    DONNERSTAG, FREITAG, SAMSTAG, SONNTAG;
+                                }
+
+                                @Entity
+                                public class Adresse implements Serializable {
+                                    @Id
+                                    @GeneratedValue
+                                    private long id = 0;
+
+                                    private String strasse = "";
+                                    private String hausnummer = "";
+                                    private String postleitzahl = "";
+                                    private String ort = "";
+                                    private String land = "";
+
+                                    // Konstruktoren
+                                    // Setter und Getter
+                                }
+
+                                @Entity
+                                public class Mitarbeiter implements Serializable {
+                                    @Id
+                                    @GeneratedValue
+                                    private long id = 0;
+
+                                    private String vorname = "";
+                                    private String nachname = "";
+                                    private Geschlecht geschlecht = Geschlecht.UNBEKANNT;
+                                    private int durchwahl = 0;
+                                    private String email = "";
+
+                                    @Column(precision=7, scale=2)
+                                    private long monatsgehalt = 1000.00;
+
+                                    @OneToOne
+                                    Adresse adresse = new Addresse();
+
+                                    @ManyToOne
+                                    Standort standort = new Standort();
+
+                                    // Konstruktoren …
+                                    // Setter und Getter …
+                                }
+
+                                public enum GESCHLECHT {
+                                    UNBEKANNT, MAENNLICH, WEIBLICH;
+                                }
+                            </source-code>
+                        </div>
+                        <!-- Spielplan & Co. -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "aufgabe2-spielplan"
+                            role            = "tabpanel"
+                            aria-labelledby = "aufgabe2-spielplan-tab"
+                        >
+                            <p>
+                                Jetzt bist du dran. 👉🏽 Ergänze den Javacode um die fehlenden Entitäten rund im den Spielplan. Die Beziehungen zwischen
+                                den Klassen sollen bidirektional umgesetzt werden und <a href="https://de.wikipedia.org/wiki/Filmgenre" target="_blank">Filmgenres</a>
+                                können sein: <i>Action</i>, <i>Drama</i>, <i>Fantasy</i>, <i>SciFi</i>, <i>Komödie</i> oder <i>Animation</i>.
+                            </p>
+                            <img src="aufgabe2-spielplan.svg" alt="Entitäten Spieplan, Vorführung, Film und Mitwirkender" class="d-block" style="width: 100%; margin-top: 1em;" />
+                        </div>
+                        <!-- Lösung -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "aufgabe2-loesung"
+                            role            = "tabpanel"
+                            aria-labelledby = "aufgabe2-loesung-tab"
+                        >
+                            <p>
+                                Hier die Musterlösung für die Persistence Entities rund um den Spielplan:
+                            </p>
+                            <source-code language="java">
+                                @Entity
+                                public class Spielplan implements Serializable {
+                                    @Id
+                                    @GeneratedValue
+                                    private long id = 0;
+
+                                    private String name = "";
+
+                                    @Lob
+                                    private String webseitentext = "";
+
+                                    @ManyToOne(mappedBy="spielplaene")
+                                    Standort standort = new Standort();
+
+                                    @OneToMany
+                                    List&lt;Voerfuerhung&gt; vorfuehrungen = new ArrayList&lt;&gt;();
+
+                                    // Konstruktoren
+                                    // Setter und Getter …
+                                }
+
+                                @Entity
+                                public class Vorfuehrung implements Serializable {
+                                    @Id
+                                    @GeneratedValue
+                                    private long id = 0;
+
+                                    private Time vonUhrzeit = new Time();
+                                    private Time bisUhrzeit = new Time();
+                                    private String kinosaal = "";
+
+                                    @ManyToOne(mappedBy="vorfuehrungen")
+                                    Spielplan spielplan = new Spielplan();
+
+                                    @ManyToOne
+                                    Film film = new Film();
+
+                                    // Konstruktoren …
+                                    // Setter und Getter …
+                                }
+
+                                @Entity
+                                public class Film implements Serializable {
+                                    @Id
+                                    @GeneratedValue
+                                    private long id = 0;
+
+                                    private String name = "";
+                                    private int jahr = 0;
+                                    private Genre genre = Genre.UNBEKANNT;
+                                    private String verleiher = "";
+
+                                    @Lob
+                                    private String webseitentext = "";
+
+                                    @OneToMany(mappedBy="film")
+                                    List&lt;Vorfuehrung&gt; vorfuehrungen = new ArrayList&lt;&gt;();
+
+                                    @ManyToMany
+                                    List&lt;Mitwirkender&gt; mitwirkende = new ArrayList&lt;&gt;();
+
+                                    // Konstruktoren …
+                                    // Setter und Getter …
+                                }
+
+                                public enum Genre {
+                                    UNBEKANNT, ACTION, DRAMA, FANTASY, SCIFI, COMEDY, ANIMATION;
+                                }
+
+                                @Entity
+                                public class Mitwirkender implements Serializable {
+                                    @Id
+                                    @GeneratedValue
+                                    private long id = 0;
+
+                                    private String vorname = "";
+                                    private String nachname = "";
+                                    private String artDerMitwirkung = "";
+                                    private String nameImFilm = "";
+
+                                    @ManyToMany(mappedBy="mitwirkende")
+                                    Lilst&lt;Film&gt; filme = new ArrayList&lt;&gt;();
+
+                                    // Konstruktoren …
+                                    // Setter und Getter …
+                                }
+                            </source-code>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    Nach so vielen neuen Informationen wollen wir unser neu erworbenes Wissen doch gleich mal anwenden.
+                    Auf dieser Folie siehst du daher ein größeres Beispiel über ein
+                    <a href="http://www.schauburg.de/">nicht ganz unbekanntes Kino hier in Karlsruhe</a>. 📽️
+                    Denn Bücher 📚 haben jetzt wahrlich genug gesehen. 😛
+                </p>
+                <img src="schauburg.jpg" alt="" class="d-block img-thumbnail" style="width: 100%;" />
+                <p>
+                    <small>
+                        Bildnachweis:
+                        <a href="https://ka.stadtwiki.net/Datei:Schauburg_-_Frontal_20131222-121940.hk.jpg" target="_blank">Stadtwiki Karlsruhe: Kucharek</a>
+                        <!-- Vorsicht: CC-BY-NC-SA Lizenz -->
+                    </small>
                 </p>
             </aside>
         </section>
@@ -1149,11 +2507,295 @@
         <section data-background-color="rgb(231, 221, 141)">
             <h1>Aufgabe 3: Ein kleines Persistence-Entity-Quiz</h1>
             <article>
-                …
+                <h2>Aufgabe 3.1: Schlüsselwerte definieren</h2>
+
+                <p>
+                    a) Persistence Entities besitzen immer nur ein Schlüsselfeld.
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Wahr
+                    </li>
+                    <li>
+                        Falsch
+                    </li>
+                </ol>
+
+                <p>
+                    b) Persistence Entities können auch nicht-automatisch vergebene Schlüsselfelder besitzen.
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Wahr
+                    </li>
+                    <li>
+                        Falsch
+                    </li>
+                </ol>
+
+                <p>
+                    c) Welche Annotation kennzeichnet die Schlüsselfelder einer Persistence Entity?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        <code>@Key</code>
+                    </li>
+                    <li>
+                        <code>@Id</code>
+                    </li>
+                    <li>
+                        <code>@IdClass</code>
+                    </li>
+                    <li>
+                        <code>@IdField</code>
+                    </li>
+                </ol>
+
+                <p>
+                    d) Wie muss man vorgehen, um eine Entity mit mehr als einem Schlüsselfeld zu definieren?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Das geht nicht, siehe Frage a).
+                    </li>
+                    <li>
+                        Einfach alle Felder mit <code>@IdField</code> kennzeichnen.
+                    </li>
+                    <li>
+                        Alle Felder mit <code>@Id</code> kennzeichnen und mit <code>@IdClass</code> auf eine
+                        Klasse mit nur den Schlüsselfeldern verweisen.
+                    </li>
+                    <li>
+                        Alle Schlüsselfelder in einer eigenen Klasse definieren und dann eine Referenz
+                        auf die Klasse mit <code>@IdClass</code> kennzeichnen.
+                    </li>
+                </ol>
+
+                <h2>Aufgabe 3.2: Tabellen- und Feldeigenschaften</h2>
+
+                <p>
+                    a) Wie oft kann die Annotation <code>@Table</code> in einer Persistence Entity verwendet werden?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Gar nicht, es handelt sich um eine Annotation für EJBs
+                    </li>
+                    <li>
+                        Höchstens einmal
+                    </li>
+                    <li>
+                        Genau einmal
+                    </li>
+                    <li>
+                        Höchstens drei mal
+                    </li>
+                    <li>
+                        Beliebig oft
+                    </li>
+                </ol>
+
+                <p>
+                    b) An welcher Stelle muss die Annotation <code>@Column</code> in einer Persistence Entity stehen?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Irgendwo vor der Klasse
+                    </li>
+                    <li>
+                        Immer vor der Annotation <code>@Entity</code>
+                    </li>
+                    <li>
+                        Immer nach der Annotation <code>@Entity</code>
+                    </li>
+                    <li>
+                        In jeder beliebigen Stelle innerhalb der Klasse
+                    </li>
+                    <li>
+                        Vor beliebig vielen Attributen der Klasse
+                    </li>
+                    <li>
+                        Vor beliebig vielen Methodenparametern
+                    </li>
+                </ol>
+
+                <p>
+                    c) Wozu dienen die Indizes, die mit <code>@Table</code> definiert werden können?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Der Beschleunigung häufig benötigter Datenselektionen
+                    </li>
+                    <li>
+                        Der Beschleunigung häufig benötigter Einfügeoperationen
+                    </li>
+                    <li>
+                        Der Vorsortierung häufig geschriebener Datensätze
+                    </li>
+                    <li>
+                        Der Kompatibilität mit anderen O/R-Mappern
+                    </li>
+                </ol>
+
+                <p>
+                    d) Was drücken die Werte <b>precision</b> und <b>scale</b> der Annotation <code>@Column</code> aus?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Die Mindest- und Maximallänge zeichenartiger Felder
+                    </li>
+                    <li>
+                        Wie genau eine Fremdschlüsselbeziehung spezifiziert ist
+                    </li>
+                    <li>
+                        Die maximale Anzahl Ziffern einer Kommazahl sowie wie viele davon Nachkommastellen sind
+                    </li>
+                    <li>
+                        Die Anzahl, wie oft ein Boolean auf <code>false</code> umschalten darf
+                    </li>
+                    <li>
+                        Die Genauigkeit, mit der du diese Antworten liest
+                    </li>
+                    <li>
+                        Das maximale Gesamtgewicht aller Entities in Kilogramm oder Pfund
+                    </li>
+                </ol>
+
+                <p>
+                    e) Wie kann der Name einer Tabelle oder eines Felds in der Datenbank überschrieben werden?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Mit der Annotation <code>@Name</code> vor der Klasse oder dem Feld
+                    </li>
+                    <li>
+                        Mit dem Attribut <b>name</b> der Annotationen <code>@Table</code> und <code>@Column</code>
+                    </li>
+                    <li>
+                        Mit der Annotation <code>@BeanName</code> innerhalb der rufenden EJBs
+                    </li>
+                </ol>
+
+                <p>
+                    f) Welche Vor- und Nachteile ergeben sich aus der Annotation <code>@Lob</code>?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Die dadurch gekennzeichneten Stringfelder können jede beliebige Größe annehmen, drücken
+                        dafür aber die Performance nach unten.
+                    </li>
+                    <li>
+                        Die dadurch gekennzeichneten Integerfelder können beliebig große Zahlen annehmen, dafür
+                        kann nach ihnen nicht selektiert werden.
+                    </li>
+                    <li>
+                        Man lobt den Entwickler für seine gute Arbeit, es gibt aber keine Annotation für <code>@Tadel</code>.
+                    </li>
+                </ol>
+
+                <h2>Aufgabe 3.3: Fremdschlüsselbeziehungen</h2>
+
+                <p>
+                    a) Welche der folgenden Beziehungstypen können nicht mit JPA abgebildet werden?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        1:1-Beziehungen
+                    </li>
+                    <li>
+                        1:n-Beziehungen
+                    </li>
+                    <li>
+                        n:1-Beziehungen
+                    </li>
+                    <li>
+                        n:m-Beziehungen
+                    </li>
+                </ol>
+
+                <p>
+                    b) Wie werden 16:9-Beziehungen mit der Java Persistence API abgebildet?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Gar nicht, du warst wohl zu oft im Kino!
+                    </li>
+                    <li>
+                        Mit der Annotation <code>@Widescreen</code>
+                    </li>
+                    <li>
+                        Mit den Annotationen <code>@HdReady</code> und <code>@FullHD</code>
+                    </li>
+                </ol>
+
+                <p>
+                    c) Was sind bidirektionale Beziehungen?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Einfache Beziehungen von einer Entität zu einer anderen
+                    </li>
+                    <li>
+                        Beziehungen mit mehr als einer Zielentität
+                    </li>
+                    <li>
+                        Beziehungen in beide Richtungen zwischen zwei Entitäten
+                    </li>
+                    <li>
+                        Beziehungen mit mehr als einer Startidentität
+                    </li>
+                </ol>
+
+                <p>
+                    d) Welche Anpassung muss bei einer unidirektionalen Beziehungen an der Zielentität vorgenommen werden?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Keine, das ist nur bei bidirektionalen Beziehungen erforderlich.
+                    </li>
+                    <li>
+                        Es muss eine passende Annotation mit der Eigenschaft <b>mappedBy</b> hinzugefügt werden.
+                    </li>
+                    <li>
+                        Es muss eine gegenläufige Annotation ohne besondere Eigenschaften hinzugefügt werden.
+                    </li>
+                    <li>
+                        Es muss mit <code>@ForeignKey</code> ein rückwärtsgerichteter Fremdschlüssel hinzugefügt werden.
+                    </li>
+                </ol>
+
+                <p>
+                    e) Und welche Anpassung muss bei einer bidirektionalen Beziehung an der Zielentität vorgenommen werden?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Keine, das ist nur bei unidirektionalen Beziehungen erforderlich.
+                    </li>
+                    <li>
+                        Es muss eine passende Annotation mit der Eigenschaft <b>mappedBy</b> hinzugefügt werden.
+                    </li>
+                    <li>
+                        Es muss eine gegenläufige Annotation ohne besondere Eigenschaften hinzugefügt werden.
+                    </li>
+                    <li>
+                        Es muss mit <code>@ForeignKey</code> ein rückwärtsgerichteter Fremdschlüssel hinzugefügt werden.
+                    </li>
+                </ol>
+
+                <hr />
+
+                <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                    <small>
+                        <b>Lösung:</b> <br />
+                        Aufgabe 3.1: 2, 1, 2, 3 <br />
+                        Aufgabe 3.2: 4, 5, 1, 3, 2, 1 <br />
+                        Aufgabe 3.3: alle, 1, 3, 1, 2
+                    </small>
+                </p>
             </article>
             <aside>
                 <p>
-                    …
+                    Hier dann noch ein paar Wiederholungsfragen, um auch die weniger häufigen Annotationen
+                    abzuklopfen. Wenn du die kannst, bist du echt gut. 🥉
                 </p>
             </aside>
         </section>
@@ -1239,6 +2881,17 @@
             <h1>Aufgabe 4: Ein kleines Entity-Manager-Quiz</h1>
             <article>
                 …
+
+                <hr />
+
+                <p style="transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                    <small>
+                        <b>Lösung:</b> <br />
+                        Aufgabe 4.1: X;
+                        Aufgabe 4.2: X;
+                        Aufgabe 4.3: X
+                    </small>
+                </p>
             </article>
             <aside>
                 <p>
