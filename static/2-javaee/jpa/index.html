@@ -225,7 +225,7 @@
                     entsprechen. Wollen wir eine Zeile auslesen, erzeugt der O/R-Mapper automatisch ein solches Objekt
                     und übergibt ihm die Werte aus der Datenbank. Soll stattdessen ein neuer Datensatz geschrieben werden,
                     erzeugen wir das Objekt einfach selbst und übergeben es dem O/R-Mapper. Die ganzen hässlichen Einzelheiten,
-                    wie wir sie oben gesehen haben, brauchen wir dabei nicht beachten.Das macht der O/R-Mapper für uns.
+                    wie wir sie oben gesehen haben, brauchen wir dabei nicht beachten. Das macht der O/R-Mapper für uns.
                     Wir müssen lediglich eine Bean² mit den richtigen Feldern bereitstellen:
                 </p>
                 <p>
@@ -704,7 +704,7 @@
                     <div class="carousel-inner">
                         <div class="carousel-item img-thumbnail active">
                             <p>
-                                Bevor die Datenbank genutzt werden kann, muss sie gestartet werden. Am einfachst startest du hierfür
+                                Bevor die Datenbank genutzt werden kann, muss sie gestartet werden. Am einfachsten startest du hierfür
                                 eine Webanwendung. Die Datenbank wird dann automatisch mitgestartet.
                             </p>
                             <img class="active d-block w-100" src="netbeans-dbtools-01.png" />
@@ -820,7 +820,7 @@
                 </p>
                 <ul>
                     <li>
-                        eine manuelle Verbindung zu Datenbank herstellen kannst.
+                        eine manuelle Verbindung zur Datenbank herstellen kannst.
                     </li>
                     <li>
                         Tabellen von Hand anlegen und bearbeiten kannst.
@@ -961,7 +961,7 @@
                     </li>
                 </ol>
 
-                <h2>Aufgabe 1.3: Datenkbanken in Netbeans</h2>
+                <h2>Aufgabe 1.3: Datenbanken in Netbeans</h2>
 
                 <p>
                     a) Welche Datenbanken werden von Netbeans unterstüzt?
@@ -1224,7 +1224,7 @@
                         >
                             <p>
                                 Und damit es eine echte Bean ist, muss es zu jedem Feld mindestens einen Getter  geben. In der Regel gibt
-                                es je Feld auch einen Stter, bei berechneten Feldern, deren Wert nicht in der Datenbank gespeichert wird,
+                                es je Feld auch einen Setter, bei berechneten Feldern, deren Wert nicht in der Datenbank gespeichert wird,
                                 kann er aber auch ausbleiben.
                             </p>
                             <source-code language="java">
@@ -1480,7 +1480,7 @@
                     definiert.
                 </p>
                 <p>
-                    Im Beispiel auf der Folie sieht man schön, wie das Klasse <code>BuchId</code> die beiden Felder <code>isbn</code>
+                    Im Beispiel auf der Folie sieht man schön, wie die Klasse <code>BuchId</code> die beiden Felder <code>isbn</code>
                     und <code>auflage</code> definiert. Es handelt sich um die beiden Schlüsselfelder, mit denen eine ganz bestimmte
                     Auflage eines Buchs identifiziert wird. Vor der Klasse <code>Buch</code> steht daher die Annotation
                     <src-code language="java">@IdClass(BuchId.class)</src-code>, um zu definieren, dass die Klasse <code>BuchId</code>
@@ -1544,7 +1544,7 @@
                             <code>@Lob</code>
                         </td>
                         <td>
-                            Kennzeichnet eine Feld als <i>Large Object</i> mit unbegrenzter Länge.
+                            Kennzeichnet ein Feld als <i>Large Object</i> mit unbegrenzter Länge.
                         </td>
                     </tr>
                 </table>
@@ -1629,7 +1629,7 @@
                     </dt>
                     <dd>
                         <p>
-                            Definiert die Feldes eines anzulegenden Index. Die Felder werden durch Komma getrennt und können wahlweise
+                            Definiert die Felder eines anzulegenden Index. Die Felder werden durch Komma getrennt und können wahlweise
                             mit <code>ASC</code> und <code>DESC</code> auf- oder absteigend sortiert werden. Ohne diese Angabe werden
                             die Felder aufsteigend sortiert.
                         </p>
@@ -1639,7 +1639,7 @@
                     </dt>
                     <dd>
                         <p>
-                            Steht vor einem einzelnen Feld und definiert weiter Eigenschaften des Felds.
+                            Steht vor einem einzelnen Feld und definiert weitere Eigenschaften des Felds.
                         </p>
                         <ul>
                             <li>
@@ -1668,7 +1668,7 @@
                     </dt>
                     <dd>
                         Steht vor einem Feld und legt fest, dass das Feld ein <i>Large Object</i> mit unbegrenzter
-                        Länge ist. Dies ist wichtig, da Strings standardmäßig als <code>VARCHR(255)</code> und eben
+                        Länge ist. Dies ist wichtig, da Strings standardmäßig als <code>VARCHAR(255)</code> und eben
                         nicht als unbegrenzt lange Felder angelegt werden. Allerdings reduzieren solche Felder die
                         Performance der Datenbank erheblich und sollten daher nur sehr sparsam 💸 benutzt werden.
                         Auch kann man nicht nach ihnen selektieren.
@@ -1859,7 +1859,7 @@
                                     )
                                     Verlag verlag = null;
 
-                                    @ManoToOne(
+                                    @ManyToOne(
                                         optional = false,
                                         fetch    = FetchType.EAGER   // Daten so früh wie möglich laden
                                     )
@@ -1923,7 +1923,7 @@
 
                             <h3>Bidirektionale Verknüpfung</h3>
                             <p>
-                                Eine bidirektionale Verknüpfung entsteht, indem zusätzlich zur Verknüpfung von der einen Klasse auf die andere,
+                                Eine bidirektionale Verknüpfung entsteht, indem zusätzlich zur Verknüpfung von der einen Klasse auf die andere
                                 die zweite Klasse mit <code>@OneToOne(mappedBy="…")</code> auf das Feld der ersten Klasse zurückverweist.
                                 In der Datenbank entsteht dadurch <b>kein zweiter Fremdschlüssel</b>.
                             </p>
@@ -2134,10 +2134,10 @@
                     }
                 </source-code>
                 <p>
-                    Das ist wirklich elegant! 👒 Wir brauchen nämlich nur ein Objekt vom Typ <code>Buch</code> aus der Datenbank lesen
+                    Das ist wirklich elegant! 👒 Wir brauchen nämlich nur ein Objekt vom Typ <code>Buch</code> aus der Datenbank zu lesen
                     und bekommen alle Daten zum <code>Verlag</code> kostenlos mit dazu, ohne eine zweite Datenbankabfrage absetzen
                     zu müssen. Das macht der O/R-Mapper bereits im Hintergrund, ohne dass wir uns darum kümmern müssen. Allerdings sollten
-                    wir ihm deshalb auch sagen, wenn der die Daten vorerst nicht zu laden braucht, da sie ohnehin nicht immer benötigt
+                    wir ihm deshalb auch sagen, wenn er die Daten vorerst nicht zu laden braucht, da sie ohnehin nicht immer benötigt
                     werden:
                 </p>
                 <source-code language="java">
@@ -2154,10 +2154,10 @@
                 </source-code>
                 <p>
                     In diesem Fall würden die meisten O/R-Mapper die Daten zum Verlag erst nachladen, wenn wir wirklich auf das Attribut
-                    <code>verlag</code> des Buchs zugreifen.
+                    <code>verlag</code> zugreifen.
                 </p>
                 <p>
-                    Des weiteren können wir in Java auch sogenannte <b>bidirektionale Beziehungen</b> herstellen, was es so in der
+                    Des Weiteren können wir in Java auch sogenannte <b>bidirektionale Beziehungen</b> herstellen, was es so in der
                     Datenbankwelt nicht gibt. Damit ist gemeint, dass nicht nur die Entität A auf B verweisen sondern auch B zurück
                     auf A verweisen kann. Ohne dass dieser zusätzliche Verweis in der Datenbank abgelegt wird. Möglich macht das das
                     Attribut <code>mappedBy</code> der verwendeten Annotationen, das immer den Feldnamen innerhalb der Quellentität
@@ -2747,7 +2747,7 @@
                 </ol>
 
                 <p>
-                    d) Welche Anpassung muss bei einer unidirektionalen Beziehungen an der Zielentität vorgenommen werden?
+                    d) Welche Anpassung muss bei einer unidirektionalen Beziehung an der Zielentität vorgenommen werden?
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
@@ -2907,7 +2907,7 @@
                 </p>
                 <p>
                     Aus diesem Grund benötigt jede Java-EE-Anwendung mindestens eine sogenannte <b>Persistence Unit</b>, die definiert,
-                    welche Datenbank sie verwendet. Technisch gesehen bedeutet das, dass Anwendung eine Datei mit dem Namen
+                    welche Datenbank sie verwendet. Technisch gesehen bedeutet das, dass die Anwendung eine Datei mit dem Namen
                     <tt>persistence.xml</tt> beinhalten muss, in der mindestens eine solche Persistence Unit definiert ist.
                     Doch anstatt jetzt die XML-Syntax zu erklären, zeigen dir die Bilder auf der Folie, wie die Datei mit Netbeans
                     angelegt und bearbeitet werden kann.
@@ -2940,7 +2940,7 @@
                 <p>
                     Für die Übungen bietet es sich an, als Anlagestrategie <i>Create</i> zu wählen, damit die Inhalte der Tabellen
                     nicht verloren gehen. Jedoch musst du dann hin und wieder die Tabellen von Hand löschen, da nicht jede Änderung
-                    an den Persistence Entities immer in den Tabellen nachgezogen wird. Komischen Fehlermeldungen beim Lesen oder
+                    an den Persistence Entities immer in den Tabellen nachgezogen wird. Komische Fehlermeldungen beim Lesen oder
                     Schreiben, beispielsweise dass die Tabelle ein bestimmtes Feld nicht enthält, können hier ein Hinweis sein. 🔔
                 </p>
             </aside>
@@ -3129,7 +3129,7 @@
                     der weiß, wie man Javaobjekte zu Tabellenzeilen konvertiert und umgekehrt. ↕️
                 </p>
                 <p>
-                    Doch bevor es losgehen kann, brauchen wir erst mal eine Referenz, die wir uns innerhalb jedes Servlets und
+                    Doch bevor es losgehen kann, brauchen wir erst einmal eine Referenz, die wir uns innerhalb jedes Servlets und
                     jeder Enterprise Java Bean mit folgenden Zeilen besorgen können. Innerhalb eines Servlets sollte das aber
                     eigentlich vermieden werden.
                 </p>
@@ -3142,8 +3142,8 @@
                     }
                 </source-code>
                 <p>
-                    Ist das einmal geschafft, können wir die auf der Folie dargestellten Methoden verwenden, um Datensätze
-                    auszulesen, zu schreiben oder zu löschen. Es ist wirklich ziemlich einfach, wie das folgende Beispiel zeigt:
+                    Ist das geschafft, können wir die auf der Folie dargestellten Methoden verwenden, um Datensätze auszulesen,
+                    zu schreiben oder zu löschen. Es ist wirklich ziemlich einfach, wie das folgende Beispiel zeigt:
                 </p>
                 <source-code language="java">
                     @Stateless
@@ -3190,7 +3190,7 @@
                     }
                 </source-code>
                 <p>
-                    Wollten wir nun einen neuen Mitarbeiter anlegen, müssten wir nur eine neues Objekt erzeugen,
+                    Wollten wir nun einen neuen Mitarbeiter anlegen, müssten wir nur ein neues Objekt erzeugen,
                     es mit Werten füllen und die Methode <code>saveNew</code> der obigen EJB aufrufen. Ungefähr so:
                 </p>
                 <source-code language="java">
@@ -3308,11 +3308,11 @@
                     Manchmal macht es natürlich Sinn, nicht einfach nur einzelne Datensätze aus der Datenbank zu lesen
                     oder zu schreiben, sondern gleich mehrere Sätze auf einen Schlag. Zum Beispiel, wenn der Anwender
                     einen Suchbegriff eingibt und wir ihm eine Liste der möglichen Kandidaten zurückliefern wollen.
-                    Oder wenn wir an tausenden Einträgen dieselbe Änderung vornehmen wollten. Da wäre es natürlich pure
+                    Oder wenn wir an tausenden Einträgen dieselbe Änderung vornehmen wollen. Da wäre es natürlich pure
                     Zeitverschwendung, jeden Datensatz einzeln zu lesen, zu verändern und dann zu speichern.
                 </p>
                 <p>
-                    In diesem Fällen würde man normalerweise anfangen, auf den jeweiligen Anwendungsfall optimierte
+                    In diesen Fällen würde man normalerweise anfangen, auf den jeweiligen Anwendungsfall optimierte
                     SQL-Befehle zu verwenden, doch leider gibt es da ein Problem: Die SQL-Anweisungen unterscheiden sich
                     von Hersteller zu Hersteller. Zwar sind die meisten Statements im Kern normiert, jeder Hersteller
                     bietet aber eigene Spracherweiterungen, die nur mit seinen Produkten funktionieren. Komplexe
@@ -3488,7 +3488,7 @@
                             <p>
                                 <src-code language="java">Entity saveNew(Entity entity)</src-code>
                                 <br />
-                                Speichern eines komplett neuen Datensatzes, des es zuvor nocht nicht gab
+                                Speichern eines komplett neuen Datensatzes, den es zuvor nocht nicht gab
                             </p>
                             <p>
                                 <src-code language="java">Entity update(Entity entity)</src-code>
@@ -3694,7 +3694,7 @@
                 </table>
                 <p>
                     Also genau die vier CRUD-Operationen aller datenzentrischer Anwendungen: Create, Read, Update
-                    und Delete. Wie wir schon gesehen haben, lassen sich diese Operationen danke dem Entity Manager
+                    und Delete. Wie wir schon gesehen haben, lassen sich diese Operationen dank dem Entity Manager
                     relativ einfach ausprogrammieren. Unser Vorschlag ist daher, zu jeder Persistence Entity eine
                     gleichlautende EJB zu entwickeln, welche die auf der Folie gezeigten Methoden beinhaltet:
                 </p>
@@ -3847,7 +3847,7 @@
                                     //
                                     // Vorhandene Datensätze finden
                                     //
-                                    public Standort findById(long id) {
+                                    public Film findById(long id) {
                                         return em.find(Film.class, id);
                                     }
 
@@ -4055,7 +4055,7 @@
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
-                        Es ist nicht ganz so schnellt wie natives SQL.
+                        Es ist nicht ganz so schnell wie natives SQL.
                     </li>
                     <li>
                         Es gibt kein <code>UPDATE</code> und <code>DELETE</code>.
@@ -4219,7 +4219,7 @@
                         Biete spezielle Suchmethoden für häufiger benötigte Selektionen.
                     </li>
                     <li>
-                        Überlege dir, die maximale Anzahl rückgegebener Sätze zu begrenzen und die Sätze vorzusortieren.
+                        Überlege dir, die maximale Anzahl zurückgegebener Sätze zu begrenzen und die Sätze vorzusortieren.
                     </li>
                     <li>
                         Programmiere besonders performancekritische Sachen mit Native SQL.
