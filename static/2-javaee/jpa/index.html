@@ -1820,7 +1820,7 @@
                                         <code>@OneToMany</code>
                                     </td>
                                     <td>
-                                        <code>@ManyToOne(mappedBy="feldname")</code>
+                                        geht nicht, siehe Anmerkungen im Reiter
                                     </td>
                                 </tr>
                                 <tr>
@@ -1972,9 +1972,9 @@
 
                             <h3>Bidirektionale Verknüpfung</h3>
                             <p>
-                                Durch <code>@ManyToOne(mappedBy="…")</code> kann die Zielklasse wieder eine rückwärtsgerichtete
-                                Beziehung zur Quellklasse herstellen, ohne dass diese in der Datenbank abgelegt wird. Der Verweis
-                                zeigt auf eine einzelne Referenz.
+                                Hier müssen wir leider gleich auf eine kleine Schrägheit in der Java Persistence API hinweisen.
+                                Normalerweise würde man erwarten, dass sich mit <code>@ManyToOne(mappedBy="…")</code> auch eine
+                                rückwärtsgerichtete Beziehung herstellen lässt, wie im folgenden Beispiel:
                             </p>
                             <source-code language="java">
                                 @Entity
@@ -1988,6 +1988,26 @@
                                 public class Bewertung {
                                     …
                                     @ManyToOne(mappedBy="bewertungen")
+                                    Buch buch = null;
+                                }
+                            </source-code>
+                            <p>
+                                Das funktioniert aber nicht, da <code>@ManyToOne</code> die einzige Annotation ist, die das Attribut
+                                <code>mappedBy</code> nicht kennt. Stattdessen muss die Beziehung als <b>bidirektionale n:1-Beziehung</b>
+                                abgebildet werden:
+                            </p>
+                            <source-code language="java">
+                                @Entity
+                                public class Buch {
+                                    …
+                                    @OneToMany(mappedBy="buch")
+                                    List&lt;Bewertung&gt; bewertungen = new ArrayList&lt;&gt;();
+                                }
+
+                                @Entity
+                                public class Bewertung {
+                                    …
+                                    @ManyToOne
                                     Buch buch = null;
                                 }
                             </source-code>
@@ -2021,7 +2041,7 @@
 
                             <h3>Bidirektionale Verknüpfung</h3>
                             <p>
-                                Und auch hier gibt es die Möglichkeit, mit <code>@OneToMany(mappedBy="…")</code> eine inverse
+                                Hier gibt es wieder die Möglichkeit, mit <code>@OneToMany(mappedBy="…")</code> eine inverse
                                 Verknüpfung zu definieren. Die Annotation muss dabei vor einer Liste stehen.
                             </p>
                             <source-code language="java">
@@ -2286,7 +2306,7 @@
 
                                     private String name = "";
 
-                                    @OneToMany
+                                    @OneToMany(mappedBy="standort")
                                     List&lt;Oeffnungszeit&gt; oeffnungszeiten = new ArrayList&lt;&gt;();
 
                                     @OneToOne
@@ -2295,7 +2315,7 @@
                                     @OneToMany(mappedBy="standort")
                                     List&lt;Mitarbeiter&gt; mitarbeiter = new ArrayList&lt;&gt;();
 
-                                    @OneToMany
+                                    @OneToMany(mappedBy="standort")
                                     List&lt;Spielplan&gt; = spielplaene new ArrayList&lt;&gt;();
 
                                     // Konstruktoren …
@@ -2312,7 +2332,7 @@
                                     private Time vonUhrzeit = new Time();
                                     private Time bisUhrzeit = new Time();
 
-                                    @ManyToOne(mappedBy="oeffnungszeiten")
+                                    @ManyToOne
                                     Standort standort = new Standort();
 
                                     // Konstrukturen …
@@ -2406,10 +2426,10 @@
                                     @Lob
                                     private String webseitentext = "";
 
-                                    @ManyToOne(mappedBy="spielplaene")
+                                    @ManyToOne
                                     Standort standort = new Standort();
 
-                                    @OneToMany
+                                    @OneToMany(mappedBy="spielplan")
                                     List&lt;Voerfuerhung&gt; vorfuehrungen = new ArrayList&lt;&gt;();
 
                                     // Konstruktoren
@@ -2427,7 +2447,7 @@
                                     private Time bisUhrzeit = new Time();
                                     private String kinosaal = "";
 
-                                    @ManyToOne(mappedBy="vorfuehrungen")
+                                    @ManyToOne
                                     Spielplan spielplan = new Spielplan();
 
                                     @ManyToOne
