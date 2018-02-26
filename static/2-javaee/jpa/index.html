@@ -1896,31 +1896,6 @@
                                 }
                             </source-code>
 
-                            <h3>Verknüpfung über dieselben Schlüsselfelder</h3>
-                            <p>
-                                Das Fremdschlüsselfeld in der Tabelle kann entfallen, wenn beide Tabellen <b>identische Schlüsselwerte</b>
-                                besitzen. In diesem Fall kommt zu <code>@OneToOne</code> noch die Annotation <code>@MapsId</code> hinzu.
-                            </p>
-                            <source-code language="java">
-                                @Entity
-                                public class Autor {
-                                    @Id
-                                    @GeneratedValue
-                                    private long id = 0;
-
-                                    @OneToOne
-                                    @MapsId
-                                    Adresse adresse = null;
-                                }
-
-                                @Entity
-                                public class Adresse {
-                                    @Id
-                                    private long autorId = 0;
-                                    …
-                                }
-                            </source-code>
-
                             <h3>Bidirektionale Verknüpfung</h3>
                             <p>
                                 Eine bidirektionale Verknüpfung entsteht, indem zusätzlich zur Verknüpfung von der einen Klasse auf die andere
