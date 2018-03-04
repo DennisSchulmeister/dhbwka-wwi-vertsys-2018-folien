@@ -12,7 +12,9 @@
         <header>
             <h2>Inhaltsverzeichnis</h2>
             <p>
-                …
+                Nicht immer besitzt eine Webanwendung auch wirklich eine grafische Weboberfläche.
+                Manchmal reicht es auch schon aus, ein paar Funktionen über das Web entfernt aufrufbar
+                zu machen. Wie das geht, erfährst du hier.
             </p>
         </header>
 
@@ -27,26 +29,69 @@
                 <h3>Nach Abschluss dieser Einheit kannst du …</h3>
                 <ul>
                     <li>
-                        den Begriff <span class="dhbw-lightblue font-weight-bold">verteiltes System</span>
-                        erklären und von ähnlichen Begriffen abgrenzen.
+                        Die Idee hinter SOAP-Webservices und <span class="dhbw-lightblue font-weight-bold">typische Anwendungsfälle</span> beschreiben.
+                    </li>
+                    <li>
+                        <span class="dhbw-lightblue font-weight-bold">SOAP-Nachrichten</span> interpretieren sowie eigene SOAP-Anfragen formulieren.
+                    </li>
+                    <li>
+                        Erklären, was eine <span class="dhbw-lightblue font-weight-bold">WSDL-Beschreibung</span> ist und wozu sie benötigt wird.
+                    </li>
+                    <li>
+                        WSDL-Dateien in <span class="dhbw-lightblue font-weight-bold">SoapUI</span> importieren und fremde Webservices damit testen.
+                    </li>
+                    <li>
+                        Eigene SOAP-Webservices mit den <span class="dhbw-lightblue font-weight-bold">JAX-WS-Annotationen</span> von Java entwickeln.
+                    </li>
+                    <li>
+                        Java-EE-Anwendungen mit SOAP-Webservices <span class="dhbw-lightblue font-weight-bold">übersichtlich und wartbar</span> strukturieren.
+                    </li>
+                    <li>
+                        Entfernte Webservices mit JAX-WS aus Java heraus aufrufen.
+                    </li>
+                    <li>
+                        Netbeans zur Generierung der für den Aufruf benötigten Webservice-Stubs verwenden.
                     </li>
                 </ul>
                 <span style="font-size: 240px; color: white;" class="dhbw-text-shadow" >🏁</span>
             </article>
             <aside>
                 <p>
-                    …
+                    Seitdem wir uns das erste mal in Webprogrammierung mit Java auf dem Server beschäftigt haben, ist viel passiert.
+                    Inzwischen können wir nicht nur einfache Webseiten serverseitig mit Java generieren, sondern wir können ganze
+                    Webanwendungen schreiben, die einer logischen Struktur aus Datenhaltung, Serviceklassen und Weboberfläche entsprechen.
+                    Doch nicht immer muss eine Java-EE-Anwendung eine serverseitige Weboberfläche beinhalten, manchmal will man
+                    stattdessen einfach nur die Funktionen einer EJB für entfernte Clients über das Internet aufrufbar machen.
+                    Oder man will, obwohl eine Anwendung eine Weboberfläche besitzt, auch anderen Clients die Möglichkeit geben,
+                    dieselben Funktionen im Hintergrund zu nutzen.
+                </p>
+                <p>
+                    Das Mittel der Wahl hierfür sind oftmals Webservices, da sie weder ein bestimmtes Betriebssystem noch eine
+                    bestimmte Programmiersprache voraussetzen. Clients und Server können dadurch in jeder beliebigen Sprache
+                    für jedes beliebige Betriebssystem programmiert werden, wodurch die gesamte Architektur sehr flexibel wird.
+                    Zusätzich können sie aus fast jedem Intranet heraus aufgerufen werden, da sie wie das World Wide Web ebenfalls
+                    auf HTTP basieren und somit von den meisten Firewalls durchgelassen werden. Dementsprechend hoch ist daher
+                    ihre Verbreitung insbesondere geschäftlichen Umfeld, wo gute Firewalls und restriktive Netzzugänge zur
+                    Absicherung einfach dazu gehören.
+                </p>
+                <p>
+                    In diesem Kapitel schauen wir uns ausschließlich SOAP-Webservices an, bevor wir im nächsten Kapitel auch
+                    REST-Webservices kennenlernen werden. Du erfährst daher, was ein SOAP-Webservice ist, wie der technisch
+                    Funktioniert und wie du sowohl eigene Webservices entwickeln als auch entfernte Webservices mit Java
+                    aufrufen kannst. Dabei zeigen wir dir dann auch, warum jeder SOAP-Webservice immer eine sogenannte WSDL
+                    beinhaltet und wie du damit einen Webservices mit SoapUI testen sowie alle benötigten Klassen für seinen
+                    Aufruf generieren lassen kannst.
                 </p>
             </aside>
         </section>
 
         <!--
-            ==============
-            ERSTES KAPITEL
-            ==============
+            ========================
+            Kurzvorstellung von SOAP
+            ========================
         -->
         <section data-chapter data-background-image="../../trennfolie.jpg">
-            <h1>Erstes Kapitel</h1>
+            <h1>Kurzvorstellung von SOAP</h1>
             <article>
                 <small>
                     <small>
@@ -58,7 +103,255 @@
         </section>
 
         <section>
-            <h1>…</h1>
+            <h1>HTTP + XML = SOAP</h1>
+            <article>
+                <table style="margin-bottom: 1em;">
+                    <tr>
+                        <td style="padding-right: 0.5em">
+                            🌎
+                        </td>
+                        <td>
+                            SOAP-Webservices erlauben Clients den entfernten Aufruf von Methoden eines Servers.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em">
+                            🌍
+                        </td>
+                        <td>
+                            HTTP dient dabei als plattformunabhängiges Transportprotokoll für XML-SOAP-Nachrichten.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em">
+                            🌏
+                        </td>
+                        <td>
+                            Üblicherweise wird es in Unternehmen zur Entwicklung betriebswirtschaftlicher Anwendungen genutzt.
+                        </td>
+                    </tr>
+                </table>
+
+                <h2>Typische Anwendungsfälle</h2>
+
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "usecases-b2b-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#usecases-b2b"
+                                role          = "tab"
+                                aria-controls = "usecases-b2b"
+                                aria-expanded = "true"
+                            >
+                                Business-To-Business
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "usecases-integration-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#usecases-integration"
+                                role          = "tab"
+                                aria-controls = "usecases-integration"
+                            >
+                                Systemintegration
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Business-To-Business -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "usecases-b2b"
+                            role            = "tabpanel"
+                            aria-labelledby = "usecases-b2b-tab"
+                        >
+                            <p>
+                                Sehr häufig werden Webservices dazu genutzt, B2B-Szenarios zwischen mehreren Unternehmen abzubilden, wofür ein Unternehmen
+                                Webservices bietet, die von seinen Kunden und Lieferanten aufgerufen werden können. Dadurch können die Systeme aller
+                                beteiligten Unternehmen untereinander Daten austauschen, um manuelle Prozessschritte zu eliminieren. Die nachfolgende
+                                Abbildung zeigt zum Beispiel, wie ein Großkunde eine Bestellung bei einem externen Händler aufgibt, was wiederum zur
+                                automatischen Erteilung eines Produktions- und eines Lieferauftrags bei zwei weiteren Unternehmen führt.
+                            </p>
+                            <img src="usecase-b2b.svg" alt="Systemintegration zwischen Unternehmen" class="d-block" style="width: 100%;" />
+                            <p>
+                                <small>
+                                    <small>
+                                        Bildnachweis:
+                                        <a href="https://pixabay.com/de/hund-laptop-computer-gl%C3%A4ser-2983021/" target="_blank">Pixabay: Kaz</a>
+                                    </small>
+                                </small>
+                            </p>
+                        </div>
+                        <!-- Systemintegration -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "usecases-integration"
+                            role            = "tabpanel"
+                            aria-labelledby = "usecases-integration-tab"
+                        >
+                            <p>
+                                Innerhalb eines Unternehmens können Webservices genutzt werden, um heterogene Anwendungen über einen Integrationsserver
+                                miteinander zu verbinden. Üblicherweise bieten die Anwendungen, die meistens von unterschiedlichen Herstellern stammen und
+                                nicht miteinander kompatibel sind, hierfür eine Webservice-Schnittstelle, die durch den Integrationsserver bedient
+                                werden kann. Zusätzlich können auf dem Server weitere, durch die Anwendungen aufgerufene Webservices definiert werden,
+                                wobei der Server die Aufrufe umwandelt und dann entsprechend weiterleitet. Manche Server besitzen darüber hinaus sogar
+                                eine Regel-Engine, mit der automatisch ablaufende Geschäftsprozesse gesteuert werden können.
+                            </p>
+                            <img src="usecase-integration.svg" alt="Integration heterogener Anwendungen" class="d-block" style="width: 100%;" />
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <aside>
+                <p>
+                    Bisher haben wir HTTP nur als Übertragungsprotokoll für HTML-Seiten, die ein Browser von einem Webserver abrufen kann, kennengelernt.
+                    Im Zusammenhang mit EJBs kann HTTP aber auch etwas ganz anderes: Die Methoden einer Stateless Session Bean durch entfernte Clients
+                    aufrufbar machen, und zwar auch dann (oder, besser gesagt, gerade dann), wenn diese Clients keine Browser sondern einfach irgendwelche
+                    Programme sind. Man spricht dann von einem <b>Webservice</b>, da die Enterprise Java Beans gewöhnliche Webtechnologien benutzen, um ihre
+                    Methoden entfernt aufrufbar zu machen. Die Idee dahinter hat dabei eigentlich gar nichts mit Java zu tun, da sich Webservices mit nahezu
+                    jeder Programmiersprache sowohl erstellen als auch aufrufen lassen. Jedoch geht dies mit Java, wie du bald sehen wirst, besonders einfach.
+                </p>
+                <p>
+                    Die Webservices, um dies hier geht, nennen sich <b>SOAP-Webservices</b>, was ursprünglich mal für <b>Simple Object Access Protocol</b>
+                    stand. Doch wie bei vielen  <a href="https://de.wikipedia.org/wiki/SOAP" target="_blank">von Microsoft erfundenen</a> Dingen, ist das
+                    Protokoll weder einfach noch wirklich objektorientiert, 😉 so dass SOAP heute nur noch für SOAP steht. ✨ Denn rund um SOAP sind im Laufe
+                    der Jahre viele verwandte Standards entstanden, die zwar allesamt reale Probleme, wie zum Beispiel die Signierung und Verschlüsselung der
+                    übertragenen Daten, lösen, dafür aber auch sehr komplex sind. Wir begüngen uns an dieser Stelle daher nur mit den Grundlagen, bei denen
+                    es immer auf folgendes hinausläuft:
+                </p>
+                <ul>
+                    <li>
+                        Ein Server stellt Objekte für entfernte Methodenaufrufe zur Verfügung.
+                    </li>
+                    <li>
+                        Als Transportprotokoll kommt dabei HTTP oder HTTPS¹ zum Einsatz.
+                    </li>
+                    <li>
+                        Methodenaufruf und Ergebnis werden im SOAP-XML-Format kodiert.
+                    </li>
+                </ul>
+                <p>
+                    Das W3C definiert <a href="https://www.w3.org/TR/ws-arch/#whatis" target="_blank">Webservices</a> dementsprechend so:
+                    <i>
+                        Ein Webservices ist ein Softwaresystem, das für die interoperable Maschine-Zu-Maschine-Interaktion über ein Netzwerk entworfen wurde.
+                        […] Andere Systeme interagieren mit dem Webservice […] durch SOAP-Nachrichten, die typischerweise via HTTP mit einer XML-Serialisierung
+                        und anderen Webstandards übertragen werden.
+                    </i>
+                </p>
+                <p>
+                    Aufgrund seines Alters (SOAP wurde bereits 1999 erfunden), der prinzipbedingten Plattformunabhängigkeit, der vielen angrenzenden Standards
+                    sowie der ausgereiften Frameworks und Entwicklungswerkzeuge ist SOAP heute bei vielen Unternehmen im Einsatz. Insbesondere bei verteilten
+                    Business-To-Business-Anwendungen ist SOAP das Mittel der Wahl und wird erst seit kurzem vermehrt durch REST² abgelöst. Typische Use Cases
+                    sind daher die auf der Folie gezeigten, wenn zum Beispiel die Lieferkette zwischen zwei Unternehmen elektronisch abgebildet wird oder einfach
+                    nur mehrere, voneinander unabhängige Anwendungen über einen Integrationsserver miteinander verbunden werden sollen.
+                </p>
+                <p>
+                    <small>
+                        ¹ HTTP über eine verschlüsselte Verbindung
+                        <br />
+                        ² Schauen wir uns im nächsten Kapitel an
+                    </small>
+                </p>
+            </aside>
+        </section>
+
+        <section>
+            <h1>Technische Hintergründe zu SOAP</h1>
+            <article>
+                <!-- 1. WSDL
+                2. HTTP-POST
+                3. XML-SOAP-Format (Envelope, Header, Body)
+                4. Typischer Inhalt für einen Methodenaufruf -->
+                …
+            </article>
+            <aside>
+                <p>
+                    …
+                </p>
+            </aside>
+        </section>
+
+        <!-- <section>
+            <h1>Die WSDL als formale Spezifikation</h1>
+            <article>
+                …
+            </article>
+            <aside>
+                <p>
+                    …
+                </p>
+            </aside>
+        </section> -->
+
+        <section>
+            <h1>Webservices testen mit SoapUI</h1>
+            <article>
+                …
+            </article>
+            <aside>
+                <p>
+                    …
+                </p>
+            </aside>
+        </section>
+
+        <section data-background-color="rgb(231, 221, 141)">
+            <h1>Aufgabe 1: Ein kleines Webservice-Quiz</h1>
+            <article>
+                <h2>Aufgabe 1.1: …</h2>
+
+                <p>
+                    a) …
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        …
+                    </li>
+                    <li>
+                        …
+                    </li>
+                </ol>
+
+                <hr />
+
+                <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                    <small>
+                        <b>Lösung:</b> Aufgabe 1.1: …; <br />
+                        Aufgabe 1.2: …
+                    </small>
+                </p>
+            </article>
+            <aside>
+                <p>
+                    …
+                </p>
+            </aside>
+        </section>
+
+        <!--
+            =========================
+            SOAP-WEBSERVICES MIT JAVA
+            =========================
+        -->
+        <section data-chapter data-background-image="../../trennfolie.jpg">
+            <h1>SOAP-Webservices mit Java</h1>
+            <article>
+                <small>
+                    <small>
+                        Bildnachweis:
+                        <a href="https://pixabay.com/en/adult-break-business-caucasian-2398561/" target="_blank">Pixabay: rawpixel</a>
+                    </small>
+                </small>
+            </article>
+        </section>
+
+        <section>
+            <h1>Eigene Webservices definieren</h1>
             <article>
                 …
             </article>
@@ -70,7 +363,20 @@
         </section>
 
         <section>
-            <h1>…</h1>
+            <h1>Empfohlene Architektur für Java EE</h1>
+            <article>
+                …
+            </article>
+            <aside>
+                <!-- http://geek-and-poke.com/geekandpoke/2012/3/3/thank-god-not-everything-is-software.html -->
+                <p>
+                    …
+                </p>
+            </aside>
+        </section>
+
+        <section>
+            <h1>Fremde Webservices aufrufen</h1>
             <article>
                 …
             </article>
@@ -82,7 +388,7 @@
         </section>
 
         <section>
-            <h1>…</h1>
+            <h1>Netbeans, dein Freund und Helfer</h1>
             <article>
                 …
             </article>
@@ -93,8 +399,8 @@
             </aside>
         </section>
 
-        <section>
-            <h1>…</h1>
+        <section data-background-color="rgb(231, 221, 141)">
+            <h1>Aufgabe 2: Eine kleine Seifenoper</h1>
             <article>
                 …
             </article>
@@ -105,118 +411,31 @@
             </aside>
         </section>
 
-        <section>
-            <h1>…</h1>
+        <section data-background-color="rgb(231, 221, 141)">
+            <h1>Aufgabe 3: Ein kleines JAX-WS-Quiz</h1>
             <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
-                </p>
-            </aside>
-        </section>
+                <h2>Aufgabe 3.1: …</h2>
 
-        <section>
-            <h1>…</h1>
-            <article>
-                …
-            </article>
-            <aside>
                 <p>
-                    …
+                    a) …
                 </p>
-            </aside>
-        </section>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        …
+                    </li>
+                    <li>
+                        …
+                    </li>
+                </ol>
 
-        <section>
-            <h1>…</h1>
-            <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
+                <hr />
+
+                <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                    <small>
+                        <b>Lösung:</b> Aufgabe 3.1: …; <br />
+                        Aufgabe 3.2: …
+                    </small>
                 </p>
-            </aside>
-        </section>
-
-        <section>
-            <h1>…</h1>
-            <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
-                </p>
-            </aside>
-        </section>
-
-        <section>
-            <h1>…</h1>
-            <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
-                </p>
-            </aside>
-        </section>
-
-        <section>
-            <h1>…</h1>
-            <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
-                </p>
-            </aside>
-        </section>
-
-        <section>
-            <h1>…</h1>
-            <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
-                </p>
-            </aside>
-        </section>
-
-        <section>
-            <h1>…</h1>
-            <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
-                </p>
-            </aside>
-        </section>
-
-        <section>
-            <h1>…</h1>
-            <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
-                </p>
-            </aside>
-        </section>
-
-        <section>
-            <h1>…</h1>
-            <article>
-                …
             </article>
             <aside>
                 <p>
@@ -254,9 +473,8 @@
             </article>
             <aside>
                 <p>
-                    Dies sind sie: Die berühmten letzten Worte. 📄 Auf dieser Folie haben wir ein paar allgemeine
-                    Tipps zusammengestellt, worauf du bei …
-                    achten solltest.
+                        Das ist er: <a href="https://de.wikipedia.org/wiki/%C3%9Cber_den_Umgang_mit_Menschen" target="_blank">Der Knigge</a> für Java. 📘
+                    Auf dieser Folie haben wir ein paar allgemeine Tipps zusammengestellt, worauf du bei der Entwicklung von SOAP-Webservices achten solltest.
                 </p>
                 <img src="../../do-dont.svg" class="d-block" style="width: 20em; max-width: 100%; margin-bottom: 0.5em;" />
                 <p>
