@@ -3611,6 +3611,7 @@
                                     }
 
                                     public void delete(Entity entity) {
+                                        entity = em.merge(entity);
                                         em.remove(entity);
                                     }
                                 }

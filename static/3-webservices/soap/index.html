@@ -174,8 +174,8 @@
                                 Sehr häufig werden Webservices dazu genutzt, B2B-Szenarios zwischen mehreren Unternehmen abzubilden, wofür ein Unternehmen
                                 Webservices bietet, die von seinen Kunden und Lieferanten aufgerufen werden können. Dadurch können die Systeme aller
                                 beteiligten Unternehmen untereinander Daten austauschen, um manuelle Prozessschritte zu eliminieren. Die nachfolgende
-                                Abbildung zeigt zum Beispiel, wie ein Großkunde eine Bestellung bei einem externen Händler aufgibt, was wiederum zur
-                                automatischen Erteilung eines Produktions- und eines Lieferauftrags bei zwei weiteren Unternehmen führt.
+                                Abbildung zeigt zum Beispiel, wie ein Großkunde eine Bestellung bei einem Händler aufgibt, was wiederum zur automatischen
+                                Erteilung eines Produktions- und eines Lieferauftrags bei zwei weiteren Unternehmen führt.
                             </p>
                             <img src="usecase-b2b.svg" alt="Systemintegration zwischen Unternehmen" class="d-block" style="width: 100%;" />
                             <p>
@@ -263,72 +263,612 @@
         <section>
             <h1>Technische Hintergründe zu SOAP</h1>
             <article>
-                <!-- 1. WSDL
-                2. HTTP-POST
-                3. XML-SOAP-Format (Envelope, Header, Body)
-                4. Typischer Inhalt für einen Methodenaufruf -->
-                …
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "details-wsdl-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#details-wsdl"
+                                role          = "tab"
+                                aria-controls = "details-wsdl"
+                                aria-expanded = "true"
+                            >
+                                WSDL-Beschreibung
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "details-transfer-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#details-transfer"
+                                role          = "tab"
+                                aria-controls = "details-transfer"
+                            >
+                                HTTP und XML-Format
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- WSDL-Beschreibung -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "details-wsdl"
+                            role            = "tabpanel"
+                            aria-labelledby = "details-wsdl-tab"
+                        >
+                            <p>
+                                Jeder SOAP-Webservice besitzt eine <span class="dhbw-lightblue font-weight-bold">WSDL-Beschreibung</span>, in der alle aufrufbaren
+                                Operationen, die hierbei ausgetauschten XML-Nachrichten, das Transportprotokoll und die URL in einem maschinenlesbaren XML-Format
+                                definiert sind. Sie besitzt ungefähr folgenden Aufbau:
+                            </p>
+                            <table style="margin-bottom: 1em">
+                                <tr>
+                                    <td style="padding-right: 0.5em">
+                                        📃
+                                    </td>
+                                    <td>
+                                        Typdefinitionen der ausgetauschten XML-Daten mit <a href="https://de.wikipedia.org/wiki/XML_Schema" target="_blank">XML Schema</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-right: 0.5em">
+                                        📃
+                                    </td>
+                                    <td>
+                                        Definition der aufrufbaren <span class="dhbw-lightblue font-weight-bold">Operationen</span> (in Java würde man „Methoden” sagen)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-right: 0.5em">
+                                        📃
+                                    </td>
+                                    <td>
+                                        Zusammenfassung mehrere Operationen zu einem <span class="dhbw-lightblue font-weight-bold">Interface</span> (WSDL 2.0) bzw. <span class="dhbw-lightblue font-weight-bold">Port Type</span> (WSDL 1.1)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-right: 0.5em">
+                                        📃
+                                    </td>
+                                    <td>
+                                        Definition des <span class="dhbw-lightblue font-weight-bold">Bindings</span> mit dem Transportprotokoll, URL und Aufrufsemantik des Webservices
+                                    </td>
+                                </tr>
+                            </table>
+                            <p>
+                                Das nachfolgende Beispiel zeigt die WSDL-1.1-Beschreibung für einen <code>BuchladenWebservice</code>
+                                mit <code>sucheNachStichwort</code> als einziger Operation:
+                            </p>
+                            <source-code language="xml">
+                                &lt;definitions name="BuchladenWebservice"
+                                        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                                        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                                        xmlns="http://schemas.xmlsoap.org/wsdl/"&gt;
+
+                                    &lt;!-- Zunächst werden mit XML Schema alle XML-Strukturen definiert, die    --&gt;
+                                    &lt;!-- in irgend einer Form zwischen Client und Server ausgetauscht werden. --&gt;
+                                    &lt;!-- Dabei muss es für jede Operation mindestens eine Anfrage- und eine   --&gt;
+                                    &lt;!-- Antwortstruktur geben. Darüber hinaus können aber noch beliebige     --&gt;
+                                    &lt;!-- weitere Strukturen definiert werden.                                 --&gt;
+                                    &lt;types&gt;
+                                        &lt;xs:schema&gt;
+                                            &lt;!-- Anfrage für „sucheNachStichwort” --&gt;
+                                            &lt;element name="sucheNachStichwort"&gt; … &lt;/element&gt;
+                                            &lt;!-- Antwort für „sucheNachStichwort” --&gt;
+                                            &lt;element name="sucheNachStichwortResponse"&gt; … &lt;/element&gt;
+                                            &lt;!-- Struktur für ein einzelnes Buch --&gt;
+                                            &lt;element name="buch"&gt; … &lt;/element&gt;
+                                        &lt;/xs:schema&gt;
+                                    &lt;/types&gt;
+
+                                    &lt;!-- Anschließend werden für jede Operation die Anfrage- und die Antwort- --&gt;
+                                    &lt;!-- Nachrichten des soap:Body definiert. Die Nachrichten beziehen sich   --&gt;
+                                    &lt;!-- dabei auf die Schemadefinitionen von oben.                           --&gt;
+                                    &lt;message name="SucheNachStichwortRequestBody"&gt;
+                                        &lt;part name="RequestBody" element="sucheNachStichwort"/&gt;
+                                    &lt;/message&gt;
+
+                                    &lt;message name="SucheNachStichwortResponseBody"&gt;
+                                        &lt;part name="ResponseBody" element="sucheNachStichwortResponse"/&gt;
+                                    &lt;/message&gt;
+
+                                    &lt;!-- Darauf aufbauend können die Port Types mit den darin enthaltenen, --&gt;
+                                    &lt;!-- aufrufbaren Operationen definiert werden. Jeder Port Type kann    --&gt;
+                                    &lt;!-- beliebig viele Operationen beinhalten und es kann auch beliebig   --&gt;
+                                    &lt;!-- viele Port Types geben. Für jede Operation wird auf die oben      --&gt;
+                                    &lt;!-- definierten XML-Nachrichten verweisen.                            --&gt;
+                                    &lt;portType name="BuchSuchePortType"&gt;
+                                        &lt;operation name="sucheNachStichwort"&gt;
+                                           &lt;input message="tns:SucheNachStichwortRequestBody"/&gt;
+                                           &lt;output message="tns:SucheNachStichwortResponseBody"/&gt;
+                                        &lt;/operation&gt;
+                                    &lt;/portType&gt;
+
+                                    &lt;!-- Als nächstes folgt das Binding, das hauptsächlich HTTP als Protokoll --&gt;
+                                    &lt;!-- zur Übertragung definiert und mit use="literal" festlegt, dass die   --&gt;
+                                    &lt;!-- XML-Nachrichten strikt dem XML-Schema entsprechen müssen.            --&gt;
+                                    &lt;binding name="BuchSucheBinding" type="tns:BuchSuchePortType"&gt;
+                                        &lt;soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/&gt;
+                                        &lt;operation name="sucheNachStichwort"&gt;
+                                           &lt;soap:operation&gt;
+                                           &lt;input&gt;
+                                               &lt;soap:body use="literal"/&gt;
+                                           &lt;/input&gt;
+                                           &lt;output&gt;
+                                               &lt;soap:body use="literal"/&gt;
+                                           &lt;/output&gt;
+                                        &lt;/operation&gt;
+                                    &lt;/binding&gt;
+
+                                    &lt;!-- Und schlussendlich die URL zum Aufruf des Webservices. --&gt;
+                                    &lt;service name="BuchSucheService"&gt;
+                                        &lt;port name="BuchSuchePort" binding="tns:BuchSucheBinding"&gt;
+                                            &lt;soap:address location="http://example.com/soap/buchsuche/"/&gt;
+                                        &lt;/port&gt;
+                                    &lt;/service&gt;
+                                &lt;/definitions&gt;
+                            </source-code>
+                        </div>
+                        <!-- HTTP und XML-Format -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "details-transfer"
+                            role            = "tabpanel"
+                            aria-labelledby = "details-transfer-tab"
+                        >
+                            <p>
+                                Anfrage und Antwort werden im SOAP-XML-Format kodiert und durch einen einfachen HTTP-Aufruf übertragen. Die aufgerufene URL, sowie
+                                der genaue Inhalte der XML-Nachrichten ergibt sich aus der WSDL-Beschreibung. Der Aufruf erfolgt immer als POST-Anfrage.
+                            </p>
+                            <img src="beispiel-request.svg" alt="" class="d-block" style="width: 100%; margin-bottom: 3em;" />
+                            <img src="beispiel-response.svg" alt="" class="d-block" style="width: 100%;" />
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    Da der SOAP-Standard unabhängig von Java oder irgend einer anderen Sprache erfunden wurde, besitzt er ein paar Besonderheiten, die wir bei der
+                    Entwicklung beachten müssen. Deshalb ist es ganz gut, zu verstehen, wie ein SOAP-Webservice funktioniert und welche Daten bei einem Aufruf über
+                    die Leitung gehen. Auf dieser Folien schauen wir uns daher die folgenden Sachen an:
+                </p>
+                <ul>
+                    <li>
+                        Wie die aufrufbaren Methoden eines SOAP-Webservices formal definiert werden
+                    </li>
+                    <li>
+                        Welche URL ein Webservice besitzt und wie das HTTP-Protokoll beim Aufruf verwendet wird
+                    </li>
+                    <li>
+                        Welchen Aufbau jede SOAP-Nachricht, also jede Anfrage oder Antwort, besitzt
+                    </li>
+                    <li>
+                        Wie der Name der aufgerufenen Methode, ihre Parameter und der Rückgabewert kodiert werden
+                    </li>
+                </ul>
+                <p>
+                    Den Bezug zu Java lassen wir dabei erst einmal außen vor. Wir wollen erst verstehen, wie SOAP ganz allgemein funktioniert.
+                </p>
+
+                <h2>Formale Definition</h2>
+                <p>
+                    Eine Besonderheit von SOAP ist, dass es zu jedem Webservice eine sogenannte WSDL-Beschreibung gibt, in der alle für den Aufruf des Webservices
+                    benötigten Informationen in einem maschinenlesbaren XML-Format definiert sind. Dementsprechend steht WSDL auch für <b>Webservice Definition
+                    Language</b>. Das Format ist ein wenig kompliziert aufgebaut und nicht so sehr dafür gedacht, von Hand geschrieben oder ausgewertet zu werden.
+                    Vielmehr dient es dazu, durch Werkzeugprogramme ausgewertet zu werden, um zum Beispiel ein fertiges Codegerüst für Client oder Server zu generieren.
+                    Inzwischen gibt es zwei Versionen des WSDL-Standards: <a href="https://www.w3.org/TR/2001/NOTE-wsdl-20010315" target="_blank">WSDL 1.1</a> und
+                    <a href="https://www.w3.org/TR/2007/REC-wsdl20-20070626/" target="_blank">WSDL 2.0</a>, die meisten Frameworks (inklusive Java) unterstützen jedoch
+                    nur die ältere Version, obwohl WSDL 2.0 bereits 2007 spezifiziert wurde und gegenüber der Vorversion von 2001 einige Vereinfachungen enthält. 😕
+                </p>
+                <p>
+                    Vereinfacht gesagt besitzt eine WSDL-Datei folgende Inhalte:
+                </p>
+                <ul>
+                    <li>
+                        <b>Typdefinitionen:</b> Damit klar ist, welche XML-Daten an den Webservice gesendet werden können und welche XML-Daten er zurückschickt,
+                        befindet sich am Anfang der WSDL ein Bereich mit <a href="https://de.wikipedia.org/wiki/XML_Schema" target="_blank">XML-Schema-Definitionen</a>.
+                        Hier wird für jede Methode eine Anfragestruktur und eine Antwortstruktur definiert und festgelegt, welche XML-Elemente sie enthalten.
+                    </li>
+                    <li>
+                        <b>Nachrichtendefinitionen:</b> Als nächstes folgt ein Bereich, in dem die Methoden (im SOAP-Jargon „Operationen” genannt) selbst definiert
+                        werden. Hier wird also festgelegt, welche Operationen es gibt, wie sie heißen, und welche XML-Schema-Definitionen für Anfrage und Antwort
+                        herangezogen werden.
+                    </li>
+                    <li>
+                        <b>Interfaces / Port Types:</b> In Java sind wir es gewohnt, dass sich ein Programm aus mehreren Klassen zusammensetzt, in denen die Methoden
+                        des Programms enthalten sind. Ein ähnliches Konzept gibt es auch für Webservices, wobei hier nicht zwischen Klassen und Objekten unterschieden
+                        wird. Stattdessen besitzt jeder Webservice mindestens ein „Interface” (WSDL 2.0) bzw. „Port Type” (WSDL 1.1), dem die aufrufbaren Operationen
+                        zugewiesen werden. Somit künnen durch Definition mehrere Interfaces bzw. Port Types sozusagen Gruppen gebildet werden, die alle Operationen
+                        eines Aufgabenbereichs zusammenfassen.
+                    </li>
+                    <li>
+                        <b>Bindings:</b> Last but not least müssen natürlich noch URL, Übertragungsprotokoll und Aufrufsemantik¹ des Webservices definiert werden.
+                        Dies erfolgt am Ende der WSDL durch das sogenannte Binding, das als eigenständige Struktur zunächst definiert und dann den Interfaces
+                        bzw. Port Types zugewiesen wird.
+                    </li>
+                </ul>
+                <p>
+                    Ein minimales Beispiel für eine WSDL-Datei findest du auf den Folien, auch wenn du die XML-Elemente jetzt nicht auswändig lernen musst. 👻
+                </p>
+                <p>
+                    <small>
+                        ¹ In der Theorie kennt SOAP noch andere Übertragungsprotokolle außer HTTP, dies wird in der Praxis aber kaum genutzt. Ebenso kennt SOAP
+                        noch weitere Aufrufsemantiken, die sich nicht am klassischen Methodenaufruf orientieren, beispielsweise Anfragen ohne Antwort. Dies kommt
+                        ab und zu vor, der synchrone Methodenaufruf mit Anfrage und direkt darauf folgender Antwort wird jedoch am häufigsten verwendet.
+                    </small>
+                </p>
+
+                <h2>Nutzung von HTTP</h2>
+                <p>
+                    Durch die Bindings besitzt jedes Interface bzw. jeder Port Type (und damit in Java jede EJB, die wir zu einem Webservice machen) eine eigene URL
+                    wie <a href="https://example.com/soap/bestellungen/">https://example.com/soap/bestellungen/</a>. An diese URL können HTTP-Anfragen zum Aufruf der
+                    verschiedenen Operationen geschickt werden, wobei die URL dann bei allen Anfragen stets die gleiche ist. Wichtig ist, dass dabei nur
+                    <a href="../../../webprog/4-server/http/#2" target="_blank">HTTP-POST-Anfragen</a> erlaubt sind, da POST in der
+                    <a href="https://tools.ietf.org/html/rfc2616#section-9.5" target="_blank">HTTP-Spezifikation</a> als allgemeines Verb zum Senden von Daten an den
+                    Server definiert ist.
+                </p>
+
+                <h2>Das XML-Datenformat</h2>
+                <p>
+                    Sowohl die Anfrage also auch die Antwort eines Webserviceaufrufs folgen einem festen Schema, das auch als das SOAP-XML-Format bekannt ist.
+                    Die Daten haben dabei in beiden Fällen folgenden, groben Aufbau:
+                </p>
+                <source-code language="xml">
+                    &lt;soap:Envelope
+                        xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+                        ggf. weitere Namensraumdefinitionen
+                    &gt;
+                        &lt;soap:Header&gt;
+                            &lt;!-- Kopfdaten --&gt;
+                        &lt;/soap:Header&gt;
+                        &lt;soap:Body&gt;
+                            &lt;!-- Eigentliche Anfrage oder Antwort --&gt;
+                        &lt;/soap:Body&gt;
+                    &lt;/soap:Envelope&gt;
+                </source-code>
+                <p>
+                    An oberster Stelle befindet sich also immer ein <src-code language="xml">&lt;Envelope&gt;</src-code>, der einen optionalen
+                    <src-code language="xml">&lt;Header&gt;</src-code> sowie einen <src-code language="xml">&lt;Body&gt;</src-code> besitzt.
+                    Alle drei Elemente müssen der Namensraum-URL
+                    <a href="http://schemas.xmlsoap.org/soap/envelope/" target="_blank">http://schemas.xmlsoap.org/soap/envelope/</a>
+                    zugeordnet sein. Was dann inerhalb von <src-code language="xml">&lt;Header&gt;</src-code> und
+                    <src-code language="xml">&lt;Body&gt;</src-code> steht, hängt vom Webservice ab. Der eigentliche Methodenaufruf ist allerdings
+                    immer im <src-code language="xml">&lt;Body&gt;</src-code> enthalten, während der <src-code language="xml">&lt;Header&gt;</src-code>
+                    oft nur allgemeine Sachen wie Benutzername und Passwort oder Fehlermeldungen beinhaltet.
+                </p>
+                <p>
+                    Wie du auf der Folie sehen kannst, beinhaltet der <src-code language="xml">&lt;Body&gt;</src-code> immer genau ein XML-Element,
+                    das den Namen der aufgerufenen Operation definiert. Innerhalb davon befinden sich dann weitere Elemente für die übergebenen
+                    Parameter bzw. den Rückgabewert des Aufrufs.
                 </p>
             </aside>
         </section>
-
-        <!-- <section>
-            <h1>Die WSDL als formale Spezifikation</h1>
-            <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
-                </p>
-            </aside>
-        </section> -->
 
         <section>
             <h1>Webservices testen mit SoapUI</h1>
             <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
-                </p>
-            </aside>
-        </section>
-
-        <section data-background-color="rgb(231, 221, 141)">
-            <h1>Aufgabe 1: Ein kleines Webservice-Quiz</h1>
-            <article>
-                <h2>Aufgabe 1.1: …</h2>
-
-                <p>
-                    a) …
-                </p>
-                <ol class="dhbw-liste-mit-viel-text">
+                <ul class="dhbw-carousel-links">
                     <li>
-                        …
+                        <a href="#soapui-carousel" role="button" data-slide="next">Nächstes Bild</a>
                     </li>
                     <li>
-                        …
+                        <a href="#soapui-carousel" role="button" data-slide="prev">Vorheriges Bild</a>
                     </li>
-                </ol>
+                    <li>
+                        <a href="#soapui-carousel" role="button" data-slide-to="0">Nochmal von vorne</a>
+                    </li>
+                </ul>
+                <div id="soapui-carousel" class="carousel slide" style="margin-bottom: 1em;" data-interval="false">
+                    <div class="carousel-inner">
+                        <div class="carousel-item img-thumbnail active">
+                            <p>
+                                Angenommen, du hast einen Webservice entwickelt und startest diesen in Netbeans. Dann zeigt Nebeans am Ende
+                                des Glassfish-Protokolls die URLs des Webservices an.
+                            </p>
+                            <img class="active d-block w-100" src="soapui-01.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Wenn du <code>?wsdl</code> an die URLs anhängst, kannst du im Browser die WSDL zu jeder EJB abrufen.
+                            </p>
+                            <img class="active d-block w-100" src="soapui-02.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Für SoapUI musst du die WSDLs nicht manuell herunterladen. Du musst allerdings je WSDL ein neues SOAP-Projekt anlegen.
+                            </p>
+                            <img class="active d-block w-100" src="soapui-03.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Dadurch öffnet sich folgendes Fenster. Kopiere die URL der WSDL hier herein und gib dem Projekt einen Namen.
+                            </p>
+                            <img class="active d-block w-100" src="soapui-04.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Das neue Projekt taucht dann links in der Baumansicht auf. Anhand der WSDL konnte SoapUI auch bereits die verfügbaren Operationen erkennen.
+                            </p>
+                            <img class="active d-block w-100" src="soapui-05.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Per Doppelklick auf ein Binding öffnet sich ein Fenster mit allerlei nützlichen Informationen über den Webservice.
+                            </p>
+                            <img class="active d-block w-100" src="soapui-06.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Beispielsweise gibt es hier auch einen praktischen WSDL-Viewer, der eine schnelle Navigation innerhalb der WSDL ermöglicht.
+                            </p>
+                            <img class="active d-block w-100" src="soapui-07.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                SoapUI het bereits zu jeder Operation eine Beispielanfrage generiert, die sich per Doppelklick öffnen lässt.
+                            </p>
+                            <img class="active d-block w-100" src="soapui-08.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Über das Kontextmenü lassen sich noch beliebig weitere Beispielanfragen erzeugen.
+                            </p>
+                            <img class="active d-block w-100" src="soapui-09.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                So wie diese hier, wo der Parameter <src-code language="xml">&lt;name&gt;Spaceballs&lt;/name&gt;</src-code> an den Webservice übergeben wird. Per Klick
+                                auf das grüne Play-Symbol wird die Anfrage abgeschickt.
+                            </p>
+                            <img class="active d-block w-100" src="soapui-10.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Wenig später taucht dann rechts die Antwort auf.
+                            </p>
+                            <img class="active d-block w-100" src="soapui-11.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Über die „raw”-Buttons lassen sich die HTTP-Rohdaten der Anfrage und Antwort anzeigen. Dadurch siehst du dann auch die gesendeten Header Fields.
+                            </p>
+                            <img class="active d-block w-100" src="soapui-12.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Damit endet unsere kleine SoapUI-Tour. Das Tool sollte ein keinem Werkzeugkoffer fehlen. 🔧
+                            </p>
+                            <img class="active d-block w-25 m-auto" src="../../finish.svg" />
+                        </div>
+                    </div>
+                </div>
 
-                <hr />
-
-                <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                <p>
                     <small>
-                        <b>Lösung:</b> Aufgabe 1.1: …; <br />
-                        Aufgabe 1.2: …
+                        <small>
+                            Bildnachweis für das Endesymbol: <a href="https://pixabay.com/en/symbol-gui-internet-internet-page-2480163/" target="_blank">Pixabay: janf93</a>
+                        </small>
                     </small>
                 </p>
             </article>
             <aside>
                 <p>
-                    …
+                    Die einfachste Möglichkeit, einen neuen Webservice kennenzulernen oder auch seine eigenen Webservices zu testen, ist sie
+                    mit dem freien Tool <a href="https://www.soapui.org/downloads/soapui.html" target="_blank">SoapUI</a> zu untersuchen.
+                    Die nachfolgenden Abbildungen zeigen dir, wir du eine WSDL in SoapUI importieren und die Webserviceaufrufe testen kannst. 🔬
+                </p>
+                <img src="soap.jpg" alt="" class="d-block img-thumbnail" style="width: 100%;" />
+                <p>
+                    <small>
+                        Bildnachweis:
+                        <a href="https://pixabay.com/de/lavendel-seife-handt%C3%BCcher-sch%C3%B6nheit-3066531/" target="_blank">Pixabay: joe137</a>
+                    </small>
+                </p>
+            </aside>
+        </section>
+
+        <section data-background-color="rgb(231, 221, 141)">
+            <h1>Aufgabe 1: Wir erkunden SoapUI</h1>
+            <article>
+                <p>
+                    Lade dir von Moodle den Beispiel-Webservice herunter und lasse ihn in Netbeans laufen. Anschließend importiere seine beiden
+                    WSDLs in SoapUI und erkunde ein wenig die angeboten Operationen, indem du erst die Operation <code>createExampleData</code>
+                    des <code>AdminSoapWebservice</code> und dann die anderen Operationen ausführst. Vergleiche dabei auch, wie die Attribute
+                    der <code>Movie</code> und der <code>Participant</code>-Klassen im XML abgebildet werden.
+                </p>
+                <img src="aufgabe1.png" alt="Screenshot von SoapUI" class="d-block" style="width: 100%;" />
+            </article>
+            <aside>
+                <p>
+                    Da SoapUI so ein praktisches Werkzeug ist, solltest du es gleich mal installieren und ausprobieren. Das Beispielprojekt auf
+                    Moodle hilft dir dabei. 💯
+                </p>
+            </aside>
+        </section>
+
+        <section data-background-color="rgb(231, 221, 141)">
+            <h1>Aufgabe 2: Ein kleines Webservice-Quiz</h1>
+            <article>
+                <h2>Aufgabe 2.1: Allgemeine Fragen</h2>
+
+                <p>
+                    a) Für welche der typischen Anwendungsfälle wird SOAP typischerweise genutzt
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Zur Bereitstellung eines Serverbackends für clientseitige Webanwendungen
+                    </li>
+                    <li>
+                        Zur Automatisierung unternehmensübergreifender Geschäftsprozesse
+                    </li>
+                    <li>
+                        Zur Interprozesskommunikation mehrerer Programme auf demselben Rechner
+                    </li>
+                    <li>
+                        Zur Kommunikation von IoT-Devices mit einem Server in der Cloud
+                    </li>
+                    <li>
+                        Zur Integration unterschiedlicher Anwendungen verschiedener Hersteller
+                    </li>
+                </ol>
+
+                <p>
+                    b) Webservices besitzen häufig eine HTML-Oberfläche.
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Wahr
+                    </li>
+                    <li>
+                        Falsch
+                    </li>
+                </ol>
+
+                <p>
+                    c) Welche der folgenden Aussagen stimmt nicht?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Webservices setzen voraus, dass Client und Server in Java geschrieben sind.
+                    </li>
+                    <li>
+                        Webservices nutzen HTTP und andere Webtechniken zum maschinellen Datenaustausch.
+                    </li>
+                    <li>
+                        SOAP-Webservices nutzen darüber hinaus XML als Nachrichtenformat.
+                    </li>
+                </ol>
+
+                <h2>Aufgabe 2.2: Fragen zur Technik</h2>
+
+                <p>
+                    a) Welche Aufgabe erfüllt die WSDL eines SOAP-Webservices?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Sie dient als menschenlesbare Dokumentation des Webservices.
+                    </li>
+                    <li>
+                        Sie dient als maschinenlesbare, formale Definition des Webservices.
+                    </li>
+                    <li>
+                        Sie dient als Beispielcode zum Aufruf des Webservices.
+                    </li>
+                </ol>
+
+                <p>
+                    b) Welche der folgenden WSDL-Versionen werden von Java unterstützt?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        WSDL 1.1
+                    </li>
+                    <li>
+                        WSDL 2.0
+                    </li>
+                </ol>
+
+                <p>
+                    c) Welche Aufgabe erfüllen die Port Types bzw. Interfaces einer WSDL?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Sie definieren die Struktur der ausgetauschten XML-Nachrichten.
+                    </li>
+                    <li>
+                        Sie definieren die Namen aller vorhandenen Operationen.
+                    </li>
+                    <li>
+                        Sie fassen mehrere  Operationen zusammen und weisen ihnen XML-Nachrichten zu.
+                    </li>
+                    <li>
+                        Sie definieren das Transportprotokoll und die URL des Webservices.
+                    </li>
+                </ol>
+
+                <p>
+                    d) Welche HTTP-Verben kann ein Client zum Aufruf eines SOAP-Webservices verwenden?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        GET, PUT, POST oder DELETE, je nach aufgerufener Operation
+                    </li>
+                    <li>
+                        Nur GET und POST
+                    </li>
+                    <li>
+                        Nur POST und DELETE
+                    </li>
+                    <li>
+                        Nur GET
+                    </li>
+                    <li>
+                        Nur POST
+                    </li>
+                    <li>
+                        Nur PUT
+                    </li>
+                </ol>
+
+                <p>
+                    e) Welches Beispiel entspricht am ehestem dem Aufbau einer SOAP-Nachricht?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        <source-code language="xml">
+                            &lt;soap:Envelope xmlns:soap="…"&gt;
+                                &lt;soap:HeaderFields&gt;
+                                    …
+                                &lt;/soap:HeaderFields&gt;
+                                &lt;soap:BodyContent&gt;
+                                    …
+                                &lt;/soap:BodyContent&gt;
+                            &lt;/soap:Envelope&gt;
+                        </source-code>
+                    </li>
+                    <li>
+                        <source-code language="xml">
+                            &lt;soap:Soap xmlns:soap="…"&gt;
+                                &lt;soap:head&gt;
+                                    …
+                                &lt;/soap:head&gt;
+                                &lt;soap:body&gt;
+                                    …
+                                &lt;/soap:body&gt;
+                            &lt;/soap:Soap&gt;
+                        </source-code>
+                    </li>
+                    <li>
+                        <source-code language="xml">
+                            &lt;soap:Envelope xmlns:soap="…"&gt;
+                                &lt;soap:Header&gt;
+                                    …
+                                &lt;/soap:Header&gt;
+                                &lt;soap:Body&gt;
+                                    …
+                                &lt;/soap:Body&gt;
+                            &lt;/soap:Envelope&gt;
+                        </source-code>
+                    </li>
+                </ol>
+
+
+                <hr />
+
+                <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                    <small>
+                        <b>Lösung:</b> Aufgabe 2.1: 2 + 5, 2, 1<br />
+                        Aufgabe 2.2: 2, 1, 3, 5, 3
+                    </small>
+                </p>
+            </article>
+            <aside>
+                <p>
+                    Gleich wagen wir uns an die Programmierung heran. Zuvor haben wir hier aber noch ein
+                    paar Fragen für dich vorbereitet. 🎙️
                 </p>
             </aside>
         </section>
@@ -356,6 +896,8 @@
                 …
             </article>
             <aside>
+                <!-- @WebParam(header=true): https://stackoverflow.com/questions/2322953/jax-ws-adding-soap-headers -->
+                <!-- Basic Auth via web.xml: https://stackoverflow.com/a/2116350 -->
                 <p>
                     …
                 </p>
@@ -376,18 +918,6 @@
         </section>
 
         <section>
-            <h1>Fremde Webservices aufrufen</h1>
-            <article>
-                …
-            </article>
-            <aside>
-                <p>
-                    …
-                </p>
-            </aside>
-        </section>
-
-        <section>
             <h1>Netbeans, dein Freund und Helfer</h1>
             <article>
                 …
@@ -399,8 +929,8 @@
             </aside>
         </section>
 
-        <section data-background-color="rgb(231, 221, 141)">
-            <h1>Aufgabe 2: Eine kleine Seifenoper</h1>
+        <section>
+            <h1>Fremde Webservices aufrufen</h1>
             <article>
                 …
             </article>
@@ -412,30 +942,144 @@
         </section>
 
         <section data-background-color="rgb(231, 221, 141)">
-            <h1>Aufgabe 3: Ein kleines JAX-WS-Quiz</h1>
+            <h1>Aufgabe 3: Eine kleine Seifenoper</h1>
             <article>
-                <h2>Aufgabe 3.1: …</h2>
-
+                …
+            </article>
+            <aside>
                 <p>
-                    a) …
+                    …
                 </p>
-                <ol class="dhbw-liste-mit-viel-text">
-                    <li>
-                        …
-                    </li>
-                    <li>
-                        …
-                    </li>
-                </ol>
+            </aside>
+        </section>
 
-                <hr />
+        <section data-background-color="rgb(231, 221, 141)">
+            <h1>Aufgabe 4: Ein kleines JAX-WS-Quiz</h1>
+            <article>
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "aufgabe4-allgemeines-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#aufgabe4-allgemeines"
+                                role          = "tab"
+                                aria-controls = "aufgabe4-allgemeines"
+                                aria-expanded = "true"
+                            >
+                                Allgemeine Fragen
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "aufgabe4-schreiben-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#aufgabe4-schreiben"
+                                role          = "tab"
+                                aria-controls = "aufgabe4-schreiben"
+                            >
+                                Webservice schreiben
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "aufgabe4-reiter3-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#aufgabe4-reiter3"
+                                role          = "tab"
+                                aria-controls = "aufgabe4-reiter3"
+                            >
+                                Java vs. XML
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Allgemeine Fragen -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "aufgabe4-allgemeines"
+                            role            = "tabpanel"
+                            aria-labelledby = "aufgabe4-allgemeines-tab"
+                        >
+                            <p>
+                                …
+                            </p>
+                            <ol class="dhbw-liste-mit-viel-text">
+                                <li>
+                                    …
+                                </li>
+                                <li>
+                                    …
+                                </li>
+                            </ol>
 
-                <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
-                    <small>
-                        <b>Lösung:</b> Aufgabe 3.1: …; <br />
-                        Aufgabe 3.2: …
-                    </small>
-                </p>
+                            <hr />
+
+                            <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                                <small>
+                                    <b>Lösung:</b> …
+                                </small>
+                            </p>
+                        </div>
+                        <!-- Webservice schreiben -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "aufgabe4-schreiben"
+                            role            = "tabpanel"
+                            aria-labelledby = "aufgabe4-schreiben-tab"
+                        >
+                            <p>
+                                …
+                            </p>
+                            <ol class="dhbw-liste-mit-viel-text">
+                                <li>
+                                    …
+                                </li>
+                                <li>
+                                    …
+                                </li>
+                            </ol>
+
+                            <hr />
+
+                            <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                                <small>
+                                    <b>Lösung:</b> …
+                                </small>
+                            </p>
+                        </div>
+                        <!-- Java vs. XML -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "aufgabe4-reiter3"
+                            role            = "tabpanel"
+                            aria-labelledby = "aufgabe4-reiter3-tab"
+                        >
+                            <p>
+                                …
+                            </p>
+                            <ol class="dhbw-liste-mit-viel-text">
+                                <li>
+                                    …
+                                </li>
+                                <li>
+                                    …
+                                </li>
+                            </ol>
+
+                            <hr />
+
+                            <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
+                                <small>
+                                    <b>Lösung:</b> …
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
