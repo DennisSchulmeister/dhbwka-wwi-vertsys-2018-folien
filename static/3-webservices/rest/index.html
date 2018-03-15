@@ -12,7 +12,9 @@
         <header>
             <h2>Inhaltsverzeichnis</h2>
             <p>
-                …
+                Moderne Webservices werden immer mehr als REST-Webservices entworfen und es scheint
+                fast so, als wäre SOAP vielerorts gar kein Thema mehr. In dieser Stelle gehen wir
+                daher näher auf REST ein und zeigen, wie es mit Java funktioniert.
             </p>
         </header>
 
@@ -27,15 +29,67 @@
                 <h3>Nach Abschluss dieser Einheit kannst du …</h3>
                 <ul>
                     <li>
-                        den Begriff <span class="dhbw-lightblue font-weight-bold">verteiltes System</span>
-                        erklären und von ähnlichen Begriffen abgrenzen.
+                        Die Unterschiede zwischen SOAP und REST sowie die
+                        <span class="dhbw-lightblue font-weight-bold">spezifischen Eigenheiten von REST</span> erklären.
+                    </li>
+                    <li>
+                        <span class="dhbw-lightblue font-weight-bold">Typische Anwendungsfälle</span> von REST erkennen und von SOAP abgrenzen.
+                    </li>
+                    <li>
+                        Erklären, was eine <span class="dhbw-lightblue font-weight-bold">WADL-Beschreibung</span> ist und welche Vorteile sie bietet.
+                    </li>
+                    <li>
+                        WADL-Dateien in <span class="dhbw-lightblue font-weight-bold">SoapUI</span> importieren und fremde Webservices damit testen,
+                    </li>
+                    <li>
+                        Eigene REST-Webservices mit den <span class="dhbw-lightblue font-weight-bold">JAX-RS-Annotationen</span> von Java implementieren.
+                    </li>
+                    <li>
+                        Das <span class="dhbw-lightblue font-weight-bold">AJAX-Prinzip</span> anwenden, um REST-Webservices aus clientseitigem JavaScript heraus aufzurufen.
+                    </li>
+                    <li>
+                        Entfernte REST-Webservices mit JAX-RS <span class="dhbw-lightblue font-weight-bold">aus Java heraus aufrufen</span>.
+                    </li>
+                    <li>
+                        Netbeans zur Generierung der hierfür benötigten Webservice-Stubs verwenden.
                     </li>
                 </ul>
                 <span style="font-size: 240px; color: white;" class="dhbw-text-shadow" >🏁</span>
             </article>
             <aside>
                 <p>
-                    …
+                    Während im Unternehmenskontext SOAP-Webservices immer noch eine gewisse Vormachtstellung haben,
+                    hat sich andernorts eine leichtgewichtigere Alternative namens REST etabliert, die viel mehr
+                    auf den Gegebenheiten des HTTP-Protokolls aufbaut, sehr häufig XML durch JSON ersetzt und somit
+                    insgesamt einfach besser zum World Wide Web und seiner angrenzenden Technologien passt. SOAP ist
+                    dadurch zwar nicht obsolet und für moderne Anwendungen uninteressant geworden, an verschiedenen
+                    Stellen wurde es aber dennoch nahezu vollständig durch REST verdrängt. Grund genug also, dass
+                    wir uns diesen Shooting Star 🌠 der Webservices genauer anschauen und auch hier versuchen zu
+                    verstehen, was REST ist, wie es funktioniert und wo die Unterschiede zu SOAP liegen.
+                </p>
+                <p>
+                    In diesem Zusammenhang werden wir dann auch sehen, das REST-Webservices insgesamt viel leichtfüßiger
+                    als SOAP aufgestellt sind, indem sie nicht nur das komplizierte XML-Format sondern mit ihm auch
+                    formal verbindliche Webservice-Beschreibungen und einen großen Teil darauf aufbauender Werkzeuge
+                    und angrenzender, hoch-komplexer Standards über Board werfen. 🚢 Denn meistens braucht man diese
+                    gar nicht so sehr, wie man am Anfang vielleicht noch denkt, und merkt, dass es ohne sie eigentlich
+                    genau so gut, wenn nicht sogar nur besser geht. Falls man dann aber doch eine Webservice-Beschreibung
+                    braucht, werden wir sehen, dass es mit WADL eine pragmatische Alternative zu den SAOP-WSDLs gibt,
+                    die uns ähnliche Möglichkeiten eben nur für REST (beispielsweise die Testbarkeit mit SoapUI) bietet.
+                </p>
+                <p>
+                    Im zweiten Teil der Folien werden wir dann in gewohnter Weise auf die Programmierung eingehen
+                    und dabei zeigen, wie mit einfachen Mitteln ein eigener REST-Webservice in Java implementiert
+                    werden kann. Dabei werden wir dann auch nochmal auf die Bedeutung von REST für die Entwicklung
+                    clientseitiger Webanwendungen eingehen und das AJAX-Prinzip von letztem Semester nochmal aufgreifen,
+                    um somit aus dem Browser heraus mit clientseitigem JavaScript, die REST-Funktionen unseres Servers
+                    aufzurufen. Da aber REST nicht nur für die Entwicklung von Webanwendungen sondern sehr häufig auch
+                    auch zur Kommunikation mobiler Apps mit dem Backend genutzt wird, zeigen wir anschließend auch,
+                    wie ein Aufruf aus Java heraus gelingen kann.
+                </p>
+                <p>
+                    Dies ist unser Fahrplan für die heutige Einheit, bevor wir den Themenkomplex Java&nbsp;EE dann
+                    endgültig abschließen können.
                 </p>
             </aside>
         </section>
@@ -60,86 +114,293 @@
         <section>
             <h1>Warum REST so anders ist</h1>
             <article>
-                <div class="container-fluid">
-                    <!-- Bilder: SOAP vs. REST -->
-                    <div class="row">
-                        <div class="col-md">
-                            <div class="img-thumbnail" style="padding: 0.5em; height: 100%; display: flex; flex-direction: column;">
-                                <h2>SOAP</h2>
-                                <table style="margin-bottom: 1em;">
-                                    <tr>
-                                        <td style="padding-right: 0.5em;">
-                                            🔌
-                                        </td>
-                                        <td>
-                                            …
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-right: 0.5em;">
-                                            🔌
-                                        </td>
-                                        <td>
-                                            …
-                                        </td>
-                                    </tr>
-                                </table>
-                                <div style="flex: 1;"></div>
-                                <img src="soap-rest-01.jpg" alt="" class="d-block" style="width: 100%;" />
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "soap_vs_rest-vergleich-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#soap_vs_rest-vergleich"
+                                role          = "tab"
+                                aria-controls = "soap_vs_rest-vergleich"
+                                aria-expanded = "true"
+                            >
+                                Direkter Vergleich
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "soap_vs_rest-datenvolumen-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#soap_vs_rest-datenvolumen"
+                                role          = "tab"
+                                aria-controls = "soap_vs_rest-datenvolumen"
+                            >
+                                Umfang der Daten
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Direkter Vergleich -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "soap_vs_rest-vergleich"
+                            role            = "tabpanel"
+                            aria-labelledby = "soap_vs_rest-vergleich-tab"
+                        >
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md">
+                                        <h2>SOAP</h2>
+                                        <img src="soap-rest-01.jpg" alt="" class="d-block img-thumbnail" style="width: 100%; margin-bottom: 1em;" />
+                                        <table style="margin-bottom: 1em;">
+                                            <tr>
+                                                <td style="padding-right: 0.5em;">
+                                                    🐘
+                                                </td>
+                                                <td>
+                                                    Eine URL für den gesamten Webservice
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 0.5em;">
+                                                    🐘
+                                                </td>
+                                                <td>
+                                                    Ermöglicht den Aufruf beliebiger Methoden
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 0.5em;">
+                                                    🐘
+                                                </td>
+                                                <td>
+                                                    Nutzt von HTTP lediglich das Verb POST
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 0.5em;">
+                                                    🐘
+                                                </td>
+                                                <td>
+                                                    SOAP-XML als fest vorgegebenes Datenformat
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 0.5em;">
+                                                    🐘
+                                                </td>
+                                                <td>
+                                                    Verbindliche WSDL-Beschreibung je Service
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 0.5em;">
+                                                    🐘
+                                                </td>
+                                                <td>
+                                                    Häufigste Verwendung im Unternehmenskontext
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md">
+                                        <h2>REST</h2>
+                                        <img src="soap-rest-02.jpg" alt="" class="d-block img-thumbnail" style="width: 100%; margin-bottom: 1em;" />
+                                        <table style="margin-bottom: 1em;">
+                                            <tr>
+                                                <td style="padding-right: 0.5em;">
+                                                    🐇
+                                                </td>
+                                                <td>
+                                                    Je eine URL für eine Resource¹
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 0.5em;">
+                                                    🐇
+                                                </td>
+                                                <td>
+                                                    Bildet die üblichen CRUD-Operationen² ab
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 0.5em;">
+                                                    🐇
+                                                </td>
+                                                <td>
+                                                    Nutzt alle Verben des HTTP-Protokolls
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 0.5em;">
+                                                    🐇
+                                                </td>
+                                                <td>
+                                                    Beliebige Datenformate, in der Regel JSON
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 0.5em;">
+                                                    🐇
+                                                </td>
+                                                <td>
+                                                    Optionale WADL-Beschreibung möglich
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 0.5em;">
+                                                    🐇
+                                                </td>
+                                                <td>
+                                                    Häufigste Verwendung für Cloud, Web und Mobile
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <p>
+                                            <small>
+                                                ¹ Im Sinne eines einzelnen Datensatzes, zum Beispiel ein Artikel oder eine Bestellung.
+                                            </small>
+                                        </p>
+                                        <p>
+                                            <small>
+                                                ² Create, Read, Update und Delete
+                                            </small>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <small>
+                                            <small>
+                                                Bildnachweise:
+                                                <a href="https://pixabay.com/de/safari-elefant-s%C3%A4ugetier-tierwelt-3035333/" target="_blank">Pixabay: ronbd</a>,
+                                                <a href="https://pixabay.com/de/hase-wiese-kaninchen-gras-839297/" target="_blank">Pixabay: Bru-nO</a>,
+                                            </small>
+                                        </small>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md">
-                            <div class="img-thumbnail" style="padding: 0.5em; height: 100%; display: flex; flex-direction: column;">
-                                <h2>REST</h2>
-                                <table style="margin-bottom: 1em;">
-                                    <tr>
-                                        <td style="padding-right: 0.5em;">
-                                            🔌
-                                        </td>
-                                        <td>
-                                            …
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-right: 0.5em;">
-                                            🔌
-                                        </td>
-                                        <td>
-                                            …
-                                        </td>
-                                    </tr>
-                                </table>
-                                <div style="flex: 1;"></div>
-                                <img src="soap-rest-02.jpg" alt="" class="d-block" style="width: 100%;" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- SOAP is so much more polite -->
-                    <div class="row">
-                        <div class="col-md">
+                        <!-- Umfang der Daten -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "soap_vs_rest-datenvolumen"
+                            role            = "tabpanel"
+                            aria-labelledby = "soap_vs_rest-datenvolumen-tab"
+                        >
                             <img src="soap-rest-03.png" alt="SOAP is so much more polite than REST" class="d-block" style="width: 30em; max-width: 100%; margin: 0 auto;" />
-                        </div>
-                    </div>
-
-                    <!-- Bildnachweise -->
-                    <div class="row">
-                        <div class="col-md">
-                            <small>
+                            <p>
                                 <small>
-                                    Bildnachweise:
-                                    <a href="https://pixabay.com/de/safari-elefant-s%C3%A4ugetier-tierwelt-3035333/" target="_blank">Pixabay: ronbd</a>,
-                                    <a href="https://pixabay.com/de/hase-wiese-kaninchen-gras-839297/" target="_blank">Pixabay: Bru-nO</a>,
-                                    <a href="http://geek-and-poke.com/geekandpoke/2009/11/30/service-calling-made-easy-part-1.html" target="_blank">Geek &amp; Poke: 30.11.2009</a>
+                                    <small>
+                                        Bildnachweis:
+                                        <a href="http://geek-and-poke.com/geekandpoke/2009/11/30/service-calling-made-easy-part-1.html" target="_blank">Geek &amp; Poke: 30.11.2009</a>
+                                    </small>
                                 </small>
-                            </small>
+                            </p>
                         </div>
                     </div>
                 </div>
             </article>
             <aside>
                 <p>
-                    …
+                    Um zu verstehen, wie sich SOAP und REST unterscheiden und warum beide so definiert sind, wie sie definiert sind,
+                    muss man sich die Hintergründe und die Entstehung beider Ansätze anschauen.
+                </p>
+                <p>
+                    Da wäre also zum einen SOAP, dessen
+                    Vorläufer <a href="https://de.wikipedia.org/wiki/XML-RPC" target="_blank">XML-RPC</a> ab 1998 bei Microsoft entstand
+                    und der sich, wie der Name schon andeutet, direkt am Aufruf entfernter Methoden über das Internet orientiert.¹
+                    Dabei lag der Fokus schon immer auf der Entwicklung betriebswirtschaftlicher Anwendungen, was sich auch an der
+                    Beteiligung von IBM und anderen Firmen aus diesem Bereich zeigt. Der kurioseste Anwendungsfall ist dabei sicher
+                    <a href="https://de.wikipedia.org/wiki/Universal_Plug_and_Play" target="_blank">Universal Plug and Play</a>, das
+                    auch heute noch zur automatischen Entdeckung und Wiedergabe von Medieninhalten auf verteilten Geräten innerhalb
+                    des heimischen LAN genutzt wird. Davon abgesehen zielt SOAP jedoch voll und ganz auf Unternehmensanwendungen ab,
+                    die ja nur sehr selten für die Nutzung hipper und aktueller Technologien bekannt sind, dafür aber sehr häufig
+                    folgende Anforderungen haben:
+                </p>
+                <ul>
+                    <li>
+                        Interoperabilität mit möglichst vielen Programmiersprachen
+                    </li>
+                    <li>
+                        Einfache Programmierung ohne viel „Boilerplate-Code”
+                    </li>
+                    <li>
+                        Nutzung von zuverlässigen und praxiserprobten Technologien
+                    </li>
+                    <li>
+                        Sichere Datenübertragung durch Signierung und Verschlüsselung
+                    </li>
+                    <li>
+                        Gute Werkzeug-Unterstützung beim Programmieren und Testen
+                    </li>
+                </ul>
+                <p>
+                    Aus diesem Grund ist die Wahl von HTTP-POST zur Datenübertragung und XML als Datenformat auch nur pragmatisch,
+                    da jedes Unternehmen durch die weitere Verbreitung des World Wide Web ohnehin schon auf den Abruf von Daten via
+                    HTTP vorbereitet ist es und es für XML seit jeher ein exzelentes Tooling gibt. Ebenso lässt sich dadurch erklären,
+                    wie rund um SOAP eine ganze Menge <a href="https://de.wikipedia.org/wiki/WS-*" target="_blank">WS-*</a> genannter
+                    Standards entstehen konnten, die so höchst unterschiedliche Themen wie die XML-Signierung, die Übertragung von
+                    Binärdaten oder die Modellierung von Geschäftsprozessen abdecken.
+                </p>
+                <p>
+                    <small>
+                        ¹ RPC = Remote Procedure Call, also der Aufruf entfernter Prozeduren, wobei man in Java (da es sich ja um
+                        eine objektorientierte Sprache handelt) von Methoden sprechen würde.
+                    </small>
+                </p>
+                <p>
+                    Diesem wahren Schwergewicht 🏋️ steht nun <a href="https://de.wikipedia.org/wiki/Representational_State_Transfer" target="_blank">REST</a>
+                    als leichtgewichtige Alternative und konzeptioneller Gegenentwurf entgegen. Im Jahr 2000 in der Dissertation
+                    von Roy Fielding beschrieben, orientiert sich REST voll und ganz am HTTP-Protokoll und nutzt es als Möglichkeit,
+                    beliebige Ressourcen² über eindeutige URLs zu adressieren und mit den verschiedenen HTTP-Verben entsprechend
+                    ihrer Bedeutung darauf zuzugreifen:
+                </p>
+                <ul>
+                    <li>
+                        <b>GET:</b> Daten einer Ressource abrufen
+                    </li>
+                    <li>
+                        <b>PUT:</b> Anlage einer neuen Ressource³
+                    </li>
+                    <li>
+                        <b>POST:</b> Neue Version einer vorhandenen Ressource speichern³
+                    </li>
+                    <li>
+                        <b>PATCH:</b> Einzelne Felder einer Ressource überschreiben
+                    </li>
+                    <li>
+                        <b>DELETE:</b> Löschen einer Ressource
+                    </li>
+                </ul>
+                <p>
+                    <small>
+                        ² In einer Datenbankanwendung würde man einzelne Datensätze, wie einen Kunden oder einen Zahlungsbeleg,
+                        als Ressource abbilden. Davon abgesehen kann es sich aber um beliebige „Dinge” handeln, die man über
+                        den Webservice verwalten will. Ein E-Mailprovider könnte aber auch zum Beispiel die Mail Accounts seiner
+                        Kunden sowie die darin enthaltenen E-Mails als Ressourcen über eigene URLs ansprechbar machen.
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        ³ Tatsächlich ist die Abgrenzung zwischen POST und PUT nicht immer strikt gewählt. Es gibt auch viele
+                        Webservices, die POST zur Neuanlage und PUT zur Änderung von Daten oder nur eines der beiden Verben
+                        für beides nutzen.
+                    </small>
+                </p>
+                <p>
+                    Das Format der übertragenen Daten ist dabei nicht verbindlich definert, aller meistens wird jedoch JSON
+                    verwendet, da es platzsparender als XML ist und mit JavaScript besonders einfach verarbeitet werden kann.
+                    Auch gibt es nicht zwingend eine formale XML-Beschreibung, die alle Operationen eines Webservices sowie
+                    die syntaktische Struktur der übertragenen Daten definiert. Hierfür gibt es zwar WADL (Web Application
+                    Description Language) als Quasi-Pendant zu WSDL, seine Verwendung ist aber nicht verbindlich vorgeschrieben.
                 </p>
             </aside>
         </section>
@@ -147,7 +408,119 @@
         <section>
             <h1>Technische Hintergründe zu REST</h1>
             <article>
-                …
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "technik-get_liste-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#technik-get_liste"
+                                role          = "tab"
+                                aria-controls = "technik-get_liste"
+                                aria-expanded = "true"
+                            >
+                                Liste abrufen
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "technik-get_ressource-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#technik-get_ressource"
+                                role          = "tab"
+                                aria-controls = "technik-get_ressource"
+                            >
+                                Ressource abrufen
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "technik-post-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#technik-post"
+                                role          = "tab"
+                                aria-controls = "technik-post"
+                                aria-expanded = "true"
+                            >
+                                Ressource anlegen
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "technik-wadl-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#technik-wadl"
+                                role          = "tab"
+                                aria-controls = "technik-wadl"
+                            >
+                                WADL-Beschreibung
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Liste abrufen -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "technik-get_liste"
+                            role            = "tabpanel"
+                            aria-labelledby = "technik-get_liste-tab"
+                        >
+                            <p>
+                                Bei den URLs für einen REST-Webservice wird zwischen <b>Collections</b> und <b>Ressourcen</b>
+                                unterschieden. Eine Collection ist dabei immer eine Sammlung von Einträgen, die als Ganzes
+                                abgerufen werden kann. Oftmals können beim Abruf dann noch <b>Query Parameter</b> mitgegeben
+                                werden, um die Liste einzugrenzen.
+                            </p>
+                            <img src="http-get-liste.svg" alt="" class="d-block" style="width: 100%;" />
+                        </div>
+                        <!-- Ressource abrufen -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "technik-get_ressource"
+                            role            = "tabpanel"
+                            aria-labelledby = "technik-get_ressource-tab"
+                        >
+                            <p>
+                                Eine einzelne Ressource erkennt man daran, dass in der URL ihr Schlüsselwert enthalten ist.
+                                Im Gegensatz zu den Collections schickt der Server dann genau ein Objekt mit den Daten der
+                                angeforderten Ressource.
+                            </p>
+                            <img src="http-get-ressource.svg" alt="" class="d-block" style="width: 100%;" />
+                        </div>
+                        <!-- Ressource anlegen -->
+                        <div
+                            class           = "tab-pane fade show"
+                            id              = "technik-post"
+                            role            = "tabpanel"
+                            aria-labelledby = "technik-post-tab"
+                        >
+                            <p>
+                                Die Anlage von Ressourcen erfolgt, indem ihre JSON-Repräsentation als <b>POST-Anfrage an
+                                die Collection</b> geschickt wird. Der Server speichert daraufhin den Eintrag und schickt
+                                die gespeicherten Daten, nun um die Key-Werte angereichert, zurück.
+                            </p>
+                            <img src="http-post.svg" alt="" class="d-block" style="width: 100%;" />
+                        </div>
+                        <!-- WADL-Beschreibung -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "technik-wadl"
+                            role            = "tabpanel"
+                            aria-labelledby = "technik-wadl-tab"
+                        >
+                            <p>
+                                Inhalt für Reiter 4
+                            </p>
+                            <source-code language="xml">
+                                …
+                            </source-code>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
@@ -263,9 +636,9 @@
             </article>
             <aside>
                 <p>
-                    Entgegen dem Namen kann man mit <a href="https://www.soapui.org/downloads/soapui.html" target="_blank">SoapUI</a>
-                    auch wunderbar REST-Webservices testen. 😎 Möglich macht das die WADL-Beschreibung, die Java automatisch zu jedem
-                    REST-Webservice generiert. Die nachfolgenden Abbildungen zeigen dir, was du hierfür tun musst.
+                    Entgegen dem Namen kannst du mit <a href="https://www.soapui.org/downloads/soapui.html" target="_blank">SoapUI</a>
+                    auch wunderbar REST-Webservices testen. 😎 Möglich macht das die WADL-Beschreibung, die Java automatisch für uns
+                    generiert. Die nachfolgenden Abbildungen zeigen dir, was du hierfür tun musst.
                 </p>
                 <img src="rest.jpg" alt="" class="d-block img-thumbnail" style="width: 100%;" />
                 <p>
