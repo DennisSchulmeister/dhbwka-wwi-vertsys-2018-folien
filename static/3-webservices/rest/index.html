@@ -215,7 +215,7 @@
                                                     🐇
                                                 </td>
                                                 <td>
-                                                    Je eine URL für eine Resource¹
+                                                    Je eine URL für eine Ressource¹
                                                 </td>
                                             </tr>
                                             <tr>
@@ -384,15 +384,14 @@
                     <small>
                         ² In einer Datenbankanwendung würde man einzelne Datensätze, wie einen Kunden oder einen Zahlungsbeleg,
                         als Ressource abbilden. Davon abgesehen kann es sich aber um beliebige „Dinge” handeln, die man über
-                        den Webservice verwalten will. Ein E-Mailprovider könnte aber auch zum Beispiel die Mail Accounts seiner
-                        Kunden sowie die darin enthaltenen E-Mails als Ressourcen über eigene URLs ansprechbar machen.
+                        den Webservice verwalten will. Ein E-Mailprovider könnte daher zum Beispiel die Mail Accounts seiner
+                        Kunden sowie einzelne E-Mails als Ressourcen mit eigenen URLs ansprechbar machen.
                     </small>
                 </p>
                 <p>
                     <small>
                         ³ Tatsächlich ist die Abgrenzung zwischen POST und PUT nicht immer strikt gewählt. Es gibt auch viele
-                        Webservices, die POST zur Neuanlage und PUT zur Änderung von Daten oder nur eines der beiden Verben
-                        für beides nutzen.
+                        Webservices, die POST zur Neuanlage und PUT zur Änderung von Daten oder nur ein Verb für beides nutzen.
                     </small>
                 </p>
                 <p>
@@ -470,7 +469,7 @@
                             aria-labelledby = "technik-get_liste-tab"
                         >
                             <p>
-                                Bei den URLs für einen REST-Webservice wird zwischen <b>Collections</b> und <b>Ressourcen</b>
+                                Bei den URLs für einen REST-Webservice wird häufig zwischen <b>Collections</b> und <b>Ressourcen</b>
                                 unterschieden. Eine Collection ist dabei immer eine Sammlung von Einträgen, die als Ganzes
                                 abgerufen werden kann. Oftmals können beim Abruf dann noch <b>Query Parameter</b> mitgegeben
                                 werden, um die Liste einzugrenzen.
@@ -513,10 +512,192 @@
                             aria-labelledby = "technik-wadl-tab"
                         >
                             <p>
-                                Inhalt für Reiter 4
+                                Im Gegensatz zu SOAP besitzen REST-Webservices oftmals keine formale Beschreibung.
+                                Viele REST-API-Anbieter liefern daher vorgefertigte SDKs zum Aufruf ihrer Services
+                                mit verschiedenen Sprachen. Im Java-Umfeld hat man sich stattdessen das
+                                <a href="https://en.wikipedia.org/wiki/Web_Application_Description_Language" target="_blank">WADL-Format</a>
+                                als eine Art „WSDL für beliebige Webanwendungen” überlegt. Es beschreibt die URLs
+                                eines Webservices und mit welchen HTTP-Methoden sie aufgerufen werden.
                             </p>
+                            <table style="margin-bottom: 1em;">
+                                <tr>
+                                    <td style="padding-right: 0.5em;">
+                                        ⚛️
+                                    </td>
+                                    <td>
+                                        Welche URLs besitzt der Webservice?
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-right: 0.5em;">
+                                        ⚛️
+                                    </td>
+                                    <td>
+                                        Welche URL-Parameter können einer URL mitgegeben werden?
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-right: 0.5em;">
+                                        ⚛️
+                                    </td>
+                                    <td>
+                                        Welche HTML-Formularfelder können an die URL geschickt werden?
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-right: 0.5em;">
+                                        ⚛️
+                                    </td>
+                                    <td>
+                                        Welche Daten können mit POST, PUT oder PATCH an die URL geschickt werden?
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-right: 0.5em;">
+                                        ⚛️
+                                    </td>
+                                    <td>
+                                        Welche HTTP-Statuscodes kann die Antwort enthalten?
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-right: 0.5em;">
+                                        ⚛️
+                                    </td>
+                                    <td>
+                                        Welche Daten werden bei welchem Statuscode zurückgeschickt?
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <h2>Beispiel</h2>
+
                             <source-code language="xml">
-                                …
+                                &lt;application xmlns="http://wadl.dev.java.net/2009/02"
+                                        xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+
+                                    &lt;!--
+                                    Hier könnten XML-Schema-Anweisungen stehen, mit welchen die Struktur
+                                    der ausgetauschten Daten formal definiert wird, wenn der Webservice
+                                    XML als Datenformat verwenden würde.
+                                    --&gt;
+                                    &lt;grammars/&gt;
+
+                                    &lt;!--
+                                    Die Basis-URL des Webservices lautet
+                                    http://localhost:8080/TheXFiles/rest/
+                                    --&gt;
+                                    &lt;resources base="http://localhost:8080/TheXFiles/rest/"&gt;
+
+                                        &lt;!--
+                                        Nachfolgend wird die URL
+                                        http://localhost:8080/TheXFiles/rest/xfiles2018/
+                                        beschrieben.
+                                        --&gt;
+                                        &lt;resource path="xfiles2018"&gt;
+                                            &lt;!--
+                                            Schicken wir eine GET-Anfrage an die URL, wird dadurch die Methode
+                                            findEpisodes() aufgerufen.
+                                            --&gt;
+                                            &lt;method id="findEpisodes" name="GET"&gt;
+                                                &lt;!--
+                                                Optional können wir der Methode einen Parameter namens "query"
+                                                mitgeben. Der Parameter ist ein String und muss als URL-Parameter
+                                                an die URL angehängt werden. Zum Beispiel so:
+
+                                                http://localhost:8080/TheXFiles/rest/xfiles2018/?query=My%20Struggle
+                                                --&gt;
+                                                &lt;request&gt;
+                                                    &lt;param name="query" style="query" type="xs:string"/&gt;
+                                                &lt;/request&gt;
+
+                                                &lt;!--
+                                                Als Antwort erhalten wir dann einen JSON-String.
+                                                --&gt;
+                                                &lt;response&gt;
+                                                    &lt;representation mediaType="application/json"/&gt;
+                                                &lt;/response&gt;
+                                            &lt;/method&gt;
+
+                                            &lt;!--
+                                            Eine POST-Anfrage würde hingegen die Methode saveNewEpisode() zur
+                                            Anlage eines neuen Datensatzes aufrufen.
+                                            --&gt;
+                                            &lt;method id="saveNewEpisode" name="PUT"&gt;
+                                                &lt;!--
+                                                Als Anfrage müssen wir einen JSON-String mitschicken.
+                                                --&gt;
+                                                &lt;request&gt;
+                                                    &lt;representation mediaType="application/json"/&gt;
+                                                &lt;/request&gt;
+
+                                                &lt;!--
+                                                Im Gegenzug schickt uns der Server ein JSON zurück.
+                                                --&gt;
+                                                &lt;response&gt;
+                                                    &lt;representation mediaType="application/json"/&gt;
+                                                &lt;/response&gt;
+                                            &lt;/method&gt;
+
+                                            &lt;!--
+                                            Mit der URL http://localhost:8080/TheXFiles/rest/xfiles2018/{id}/
+                                            können wir auf einzelne Datensätze zugreifen. {id} ist dabei ein
+                                            Platzhalter, der mit der ID des Datensatzes ersetzt werden muss.
+                                            --&gt;
+                                            &lt;resource path="{id}"&gt;
+                                                &lt;!--
+                                                Die ID keinn ein beliebiger String sein. Häufig kommt es aber
+                                                auch vor, dass es sich um einen Long oder irgend einen anderen,
+                                                primitiven Datentypen handeln muss.
+                                                --&gt;
+                                                &lt;param name="id" style="template" type="xs:string"/&gt;
+
+                                                &lt;!--
+                                                Schicken wir eine GET-Anfrage an die URL, wird dadurch die Methode
+                                                getEpisode() aufgerufen. Sie schickt uns eine einzelne Episode im
+                                                JSON-Format zurück.
+                                                --&gt;
+                                                &lt;method id="getEpisode" name="GET"&gt;
+                                                    &lt;response&gt;
+                                                        &lt;representation mediaType="application/json"/&gt;
+                                                    &lt;/response&gt;
+                                                &lt;/method&gt;
+
+                                                &lt;!--
+                                                Schicken wir eine DELETE-Anfrage, wird stattdessen die Methode
+                                                deleteEpisode() aufgerufen. Auch sie schickt uns die gelöschte
+                                                Episode im JSON-Format zurück.
+                                                --&gt;
+                                                &lt;method id="deleteEpisode" name="DELETE"&gt;
+                                                    &lt;response&gt;
+                                                        &lt;representation mediaType="application/json"/&gt;
+                                                    &lt;/response&gt;
+                                                &lt;/method&gt;
+
+                                                &lt;!--
+                                                Schicken wir eine PUT-Anfrage, können wir dadurch die Methode
+                                                updateEpisode() zum Aktualisieren eines Datensatzes aufrufen.
+                                                Hierfür müssen wir ein JSON mit den Songdaten hinschicken und
+                                                bekommen ein JSON mit den gespeicherten Daten zurück.
+                                                --&gt;
+                                                &lt;method id="updateEpisode" name="PUT"&gt;
+                                                    &lt;request&gt;
+                                                        &lt;representation mediaType="application/json"/&gt;
+                                                    &lt;/request&gt;
+                                                    &lt;response&gt;
+                                                        &lt;representation mediaType="application/json"/&gt;
+                                                    &lt;/response&gt;
+                                                &lt;/method&gt;
+
+                                            &lt;/resource&gt;
+                                            &lt;!-- http://localhost:8080/TheXFiles/rest/xfiles2018/{id}/ --&gt;
+
+                                        &lt;/resource&gt;
+                                        &lt;!-- http://localhost:8080/TheXFiles/rest/xfiles2018/ --&gt;
+
+                                    &lt;/resources&gt;
+                                    &lt;!-- http://localhost:8080/TheXFiles/rest/ --&gt;
+                                &lt;/application&gt;
                             </source-code>
                         </div>
                     </div>
@@ -524,7 +705,71 @@
             </article>
             <aside>
                 <p>
-                    …
+                    Auf dieser Folie sieht du ein Beispiel dafür, wie die verschiedenen HTTP-Verben bei REST genutzt werden, um Daten vom Server
+                    zu lesen oder zu schreiben. Als Ressourcen dienen dabei die Episoden einer Fernsehserie¹. Anhand des Beispiels sieht man auch
+                    schön, dass unterschiedliche URLs unterschiedliche Bedeutungen haben. So handelt es sich bei der URL <code>/rest/xfiles2018</code>
+                    um eine <b>Collection</b>, also um eine Liste von Ressourcen, die mit einer einzigen GET-Anfrage abgerufen werden kann. Diese
+                    URL, die eine Liste von Episoden beschreibt, erlaubt daher nur GET und POST-Anfragen:
+                </p>
+                <p>
+                    <small>
+                        ¹ Hier Akte X, die im Jahr 2018 mit <a href="https://en.m.wikipedia.org/wiki/The_X-Files_(season_11)" target="_blank">Season 11</a>
+                        schon zum zweiten mal nach dem eigentlichen Ende 2002 auf die heimischen Fernseher zurückkehrt.
+                    </small>
+                    👽
+                </p>
+                <ul>
+                    <li>
+                        <b>GET:</b> Abruf der Liste
+                    </li>
+                    <li>
+                        <b>POST:</b> Speichern eines neuen Eintrags
+                    </li>
+                </ul>
+                <p>
+                    Bei der URL <code>/rest/xfiles2018/2AYW04/</code> handelt es sich hingegen um eine einzelne Episode, 🛸 also um eine einzelne
+                    Ressource des Webservices. Sie erlaubt die folgenden HTTP-Anfragen:
+                </p>
+                <ul>
+                    <li>
+                        <b>GET:</b> Abruf aller Detailinformationen
+                    </li>
+                    <li>
+                        <b>PUT:</b> Speichern einer neuen Version
+                    </li>
+                    <li>
+                        <b>PATCH:</b> Einzelne Felder überschreiben
+                    </li>
+                    <li>
+                        <b>DELETE:</b> Eintrag löschen
+                    </li>
+                </ul>
+                <p>
+                    Bei GET und DELETE müssen keine weiteren Daten an den Server gesendet werden. Die URL alleine reicht bereits aus, damit der Server
+                    weiß, um welchen Datensatz es sich handelt und wie er damit umgehen muss. Bei POST muss hingegen der komplette Datensatz an den
+                    Server geschickt werden, damit dieser die vorhandene Version damit ersetzen kann. Bei PATCH (sofern es der Webservice unterstützt)
+                    müssen hingegen nur einzelne Felder übertragen werden, die man auch tatsächlich ändern will.
+                </p>
+                <p>
+                    Als Datenformat kommt bei allen Anfragen jeweils JSON zum Einsatz, was der Client durch das Header Field <code>Accept: application/json</code>
+                    signalisiert. Er fordert den Server dadurch auf, seine Daten im JSON-Format zu übertragen. Dass die zurückgeschickten Daten dann auch wirklich
+                    im JSON-Format kommen, wird hingegen durch das Header Field <code>Content-Type: application/json</code> definiert. Dadurch können sich Client
+                    und Server auf ein Datenformat einigen, sofern der Server mehr wie eines unterstützt. Häufig kommt es daher vor, dass man die URL eines REST-Services
+                    auch einfach im Browser eingeben kann, um eine HTML-Darstellung der Ressource zu erhalten, oder dass noch weitere Formate wie XML oder
+                    <a href="https://de.wikipedia.org/wiki/YAML" target="_blank">YAML</a> unterstützt werden.
+                </p>
+
+                <h2>Formale Beschreibung mit WADL</h2>
+                <p>
+                    Ursprünglich war für REST-Webservices keine formale Beschreibung ähnlich der WSDL für SOAP vorgesehen, und sehr viele, wenn nicht sogar die
+                    allermeisten REST-Webservices besitzen auch keine, sondern kommen nur mit einer menschenlesbaren Dokumentation oder (zumindest bei den großen
+                    Anbietern) mehreren <a href="https://de.wikipedia.org/wiki/Software_Development_Kit" target="_blank">SDKs</a> für verschiedene Programmiersprachen.
+                    Im Javaumfeld hat sich jedoch das  <a href="https://en.wikipedia.org/wiki/Web_Application_Description_Language" target="_blank">WADL-Format</a>
+                    als mögliche Alternative entwickelt. Es handelt sich dabei um eine automatisch generierte XML-Datei, die man durch Anhängen von <code>\application.wadl</code>
+                    an die Basis-URL des Webservices abrufen kann. Sie beschreibt die erlaubten URLs, auch mit möglichen Platzhaltern und URL-Parametern sowie die
+                    jeweils zulässigen HTTP-Verben und welche Datenformate der Server jeweils empfangen und senden kann. Optional kann sie auch Schemadefinitionen
+                    für die ausgetauschten Daten enthalten. Wie wir auf der nächsten Folien sehen werden, lassen sich in Java entwickelte REST-Services dadurch in
+                    SoapUI sehr gut testen, aber auch die Entwicklung einer Clientanwendung wird dadurch vereinfacht.
                 </p>
             </aside>
         </section>
@@ -547,79 +792,69 @@
                     <div class="carousel-inner">
                         <div class="carousel-item img-thumbnail active">
                             <p>
-                                …
+                                Wieder einmal haben wir in Netbeans einen hervorragenden Webservice programmiert. 🤗
                             </p>
                             <img class="active d-block w-100" src="soapui-01.png" />
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                …
+                                Durch Anhängen von <tt>application.wadl</tt> an die URL können wir die WADL-Beschreibung abrufen.
                             </p>
                             <img class="active d-block w-100" src="soapui-02.png" />
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                …
+                                Um den Webservice zu testen, legen wir in SoapUI ein REST-Projekt an.
                             </p>
                             <img class="active d-block w-100" src="soapui-03.png" />
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                …
+                                Im folgenden Fenster müssen wir auf <i>Import WADL…</i> klicken, um die WADL-Beschreibung zu importieren.
                             </p>
                             <img class="active d-block w-100" src="soapui-04.png" />
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                …
+                                Dadurch ändert sich das Fenster und wir können die URL der WADL-Beschreibung einfügen.
                             </p>
                             <img class="active d-block w-100" src="soapui-05.png" />
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                …
+                                Anhand der WADL kann SoapUI die aufrufbaren Methoden und die URL-Struktur des Webservices erkennen.
                             </p>
                             <img class="active d-block w-100" src="soapui-06.png" />
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                …
+                                Die Methode <tt>createDemoData()</tt> erwartet keine Parameter, so dass wir sie direkt aufrufen können.
                             </p>
                             <img class="active d-block w-100" src="soapui-07.png" />
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                …
+                                Auf der rechten Seite zeigt SoapUI die empfangenen JSON-Daten an. In diesem Fall eine einfache Statusmeldung.
                             </p>
                             <img class="active d-block w-100" src="soapui-08.png" />
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                …
+                                Der Methode <tt>getListJson()</tt> kann ein URL-Parameter names „query” mitgegeben werden.
+                                Sie liefert auch deutlich mehr Daten zurück. 🙂
                             </p>
                             <img class="active d-block w-100" src="soapui-09.png" />
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                …
+                                Dann wollen wir mal einen neuen Song anlegen. 🎵 Die JSON-Struktur müssen wir allerdings selbst herausfinden …
                             </p>
                             <img class="active d-block w-100" src="soapui-10.png" />
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                …
-                            </p>
-                            <img class="active d-block w-100" src="soapui-11.png" />
-                        </div>
-                        <div class="carousel-item img-thumbnail">
-                            <p>
-                                …
-                            </p>
-                            <img class="active d-block w-100" src="soapui-12.png" />
-                        </div>
-                        <div class="carousel-item img-thumbnail">
-                            <p>
-                                …
+                                Unser Webservice scheint perfekt zu funktionieren. 👍🏻
+                                Klasse, was SoapUI alles kann.
                             </p>
                             <img class="active d-block w-25 m-auto" src="../../finish.svg" />
                         </div>
@@ -651,19 +886,61 @@
         </section>
 
         <section data-background-color="rgb(231, 221, 141)">
-            <h1>Aufgabe 1: Wir erkunden SoapUI</h1>
+            <h1>Aufgabe 1: SoapUI kann auch REST</h1>
             <article>
-                <p>
-                    Lade dir von Moodle den Beispiel-Webservice herunter und lasse ihn in Netbeans laufen. Anschließend importiere seine WADLS
-                    in SoapUI und erkunde ein wenig die angeboten Funktionen, indem du erst … anlegst und anschließend alle … abrufst.
-                    Vergleiche dabei auch, wie die Attribute der <code>…</code> und der <code>…</code>-Klassen als JSON abgebildet werden.
-                </p>
-                <img src="aufgabe1.png" alt="Screenshot von SoapUI" class="d-block" style="width: 100%;" />
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md">
+                            <p>
+                                Nun, welche Musik hörst du gerne? 🎼 Hier hast du die einmalige Gelegenheit, sie über einen REST-Webservice in eine Datenbank einzutragen. 😎
+                                Hierfür musst du dir lediglich das Beispielprojekt von Moodle herunterladen und in Netbeans zum Laufen bekommen. Anschließend öffnet sich
+                                eine kleine Seite im Browser, mit der du erste Versuche unternehmen kannst. Gehe dabei wie folgt vor:
+                            </p>
+                            <ol>
+                                <li>
+                                    Klicke jeden Link einmal an und schaue, was passiert.
+                                </li>
+                                <li>
+                                    Falls die Links mit der ID 151 keine Daten liefern, tausche die ID in der URL aus.
+                                </li>
+                                <li>
+                                    Schaue dir die WADL-Datei an und versuche, sie zu verstehen.
+                                </li>
+                                <li>
+                                    Importiere die WADL-Datei in SoapUI und teste die verschiedenen Webservice-Operationen.
+                                </li>
+                            </ol>
+                            <p>
+                                Um einen neuen Song anzulegen, kannst du folgende JSON-Daten an den Server schicken:
+                            </p>
+                            <source-code language="json">
+                                {
+                                    "name": "Circle of Life",
+                                    "artist": "Elton John",
+                                    "songwriters": "Tim Rice",
+                                    "releaseYear:" 1994
+                                }
+                            </source-code>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <img src="aufgabe1-browser.png" alt="Screenshot des Webservices im Browser" class="d-block img-thumbnail" style="width: 100%; background-color: rgb(72, 116, 140);" />
+                        </div>
+                        <div class="col-md">
+                            <img src="aufgabe1-soapui.png" alt="Screenshot des Webservices in SoapUI" class="d-block img-thumbnail" style="width: 100%; background-color: rgb(72, 116, 140);" />
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    Mensch, was SoapUI so alles kann. 👍 Das wollen wir doch gleich mal ausprobieren.
+                    Hier kannst du nun deine ersten, praktischen Erfahrungen mit REST sammeln. Lade dir hierfür einfach das Beispiel von Moodle
+                    runter und erkunde es in SoapUI. Danach solltest mit der nächsten Aufgabe keine Probleme mehr haben. 🎓
                 </p>
+                <div class="embed-responsive embed-responsive-16by9" style="margin-bottom: 1em">
+                    <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/4bRuh9cNgl8?rel=0" allow="encrypted-media" allowfullscreen></iframe>
+                </div>
             </aside>
         </section>
 
@@ -673,22 +950,121 @@
                 <h2>Aufgabe 2.1: Allgemeine Fragen</h2>
 
                 <p>
-                    a) …
+                    a) REST-Webservices besitzen eine einzige URL für alle Operationen.
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
-                        …
+                        Wahr
+                    </li>
+                    <li>
+                        Falsch
+                    </li>
+                </ol>
+
+                <p>
+                    b) REST-Webservices nutzen häufig JSON als Datenformat, andere Formate können aber auch vorkommen.
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Wahr
+                    </li>
+                    <li>
+                        Falsch
+                    </li>
+                </ol>
+
+                <p>
+                    c) REST-Webservices bieten einen ähnlich großen Funktionsumfang, wie SOAP mit seinen WS-*-Standards.
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Wahr
+                    </li>
+                    <li>
+                        Falsch
                     </li>
                 </ol>
 
                 <h2>Aufgabe 2.2: Fragen zur Technik</h2>
 
                 <p>
-                    a) …
+                    a) Welche Aufgabe hat das <code>Accept</code>-Header-Field bei einem REST-Aufruf?
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
-                        …
+                        Es beschreibt das Datenformat, dass der Server an den Client sendet.
+                    </li>
+                    <li>
+                        Es beschreibt das Datenformat, dass der Client an den Server sendet.
+                    </li>
+                    <li>
+                        Es beschreibt das Datenformat, dass der Client gerne vom Server empfangen möchte.
+                    </li>
+                </ol>
+
+                <p>
+                    b) Welche Aufgabe hat das <code>Content-Type</code>-Header-Field bei einem REST-Aufruf?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Es beschreibt das Datenformat, dass der Server an den Client sendet.
+                    </li>
+                    <li>
+                        Es beschreibt das Datenformat, dass der Client an den Server sendet.
+                    </li>
+                    <li>
+                        Es beschreibt das Datenformat, dass der Client gerne vom Server empfangen möchte.
+                    </li>
+                </ol>
+
+                <p>
+                    c) Welche der folgenden URLs dient dem Abruf einer Collection mit mehreren Songs?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        <code>https://example.com/api/songs/elton-john/your-song/</code>
+                    </li>
+                    <li>
+                        <code>https://example.com/api/songs/</code>
+                    </li>
+                    <li>
+                        <code>https://example.com/api/songs/511/</code>
+                    </li>
+                    <li>
+                        <code>https://example.com/songs/your-song/?details=all</code>
+                    </li>
+                </ol>
+
+                <p>
+                    d) Welche Aufgabe haben die HTTP-Verben PUT und POST bei REST?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Neue Daten anlegen bzw. vorhandene Daten aktualisieren
+                    </li>
+                    <li>
+                        Eine Liste mit mehreren Datensätzen auf einmal löschen
+                    </li>
+                    <li>
+                        Daten in einem anderen Format als JSON vom Server abrufen
+                    </li>
+                </ol>
+
+                <p>
+                    e) Wie kann man bei manchen REST-Webservices einzelne Felder anstatt allen Daten ändern?
+                </p>
+                <ol class="dhbw-liste-mit-viel-text">
+                    <li>
+                        Das geht nicht, da es kein passendes HTTP-Verb hierfür gibt.
+                    </li>
+                    <li>
+                        Mit dem HTTP-Verb PUT, indem nur die zu ändernden Felder an den Server geschickt werden.
+                    </li>
+                    <li>
+                        Mit dem HTTP-Verb PATCH, indem nur die zu ändernden Felder an den Server geschickt werden.
+                    </li>
+                    <li>
+                        Mit dem HTTP-Verb POST, indem nur die zu ändernden Felder an den Server geschickt werden.
                     </li>
                 </ol>
 
@@ -696,8 +1072,8 @@
 
                 <p style="width: 100%; transform: scaleY(-1) scaleX(-1); display: inline-block;">
                     <small>
-                        <b>Lösung:</b> Aufgabe 2.1: …<br />
-                        Aufgabe 2.2: …
+                        <b>Lösung:</b> Aufgabe 2.1: 2, 1, 2<br />
+                        Aufgabe 2.2: 3, 1 + 2, 2, 1, 3
                     </small>
                 </p>
             </article>
@@ -729,23 +1105,712 @@
         <section>
             <h1>Eigene Webservices definieren</h1>
             <article>
-                …
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "programmierung-annotationen-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#programmierung-annotationen"
+                                role          = "tab"
+                                aria-controls = "programmierung-annotationen"
+                                aria-expanded = "true"
+                            >
+                                Benötigte Annotationen
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "programmierung-datenmodell-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#programmierung-datenmodell"
+                                role          = "tab"
+                                aria-controls = "programmierung-datenmodell"
+                            >
+                                Datenmodell
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "programmierung-application-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#programmierung-application"
+                                role          = "tab"
+                                aria-controls = "programmierung-application"
+                            >
+                                Application-Klasse
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "programmierung-webservice-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#programmierung-webservice"
+                                role          = "tab"
+                                aria-controls = "programmierung-webservice"
+                            >
+                                Webservice-Klassen
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Benötigte Annotationen -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "programmierung-annotationen"
+                            role            = "tabpanel"
+                            aria-labelledby = "programmierung-annotationen-tab"
+                        >
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md">
+                                        <h2>Application-Klasse</h2>
+                                        <p>
+                                            Ein REST-Webservice besitzt in Java immer mindestens zwei Klassen. Die Application-Klasse legt dabei den URL-Prefix
+                                            des Webserivces fest und bindet eine oder mehrere Webservice-Klassen für die eigentlichen Ressourcen ein. Sie kennt
+                                            nur eine Annotation, die immer verwendet werden muss.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <h3>@ApplicationPath</h3>
+                                        <p>
+                                            Steht vor der Application-Klasse des Webservices und definiert dort die Basis-URL aller Ressourcen.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md">
+                                        <h2>Webservice-Klassen</h2>
+                                        <p>
+                                            Jede Ressource des Webservices wird in einer eigenen Webservice-Klasse ausprogrammiert. Sie beinhaltet die einzelnen
+                                            Methoden des Webservices und legt fest, mit welchen URL-Mustern und HTTP-Verben die Methoden aufgerufen werden können.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <h3>@GET</h3>
+                                        <p>
+                                            Kennzeichnet eine Methode, die bei einer GET-Anfrage aufgerufen wird und dem Abruf von Daten dient.
+                                        </p>
+                                    </div>
+                                    <div class="col-md">
+                                        <h3>@POST</h3>
+                                        <p>
+                                            Kennzeichnet eine Methode, die bei einer POST-Anfrage aufgerufen wird und der Anlage neuer Daten dient.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <h3>@PUT</h3>
+                                        <p>
+                                            Kennzeichnet eine Methode, die bei einer PUT-Anfrage aufgerufen wird und der Änderung bereits vorhandener Daten dient.
+                                        </p>
+                                    </div>
+                                    <div class="col-md">
+                                        <h3>@DELETE</h3>
+                                        <p>
+                                            Kennzeichnet eine Methode, die bei einer DELETE-Anfrage aufgerufen wird und der Löschung vorhandener  Daten dient.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <hr />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <h3>@Produces</h3>
+                                        <p>
+                                            Definiert den <a href="https://en.wikipedia.org/wiki/Media_type" target="_blank">MIME-Type</a> der durch die Methode
+                                            zurückgelieferten Daten.
+                                        </p>
+                                    </div>
+                                    <div class="col-md">
+                                        <h3>@Consumes</h3>
+                                        <p>
+                                            Definiert den <a href="https://en.wikipedia.org/wiki/Media_type" target="_blank">MIME-Type</a> der durch die Methode
+                                            verarbeitbaren Daten. Auf diese Weise können mehrere Methoden zur exakt selben URL definiert werden, da immer die
+                                            Methode aufgerufen wird, welche die vom Client gesendeten Daten verarbeiten kann.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <hr />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <h3>@Path</h3>
+                                        <p>
+                                            Kann vor einer Klasse oder Methode stehen und definiert den Teil der URL, der zum Aufruf der jeweiligen Klasse
+                                            oder Methode führt. In geschweiften Klammern können dabei <b>Platzhalter</b> stehen, die als Parameter an die
+                                            aufgerufene Methode übergeben werden. Zum Beispiel: <src-code language="java">@Path("song/{id}")</src-code>
+                                        </p>
+                                    </div>
+                                    <div class="col-md">
+                                        <h3>@PathParam</h3>
+                                        <p>
+                                            Kennzeichnet einen Methodenparameter, dessen Wert über einen Platzhaler in der URL ermittelt wird.
+                                            Zum Beispiel: <src-code language="java">@PathParam("id") String id</src-code>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <h3>@QueryParam</h3>
+                                        <p>
+                                            Steht vor einem Methodenparameter und legt fest, dass dieser in Form eines URL-Parameters übergeben wird.
+                                            Zum Beispiel muss bei <src-code language="java">@QueryParam("search") String search</src-code> der String
+                                            <code>?search=Queen</code> an die URL abgehängt werden, um den Wert <tt>Queen</tt> zu übergeben.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Datenmodell -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "programmierung-datenmodell"
+                            role            = "tabpanel"
+                            aria-labelledby = "programmierung-datenmodell-tab"
+                        >
+                            <p>
+                                Wie immer benötigen wir erst einmal ein paar Persistence Entities und Enterprise Java Beans. Zumindest, wenn wir Daten
+                                aus einer Datenbank lesen und schreiben wollen. 🛢️ Für die EJB nutzen wir wie immer die
+                                <a href="../../2-javaee/jpa/#19" target="_blank"><code>EntityBean</code> aus den JPA-Folien</a>.
+                            </p>
+                            <source-code language="java">
+                                /**
+                                 * Einfache Entity-Klasse für einen Song.
+                                 */
+                                @Entity
+                                public class Song implements Serializable {
+
+                                    @Id
+                                    @GeneratedValue(generator = "song_ids")
+                                    @TableGenerator(name = "song_ids", initialValue = 0, allocationSize = 50)
+                                    private final long id = 0L;
+
+                                    private String name = "";
+                                    private String artist = "";
+                                    private String songwriters = "";
+                                    private int releaseYear = 0;
+
+                                    // Konstruktoren
+
+                                    // Setter und Getter
+                                }
+
+                                /**
+                                 * Einfache EJB mit den üblichen Methoden zum Lesen und Schreiben von
+                                 * Songs in der Datenbank. Diese Klasse nutzt unsere altbekannte EntityBean
+                                 * aus den JPA-Folien, um einen Grundstock an Standardmethoden anzubieten.
+                                 */
+                                @Stateless
+                                public class SongBean extends EntityBean<Song, Long> {
+
+                                    public SongBean() {
+                                        super(Song.class);
+                                    }
+                                }
+                            </source-code>
+                        </div>
+                        <!-- Application-Klasse -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "programmierung-application"
+                            role            = "tabpanel"
+                            aria-labelledby = "programmierung-application-tab"
+                        >
+                            <p>
+                                Im Gegensatz zu SOAP benötigt jeder REST-Webservice in Java eine Application-Klasse, welche
+                                den URL-Prefix des Webservices definiert und in welche alle weiteren Klassen aufgenommen
+                                werden müssen. Wichtig sind hierbei die Annotation <code>@ApplicationPath</code> für die URL
+                                sowie die Methode <code>getClasses()</code>, die eine Liste aller REST-Webservice-Klassen
+                                zurückliefert.
+                            </p>
+                            <source-code language="java">
+                                /**
+                                * Einstiegspunkt für unseren REST-Webservice. Hier wird der URL-Prefix aller
+                                * Aufrufe definiert (über @ApplicationPath), sowie alle Collections und
+                                * Resourcen dem Webservice hinzugefügt. Diese Klasse muss daher immer angepasst
+                                * werden, wenn weitere Collections oder Resourcen hinzukommen.
+                                 */
+                                @ApplicationPath("api")
+                                public class MusicalRestAPI extends Application {
+
+                                    @Override
+                                    public Set&lt;Class&lt;?&gt;&gt; getClasses() {
+                                        Set&lt;Class&lt;?&gt;&gt; resources = new java.util.HashSet&lt;&gt;();
+
+                                        // Hier für jede Webservice-Klasse eine Zeile hinzufügen
+                                        resources.add(SongCollection.class);
+                                        resources.add(SongResource.class);
+
+                                        return resources;
+                                    }
+                                }
+                            </source-code>
+                        </div>
+                        <!-- Webservice-Klassen -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "programmierung-webservice"
+                            role            = "tabpanel"
+                            aria-labelledby = "programmierung-webservice-tab"
+                        >
+                            <p>
+                                Bei den eigentlichen Webservice-Klassen, die jeweils für eine Collection oder Ressource des Webservices stehen,
+                                handelt es sich wieder um altbekannte Stateless Session Beans. 👴🏽 Ihre Methoden werden durch die übrigen Annotationen
+                                auf die verschiedenen URLs und HTTP-Verben gemappt. Fangen wir also mit der Klasse für eine <b>Collection</b> an,
+                                um eine ganze Liste auszulesen (bzw. Einträge suchen) und neue Einträge anlegen zu können:
+                            </p>
+                            <source-code language="java">
+                                /**
+                                 * Collection "Songs" zum Suchen von Songs und Speichern neuer Songs.
+                                 */
+                                @Stateless
+                                @Path("Songs")
+                                public class SongCollection {
+
+                                    @EJB
+                                    SongBean songBean;
+
+                                    /**
+                                     * GET /api/Songs/List/
+                                     * Auslesen einer Liste von Musikstücken.
+                                     */
+                                    @GET
+                                    @Produces(MediaType.APPLICATION_JSON)
+                                    public List&lt;Song&gt; findSongs() {
+                                        return this.songBean.findAll();
+                                    }
+
+                                    /**
+                                     * POST /api/Songs/
+                                     * Speichern eines neuen Songs.
+                                     */
+                                    @POST
+                                    @Consumes(MediaType.APPLICATION_JSON)
+                                    @Produces(MediaType.APPLICATION_JSON)
+                                    public String saveNewSong(String json) {
+                                        return this.gson.fromJson(json, Song.class);
+                                    }
+                                }
+                            </source-code>
+                            <p>
+                                Anschließend legen wir eine weitere Klasse für <b>einzelne Ressourcen</b> an. Streng genommen könnten die Methoden
+                                zwar auch alle in einer Klasse stehen (<code>@Path</code> kann auch vor einer Methode stehen), so ist es jedoch
+                                übersichtlicher und damit wartbarer.
+                            </p>
+                            <source-code language="java">
+                                /**
+                                 * Ressource für einen einzelnen Song. Hier kann ein einzelner Song abgerufen,
+                                 * aktualisiert oder gelöscht werden.
+                                 */
+                                @Stateless
+                                @Path("songs/{id}")
+                                public class SongResource {
+
+                                    @EJB
+                                    SongBean songBean;
+
+                                    /**
+                                     * GET /api/Songs/{id}/
+                                     * Auslesen eines einzelnen Songs anhand seiner ID.
+                                     */
+                                    @GET
+                                    @Produces(MediaType.APPLICATION_JSON)
+                                    public Song getSong(@PathParam("id") long id) {
+                                        return this.songBean.findById(id);
+                                    }
+
+
+                                    /**
+                                     * PUT /api/Songs/{id}/
+                                     * Aktualisieren eines vorhandenen Songs.
+                                     */
+                                    @PUT
+                                    @Consumes(MediaType.APPLICATION_JSON)
+                                    @Produces(MediaType.APPLICATION_JSON)
+                                    public Song updateSong(Song song) {
+                                        return this.songBean.update(song);
+                                    }
+
+                                    /**
+                                     * DELETE /api/Songs/{id}/
+                                     * Löschen eines vorhandenen Songs.
+                                     */
+                                    @DELETE
+                                    @Produces(MediaType.APPLICATION_JSON)
+                                    public Song deleteSong(@PathParam("id") long id) {
+                                        Song song = this.songBean.findById(id);
+
+                                        if (response.song != null) {
+                                            this.songBean.delete(response.song);
+                                        }
+
+                                        return song;
+                                    }
+                                }
+                            </source-code>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    Zugegeben, die Definition eigener Webservices ist mit REST kompliziert als mit SOAP. 🤦 Aber dafür ticken sie eben auch ganz
+                    anders und erfordern deshalb auch mehr Annotationen. Hat man aber einmal den Dreh raus, ist es auch nicht wirklich kompliziert.
+                    Man muss sich nur ein paar Gedanken darüber machen, wie die URLs des Webservices aufgebaut sein sollen und welche Ressource
+                    mit welcher URL angesprochen wird. Auch muss man sich natürlich überlegen, welche HTTP-Verben und damit auch welche Operationen
+                    man überhaupt unterstützen will. Eine gutes Vorgehen ist dabei folgendes:
+                </p>
+                <p>
+                    Zunächst legt man über die <b>Application-Klasse</b> des Webservices seine Basis-URL fest. Also den Prefix, mit dem alle
+                    URLs des Webservices beginnen. Dies geschieht durch die Annotation <code>@ApplicationPath</code>, die vor eine Klasse
+                    die von <code>Application</code> erbt, steht:
+                </p>
+                <source-code language="java">
+                    @ApplicationPath("api")
+                    public class ApplicationConfig extends Application { … }
+                </source-code>
+                <p>
+                    In diesem Beispiel beginnen also alle URLs mit <code>/api/</code>. Anschließend definiert man je Ressource zwei Webservice-Klassen
+                    und führt sie innerhalb der Application-Klasse auf. Eine Klasse für Collection zum Auslesen einer Liste und zur Anlage neuer Daten
+                    sowie eine für einzelne Ressourcen.
+                </p>
+                <source-code language="java">
+                    @ApplicationPath("api")
+                    public class MusicalRestAPI extends Application {
+                        @Override
+                        public Set&lt;Class&lt;?&gt;&gt; getClasses() {
+                            Set&lt;Class&lt;?&gt;&gt; resources = new java.util.HashSet&lt;&gt;();
+
+                            // Hier für jede Webservice-Klasse eine Zeile hinzufügen
+                            resources.add(SongCollection.class);
+                            resources.add(SongResource.class);
+
+                            return resources;
+                        }
+                    }
+                </source-code>
+                <p>
+                    Die Webservice-Klassen bekommen, da sie ja für eine Ressource mit einer eindeutigen URL stehen, über die <code>@Path</code>-Annotation
+                    einen eigenen URL-Prefix innerhalb der Basis-URL zugewiesen:
+                </p>
+                <source-code language="java">
+                    @Stateless
+                    @Path("songs")
+                    public class SongCollection { … }
+
+                    @Stateless
+                    @Path("songs/{id}")
+                    public class SongResource { … }
+                </source-code>
+                <p>
+                    Hier haben wir es zum Beispiel mit der Ressource Songs zu tun, die über die URL <code>/api/songs/</code> für die Collection sowie
+                    <code>/api/songs/{id}</code> für einen einzelnen Song angesprochen wird. <code>{id}</code> ist dabei ein Platzhalter, der durch
+                    die eigentliche ID ersetzt werden muss.
+                </p>
+                <p>
+                    Weiter geht es mit der Collection-Klasse. Sie bekommt zwei Methoden für GET- und POST-Anfragen, zum Auslesen einer Liste sowie
+                    zum Anlegen eines neuen Eintrags:
+                </p>
+                <source-code language="java">
+                    @Stateless
+                    @Path("songs")
+                    public class SongCollection {
+
+                        @GET
+                        @Produces(MediaType.APPLICATION_JSON)
+                        public List&lt;Song&gt; findSongs() { … }
+
+                        @POST
+                        @Consumes(MediaType.APPLICATION_JSON)
+                        @Produces(MediaType.APPLICATION_JSON)
+                        public Song saveNewSong(Song song) { … }
+                    }
+                </source-code>
+                <p>
+                    Die Ressourcenklasse für einzelne Datensätze hingegen bekommt Methoden für GET-, PUT- und DELETE-Anfragen.
+                </p>
+                <source-code language="java">
+                    @Stateless
+                    @Path("songs/{id}")
+                    public class SongResource {
+
+                        @GET
+                        @Produces(MediaType.APPLICATION_JSON)
+                        public Song getSong(@PathParam("id") long id) { … }
+
+                        @PUT
+                        @Consumes(MediaType.APPLICATION_JSON)
+                        @Produces(MediaType.APPLICATION_JSON)
+                        public Song updateSong(Song song) { … }
+
+                        @DELETE
+                        @Produces(MediaType.APPLICATION_JSON)
+                        public Song deleteSong(@PathParam("id") long id) { … }
+                    }
+                </source-code>
+                <p>
+                    Dadurch hat mein eine saubere Quellcodestruktur und logische RESTful URLs, die nicht im Widerspruch zur Bedeutung der
+                    Methoden stehen.
                 </p>
             </aside>
         </section>
 
         <section>
-            <h1>Wir bauen unsere eigenen JSON-Strukturen</h1>
+            <h1>Die Antwortdaten flexibler gestalten</h1>
             <article>
-                …
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "antwortdaten-projekttyp-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#antwortdaten-projekttyp"
+                                role          = "tab"
+                                aria-controls = "antwortdaten-projekttyp"
+                                aria-expanded = "true"
+                            >
+                                Maven-Projekt anlegen
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "antwortdaten-pom-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#antwortdaten-pom"
+                                role          = "tab"
+                                aria-controls = "antwortdaten-pom"
+                            >
+                                Erweiterung der pom.xml
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "antwortdaten-code-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#antwortdaten-code"
+                                role          = "tab"
+                                aria-controls = "antwortdaten-code"
+                            >
+                                Änderungen am Quellcode
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Maven-Projekt anlegen -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "antwortdaten-projekttyp"
+                            role            = "tabpanel"
+                            aria-labelledby = "antwortdaten-projekttyp-tab"
+                        >
+                            <p>
+                                Damit der hier beschriebene Trick funktioniert, ist es wichtig, das Projekt als <b>Maven-Projekt</b> anzulegen.
+                                Dadurch wird das Build-Werkzeug Maven anstelle von Ant verwendet, wodurch wir ganz einfach, fremde Abhängigkeiten
+                                wie die GSON-Bibliothek hinzufügen können, ohne die hierfür notwendigen Daten manuell herunterladen zu müssen.
+                                Außerdem lässt sich das Projekt somit auch in anderen IDEs öffnen oder gar völlig ohne IDE weiterentwickeln.
+                            </p>
+                            <img src="maven-webapp.png" alt="Maven / Web Application ist der richtige Projekttyp" class="d-block" style="widht: 100%;" />
+                        </div>
+                        <!-- Erweiterung der pom.xml -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "antwortdaten-pom"
+                            role            = "tabpanel"
+                            aria-labelledby = "antwortdaten-pom-tab"
+                        >
+                            <p>
+                                Innerhalb des Ordners <b>Project Files</b> findet sich dann die Datei <tt>pom.xml</tt>. Sie gehört zu Maven und
+                                beschreibt das gesamte Projekt, unter anderem auch, welche Abhängigkeiten es besitzt. Die nachfolgenden Zeilen
+                                müssen im Bereich <src-code language="xml">&lt;dependencies&gt;…&lt;/dependencies&gt;</src-code> eingefügt werden:
+                            </p>
+                            <source-code language="xml">
+                                &lt;project&gt;
+                                    …
+                                    &lt;dependencies&gt;
+                                        …
+                                        &lt;!--
+                                            Google GSON
+                                            ===========
+
+                                            Damit lässt sich ein Javaobjekt nach JSON umwandeln und umgekehrt.
+                                            https://mvnrepository.com/artifact/com.google.code.gson/gson
+                                        --&gt;
+                                        &lt;dependency&gt;
+                                            &lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;
+                                            &lt;artifactId&gt;gson&lt;/artifactId&gt;
+                                            &lt;version&gt;2.8.2&lt;/version&gt;
+                                        &lt;/dependency&gt;
+                                    &lt;/dependencies&gt;
+                                    …
+                                &lt;/project&gt;
+                            </source-code>
+                        </div>
+                        <!-- Änderungen am Quellcode -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "antwortdaten-code"
+                            role            = "tabpanel"
+                            aria-labelledby = "antwortdaten-code-tab"
+                        >
+                            <p>
+                                Und hier nun die angepasste Version der Klasse <code>SongCollection</code>. Im Konstruktor der Klasse wird ein
+                                neues GSON-Objekt erzeugt, das zum (De)serialisieren der JSON-Daten verwendet werden kann. Diese werden den
+                                Methoden daher nun als String übergeben und auch der Rückgabewert aller Methoden ist ein String. Zusätzlich
+                                beinhaltet die Klasse eine innere Klasse namens <code>Response</code>, die alle für eine Antwort benötigten Felder
+                                enthält:
+                            </p>
+                            <ul>
+                                <li>
+                                    <b>song:</b> RÜckgabedaten eines einzelnen Songs, falls die Methode immer nur einen Song liefern kann.
+                                </li>
+                                <li>
+                                    <b>songs:</b> Rückgabedaten einer ganzen Liste von Songs, falls die Methode potentiell mehrere Einträge liefern kann.
+                                </li>
+                                <li>
+                                    <b>status:</b> Ein einfacher Statuscode wie <tt>OK</tt> oder <tt>ERROR</tt>, anhand dessen der Client
+                                    erkennen kann, ob der Aufruf erfolgreich war.
+                                </li>
+                                <li>
+                                    <b>exception:</b> Der Name der aufgetretenen Exception, falls es zu einem Fehler kam.
+                                </li>
+                                <li>
+                                    <b>message:</b> Eine für den Anwender verständliche Status- oder Fehlermeldung, die der Client bei Bedarf
+                                    auch anzeigen kann.
+                                </li>
+                            </ul>
+                            <p>
+                                Die veränderte <code>SongCollection</code>-Klasse sieht dadurch wie folgt aus. Natürlich muss die Klasse
+                                <code>SongResource</code> analog dazu angepasst werden, auch wenn das hier nicht gezeigt wird.
+                            </p>
+                            <source-code language="java">
+                                /**
+                                 * Collection "Songs" zum Suchen von Songs und Speichern neuer Songs.
+                                 */
+                                @Stateless
+                                @Path("Songs")
+                                public class SongCollection {
+
+                                    @EJB
+                                    SongBean songBean;
+
+                                    // GSON-Objekt zur (De)serialisierung von JSON
+                                    Gson gson;
+
+                                    /**
+                                     * Datencontainer für die Antwortdaten, die von den Methoden unten jeweils
+                                     * zurückgeschickt werden können.
+                                     */
+                                    public class Response {
+
+                                        public Song song;
+                                        public List<Song> songs;
+                                        public String status;
+                                        public String exception;
+                                        public String message;
+                                    }
+
+                                    public SongCollection() {
+                                        // Initialisierung des GSON-Objekts
+                                        this.gson = new GsonBuilder().create();
+                                    }
+
+                                    /**
+                                     * GET /api/Songs/List/
+                                     * Auslesen einer Liste von Musikstücken.
+                                     */
+                                    @GET
+                                    @Produces(MediaType.APPLICATION_JSON)
+                                    public String findSongs() {
+                                        Response response = new Response();
+
+                                        try {
+                                            response.songs = this.songBean.findAll();
+                                            response.status = "OK";
+                                        } catch (Exception ex) {
+                                            response.status = "ERROR";
+                                            response.exception = ex.getClass().getName();
+                                            response.message = ex.getMessage();
+                                        }
+
+                                        return this.gson.toJson(response);
+                                    }
+
+                                    /**
+                                     * POST /api/Songs/
+                                     * Speichern eines neuen Songs.
+                                     */
+                                    @POST
+                                    @Consumes(MediaType.APPLICATION_JSON)
+                                    @Produces(MediaType.APPLICATION_JSON)
+                                    public String saveNewSong(String json) {
+                                        Response response = new Response();
+
+                                        try {
+                                            Song song = this.gson.fromJson(json, Song.class);
+                                            response.song = this.songBean.saveNew(song);
+                                            response.status = "OK";
+                                        } catch (Exception ex) {
+                                            response.status = "ERROR";
+                                            response.exception = ex.getClass().getName();
+                                            response.message = ex.getMessage();
+                                        }
+
+                                        return this.gson.toJson(response);
+                                    }
+                                }
+                            </source-code>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    Auf der vorherigen Folie hast du gesehen, dass Java automatisch alle Objekte, die einer Methode übergeben werden,
+                    oder die sie zurück gibt, von und nach JSON umwandeln kann. Allerdings gibt es hierbei zwei Probleme:
+                </p>
+                <ol>
+                    <li>
+                        Glassfish 4.1.1, der mit Netbeans 8.2 ausgeliefert wird, hat einen blöden Bug, der genau dies verhindert
+                        und stattdessen die Anwendung abstürzen lässt.¹ 😟
+                    </li>
+                    <li>
+                        Wir können, so wie es auf der Folie gezeigt wurde, keine Fehlermeldungen an den Client senden. Wirft
+                        eine der Methoden eine Exception, stürzt die Anwendung ab und der Client bekommt eine 500er-Fehlerseite
+                        im HTML-Format. 🤯
+                    </li>
+                </ol>
+                <p>
+                    <small>
+                        ¹ In Glassfish 5.0 ist der Bug behoben.
+                    </small>
+                </p>
+                <p>
+                    Auf dieser Folie siehst du daher einen Lösungsansatz, der beide Probleme elegang behebt. Zur Umgehung des
+                    Glassfish-Bugs binden wir die <a href="https://github.com/google/gson" target="_blank">GSON</a>-Bibliothek
+                    von Google ein und um die Möglichkeit zu schaffen, auch Fehlermeldungen zurückzusenden, definieren wir eine
+                    spezielle <b>Response-Klasse</b>, die einen Stautscode, einen Meldungstext sowie die eigentlichen Nutzdaten
+                    der Antwort enthalten kann. Und das Gute ist, dass der Code dadurch gar nicht so viel kompliziert wird.
+                    Ganz im Gegenteil, so sollte man es eigentlich immer machen. 🙂
                 </p>
             </aside>
         </section>
