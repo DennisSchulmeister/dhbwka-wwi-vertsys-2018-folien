@@ -368,10 +368,10 @@
                         <b>GET:</b> Daten einer Ressource abrufen
                     </li>
                     <li>
-                        <b>PUT:</b> Anlage einer neuen Ressource³
+                        <b>POST:</b> Anlage einer neuen Ressource³
                     </li>
                     <li>
-                        <b>POST:</b> Neue Version einer vorhandenen Ressource speichern³
+                        <b>PUT:</b> Neue Version einer vorhandenen Ressource speichern³
                     </li>
                     <li>
                         <b>PATCH:</b> Einzelne Felder einer Ressource überschreiben
@@ -769,7 +769,7 @@
                     an die Basis-URL des Webservices abrufen kann. Sie beschreibt die erlaubten URLs, auch mit möglichen Platzhaltern und URL-Parametern sowie die
                     jeweils zulässigen HTTP-Verben und welche Datenformate der Server jeweils empfangen und senden kann. Optional kann sie auch Schemadefinitionen
                     für die ausgetauschten Daten enthalten. Wie wir auf der nächsten Folien sehen werden, lassen sich in Java entwickelte REST-Services dadurch in
-                    SoapUI sehr gut testen, aber auch die Entwicklung einer Clientanwendung wird dadurch vereinfacht.
+                    SoapUI sehr gut testen.
                 </p>
             </aside>
         </section>
@@ -1404,8 +1404,8 @@
                                     @POST
                                     @Consumes(MediaType.APPLICATION_JSON)
                                     @Produces(MediaType.APPLICATION_JSON)
-                                    public String saveNewSong(String json) {
-                                        return this.gson.fromJson(json, Song.class);
+                                    public String saveNewSong(Song song) {
+                                        return this.songBean.saveNew(song);
                                     }
                                 }
                             </source-code>
@@ -1420,7 +1420,7 @@
                                  * aktualisiert oder gelöscht werden.
                                  */
                                 @Stateless
-                                @Path("songs/{id}")
+                                @Path("Songs/{id}")
                                 public class SongResource {
 
                                     @EJB
@@ -1512,11 +1512,11 @@
                 </p>
                 <source-code language="java">
                     @Stateless
-                    @Path("songs")
+                    @Path("Songs")
                     public class SongCollection { … }
 
                     @Stateless
-                    @Path("songs/{id}")
+                    @Path("Songs/{id}")
                     public class SongResource { … }
                 </source-code>
                 <p>
@@ -1530,7 +1530,7 @@
                 </p>
                 <source-code language="java">
                     @Stateless
-                    @Path("songs")
+                    @Path("Songs")
                     public class SongCollection {
 
                         @GET
@@ -1548,7 +1548,7 @@
                 </p>
                 <source-code language="java">
                     @Stateless
-                    @Path("songs/{id}")
+                    @Path("Songs/{id}")
                     public class SongResource {
 
                         @GET
@@ -1714,7 +1714,7 @@
                                     SongBean songBean;
 
                                     // GSON-Objekt zur (De)serialisierung von JSON
-                                    Gson gson;
+                                    Gson gson = this.gson = new GsonBuilder().create();
 
                                     /**
                                      * Datencontainer für die Antwortdaten, die von den Methoden unten jeweils
@@ -1727,11 +1727,6 @@
                                         public String status;
                                         public String exception;
                                         public String message;
-                                    }
-
-                                    public SongCollection() {
-                                        // Initialisierung des GSON-Objekts
-                                        this.gson = new GsonBuilder().create();
                                     }
 
                                     /**
@@ -1816,25 +1811,745 @@
         </section>
 
         <section>
-            <h1>Und wie sichern wir das ganze ab?</h1>
+            <h1>Exkurs: Und wie sichern wir das ganze ab?</h1>
             <article>
-                …
+                <table style="margin-bottom: 1em;">
+                    <tr>
+                        <td style="padding-right: 0.5em">
+                            🔥
+                        </td>
+                        <td>
+                            REST-Webservices lassen sich mit Java viel einfacher absichern, als SOAP-Webservices.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em">
+                            🔥
+                        </td>
+                        <td>
+                            Wir müssen lediglich die Datei <tt>WEB-INF\web.xml</tt> und die Serverkonfiguration anpassen.
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "auth-entity-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#auth-entity"
+                                role          = "tab"
+                                aria-controls = "auth-entity"
+                            >
+                                User-Entity
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "auth-webxml-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#auth-webxml"
+                                role          = "tab"
+                                aria-controls = "auth-webxml"
+                            >
+                                web.xml
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "auth-glassfishwebxml-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#auth-glassfishwebxml"
+                                role          = "tab"
+                                aria-controls = "auth-glassfishwebxml"
+                            >
+                                glassfish-web.xml
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "auth-realm-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#auth-realm"
+                                role          = "tab"
+                                aria-controls = "auth-realm"
+                            >
+                                Realm
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- User-Entity -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "auth-entity"
+                            role            = "tabpanel"
+                            aria-labelledby = "auth-entity-tab"
+                        >
+                            <p>
+                                Zunächst benötigen wir eine Entity, um Benutzer in der Datenbank speichern zu können.
+                                Sie entspricht im Wesentlichen dem Beispiel, dass wir auch schon in den EJB-Aufgaben
+                                gesehen haben.
+                            </p>
+                            <source-code language="java">
+                                /**
+                                 * Datenbankklasse für einen Benutzer. Dies ist eine Variation der User-Klasse
+                                 * von jTodo.
+                                 */
+                                @Entity
+                                @Table(name = "REST_USER")
+                                public class User implements Serializable {
+
+                                    @Id
+                                    @Column(name = "USERNAME", length = 64)
+                                    private String username;
+
+                                    @Column(name = "PASSWORD_HASH", length = 64)
+                                    private String passwordHash;
+
+                                    @ElementCollection
+                                    @CollectionTable(
+                                            name = "REST_USER_GROUP",
+                                            joinColumns = @JoinColumn(name = "USERNAME")
+                                    )
+                                    @Column(name = "GROUPNAME")
+                                    List&lt;String&gt; groups = new ArrayList&lt;&gt;();
+
+                                    // Konstruktoren …
+
+                                    // Setter und Getter …
+
+                                    // Methoden zum Hashen des Passworts …
+
+                                    // Methoden für die Zuordnung zu Benutzergruppen …
+                                }
+
+                                /**
+                                 * Spezielle EJB zum Anlegen eines Benutzers und Aktualisierung des Passworts.
+                                 * Dies ist im Prinzip dieselbe EJB, wie im jTodo-Beispiel.
+                                 */
+                                @Stateless
+                                public class UserBean {
+
+                                    @PersistenceContext
+                                    EntityManager em;
+
+                                    /**
+                                     * Registrieren eines neuen Benutzers.
+                                     */
+                                    public void signup(String username, String password, String... groups)
+                                            throws UserAlreadyExistsException {
+
+                                        if (em.find(User.class, username) != null) {
+                                            throw new UserAlreadyExistsException("Der Benutzername $B ist bereits vergeben.".replace("$B", username));
+                                        }
+
+                                        User user = new User(username, password);
+
+                                        for (String group : groups) {
+                                            user.addToGroup(group);
+                                        }
+
+                                        em.persist(user);
+                                    }
+
+                                    /**
+                                     * Fehler: Der Benutzername ist bereits vergeben.
+                                     */
+                                    public class UserAlreadyExistsException extends Exception {
+
+                                        public UserAlreadyExistsException(String message) {
+                                            super(message);
+                                        }
+                                    }
+                                }
+                            </source-code>
+                        </div>
+                        <!-- web.xml -->
+                        <div
+                            class           = "tab-pane fade show"
+                            id              = "auth-webxml"
+                            role            = "tabpanel"
+                            aria-labelledby = "auth-webxml-tab"
+                        >
+                            <p>
+                                Die eigentliche Absicherung erfolgt dann über die Datei <tt>WEB-INF\web.xml</tt>. Hier legen wir fest,
+                                wie sich ein Anwender authentifizieren kann und welche Rolle er haben muss, um bestimmte HTTP-Verben
+                                an bestimmte URLs senden zu dürfen.
+                            </p>
+                            <p>
+                                <b>
+                                    Vorsicht! Java ist hier zickig mit der Reihenfolge! 🦄
+                                </b>
+                            </p>
+                            <source-code language="xml">
+                                &lt;web-app&gt;
+                                    &lt;security-constraint&gt;
+                                        &lt;!-- Ändernde Zugriffe auf Songs --&gt;
+                                        &lt;web-resource-collection&gt;
+                                            &lt;web-resource-name&gt;Songs&lt;/web-resource-name&gt;
+                                            &lt;url-pattern&gt;/api/Songs/*&lt;/url-pattern&gt;
+
+                                            &lt;http-method&gt;PUT&lt;/http-method&gt;
+                                            &lt;http-method&gt;POST&lt;/http-method&gt;
+                                            &lt;http-method&gt;PATCH&lt;/http-method&gt;
+                                            &lt;http-method&gt;DELETE&lt;/http-method&gt;
+                                        &lt;/web-resource-collection&gt;
+
+                                        &lt;!-- Benötigte Rolle --&gt;
+                                        &lt;auth-constraint&gt;
+                                            &lt;role-name&gt;rest-beispiel-user&lt;/role-name&gt;
+                                        &lt;/auth-constraint&gt;
+
+                                        &lt;!-- Zugriff nur via HTTPS erlauben --&gt;
+                                        &lt;user-data-constraint&gt;
+                                            &lt;transport-guarantee&gt;CONFIDENTIAL&lt;/transport-guarantee&gt;
+                                        &lt;/user-data-constraint&gt;
+                                    &lt;/security-constraint&gt;
+
+                                    &lt;!-- Definition, dass es die Rolle überhaupt gibt --&gt;
+                                    &lt;security-role&gt;
+                                        &lt;role-name&gt;rest-beispiel-user&lt;/role-name&gt;
+                                    &lt;/security-role&gt;
+
+                                    &lt;!-- Art der Authentifzierung--&gt;
+                                    &lt;login-config&gt;
+                                        &lt;auth-method&gt;BASIC&lt;/auth-method&gt;
+                                        &lt;realm-name&gt;rest-beispiel&lt;/realm-name&gt;
+                                    &lt;/login-config&gt;
+                                &lt;/web-app&gt;
+                            </source-code>
+                        </div>
+                        <!-- glassfish-web.xml -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "auth-glassfishwebxml"
+                            role            = "tabpanel"
+                            aria-labelledby = "auth-glassfishwebxml-tab"
+                        >
+                            <p>
+                                Diese Datei, die ebenfalls im Verzeichnis <tt>WEB-INF</tt> liegen muss, gehört nicht zu Java,
+                                sondern zum Glassfish. Hier wird jeder Benutzergruppe, so wie sie in der Datenbank gespeichert ist,
+                                eine Rolle zugeordnet, die der Server prüfen kann.
+                            </p>
+                            <source-code language="xml">
+                                &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+                                &lt;!DOCTYPE glassfish-web-app PUBLIC
+                                    "-//GlassFish.org//DTD GlassFish Application Server 3.1 Servlet 3.0//EN"
+                                    "http://glassfish.org/dtds/glassfish-web-app_3_0-1.dtd"&gt;
+
+                                &lt;glassfish-web-app error-url=""&gt;
+                                    &lt;security-role-mapping&gt;
+                                        &lt;role-name&gt;rest-beispiel-user&lt;/role-name&gt;
+                                        &lt;group-name&gt;rest-beispiel-user&lt;/group-name&gt;
+                                    &lt;/security-role-mapping&gt;
+
+                                    &lt;parameter-encoding default-charset="UTF-8" /&gt;
+                                &lt;/glassfish-web-app&gt;
+                            </source-code>
+                        </div>
+                        <!-- Realm -->
+                        <div
+                            class           = "tab-pane fade show"
+                            id              = "auth-realm"
+                            role            = "tabpanel"
+                            aria-labelledby = "auth-realm-tab"
+                        >
+                            <p>
+                                Und damit der Server weiß, in welchen Tabellen die Benutzerdaten liegen, müssen wir wieder eine neues
+                                „Realm” in der Glassfish-Adminkonsole anlegen. Wie immer, musst du hier besonders auf Tippfehler achten.
+                            </p>
+                            <img src="auth-realm.png" alt="Realm-Konfiguration im Glassfish" class="d-block" style="width: 100%;" />
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    In der Praxis ist es natürlich wichtig, einen REST-Webservices mit Berechtigungen abzusichern, damit nicht jeder
+                    Anwender, womöglich noch, ohne sich überhaupt anzumelden, einfach beliebige Daten verändern kann. Hierfür kennt
+                    Java zwei Möglichkeiten, eine furchtbar komplizierte¹ mit <code>@RolesAllowed</code> und eine besonders einfache
+                    über die Datei <tt>web.xml</tt>. Wir schauen uns hier nur die einfache Version an, da die andere viel zu aufwändig
+                    ist für das was sie bietet.
+                </p>
+                <p>
+                    <small>
+                        ¹ Da genau wie bei SOAP nicht vollständig zu Ende spezifiziert und somit serverabhängig. Schlimmer noch,
+                        man muss sogar serverabhängigen Quellcode schreiben.
+                    </small>
+                    🤦🏻
+                    <small>
+                        Eine ausführliche Anleitung dazu gibt es
+                        <a href="https://simplapi.wordpress.com/2015/09/19/jersey-jax-rs-securitycontext-in-action/" target="_blank">hier</a>.
+                    </small>
+                </p>
+                <p>
+                    Davon ausgehend, dass wir die Benutzer einfach in einer Tabelle speichern wollen, benötigen wir eine Entity-Klasse,
+                    die mindestens den Benutzernamen und das gehashte Passwort sowie die zugeordneten Benutzergruppen speichert. Zusätzlich
+                    benötigen wir natürlich auch eine dazu passende EJB.
+                </p>
+                <source-code langauge="java">
+                    @Entity
+                    public class User {
+                        @Id
+                        @Column(name = "USERNAME", length = 64)
+                        private String username;
+
+                        @Column(name = "PASSWORD_HASH", length = 64)
+                        private String passwordHash;
+
+                        @ElementCollection
+                        @CollectionTable(
+                                name = "REST_USER_GROUP",
+                                joinColumns = @JoinColumn(name = "USERNAME")
+                        )
+                        @Column(name = "GROUPNAME")
+                        List<String> groups = new ArrayList&lt;&gt;();
+
+                        …
+                    }
+
+                    @Stateless
+                    public class UserBean {
+                        @PersistenceContext
+                        EntityManager em;
+
+                        public void signup(String username, String password, String... groups)
+                                throws UserAlreadyExistsException {
+                            …
+                        }
+                    }
+                </source-code>
+                <p>
+                    Damit sind schon alle Grundlagen gelegt. Jetzt müssen wir nur noch festlegen, für welche Aufrufe der Benutzer sich
+                    anmelden muss und welche Rollen (die wir später auf Benutzergruppen abgebildet werden) er hierfür benötigt. Dies
+                    erfolgt in der Datei <tt>WEB-INF\web.xml</tt> anhand der Webservice-URLs und der HTTP-Verben:
+                </p>
+                <source-code language="xml">
+                    &lt;web-app&gt;
+                        &lt;security-constraint&gt;
+                            &lt;web-resource-collection&gt;
+                                &lt;web-resource-name&gt;Songs&lt;/web-resource-name&gt;
+                                &lt;url-pattern&gt;/api/Songs/*&lt;/url-pattern&gt;
+
+                                &lt;http-method&gt;PUT&lt;/http-method&gt;
+                                &lt;http-method&gt;POST&lt;/http-method&gt;
+                                &lt;http-method&gt;PATCH&lt;/http-method&gt;
+                                &lt;http-method&gt;DELETE&lt;/http-method&gt;
+                            &lt;/web-resource-collection&gt;
+
+                            &lt;auth-constraint&gt;
+                                &lt;role-name&gt;rest-beispiel-user&lt;/role-name&gt;
+                            &lt;/auth-constraint&gt;
+                        &lt;/security-constraint&gt;
+
+                        &lt;security-role&gt;
+                            &lt;role-name&gt;rest-beispiel-user&lt;/role-name&gt;
+                        &lt;/security-role&gt;
+
+                        &lt;login-config&gt;
+                            &lt;auth-method&gt;BASIC&lt;/auth-method&gt;
+                            &lt;realm-name&gt;rest-beispiel&lt;/realm-name&gt;
+                        &lt;/login-config&gt;
+                    &lt;/web-app&gt;
+                </source-code>
+                <p>
+                    Die Trennung zwischen Benutzergruppen und Rollen in Java ist etwas umständlich gelöst. Aus Sicht der Anwendung gibt
+                    es eigentlich nur Benutzergruppen, die ein Benutzer haben kann. Der Server möchte aber Rollen abprüfen, die hierfür
+                    in einer serverspezifischen Konfiguration den Gruppen zugeordnet werden müssen. Für Glassfish erfolgt dies in der
+                    Datei <tt>WEB-INF\glassfish-web.xml</tt>, die ungefähr so aussehen muss:
+                </p>
+                <source-code language="xml">
+                    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+                    &lt;!DOCTYPE glassfish-web-app PUBLIC
+                        "-//GlassFish.org//DTD GlassFish Application Server 3.1 Servlet 3.0//EN"
+                        "http://glassfish.org/dtds/glassfish-web-app_3_0-1.dtd"&gt;
+
+                    &lt;glassfish-web-app error-url=""&gt;
+                        &lt;security-role-mapping&gt;
+                            &lt;role-name&gt;rest-beispiel-user&lt;/role-name&gt;
+                            &lt;group-name&gt;rest-beispiel-user&lt;/group-name&gt;
+                        &lt;/security-role-mapping&gt;
+
+                        &lt;parameter-encoding default-charset="UTF-8" /&gt;
+                    &lt;/glassfish-web-app&gt;
+                </source-code>
+                <p>
+                    Zum Schluss muss dann noch in der Glassfish-Adminkonsole das in der <tt>web.xml</tt> benannte „Realm”
+                    angelegt werden, damit das Ganze funktioniert. Einen Screenshot hierzu findest du auf der Folie. 🖼️
+                    Danach sollte es nicht mehr möglich sein, ändernde Zugriffe auszuführen, ohne über
+                    <a href="https://de.wikipedia.org/wiki/HTTP-Authentifizierung#Basic_Authentication" target="_blank">HTTP Basic Authentication</a>
+                    einen gültigen Benutzer mitzugeben.
                 </p>
             </aside>
         </section>
 
         <section>
-            <h1>REST-Webservices mit JavaScript aufrufen</h1>
+            <h1>Exkurs: AJAX-Aufrufe mit JavaScript</h1>
             <article>
-                …
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id            = "rest-ablauf-tab"
+                                class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#rest-ablauf"
+                                role          = "tab"
+                                aria-controls = "rest-ablauf"
+                                aria-expanded = "true"
+                            >
+                                Ablauf
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "rest-wsklasse-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#rest-wsklasse"
+                                role          = "tab"
+                                aria-controls = "rest-wsklasse"
+                            >
+                                Webservice-Klassen
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "rest-aufruf-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#rest-aufruf"
+                                role          = "tab"
+                                aria-controls = "rest-aufruf"
+                                aria-expanded = "true"
+                            >
+                                Verwendung der Klassen
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "rest-ergebnis-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#rest-ergebnis"
+                                role          = "tab"
+                                aria-controls = "rest-ergebnis"
+                            >
+                                Ergebnis
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                        <!-- Ablauf -->
+                        <div
+                            class           = "tab-pane fade show active"
+                            id              = "rest-ablauf"
+                            role            = "tabpanel"
+                            aria-labelledby = "rest-ablauf-tab"
+                        >
+                            <img src="webanwendung-clientseitig.png" class="d-block" style="width: 100%; margin-bottom: 1em;" />
+                            <ul>
+                                <li>
+                                    <b class="dhbw-lightblue">Das Beste beider Welten:</b> Browser und Server beinhalten je einen Teil der Anwendungslogik.
+                                </li>
+                                <li>
+                                    Der initiale HTML-Code kann vom Server generiert werden oder in einer einfachen HTML-Datei liegen.
+                                </li>
+                                <li>
+                                    Zu einem späteren Zeitpunkt werden dann die REST-Webservices des Servers aufgerufen.
+                                </li>
+                                <li>
+                                    Die empfangenen Daten werden dabei durch geschickte DOM-Manipulation sichtbar gemacht.
+                                </li>
+                            </ul>
+                            <p style="color: darkred">
+                                Jetzt schauen wir uns das endlich mal an.
+                            </p>
+                        </div>
+                        <!-- Webservice-Klassen -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "rest-wsklasse"
+                            role            = "tabpanel"
+                            aria-labelledby = "rest-wsklasse-tab"
+                        >
+                            <p>
+                                Um die Verwendung des Webservices so einfach wie möglich zu machen, solltest du für jede Webservice-Klasse auf dem
+                                Server eine ähnliche Klasse mit den gleichen Methoden in JavaScript anlegen. Innerhalb der Methoden kannst du dann
+                                <src-code language="javascript">fetch(…)</src-code> bzw. die
+                                <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank">Fetch API</a>
+                                 zum Absetzen der HTTP-Aufrufe verwenden.
+                            </p>
+                            <source-code language="javascript">
+                                "use strict";
+
+                                /**
+                                 * Von der Klasse SongCollection des Servers abgeleitete Klasse, die im Prinzip
+                                 * dieselben Methoden besitzt. Hier rufen wir jedoch den REST-Webservice des
+                                 * Servers auf, anstelle direkt auf eine Datenbank zuzugreifen.
+                                 */
+                                class SongCollection {
+
+                                    /**
+                                     * Konstruktor.
+                                     */
+                                    constructor(url) {
+                                        this.url = url || "http://localhost:8080/REST_Server_Beispiel/api/Songs/";
+                                        this.username = "";
+                                        this.password = "";
+                                    }
+
+                                    /**
+                                     * Benutzername und Passwort für die Authentifizierung merken.
+                                     */
+                                    setAuthData(username, password) {
+                                        this.username = username;
+                                        this.password = password;
+                                    }
+
+                                    /**
+                                     * Songs suchen.
+                                     */
+                                    async findSongs(query) {
+                                        let url = this.url;
+
+                                        if (query !== undefined) {
+                                            url += "?query=" + encodeURI(query);
+                                        }
+
+                                        let response = await fetch(url, {
+                                            headers: {
+                                                "accept": "application/json"
+                                            }
+                                        });
+
+                                        if (response.ok) {
+                                            return await response.json();
+                                        } else {
+                                            return {};
+                                        }
+                                    }
+
+                                    /**
+                                     * Neuen Song speichern.
+                                     */
+                                    async saveNewSong(song) {
+                                        let response = await fetch(this.url, {
+                                            method: "POST",
+                                            headers: {
+                                                "accept": "application/json",
+                                                "content-type": "application/json",
+                                                "authorization": "Basic " + btoa(this.username + ":" + this.password)
+                                            },
+                                            body: JSON.stringify(song)
+                                        });
+
+                                        if (response.ok) {
+                                            return await response.json();
+                                        } else {
+                                            return {};
+                                        }
+                                    }
+
+                                }
+
+                                /**
+                                 * Von der Klasse SongResource des Servers abgeleitete Klasse, die im Prinzip
+                                 * dieselben Methoden besitzt. Hier rufen wir jedoch den REST-Webservice des
+                                 * Servers auf, anstelle direkt auf eine Datenbank zuzugreifen.
+                                 */
+                                class SongResource {
+                                    …
+                                }
+                            </source-code>
+                        </div>
+                        <!-- Verwendung der Klassen -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "rest-aufruf"
+                            role            = "tabpanel"
+                            aria-labelledby = "rest-aufruf-tab"
+                        >
+                            <p>
+                                Ab diesem Moment ist der Aufruf des Webservices ein wahres Kinderspiel. ⚽ Durch die neuen Webservice-Klassen
+                                müssen nur noch die richtigen Methoden im richtigen Moment aufgerufen werden.
+                            </p>
+                            <source-code language="javascript">
+                                &lt;!DOCTYPE html&gt;
+                                &lt;html&gt;
+                                    &lt;head&gt;
+                                        &lt;meta charset="utf-8"&gt;
+
+                                        &lt;script src="SongCollection.js"&gt;&lt;/script&gt;
+                                        &lt;script src="SongResource.js"&gt;&lt;/script&gt;
+                                        …
+                                    &lt;/head&gt;
+                                    &lt;body&gt;
+                                        &lt;!-- Platzhalter für die vorhandenen Songs --&gt;
+                                        &lt;div id="songs"&gt;&lt;/div&gt;
+
+                                        &lt;!-- Ab hier fängt es an, Spaß zu machen 🤩 --&gt;
+                                        &lt;script&gt;
+                                            songCollection = new SongCollection();
+                                            songResource = new SongResource();
+
+                                            //songCollection.setAuthData("username", "password");
+                                            //songResource.setAuthData("username", "password");
+
+                                            // Abruf und Anzeige aller Songs, nach Laden der Seite
+                                            async function reloadSongs() {
+                                                let response = await songCollection.findSongs("");
+
+                                                if (response.status === "OK") {
+                                                    let songsElement = document.getElementById("songs");
+                                                    songsElement.innerHTML = "";
+
+                                                    response.songs.forEach(song =&gt; {
+                                                        // Empfangene Daten anzeigen
+                                                        let songElement = document.createElement("div");
+                                                        songElement.classList.add("song");
+                                                        songsElement.appendChild(songElement);
+
+                                                        songElement.innerHTML = `&lt;b&gt;${song.name}&lt;/b&gt; &lt;br/&gt;`
+                                                                + `&lt;span class="label"&gt;Künstler:&lt;/span&gt; ${song.artist} &lt;br/&gt;`
+                                                                + `&lt;span class="label"&gt;Songwriter:&lt;/span&gt; ${song.songwriters} &lt;br/&gt;`
+                                                                + `&lt;span class="label"&gt;Jahr:&lt;/span&gt; ${song.releaseYear} &lt;br/&gt;`;
+                                                    });
+                                                } else {
+                                                    alert(response.message);
+                                                }
+                                            }
+
+                                            window.addEventListener("load", () =&gt; reloadSongs());
+                                        &lt;/script&gt;
+                                    &lt;/body&gt;
+                                &lt;/html&gt;
+                            </source-code>
+                        </div>
+                        <!-- Ergebnis -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "rest-ergebnis"
+                            role            = "tabpanel"
+                            aria-labelledby = "rest-ergebnis-tab"
+                        >
+                            <p>
+                                Und so sieht die fertige Anwendung aus. In der Netzwerkanalyse sieht man schön, wie die angezeigten Daten
+                                zeitversetzt nachgeladen werden.
+                            </p>
+                            <img src="ajax-ergebnis.jpg" alt="Screenshot der fertigen Webanwendung" class="d-block" style="width: 100%;" />
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <p>
-                    …
+                    An dieser Stelle wird es dann mal Zeit für etwas Werbung. 📺 Wir unterbrechen das laufende Programm und
+                    kommen nochmal darauf zurück, was bereits im <a href="../../2-javaee/ejb/#8" target="_blank">EJB-Kapitel</a>
+                    vorgestellt wurde: <b>Clientseitige Webanwendungen mit Backendserver</b>. Denn REST-Webservices haben eine
+                    tolle Eigenschaft, weshalb sie auch so beliebt sind: Man kann sie ganz einfach mit JavaScript aus dem
+                    Browser heraus aufrufen, 👍 was auch
+                    <a href="https://de.wikipedia.org/wiki/Ajax_(Programmierung)" target="_blank">AJAX</a> genannt wird.
+                </p>
+                <p>
+                    Im Grunde genommen gibt es hierfür zwei Möglichkeiten:
+                    <a href="https://www.w3schools.com/xml/xml_http.asp" target="_blank">XMLHttpRequest</a> und die
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank">Fetch API</a>.
+                    Auf <a href="https://www.heise.de/-2642427" target="_blank">Heise Online</a> gibt es einen leicht
+                    verständlichen Vergleich zwischen beiden. Wir nutzen an dieser Stelle aber die Fetch API, die sie
+                    moderner ist und einen saubereren Programmierstil begünstigt. 🛀
+                </p>
+
+                <h2>Wie es später aussehen soll</h2>
+                <p>
+                    Bevor wir gleich loslegen wollen wir erst mal zeigen, wie das Endergebnis aussehen soll. Um den vorhin
+                    gezeigten Musik-Webservice aufzurufen, wollen wir ungefähr folgenden Quellcode schreiben:
+                </p>
+                <source-code language="javascript">
+                    let songCollection = new SongCollection();
+                    songCollecion.setAuthData("username", "password");
+                    let response = await songCollection.findSongs("Dire Straits");
+
+                    if (response.status === "OK") {
+                        response.songs.forEach(song => {
+                            // Empfangene Daten anzeigen
+                            …
+                        });
+                    }
+                </source-code>
+                <p>
+                    Bis auf das Schlüsselwort <code>await</code> sollte dir das nicht ungewöhnlich vorkommen, sondern einfach
+                    nur den Methoden entsprechen, die der Webservice eben bietet. Dieselben Methoden wollen wir auch in JavaScript
+                    haben, wofür wir eine eigene Klasse schreiben müssen.
+                </p>
+
+                <h2>Webservice-Klassen schreiben</h2>
+                <p>
+                    Auf dem Server besteht der Webservice ja aus mindestens zwei Klassen: <code>SongCollection</code> und
+                    <code>SongResource</code>. Diese beiden Klassen müssen wir mit änhlichen Methoden nachbauen, wobei wir
+                    an den entscheidenen Stellen natürlich eine Anfrage an den Server senden, anstatt auf eine lokale Datenbank
+                    zuzugreifen. Das Grundgerüst der beiden Klassen ist daher folgendes, hier am Beispiel von <code>SongCollection</code>:
+                </p>
+                <source-code language="javascript">
+                    class SongCollection {
+                        // Konstruktor
+                        constructor(url) {
+                            this.url = url || "https://…";
+                            this.username = "";
+                            this.password = "";
+                        }
+
+                        // Benutzername und Passwort setzen
+                        setAuthData(username, password) {
+                            this.username = username;
+                            this.password = password;
+                        }
+
+                        // Methoden des Webservices
+                        async findSongs(query) { … }
+                        async saveNewSong(song) { … }
+                    }
+                </source-code>
+                <p>
+                    Wobei die Implementierung der beiden Webservice-Methoden zum Beispiel so aussehen kann:
+                </p>
+                <source-code language="javascript">
+                    /**
+                     * Neuen Song speichern.
+                     */
+                    async saveNewSong(song) {
+                        // Webservice aufrufen
+                        let response = await fetch(this.url, {
+                            method: "POST",
+                            headers: {
+                                "accept": "application/json",
+                                "content-type": "application/json",
+                                "authorization": "Basic " + btoa(this.username + ":" + this.password)
+                            },
+                            body: JSON.stringify(song)
+                        });
+
+                        // Ergebnis zurückliefern
+                        if (response.ok) {
+                            return await response.json();
+                        } else {
+                            return {};
+                        }
+                    }
+                </source-code>
+                <p>
+                    Mehr ist es schon gar nicht, auch wenn du dich erst wieder an JavaScript etwas gewöhnen musst. 🤗
+                    Das komplizierteste an der ganzen Geschichte ist nur, dass man sich den Code nicht irgendwie
+                    automatisch generieren lassen kann, sondern jedes mal von Hand schreiben muss. Das ist ein wenig
+                    lästig und zugegeben auch etwas mühsam.
+                </p>
+                <p>
+                    Das vollständige Beispiel findest du auf Moodle ➡️.
                 </p>
             </aside>
         </section>
@@ -1846,7 +2561,142 @@
             </article>
             <aside>
                 <p>
-                    …
+                    Im Grunde genommen sieht der Aufruf eines REST-Webservices mit Java nicht viel anders aus wie mit JavaScript.
+                    Nur, dass wir uns auch hier leider keinen vorgefertigten Quellcode generieren lassen können und alles von
+                    Hand schreiben müssen. Und da Java eben ein strengeres Typsystem als JavaScript hat fällt der Code etwas
+                    umfangreicher aus, weil jedes Objekt wirklich ausdefiniert werden muss. 🏗️
+                </p>
+                <p>
+                    Sucht man im Internet nach REST-Aufrufen mit Java, kommen dabei lauter Beispiele zur offiziellen JAX-RS-API
+                    zu Tage. Diese haben aber leider ein paar Nachteile, weshalb wir sie hier <b>nicht</b> verwenden werden:
+                </p>
+                <ul>
+                    <li>
+                        Die API gehört nicht zu Java SE, so dass eine große Anzahl externer Pakete in das Projekt eingebunden
+                        werden muss, wenn man eine ganz normale Clientanwendung schreiben will.
+                    </li>
+                    <li>
+                        Die Authentifizierung am Server ist mal wieder nicht Bestandteil des Standards, so dass man auch hier
+                        Code schreiben muss, der nur mit einer speziellen Implementierung von JAX-RS funktioniert. Es gibt aber
+                        mehrere als nur eine Implementierung, die man dadurch nicht so einfach austauschen kann.
+                    </li>
+                    <li>
+                        Und auch in allen anderen Punkten ist die API umständlicher, als sie es eigentlich sein müsste.
+                        Selbst für eine einfache GET-Anfrage ohne Parameter muss man relativ viel Code schreiben.
+                    </li>
+                </ul>
+                <p>
+                    Wir tun uns das daher gar nicht erst an und verwenden stattdessen viel lieber eine Kombination von
+                    <a href="https://github.com/google/gson" target="_blank">Google Gson</a> und
+                    <a href="http://unirest.io/java.html" target="_blank">Unirest for Java</a>, die dasselbe nur viel einfacher macht. 🦋
+                </p>
+
+                <h2>Datentransferklassen</h2>
+                <p>
+                    Diesen Schritt haben wir mit JavaScript nicht benötigt. In Java müssen wir jedoch für jede Entity, die uns
+                    der Webservice liefert oder die wir ihm schicken, eine ähnlich gebaute Klasse anlegen. Allerdings können
+                    wir es uns hier besonders einfach machen und alle Attribute als <code>public</code> definieren und dadurch
+                    auf Konsturkuren, Setter und Getter und all den Kram verzichten:
+                </p>
+                <source-code language="java">
+                    public class Song {
+                        public final long id = 0L;
+                        public String name = "";
+                        public String artist = "";
+                        public String songwriters = "";
+                        public int releaseYear = 0;
+                    }
+                </source-code>
+
+                <h2>Webservice-Klassen</h2>
+                <p>
+                    Der nun folgende Schritt ist eigentlich optional, erhöht aber die Übersicht ungemein. Anstatt einfach
+                    an beliebigen Stellen unseres Programms HTTP-Anfragen an den Server zu schicken, kapseln wir sie alle
+                    in einer eigenen Klasse. Von der Struktur können wir uns dabei 1:1 am Server orientieren, so dass wir
+                    im Client auch eine <code>SongCollection</code> und eine <code>SongResource</code>-Klasse definieren:
+                </p>
+                <source-code language="java">
+                    public class SongCollection { … }
+                    public class SongResource { … }
+                </source-code>
+                <p>
+                    Das Ziel ist es dabei, die clientseitigen Methoden genau gleich wie auf dem Server zu nennen. Zusätzlich brauchen
+                    wir noch ein paar Helferlein, um die URL austauschbar zu machen oder die Anmeldedaten mit Benutzername und Passwort
+                    zu übergeben, damit ein fertiger Webservice-Aufruf später so aussehen kann:
+                </p>
+                <source-code language="java">
+                    SongCollection songCollection = new SongCollection();
+                    songCollecion.setAuthData("username", "password");
+                    SongCollection.Response response = songCollection.findSongs("Dire Straits");
+
+                    if (response.code.equals("OK")) {
+                        for (Song song : response.songs) {
+                            // Empfangene Daten anzeigen
+                            …
+                        }
+                    }
+                </source-code>
+                <p>
+                    Hierfür benötigen wir folgendes Grundgerüst für <code>SongCollection</code>. Die Klasse <code>SongResource</code>
+                    ist natürlich ähnlich aufgebaut.
+                </p>
+                <source-code language="java">
+                    public class SongCollection {
+                        public static final URL = "https://…";
+
+                        public String url = URL;
+                        public String username = "";
+                        public String password = "";
+
+                        // Konstruktoren
+                        public SongCollection() {
+                        }
+
+                        public SongCollection(String url) {
+                            this.url = url;
+                        }
+
+                        // Benutzername und Passwort setzen
+                        public setAuthData(String username, String password) {
+                            this.username = username;
+                            this.password = password;
+                        }
+
+                        // Methoden des Webservices
+                        public Response findSongs(String query) { … }
+                        public Response saveNewSong(Song song) { … };
+
+                        // Hilfsklasse für die Antwortdaten des Webservices
+                        public class Response {
+                            public Song song;
+                            public List<Song> songs;
+                            public String status;
+                            public String exception;
+                            public String message;
+                        }
+                    }
+                </source-code>
+                <p>
+                    Das ist leider etwas viel Tipparbeit. Aber wie gesagt erhalten wir dadurch eine gute Struktur, die hinterher leicht zu benutzen ist.
+                    Fehlt dann nur noch die Implementierung der vom Webservice vorgegebenen Methoden. In diesen nehmen wir dann die eigentlichen HTTP-Aufrufe vor,
+                    so wie hier am Beispiel von <code>saveNewSong()</code> gezeigt:
+                </p>
+                <source-code language="java">
+                    public Response saveNewSong(Song song) throws UnirestException {
+                        HttpResponse<String> httpResponse = Unirest.post(this.url)
+                                .header("accept", "application/json")
+                                .header("content-type", "application/json")
+                                .basicAuth(this.username, this.password)
+                                .body(this.gson.toJson(song))
+                                .asString();
+
+                        return this.gson.fromJson(httpResponse.getBody(), Response.class);
+                    }
+                </source-code>
+                <p>
+                    Das ist auch der Code, der mit reinem JAX-RS so umständlich ist. 👹 Mit Unirest und Gson ist er aber ganz easy, sogar so sehr,
+                    dass man ihn direkt irgendwo ein sein Programm einbauen könnte, wenn man sich den Stress mit dem Schreiben einer ganzen Klasse
+                    nicht machen wollte. Das sollte man dann aber nur in kleinen Testprogrämmchen so machen. 🤫
                 </p>
             </aside>
         </section>
