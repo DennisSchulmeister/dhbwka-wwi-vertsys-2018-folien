@@ -12,10 +12,10 @@
         <header>
             <h2>Inhaltsverzeichnis</h2>
             <p>
-                Bevor wir loslegen und programmieren können, wollen wir an dieser Stelle
-                erst einmal das Themengebiet unserer Vorlesung abstecken. Hier erhältst
-                du daher einen umfassenden Überblick, was verteilte Systeme sind und
-                welche Möglichkeiten es bei ihrer Entwicklung gibt.
+                Bevor wir zu programmieren beginnen, wollen wir an dieser Stelle
+                erst einmal das Themengebiet unserer Vorlesung abstecken. Denn
+                erst musst du verstehen, was verteilte Systeme sind, wie sie
+                funktionieren und welche Architekturmsuter es hierfür gibt.
             </p>
         </header>
 
@@ -73,7 +73,7 @@
                     damit so richtig loslegen können, musst du erst noch ein paar Grundbegriffe kennen und verstehen.
                     Beginnen werden wir die Einheit daher mit ein paar einfachen Definitionen der beiden Begriffe
                     <b>verteiltes System️</b> und <b>verteilte Anwendung</b>, wobei wir hier insbesondere auf die
-                    Unterschiede beider Begriffe und ihre heute Bedeutung für die Wirtschaftsinformatik 💰 eingehen
+                    Unterschiede beider Begriffe und ihre heutige Bedeutung für die Wirtschaftsinformatik 💰 eingehen
                     werden. Des Weiteren werden wir bei dieser Gelegenheit die beiden Begriffe <b>Client</b> und
                     <b>Server</b> nochmal etwas genauer anschauen. Zwar handelt es sich dabei um alltägliche Begriffe,
                     die du sicher auch schon so gekannt hast, doch gerade weil sie so alltäglich sind, versteht
@@ -83,8 +83,8 @@
                 <p>
                     Anschließend gehen wir dann doch schon ein ganz klein wenig auf die Programmierung ein, indem
                     wir zeigen, was eine <b>Middleware</b> ist und welche Aufgaben sie hat. Denn, soviel sei hier
-                    schon verraten: Im Prinzip könnten wir zwar auch mit den Boardmitteln von Java verteilte Anwendungen
-                    schreiben, das wäre dann aber auch sehr aufwändig. Aus diesem Grund lernen wir verschiedene
+                    schon verraten: Im Prinzip könnten wir zwar mit einfachen Streams und Sockets verteilte
+                    Anwendungen schreiben, das wäre aber sehr aufwändig. Aus diesem Grund lernen wir diverse
                     Middlewarearten kennen, und zeigen, welche Programmierstile sie begünstigen.
                 </p>
                 <p>
@@ -384,15 +384,15 @@
                 </p>
                 <p>
                     Halten wir also fest, dass ein System einfach ein Irgendwas ist und dass wir ab sofort nicht mehr
-                    herkömmliches Irgendwas sondern verteiltes Irgendwas machen. 🤠 Tatsächlich gibt es aber eine
+                    herkömmliche Irgendwas sondern verteilte Irgendwas programmieren. 🤠 Tatsächlich gibt es aber eine
                     relativ klare Definition für verteilte Systeme, die von dem niederländischen Informatikprofessor
                     Andrew Tanenbaum und anderen bekannten Persönlichkeiten geprägt wurde.
                 </p>
                 <p>
                     Dabei läuft es auf folgendes hinaus: Ein verteiltes System ist eine Sammlung, mehrerer,
                     <b>voneinander unabhängiger Computer</b> (Prozessoren) <b>mit jeweils eigenem Hauptspeicher</b>,
-                    die <b>über ein Netzwerk Daten (Nachrichten) austauschen</b>, um eine gemeinsame Aufgabe zu bearbeiten.
-                    Zusammengefasst also:
+                    die <b>über ein Netzwerk Daten (Nachrichten) austauschen</b>, um eine <b>gemeinsame Aufgabe</b>
+                    zu erledigen. Zusammengefasst also:
                 </p>
                 <ol>
                     <li>
@@ -417,9 +417,9 @@
 
                 <h2>Weitere Abgrenzungsmerkmale</h2>
                 <p>
-                    Manche Autoren gehen neben der oben genannten Definition noch einen Schritt weiter und fügen die zusätzlich
+                    Manche Autoren gehen neben der oben genannten Definition noch einen Schritt weiter und fügen die zusätzliche
                     Bedingung hinzu, dass die Computer eines verteilten Systems keine gemeinsame Uhr besitzen dürfen. Dies ist aber
-                    eigentlich keine Voraussetzung für ein verteiltes System sondern eine zwangsläufige Konsequenz daraus. Denn so
+                    eigentlich keine <i>Voraussetzung</i> für ein verteiltes System sondern eine <i>Konsequenz</i> daraus. Denn so
                     gut wie jeder Computer besitzt heute eine eingebaute Echtzeituhr und diese kann natürlich vor oder nach gehen.
                     Es wäre sogar ein Wunder, wenn zwei Uhren per Zufall exakt dieselbe Uhrzeit zeigen würden. Verteilte Systeme
                     müssen daher auch mit der Situation umgehen können, dass 11:48 Uhr auf dem einen Rechner später ist als 11:50 Uhr
@@ -434,32 +434,32 @@
                 <p>
                     Wichtig für die weitere Abgrenzung, vor allem zu verteilten Anwendungen, ist jedoch, dass bei einem verteilten
                     System lediglich die Hardware und im erweiterten Sinne noch Netzwerk und Betriebssystem gemeint sind. Es geht
-                    also ganz konkret um Fragen wie, <i>welche Hardwarekomponenten habe ich</i>, <i>welcher Knoten übernimmt welche
-                    Aufgabe</i>, <i>wie ist das Netzwerk aufgebaut</i> und so weiter?
+                    also ganz konkret um Fragen wie, <i>welche Hardwarekomponenten habe ich?</i>, <i>welcher Knoten übernimmt welche
+                    Aufgabe?</i>, <i>wie ist das Netzwerk aufgebaut?</i> und so weiter.
                 </p>
 
                 <h2>Einige Fallbeispiele</h2>
                 <p>
                     Mit diesem Wissen ausgestattet schauen wir uns nun ein paar verteilte Systeme an, wobei du sicher zustimmen wirst,
-                    dass das größte davon das Internet ist. Auch wenn es manchmal praktikabel ist, bei der Festlegung eines verteilten
-                    Systems nur ein paar wenige Rechner zu betrachten, selbst wenn sie ausschließlich über das Internet miteinander
-                    verbunden sind, kann man doch ohne Zweifel sagen, dass das Internet in seiner Gesamtheit alle der oben genannten
-                    Kriterien erfüllt. Man kann sogar sagen, es war die erste praktikable Umsetzung eines verteilten Systems überhaupt,
-                    auch wenn 1977 noch alle beteiligten Computer auf ein Blatt Papier gepasst haben (siehe Folie). 😎
+                    dass das größte davon das Internet ist. Auch wenn es sicher eigenständige, verteilte Systeme gibt, deren Komponenten
+                    über das Internet kommunizieren, kann doch auch das Internet selbst als ein gigantisches, verteiltes System aufgefasst
+                    werden. Erfüllt es doch ganz locker alle oben genannten Kriterien. Genauer betrachtet ist es sogar die erste praktikable
+                    Umsetzung eines verteilten Systems überhaupt, auch wenn 1977 noch alle beteiligten Computer auf ein Blatt Papier gepasst
+                    haben (siehe Folie). 😎
                 </p>
                 <p>
                     Ein weiteres gutes Beispiel, mit dem wir in der WI leider nicht so oft in Berührung kommen, sind Computer Cluster,
                     Supercomputer oder Grid Computer. Dabei handelt es sich um einen Zusammenschluss wahnsinnig vieler, eigentlich kleiner
                     Computer zu einem großen Computer. Die Einzelcomputer sind hierfür in mehreren Racks dicht and dicht verbaut und über
-                    ein physikalisch getrenntes Netzwerk miteinander verbunden. Über eine öffentiche Netzwerkschnittstelle werden sie
+                    ein physikalisch getrenntes Netzwerk miteinander verbunden. Über eine öffentliche Netzwerkschnittstelle werden sie
                     dann in der Regel als eine Einheit angesprochen, an die die auszuführenden Jobs übergeben werden können. Intern sind
                     die Einzelcomputer hierfür in Compute Nodes zur Bereitstellung von Rechenleistung und in Storage Nodes zur Bereitstellung
-                    von Plattenplatz unterteilt. Dem Verwender des Systems bleibt diese Trennung jedoch verborgen.
+                    von Plattenplatz unterteilt. Dem Verwender des Systems bleibt diese Trennung jedoch komplett verborgen.
                 </p>
                 <p>
                     Etwas mehr in unserem Alltag verortet könnte eine IP-basierte Videoüberwachung sein. 📹 Die Kameras beinhalten dann jeweils
                     ein kleines, eingebettetes Computersystem, das über ein TCP/IP-Netz seine Bilder an einen zentralen Archivserver sowie die
-                    PCs des Wachpersonals schickt.
+                    Bildschirme des Wachpersonals schickt.
                 </p>
                 <p>
                     Und so lassen sich noch viele weitere Beispiele finden …
@@ -595,20 +595,19 @@
                 <p>
                     Das schönste verteilte System nützt einem natürlich nichts, wenn es keine Aufgabe erfüllt. Wie Romeo und Julia,
                     Asterix und Obelix, Batman und Robin, Dick und Doof, Bud Spencer und Terence Hill, Protonen und Neutronen, so
-                    gehören verteilte Systeme und verteilte Anwendungen immer zusammen. 👥 Wobei mit einer verteilter Anwendung die
+                    gehören verteilte Systeme und verteilte Anwendungen immer zusammen. 👥 Wobei mit einer verteilten Anwendung die
                     Summe aller Teilprogramme gemeint ist, die auf den einzelnen Computern laufen, um eine gemeinsame Aufgaben zu
                     erfüllen.
                 </p>
                 <p>
                     Wie wir später noch sehen werden, kann man sich das so vorstellen, als hätte man einen großen Klumpen Quellcode
                     in mehrere Einzelteile zerlegt und diese dann auf mehrere Rechner verteilt. Denn für den Anwender soll die Trennung
-                    ja gar nicht sichtbar sein und prinzipiell könnte auch der einfachste, kleine Rechner die kompliziertesten Aufgaben
+                    ja gar nicht sichtbar sein und prinzipiell könnte auch der einfachste kleine Rechner die kompliziertesten Aufgaben
                     erfüllen, wenn er nur lange genug rechnen würde. Da aber niemand mehrere Tage oder gar Jahre auf ein Ergebnis warten
-                    will, zerlegt man das Programm einfach in mehrere Teilprogramme und lässt diese zeitgleich auf vielen kleinen Computern
-                    laufen.
+                    will, zerlegt man das Programm einfach in mehrere Teilprogramme und lässt diese zeitgleich auf vielen Computern laufen.
                 </p>
                 <p>
-                    Etwas formaler ausgedrückt 🤓 kann man sagen: Eine verteilte Anwendung, ist eine Anwendung, die ein <b>verteiltes
+                    Etwas formaler ausgedrückt 🤓 kann man sagen: Eine verteilte Anwendung ist eine Anwendung, die ein <b>verteiltes
                     System zur Lösung ihres Anwendungsproblems</b> nutzt und <b>aus mehreren Teilprogrammen (Softwarekomponenten)</b>
                     besteht, die untereinander durch den <b>Austausch von Nachrichten</b> kommunizieren. Mögliche Beispiele könnten
                     daher sein:
@@ -639,7 +638,7 @@
                 <p>
                     Leitfragen, die wir uns hier stellen, könnten zum Beispiel sein: <i>In welche Teilaspekte kann ich mein Problem
                     zerlegen? Welche Programme laufen auf welchen Rechnernknoten? Welches Programm muss was in welcher Reihenfolge
-                    machen? Welche Nachrichten tauschen die Programme untereinander aus?</i> Und so weiter.
+                    machen? Welche Nachrichten tauschen die Programme untereinander aus?</i> Und so weiter und so fort.
                 </p>
             </aside>
         </section>
@@ -725,10 +724,10 @@
             </article>
             <aside>
                 <p>
-                    Um die Wichtigkeit verteilter Systeme in der Wirtschaftsinformatik zu verdeutlichen, schauen wir uns
-                    zunächst einmal ein für die meisten Unternehmen eher untypisches, dafür aber umso deutlicheres Beispiel
-                    an: 3D-Animationsfilme. 🎞️ Jeder kennt sie und jeder liebt sie 🍿, weshalb zwischenzeitlich selbst Disney
-                    seine traditionelle Zeichentricksparte eingestellt hatte, um nur noch 3D-Filme zu produzieren.¹ 😯
+                    Um die Wichtigkeit verteilter Systeme zu verdeutlichen, schauen wir uns zunächst einmal ein für die
+                    meisten Unternehmen eher untypisches, dafür aber umso deutlicheres Beispiel an: 3D-Animationsfilme. 🎞️
+                    Jeder kennt sie und jeder liebt sie 🍿, weshalb zwischenzeitlich selbst Disney seine traditionelle
+                    Zeichentricksparte eingestellt hatte, um nur noch 3D-Filme zu produzieren.¹ 😯
                 </p>
                 <p>
                     <small>
@@ -746,7 +745,7 @@
                     Pixel umfasst. Und die wollen alle berechnet werden! 🌇🌃🌃🌃🌇🌆🌆🌇🌃🌃🌃🌇
                 </p>
                 <p>
-                    Der Aufwand potentiert sich sogar noch, wenn man bedenkt, dass hierfür das rechenintensive
+                    Der Aufwand potenziert sich sogar noch, wenn man bedenkt, dass hierfür das rechenintensive
                     <a href="https://de.wikipedia.org/wiki/Raytracing" target="_blank">Raytracing-Verfahren</a>
                     genutzt wird, bei dem ausgehend von einer virtuellen Kamera für jeden Bildpunkt ein gedachter
                     Lichtstrahl ausgesendet und geprüft wird, auf welche Oberflächen er trifft. Dabei handelt es
@@ -768,12 +767,12 @@
                     fast genauso lange brauchen wie Deep Thought in <a href="https://de.wikipedia.org/wiki/Per_Anhalter_durch_die_Galaxis"
                     target="_blank">Per Anhalter durch die Galaxis</a> 🐬. Ein verteiltes System oder besser gesagt eine
                     <a href="https://en.wikipedia.org/wiki/Render_farm" target="_blank">Render Farm</a> muss also her, um die Berechnungsdauer
-                    auf ein Jahr zu reduzieren. Denn dafür wurden verteilte Systeme ursprünglich erfunden: Zur Parallelisierung großer
-                    Berechnungen, um diese schneller durchführen zu können.
+                    auf ein Jahr zu reduzieren. Denn dafür wurden verteilte Systeme mit erfunden: Zur Parallelisierung großer Berechnungen,
+                    um diese effizienter durchführen zu können.
                 </p>
                 <p>
                     Die Parallelisierung von Aufgaben zählt häufig auch für uns Wirtschaftsinformatiker zu den Aufgaben verteilter Systeme,
-                    obwohl wir eher selten einen Kinofilm produzieren müssen. Für uns sind es dafür andere Anwendungsfälle, wie zum Beispiel
+                    obwohl wir eher selten einen Kinofilm produzieren müssen.² Für uns sind es dafür andere Anwendungsfälle, wie zum Beispiel
                     die folgenden:
                 </p>
                 <ul>
@@ -802,6 +801,11 @@
                         Computergestützte Fertigungsanlagen
                     </li>
                 </ul>
+                <p>
+                    <small>
+                        ² Schade eigentlich …
+                    </small>
+                </p>
             </aside>
         </section>
 
@@ -992,7 +996,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         Die Anwendung kann die Identität des Benutzers überprüfen und verhindern, dass
-                                        er sich für jemand anderes ausgibt. Der Benutzer kann umgekehrt die Identität
+                                        er sich als jemand anderes ausgibt. Der Benutzer kann umgekehrt die Identität
                                         der Gegenseite verifizieren. In der Regel werden von einer Zertifizierungsstelle
                                         ausgestellte SSL-Zertifikate hierfür genutzt.
                                     </div>
@@ -1055,7 +1059,7 @@
                 <p>
                     Hat man sich einmal zu einem verteilten System hinreisen lassen, will man natürlich, dass es die gewünschte
                     Aufgabe so gut wie möglich unterstützt. Und hierfür will man in den meisten Fällen, dass folgende Anforderungen
-                    berücksichtigt werden, was uns beim Programmieren manchmal vor echte Herausforderungen stellen kann: 🤤
+                    berücksichtigt werden, was uns beim Programmieren manchmal vor echte Herausforderungen stellen kann: 🤔
                 </p>
 
                 <h5 class="dhbw-lightblue">Optimale Ressourcennutzung</h5>
@@ -1153,7 +1157,7 @@
                     <dd>
                         Und last but not least: Wann immer ein Fehler festgestellt wird, sollte dieser möglichst ohne manuelle Eingriffe
                         automatisch behoben werden. Beispielsweise indem verlorene Daten aus einer Sicherungskopie wiederhergestellt werden,
-                        oder ein abgestürzter Rechner durch ein Hot Standby abgelöst wird.
+                        oder ein abgestürzter Rechner durch ein Hot Standby ersetzt wird.
                     </dd>
                 </dl>
 
@@ -1189,7 +1193,7 @@
                     <dd>
                         Die Anwendung muss sicherstellen, dass ihre Daten im Nachhinein nicht verfälscht werden können.
                         Oder falls sich dies nicht verhindern lässt (zum Beispiel während der Übertragung über das Internet),
-                        muss es zumindest möglich sein, die Manipulation aufzudecken. Public-Key-Verfahren und Signaturen
+                        muss es zumindest möglich sein, die Manipulation zu erkennen. Public-Key-Verfahren und Signaturen
                         können dies sicherstellen.
                     </dd>
                 </dl>
@@ -1296,9 +1300,9 @@
                 <h5 class="dhbw-lightblue">Positions- / Ortstransparenz</h5>
                 <p>
                     Idealerweise muss man überhaupt nicht wissen, wo eine Ressource sich befindet, um auf sie zugreifen zu
-                    können. Du gibst zum Beispiel <a href="https://www.dhbw-karlsruhe.de">www.dhbw-karlsruhe.de</a> in den
-                    Browser ein und schon erscheint die Seite unserer Hochschule. Du musst dafür nicht wissen, auf welchem
-                    Rechner mit welcher IP-Adresse sie gespeichert ist. Der symbolische Name reicht völlig aus.
+                    können. Du gibst zum Beispiel <a href="https://karlsruhe.dhbw.de" target="_blank">karlsruhe.dhbw.de</a>
+                    in den Browser ein und schon erscheint die Seite unserer Hochschule. Du musst dafür nicht wissen, auf
+                    welchem Rechner mit welcher IP-Adresse sie gespeichert ist. Der symbolische Name reicht völlig aus.
                 </p>
 
                 <h5 class="dhbw-lightblue">Mobilitätstransparenz</h5>
@@ -1409,7 +1413,7 @@
                     <li>
                         <b>Consistency (Konsistenz):</b> Betrachtet man nur eine einzelne Datenbank auf einem einzelnen Rechner, gibt
                         es hier noch keine Probleme. Doch wenn die Daten auf mehrere Rechner repliziert werden, kann es für einen kurzen
-                        Zeitpunkt zu lokalen Unterschieden kommen, so lange die neusten Änderungen noch nicht an alle Rechner verteilt
+                        Zeitpunkt zu lokalen Unterschieden kommen, so lange die neusten Änderungen noch nicht an alle Repliken verteilt
                         wurden. Will man das vermeiden, muss eine verteilte Transaktion genutzt werden, die erst als abgeschlossen gilt,
                         wenn alle Änderungen auf allen Rechnern nachgezogen wurden.
                     </li>
@@ -1423,7 +1427,7 @@
                     <li>
                         <b>Partition Tolerance (Partitionstoleranz):</b> Zunächst würde man denken, damit sei die horizontale oder
                         vertikale Partitionierung von Daten auf mehrere Rechner gemeint. Stattdessen geht es hier aber darum, dass
-                        ein Anwendung auch dann noch weiter arbeiten kann, wenn ein Teil ihrer Komponenten ausgefallen ist. Es kann
+                        eine Anwendung auch dann noch weiter arbeiten kann, wenn ein Teil ihrer Komponenten ausgefallen ist. Es kann
                         sozusagen auch ein kleiner Teil (eine Partition) der Anwendung noch autonom weiter arbeiten.
                     </li>
                 </ul>
@@ -1608,7 +1612,7 @@
                                 </li>
                                 <li>
                                     Auch wenn man in der Regel von kooperierenden Programmen auf mehreren Rechnern ausgeht,
-                                    können ganz kleine, verteilte System nur aus einem Programm auf einem Rechner bestehen.
+                                    können ganz kleine, verteilte Systeme nur aus einem Programm auf einem Rechner bestehen.
                                 </li>
                             </ol>
 
@@ -1935,7 +1939,7 @@
                 <p>
                     All diese Begriffe haben einen gastronomischen Hintergrund 🍛🍹 und sind deshalb eher
                     metaphorisch zu verstehen. Der „Host” ist im echten Leben der Gastgeber, Moderator
-                    oder Ausrichtender einer Veranstaltung, wohingegen der „Server” ein Kellner ist, der
+                    oder Ausrichter einer Veranstaltung, wohingegen der „Server” ein Kellner ist, der
                     die „Clients” (die Kunden) bedient. Um dir einen präzisen Sprachgebrauch anzugewöhnen
                     solltest du deshalb die englischsprachigen Bedeutungen übernehmen, was bedeutet, dass
                     ein „Server” eben kein Computer ist. Die vollständige Definition eines „Servers” lautet
@@ -1953,7 +1957,7 @@
                     den Begriff „Client” ordentlich zu definieren:
                 </p>
                 <p style="font-style: italic; color: darkred;">
-                    Ein Client ist ein nur vorrübergehend laufendes Programm, das in der Regel direkt
+                    Ein Client ist ein nur vorübergehend laufendes Programm, das in der Regel direkt
                     vom Anwender gestartet und bedient wird. Es stellt eine Verbindung zum Server her
                     und nimmt seine Dienste in Anspruch.
                 </p>
@@ -1971,7 +1975,7 @@
                 <p>
                     Gemeint damit sind <a href="https://en.wikipedia.org/wiki/Peer-to-peer" target="_blank">Peer-To-Peer-Netzwerke</a>,
                     in denen sich eine große Anzahl prinzipiell gleichberechtigter Peers zu einem virtuellen
-                    Rechnerverbund zusammenschließen. Das ganze System ist dabei ständig im Fluss, da ja zu
+                    Rechnerverbund zusammenschließt. Das ganze System ist dabei ständig im Fluss, da ja zu
                     jeder Zeit neue Peers hinzukommen und alte Peers verschwinden können. Die Ideen dafür
                     reichen bis an den Anfang des Internets zurück und finden sich teilweise in der Art und
                     Weise wieder, wie eine E-Mail an ihren Empfänger weitergeleitet wird. So richtig bekannt
@@ -1988,9 +1992,9 @@
                 <h2>Und was ist mit Servless Computing?</h2>
                 <p>
                     Gar nichts. ⛱️ Das ist ein Kunstbegriff, der keineswegs bedeutet, dass es keine Server
-                    mehr gibt. Er bedeutet nur, dass man sich als nicht mehr selbst um den Betrieb der
-                    notwendigen Hardware kümmern muss. Stattdessen lädt man seine Anwendung in die Cloud
-                    und überlässt die genaue Systemarchitektur dem Cloudanbieter.
+                    mehr gibt. Er bedeutet nur, dass man sich nicht mehr selbst um den Betrieb der notwendigen
+                    Hard- und Software kümmern muss. Stattdessen lädt man seine Anwendung in die Cloud und
+                    überlässt die genaue Systemarchitektur dem Cloudanbieter.
                 </p>
             </aside>
         </section>
@@ -2231,8 +2235,8 @@
                                 <div class="row">
                                     <div class="col-md">
                                         <h3>Zugriffstransparenz</h3>
-                                        Bestimmte Middlewares erlauben den Aufruf von Methoden entfernter Objekte, genau so als wären
-                                        es lokale Objekte innerhalb des eigenen Javaprogramms.
+                                        Bestimmte Middlewares erlauben den Aufruf von Methoden entfernter Objekte auf anderen Rechnern,
+                                        genau so als wären es lokale Methoden innerhalb des eigenen Programms.
                                     </div>
                                     <div class="col-md">
                                         <h3>Orts- / Mobiltitätstransparenz</h3>
@@ -2273,7 +2277,7 @@
                     System befindet sich eine weitere Schicht, die sich „Middleware” nennt. 🍔
                 </p>
                 <p>
-                    Prinzipiell sind Schichten in der Netzwerkprogrammierung ja nichts neues für uns. Bereits beim
+                    Prinzipiell sind Schichten in der Netzwerkprogrammierung ja nichts Neues für uns. Bereits beim
                     guten alten OSI-Modell haben wir sie kennengelernt, da sie die Grundlage für den heute üblichen
                     TCP/IP-Protokollstapel bilden:
                 </p>
@@ -2309,7 +2313,7 @@
                 </ol>
 
                 <p>
-                    Und wie kommt hier nun die Middleware ins Spiel? Ganz einfach, indem sie uns die Programmierung
+                    Und wie kommt hier nun die Middleware ins Spiel? Ganz einfach, indem sie die Programmierung
                     verteilter Anwendungen vereinfacht. Denn ohne Middleware müssten wir uns mit Javaklassen wie
                     <code>Socket</code>, <code>ServerSocket</code>, <code>InputStream</code> und <code>OutputStream</code>
                     auseinandersetzen und alles selbst entwickeln. Unter anderem müssten wir ein eigenes Anwendungsprotokoll
@@ -2793,7 +2797,7 @@
                     der Server eine Sammlung von Objekten enthält, deren Methoden über Rechnergrenzen hinweg aufgerufen
                     werden können. Die Middleware versucht dabei, die Unterschiede zwischen lokalen und entfernten Aufrufen
                     so gut es geht zu verstecken. Die Programmierung ist daher sehr einfach. Das Konzept bringt jedoch mit
-                    sich, dass ein Client bei einem entfernten Aufruf warten muss, bis der Server eine Antwort liefert.
+                    sich, dass ein Client bei einem entfernten Aufruf meistens warten muss, bis der Server eine Antwort liefert.
                     Da der rufende Thread dadurch komplett angehalten wird, kann dies die Performance des Clients ziemlich
                     beeinflussen.
                 </p>
@@ -2803,7 +2807,7 @@
                     Webservices sind in den ausgehenden 1990ern als gedanklicher Nachfolger der entfernten Methodenaufrufe
                     entstanden. Die Grundidee ist im Prinzip dieselbe, nur anstelle proprietärer Protokolle werden ausschließlich
                     offene Webstandards genutzt. Der Transport erfolgt daher über HTTP und als Datenformat kommen XML und JSON
-                    zum Einsatz. Heute unterscheidet man dabei zwischen zwei den beiden konkurrierenden Ansätzen SOAP und REST.
+                    zum Einsatz. Heute unterscheidet man dabei zwischen den beiden konkurrierenden Ansätzen SOAP und REST.
                     Da sie beide im ihrem jeweiligen Kontext eine große Bedeutung haben, werden wir uns beide Arten anschauen.
                 </p>
 
@@ -2811,7 +2815,7 @@
                 <p>
                     Message Broker fallen im Vergleich zu entfernten Aufrufen und Webservices ein wenig aus der Reihe.
                     Zwar handelt es sich dabei auch um eine kommunikationsorientierte Middleware, jedoch wird dafür ein
-                    zentraler Messageserver (Message Broker genannt) verwendet, der eine asynchrone Kommunikation zwischen
+                    zentraler Message Server (Message Broker genannt) verwendet, der eine asynchrone Kommunikation zwischen
                     den Programmen herstellt. Die Programmierung erfolgt deshalb nicht „innerhalb” des Servers wie bei
                     den Anwendungsservern sondern wie gewohnt in Form ganz normaler (Java-)Programme, die sich mit dem
                     Server verbinden, um Nachrichten zu senden und zu empfangen. 📨 Die Nachrichten werden dabei in
@@ -3008,9 +3012,9 @@
                 <p style="margin-bottom: 2em;">
                     Dies ist die einfachste Architektur von allen. Sie besteht lediglich aus einem Server,
                     der einen Dienst anbietet und den Clients, welche den Dienst aufrufen. Meistens kommt dabei
-                    ein synchrones, den Client blockierendes Request/Reply-Verfahren zum Einsatz, weil
-                    besonders einfach zu programmieren ist. Ohne Middleware mit direkter Socketprogrammierung
-                    kann aber jeder beliebige Kommunikationsstrategie umgesetzt werden.
+                    ein synchrones, den Client blockierendes Request/Reply-Verfahren zum Einsatz, das besonders
+                    einfach zu programmieren ist. Ohne Middleware nur mit Sockets kann aber auch jede andere
+                    Kommunikationsstrategie umgesetzt werden.
                 </p>
                 <div class="d-flex justify-content-center">
                     <img src="architektur-client-server.svg" alt="Skizze eines Servers und dreier Clients" style="height: 18em; max-width: 100%; margin-bottom: 2em;" />
@@ -3331,11 +3335,11 @@
                         >
                             <h2>Beschreibung</h2>
                             <p style="margin-bottom: 2em;">
-                                Hierbei handelt es sich ebenfalls um eine Client-/Server-Architektur, jedoch greift der Server im
+                                Hierbei handelt es sich ebenfalls um eine Client-/Server-Architektur, jedoch greift der Server zusätzlich
                                 auf eine Datenbank zu. Client, Server und Datenbank werden daher den drei Schichten <b>Darstellung</b>,
                                 <b>Anwendungslogik</b> und <b>Datenhaltung</b> zugeordnet. Für die Darstellung wurden früher ausschließlich
                                 native Clients verwendet, die heute zunehmend von Weboberflächen verdrängt werden. Die Schichten für die
-                                Anwendungslogik und Datenhaltung können durchaus auch mehrere Server umfassen.
+                                Anwendungslogik und Datenhaltung können hingegen auch mehrere Server umfassen.
                             </p>
                             <div class="d-flex justify-content-center">
                                 <img src="architektur-3schichten.svg" alt="Skizze einer 3-Schichtenarchitektur" style="height: 16em; max-width: 100%; margin-bottom: 2em;" />
@@ -3387,8 +3391,8 @@
                             <h2>Beschreibung</h2>
                             <p style="margin-bottom: 2em;">
                                 Hierbei handelt es sich um eine Variation der 3-Schichtenarchitektur, bei der die mittlere Sicht
-                                in eine <b>Präsentations-</b> und eine <b>Anwendungsschicht</b> aufgeteilt wurde. Dieses Modell findet man
-                                häufig bei ERP-Systemen, die nachträglich um weiter Clienttechnologien erweitert wurden.
+                                in eine <b>Präsentations-</b> und eine <b>Anwendungsschicht</b> aufgeteilt wurde. Dieses Modell
+                                findet man häufig bei ERP-Systemen, die nachträglich um weitere Clienttechnologien erweitert wurden.
                             </p>
                             <div class="d-flex justify-content-center">
                                 <img src="architektur-4schichten.svg" alt="Skizze einer 3-Schichtenarchitektur" style="height: 16em; max-width: 100%; margin-bottom: 2em;" />
@@ -3430,7 +3434,7 @@
                     und jeden Server, in welche Schicht er gehört.
                 </p>
                 <p>
-                    Historisch gesehen verlief die Entwicklung allerdings genau umgekehrt, wie hier gezeigt. Die ersten
+                    Historisch gesehen verlief die Entwicklung jedoch anders, wie in der Folie angedeutet. Die ersten
                     Datenbankanwendungen hielten die komplette Anwendungslogik im Client (damals noch nicht so genannt),
                     der zur Speicherung seiner Daten auf eine zentrale Datenbank zurückgreifen konnte. Nach und nach wurde
                     den Datenbanken dann die Möglichkeit gegeben, ausführbaren Programmcode zu speichern (sogenannte Stored
@@ -3458,7 +3462,7 @@
                     Microservices zerlegen eine große, monolithische Anwendung in viele kleine Teilanwendungen. Jeder Microservice hat
                     ein klar umrissenes Aufgabengebiet, besitzt eine gut dokumentierte und versionierte Schnittstelle und wird von einem
                     eigenen Team entwickelt und betrieben. Entwicklung, Test und Betrieb sind sehr stark automatisiert. Microservices
-                    eignen sich daher nur für große Firmen mit kleinen, unabhängigen Entwicklungsmannschaften.
+                    eignen sich daher eher für große Firmen mit mehreren, unabhängigen Entwicklungsmannschaften.
                 </p>
                 <div class="d-flex justify-content-center">
                     <img src="microservices.svg" alt="Skizze einer Microservicearchitektur" style="height: 26em; max-width: 100%;" />
@@ -3488,10 +3492,10 @@
                 <p>
                     Auf der Folie zuvor hast du eben die 3-Schichtenarchitektur kennengelernt. Es handelt sich dabei
                     um einen bewährten Ansatz, der vielmals zu guten Ergebnissen und einer sauberen Gesamtarchitektur
-                    geführt hat. Allerdings nur solange, wie die Anwendung eine gewisse Maximalgröße nicht überschreiten
+                    geführt hat. Allerdings nur solange, wie die Anwendung eine gewisse Maximalgröße nicht überschritten
                     hatte und die Rahmenbedingungen innerhalb des Entwicklerteams es zuließen. Denn die klassische
                     3-Schichtenarchitektur, wie sie ja gerade von den Applikationsservern favorisiert wird, neigt dazu,
-                    sämmtliche Funktionen einer Anwendung in einem großen, monolithischen Monsterserver zu vereinen. 👹
+                    sämmtliche Funktionen einer Anwendung in einem großen, monolithischen Monsterserver zu vereinen. 👾
                     Für viele Anwendungen und viele Teams ist das genau der richtige Ansatz. Ab einer gewissen Größe
                     lohnt es sich aber, die Architektur nochmal zu hinterfragen.
                 </p>
@@ -3500,16 +3504,16 @@
                     egal wie groß die Anwendung wirklich ist. Doch macht es wirklich so viel Sinn, sämtliche Funktionen
                     in ein und denselben Server zu packen, der dadurch nicht nur ziemlich umfangreich sondern in gleichem
                     Maße auch ziemlich unübersichtlich und schwer zu warten wird? 🐻 Oder wäre es nicht besser, ganz im
-                    Sinne der <a href="#6">einfachen Erweiterbarkeit</a>, eher auf eine Sammlung, kleiner Module zu setzen,
+                    Sinne der <a href="#6">einfachen Erweiterbarkeit</a>, eher auf eine Sammlung kleiner Module zu setzen,
                     die nur sehr lose miteinander verbunden sind? Die Antwort darauf ist nicht schwarz und auch nicht weiß,
                     sondern <a href="https://www.heise.de/-3944829" target="_blank">hängt von vielen Faktoren ab</a>, die
                     überraschenderweise gar nicht so technischer Natur 🌴 sind.
                 </p>
                 <p>
-                    Doch fingen wir zunächst einmal bei den technischen Gegebenheiten und hier bei einem bekannten
+                    Doch fangen wir zunächst einmal bei den technischen Gegebenheiten und hier bei einem bekannten
                     Unternehmen an: Bei Amazon. 💸 Amazon hatte, wie alle Unternehmen seinerzeit,
                     <a href="https://thenewstack.io/led-amazon-microservices-architecture/" target="_blank">eine
-                    große monolithische</a> Anwendung für seinen Webshop gebaut. Zwar war die Anwendung durchaus gut
+                    große monolithische</a> Anwendung für seinen Webshop gebaut. Zwar war die Anwendung gut
                     durchdacht und logisch strukturiert, es war aber weiterhin eine riesengroße Anwendung mit hunderten
                     von Entwicklern, deren Arbeit erst komplett zusammengeführt werden musste, bevor eine neue Version
                     produktiv genommen werden konnte. „Ganz oder gar nicht” war die technische Realität damals, so
@@ -3563,10 +3567,10 @@
                 <p>
                     <small>
                         ¹ Wichtig anzumerken ist, dass es sich beim Frontserver weder um einen Peer noch um einen Proxy handelt.
-                        Denn in Richtung der Clients bietet der Frontserver beispielsweise eine HTTP-Schnittstelle zum Aufruf einer
-                        Weboberfläche, was ihn zu einem vollwertigen Server macht. In Richtung der Microservices könnte es
-                        beispielsweise nötig sein, diese via RPC aufzurufen, was ihn von einem einfachen Proxy unterscheidet,
-                        der ja in beide Richtungen immer „dieselbe Sprache” sprechen würde.
+                        Denn in Richtung der Clients könnte er beispielsweise eine HTTP-Schnittstelle für die Weboberfläche bieten
+                        und auf der anderen Seite zum Beispiel RPC nutzen, um die Funktionen der Microservices aufzurufen.
+                        Dies unterscheidet ihn von einem gewöhnlichen Proxy, der zum Einen ganz andere Aufgaben hat und zum Anderen
+                        in beide Richtungen immer „dieselbe Sprache” sprechen würde.
                     </small>
                 </p>
                 <p>
@@ -3574,8 +3578,8 @@
                     beispielsweise da sie einfach erweiterbar und jeder Microservice unabhängig von den anderen skalierbar ist. Dennoch handelt
                     es sich um keinen <a href="https://www.youtube.com/watch?v=UM_mMtyz6ig" target="_blank">heiligen Gral</a>. Gerade, wenn die
                     organisatorischen Voraussetzungen, wie das Vorhandensein mehrerer, unabhängiger Entwicklerteams, eine hohe Testautomatisierung
-                    und so weiter nicht gegeben sind, oder die Anwendung einfach nicht so groß ist, macht die Entwicklung eines klassischen
-                    Monolithen mehr Sinn.
+                    und so weiter nicht gegeben sind, oder die Anwendung einfach nicht so groß ist, kann die Entwicklung eines klassischen
+                    Monolithen mehr Sinn machen.
                 </p>
             </aside>
         </section>
@@ -3586,7 +3590,7 @@
                 <h2>Aufgabe 3.1: Proxyserver</h2>
 
                 <p>
-                    a) Welche der folgenden Definition entspricht der eines Proxyservers?
+                    a) Welche der folgenden Definitionen entspricht der eines Proxyservers?
                 </p>
                 <ol>
                     <li>
@@ -3596,7 +3600,7 @@
                         Ein Proxyserver dient der Zusammenführung mehrerer Microservices in einer Weboberfläche.
                     </li>
                     <li>
-                        Ein Proxyserver kopiert die Schnittstelle eines anderen Servers, und vertritt diesen gegenüber seiner Clients.
+                        Ein Proxyserver kopiert die Schnittstelle eines anderen Servers und vertritt diesen gegenüber seinen Clients.
                     </li>
                 </ol>
 
@@ -3701,7 +3705,7 @@
                 </ol>
 
                 <p>
-                    c) Welche der folgenden Techniken können die Schnittstelle eines Microservices bilden?
+                    c) Welche der folgenden Techniken kommen als Schnittstelle für Microservices in Frage?
                 </p>
                 <ol>
                     <li>
