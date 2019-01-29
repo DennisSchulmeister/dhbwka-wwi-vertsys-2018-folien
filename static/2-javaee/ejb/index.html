@@ -14,7 +14,7 @@
             <p>
                 Endlich wieder Programmieren. 💻 An dieser Stelle kehren wir noch einmal
                 zu letztem Semester zurück und vertiefen die Entwicklung serverseitiger
-                Webanwendungen mit der Java Enterprise Edition.
+                Webanwendungen mit der Jakarta Enterprise Edition.
             </p>
         </header>
 
@@ -29,20 +29,20 @@
                 <h3>Nach Abschluss dieser Einheit kannst du …</h3>
                 <ul>
                     <li>
-                        erklären, was die <span class="dhbw-lightblue font-weight-bold">Java Enterprise Edition</span>
-                        (Java&nbsp;EE) ist und wie sie sich von der Java Standard Edition unterscheidet.
+                        erklären, was die <span class="dhbw-lightblue font-weight-bold">Jakarta Enterprise Edition</span>¹
+                        (kurz JEE) ist und wie sie mit Java zusammenhängt.
                     </li>
                     <li>
                         die wichtigsten, <span class="dhbw-lightblue font-weight-bold">über eine einfache Middleware
-                        hinausgehenden Dienste</span> von Java&nbsp;EE benennen.
+                        hinausgehenden Dienste</span> von Jakarta&nbsp;EE benennen.
                     </li>
                     <li>
                         aufzeigen, mit welchen <span class="dhbw-lightblue font-weight-bold">Schnittstellentechnologien</span>
-                        sich Java&nbsp;EE in eine bestehende IT-Landschaft integrieren kann.
+                        Jakarta&nbsp;EE in eine IT-Landschaft integrieren werden kann.
                     </li>
                     <li>
                         die wichtigsten <span class="dhbw-lightblue font-weight-bold">APIs</span> zur Programmierung mit
-                        der Java Enterprise Edition aufzählen.
+                        der Jakarta Enterprise Edition aufzählen.
                     </li>
                     <li>
                         erklären, wie eine Java-Webanwendung nach <span class="dhbw-lightblue font-weight-bold">Model-View-Controller</span>
@@ -60,30 +60,36 @@
                         ein <span class="dhbw-lightblue font-weight-bold">Remote Interface</span> oder keines davon benötigt.
                     </li>
                 </ul>
+                <p>
+                    <small>
+                        ¹ Früher hieß das Projekt „Java Enterprise Edition” und wurde von Oracle vorangetrieben.
+                        Seit der Übergabe an die Eclipse Foundation im Jahr 2018 wurde es in „Jakarta Enterprise Edition” umbenannt.
+                    </small>
+                </p>
                 <span style="font-size: 240px; color: white;" class="dhbw-text-shadow" >🏁</span>
             </article>
             <aside>
                 <p>
-                    Ohne Zweifel handelt es sich beim World Wide Web die um die größte verteilte Anwendung überhaupt.
-                    Was liegt also näher, als sich auch in der Vorlesung Verteilte Systeme damit auseinanderzusetzen
-                    und die Dinge abzuschließen, die wir letztes Semester begonnen haben? Beginnen werden wir die
-                    Einheit daher mit einem kurzen Überblick über die <b>Java Enterprise Edition</b>, die uns als echte
-                    anwendungsorientierte Middleware gleich eine ganze Reihe an <b>Applikationsservern</b> zur Verfügung
-                    stellt. 🎁 Wir werden daher sehen, was die Java Enterprise Edition genau ist und welche <b>APIs und
-                    Funktionen</b> sie beinhaltet. Auch werden wir sehen, wie ein so ein Anwendungsserver aufgebaut
-                    ist und was er außer Servlets und JSP noch so alles kann.
+                    Ohne Zweifel handelt es sich beim World Wide Web um die größte verteilte Anwendung überhaupt.
+                    Was liegt also näher, als sich in der Vorlesung „Verteilte Systeme” nochmal damit auseinanderzusetzen
+                    und die Dinge abzuschließen, die wir letztes Semester begonnen haben? Beginnen werden wir daher mit
+                    einem kurzen Überblick über die <b>Jakarta Enterprise Edition</b>, die uns als echte anwendungsorientierte
+                    Middleware gleich eine Vielzahl an <b>Applikationsservern</b> zur Verfügung stellt. 🎁 Wir werden dabei
+                    sehen, was die Jakarta Enterprise Edition genau ist und welche <b>APIs und Funktionen</b> sie beinhaltet.
+                    Auch werden wir sehen, wie so ein Anwendungsserver aufgebaut ist und was er außer Servlets und JSP noch
+                    alles so kann.
                 </p>
                 <p>
-                    Mit diesem Wissen tasten wir uns dann an <b>Model-View-Controller</b> heran und lernen, wie eine
-                    Webanwendung mit Java sinnvoll aufgebaut sein muss. Für einen kurzen Augenblick werden wir daher
+                    Mit diesem Wissen tasten wir uns dann zu <b>Model-View-Controller</b> vor und lernen, wie eine
+                    Webanwendung mit Java sinnvoll aufgebaut wird. Für einen kurzen Augenblick werden wir daher
                     zu den guten alten <b>Servlets und Java Server Pages</b> zurückkehren und zeigen, dass diese erst
                     durch <b>Enterprise Java Beans</b> und <b>Persistence Entities</b> wirklich komplett sind.
                 </p>
                 <p>
                     Von Datenbankzugriffen einmal abgesehen¹ weißt du an dieser Stelle 🎌 dann auch schon alles, was du
                     für die Entwicklung serverseitiger Webanwendungen in Java brauchst. Abschließen werden wir die Einheit
-                    daher mit einem tieferen Blick auf Enterprise Java Beans, da diese auch allgemein und damit für die
-                    weitere Vorlesung ganz interessant sind.
+                    daher mit einem tieferen Blick auf Enterprise Java Beans, da diese auch für Nicht-Webanwendungen und
+                    damit für die weitere Vorlesung ganz interessant sind.
                 </p>
                 <p>
                     <small>
@@ -95,11 +101,11 @@
 
         <!--
             ====================
-            JAVA EE IM ÜBERBLICK
+            Jakarta&nbsp;EE IM ÜBERBLICK
             ====================
         -->
         <section data-chapter data-background-image="../../trennfolie.jpg">
-            <h1>Java&nbsp;EE im Überblick</h1>
+            <h1>Jakarta&nbsp;EE im Überblick</h1>
             <article>
                 <small>
                     <small>
@@ -111,11 +117,11 @@
         </section>
 
         <section>
-            <h1>Was ist die Java Enterprise Edition?</h1>
+            <h1>Was ist die Jakarta Enterprise Edition?</h1>
             <article>
                 <img src="appserver-schnittstellen.png" alt="Grober Aufbau eines Java-Applikationsservers" class="d-block" style="width: 100%; margin-bottom: 1em;" />
                 <p>
-                    Die Java Enterprise Edition ist keine Erweiterung von Java sondern ein offener Standard für javabasierte Anwendungsserver.
+                    Die Jakarta Enterprise Edition ist ein offener Standard für javabasierte Anwendungsserver.
                     Diese werden von unterschiedlichen Herstellern angeboten:
                 </p>
                 <ul>
@@ -157,50 +163,51 @@
                         Einen Timer zur Einplanung von Hintergrundaktivitäten
                     </li>
                     <li>
-                        Und noch vieles mehr 🌠
+                        Und noch vieles, vieles mehr 🌠
                     </li>
                 </ul>
             </article>
             <aside>
                 <p>
-                    Letztes Semester haben wir schon gesehen, dass es <a href="../../../webprog/4-server/http/#6">mehre Möglichkeiten</a> gibt,
+                    Letztes Semester haben wir schon gesehen, dass es <a href="../../../webprog/4-server/http_jsp_servlets/#10">mehre Möglichkeiten</a> gibt,
                     den Serverteil einer Webanwendung in Java zu entwickeln. Der klassische Ansatz besteht darin, einen Webcontainer (Applikationsserver)
-                    zu verwenden und die Anwendung in Form eines Webarchivs 📦 in diesem zum Laufen zu bringen. Dies hat den Vorteil, dass man sich
-                    keine Gedanken über die „Infrastruktur” machen muss, da diese durch den Server bereits gegeben ist.¹ Zusätzlich kann man
-                    innerhalb des Servers noch weitere Webanwendungen zum Laufen bringen und somit ein großes Webprojekt in kleine, übersichtliche
-                    Teilanwendungen zerlegen. Was wir dabei noch nicht so sehr betont haben ist, dass Webcontainer zur Java Enterprise Edition gehören,
+                    zu verwenden und die Anwendung in Form eines Webarchivs 📦 in diesem zum Laufen zu bringen. Dies hat den Vorteil, dass man sich keine
+                    Gedanken über die „Infrastruktur” machen muss, da diese durch den Server bereits gegeben ist.¹ Zusätzlich kann man innerhalb des Servers
+                    noch weitere Webanwendungen ausführen und somit ein großes Webprojekt in kleine, übersichtliche Teilanwendungen zerlegen. Was wir dabei
+                    noch nicht so sehr betont haben ist, dass Webcontainer zur „Jakarta Enterprise Edition” (bis 2018 „Java Enterprise Edition”) gehören,
                     die ganz allgemein darauf abzielt, Client/Server-Anwendungen im Unternehmensumfeld zu entwickeln.
                 </p>
                 <p>
                     <small>
-                        ¹ Microservices hingegen gehen meistens nach dem Prinzip „Put a Webserver In Your Application" bzw. „Bring Your Own Webserver”
+                        ¹ Microservices hingegen gehen oft nach dem Prinzip „Put a Webserver In Your Application" bzw. „Bring Your Own Webserver”
                         vor. Sie verschmelzen quasi Webanwendung und Server in einem Javaprogramm, das dann wie andere Javaprogramme direkt gestartet
-                        werden kann. In diesem Fall werden meistens andere APIs als die der Java Enterprise Edition genutzt.
+                        werden kann. In diesem Fall werden meistens andere APIs als die der Jakarta Enterprise Edition genutzt (zum Beispiel
+                        <a href="https://spring.io/projects/spring-boot" target="_blank">Spring Boot</a>).
                     </small>
                 </p>
                 <p>
                     Da das normale Java in seiner Langform „Java Standard Edition” (Java SE) heißt, könnte man auf die Idee kommen, dass die
-                    Standard Edition eine Art kleines Java für den Desktop 🐁 und Java&nbsp;EE ein großes Java für den Server. 🐘 Tatsächlich ist
-                    das aber nicht so. Java&nbsp;SE ist stattdessen einfach die Programmiersprache selbst, die wirklich immer benötigt wird,
-                    und Java&nbsp;EE eine Sammlung zusätzlicher APIs² zur Entwicklung datenbasierter Webanwendungen und Informationssysteme.
-                    Es handelt sich daher „nur” um eine Erweiterung der Java-Klassenbibliothek und keine Spracherweiterung. 💬
+                    Standard Edition eine Art kleines Java für den Desktop 🐁 und die Enterprise Edition ein großes Java für den Server sei. 🐘
+                    Tatsächlich ist das aber nicht so. Java&nbsp;SE ist stattdessen einfach die Programmiersprache selbst, die wirklich immer
+                    benötigt wird, und Jakarta&nbsp;EE eine Sammlung zusätzlicher APIs² zur Entwicklung datenbankbasierter Webanwendungen und
+                    Informationssysteme. Es handelt sich daher „nur” um eine Erweiterung der Java-Klassenbibliothek und nicht der Sprache selbst. 💬
                 </p>
                 <p>
                     <small>
-                        ² API = Application Programming Interface. Gemeint sind zusätzlich Interfaces, Klassen und Methoden, die nicht zum
+                        ² API = Application Programming Interface. Gemeint sind zusätzliche Interfaces, Klassen und Methoden, die nicht zum
                         Standardumfang von Java gehören.
                     </small>
                 </p>
                 <p>
-                    Um die Verwirrung darüber hinaus noch komplett zu machen, gibt es gar keine Java Enterprise Edition. die man einfach herunterladen
-                    und installieren könnte. Denn, wie für Java typisch, handelt es sich bei Java&nbsp;EE nur um eine Spezifikation, die im Rahmen des
-                    <a href="https://de.wikipedia.org/wiki/Java_Community_Process" target="_blank">Java Community Process</a> als offener Standard
+                    Um die Verwirrung darüber hinaus noch komplett zu machen, gibt es gar keine Jakarta Enterprise Edition. die man einfach herunterladen
+                    und installieren könnte. Denn, wie für Java typisch, handelt es sich dabei nur um eine Spezifikation, die von der
+                    <a href="https://jakarta.ee/about/" target="_blank">Jakarta&nbsp;EE Working Group</a> als offener Standard
                     entwickelt wird und zu der es viele Implementierungen verschiedener Hersteller gibt. An dieser Stelle kommen dann auch die
                     Applikationsserver ins Spiel, da sie die Spezifikation umsetzen. Produkte wie
-                    <a href="https://tomee.apache.org" target="_blank">Apache TomEE</a>³,
+                    <a href="https://tomee.apache.org" target="_blank">Apache TomEE</a>,
                     <a href="https://javaee.github.io/glassfish/" target="_blank">Oracle Glassfish</a> oder
                     <a href="http://www.wildfly.org/" target="_blank">RedHat Wildfly</a>
-                    sind also alles Implementierungen der Java Enterprise Edition, die jeweils in Form eines eigenen Anwendungsservers daher kommen.
+                    sind also alles Implementierungen der Jakarta Enterprise Edition, die jeweils in Form eines eigenen Anwendungsservers daher kommen.
                     Sie alle können daher wie folgt genutzt werden:
                 </p>
                 <ul>
@@ -213,8 +220,8 @@
                 </ul>
                 <p>
                     Denn neben einer reinen HTTP-Schnittstelle für Servlets haben sie noch folgende Technologien an Board 🚢, um eine möglichst breite
-                    Konnektivität mit anderen Anwendungsservern und unterschiedlichsten Clients herzustellen. Sie ermöglich es, die fachlichen
-                    Anwendungsklassen auf folgende Arten aufzurufen:
+                    Konnektivität mit anderen Anwendungsservern und unterschiedlichsten Clients herzustellen. Sie ermöglichen es, die fachlichen
+                    Klassen einer Anwendung auf folgende Arten aufzurufen:
                 </p>
                 <ul>
                     <li>
@@ -254,11 +261,11 @@
                         Einen Timer zur Einplanung von Hintergrundaktivitäten
                     </li>
                     <li>
-                        Und noch vieles mehr 🌠
+                        Und noch vieles, vieles mehr 🌠
                     </li>
                 </ul>
                 <p>
-                    Tatsächlich also, alles was das Herz begehrt 💖, was die Java Enterprise Edition gleichzeitig aber auch sehr groß
+                    Tatsächlich also alles was das Herz begehrt 💖, was die Jakarta Enterprise Edition gleichzeitig aber auch sehr groß
                     und leider auch ressourcenhungrig macht.
                 </p>
             </aside>
@@ -284,18 +291,18 @@
                         <div class="col-md-12">
                             <h4>Servlets</h4>
                             Grundlegende Klassenbibliothek zur Reaktion auf HTTP-Anfragen. Es handelt sich dabei um
-                            die Basistechnologie, die allen höheren Webframeworks für Java&nbsp;EE zugrunde liegt.
+                            die Basistechnologie, die allen höheren Webframeworks für Jakarta&nbsp;EE zugrunde liegt.
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <h4>Java Server Pages</h4>
-                            Serverseitige Erweiterung von HTML. Erlaubt es, Teile der Seite dynamisch auf dem Server
-                            zu erzeugen, bevor sie an den Browser geschickt wird.
+                            Serverseitige Erweiterung von HTML. Erlaubt es, den HTML-Code dynamisch auf dem Server
+                            zu erzeugen, bevor er an den Browser geschickt wird.
                         </div>
                         <div class="col-md-6">
                             <h4>Java Server Faces</h4>
-                            Von Oracle entwickeltes, mit Java EE ausgeliefertes Webframework. Nutzt eine an HTML
+                            Von Oracle entwickeltes, mit Jakarta&nbsp;EE ausgeliefertes Webframework. Nutzt eine an HTML
                             angelehnte Beschreibungssprache zur Definition des Layouts.
                         </div>
                     </div>
@@ -321,8 +328,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <h4>Java Persistence API</h4>
-                            O/R-Mapper zur Vereinfachung des Datenbankzugriffes. Die Feöder einer Tabelle werden
-                            automatisch auf die Attribute einer Javabean gemappt.
+                            O/R-Mapper zur Vereinfachung des Datenbankzugriffes. Die Felder einer Tabelle werden
+                            automatisch auf die Attribute einer Java-Bean gemappt.
                         </div>
                         <div class="col-md-6">
                             <h4>Java Transaction API</h4>
@@ -379,9 +386,8 @@
                     Ein einfachsten lässt sich der Aufbau eines Anwendungsservers verstehen, indem man sich vor Augen hält,
                     dass es sich dabei im Grunde genommen um nichts anderes als ein gewöhnliches Javaprogramm handelt,
                     das zwar schon sehr viele Funktionen enthält, von sich aus aber noch gar nichts nützliches macht. 🛋️
-                    Als Programmierer muss man dem Programm erst noch die gewünschten Features hinzufügen, indem man hierfür
-                    entsprechende Klassen schreibt und innerhalb des Applikationsservers zum Laufen bringt,m wofür folgende
-                    Begriffe wichtig zu verstehen sind:
+                    Als Programmierer muss man dem Programm erst noch durch Hinzufügen eigener Klassen die gewünschten
+                    Funktionen beibringen. Das ist in etwa, was mit folgenden Begriffen gemeint ist:
                 </p>
                 <dl>
                     <dt>
@@ -389,7 +395,7 @@
                     </dt>
                     <dd>
                         <p>
-                            Manche Quellen sprechen im Zusammenhang mit Java&nbsp;EE von einer komponentenbasierten Architektur
+                            Manche Quellen sprechen im Zusammenhang mit Jakarta&nbsp;EE von einer komponentenbasierten Architektur
                             und nennen die zu erstellenden Klassen auch Softwarekomponenten. Damit soll zum Ausdruck gebracht werden,
                             dass jede Klasse folgende Eigenschaften erfüllen muss:
                         </p>
@@ -419,11 +425,11 @@
                     </dt>
                     <dd>
                         <p>
-                            Softwarekomponenten benötigen immer eine Laufzeitumgebung (auch Container genannt), in der sie ausgeführt
-                            werden können, wobei sich der Container mindestens um die Erzeugung der Objektinstanzen kümmert. Der
-                            Container kann daher vorschreiben, dass eine Klasse ein bestimmtes Interface implementieren, bestimmte
-                            Methoden beinhalten oder bestimmte Annotationen verwenden muss. Dadurch wird der Container in die Lage
-                            versetzt, zum richtigen Zeitpunkt die benötigten Objektinstanzen zu erzeugen und ihre Methoden aufzurufen.
+                            Softwarekomponenten benötigen immer eine Laufzeitumgebung (auch Container genannt), innerhalb derer sie
+                            ausgeführt werden. Der Container kümmert sich hierfür mindestens um die Erzeugung der Objektinstanzen,
+                            kann aber auch weitere Dinge vorschreiben, wie dass eine Klasse ein bestimmtes Interface implementieren,
+                            bestimmte Methoden beinhalten oder bestimmte Annotationen verwenden muss. Dadurch wird der Container in
+                            die Lage versetzt, zum richtigen Zeitpunkt die benötigten Objekte zu erzeugen und aufzurufen.
                         </p>
                     </dd>
 
@@ -432,9 +438,10 @@
                     </dt>
                     <dd>
                         <p>
-                            Dies ist der Vorgang, beidem alle Klassen einer Anwendung zu einem Archiv verpackt und an den Server
-                            übergeben werden. Hierfür muss das Archiv, das natürlich einen vorgeschriebenen Aufbau besitzen muss, in
-                            aller Regel nur in ein hierfür vorgesehenes Verzeichnis kopiert werden, damit der Server es erkennt.
+                            Dies ist der Vorgang, bei dem alle Klassen einer Anwendung zu einem Archiv verpackt und dem Server
+                            zur Verfügung gestellt werden. Hierfür muss das Archiv, das natürlich einen vorgeschriebenen Aufbau
+                            besitzen muss, in aller Regel nur in ein hierfür vorgesehenes Deployment-Verzeichnis kopiert werden,
+                            damit der Server es findet.
                         </p>
                     </dd>
                 </dl>
@@ -442,24 +449,39 @@
                 <p>
                     Die selbst zu entwickelnden Klassen lassen sich wiederum in folgende Kategorien einteilen:
                 </p>
-                <ul>
-                    <li>
-                        🌍 <b>Servlets und JSP</b> laufen innerhalb des Webcontainers und dienen dazu, auf HTTP-Anfragen zu reagieren
-                        bzw. eine Weboberfläche zu entwickeln.
-                    </li>
-                    <li>
-                        ⚙️ <b>Enterprise Java Beans</b> wiederum kapseln die fachliche Logik der Anwendung, unabhängig davon, wie
-                        die Funktionen in der Benutzeroberfläche aussehen werden. Mit Hilfe von EJBs werden daher einfach nur
-                        Services definiert, die von den verschiedenen Clients aufgerufen werden können. Technisch geshen wird
-                        dabei zwischen <b>Stateless Session Beans</b>, <b>Stateful Session Beans</b> und <b>Message Driven Beans</b>
-                        unterschieden. Was das ist schauen wir uns allerdings erst weiter hinten an.
-                    </li>
-                    <li>
-                        🛢 <b>Persistence Entities</b> dienen schließlich dem Lesen und Schreiben von Daten in einer Datenbank.
-                        Die Entities sind hierfür als gewöhnliche Javabeans definiert, deren Objekte immer einer Zeile in
-                        einer Tabelle entsprechen.
-                    </li>
-                </ul>
+                <table style="margin-bottom: 1em;">
+                    <tr>
+                        <td>
+                            🌍
+                        </td>
+                        <td>
+                            <b>Servlets und JSP</b> laufen innerhalb des Webcontainers und dienen dazu, auf HTTP-Anfragen zu reagieren
+                            bzw. eine Weboberfläche zu entwickeln.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            ⚙️
+                        </td>
+                        <td>
+                            <b>Enterprise Java Beans</b> wiederum kapseln die fachliche Logik der Anwendung, unabhängig davon, wie
+                            die Funktionen in der Benutzeroberfläche aussehen werden. Mit Hilfe von EJBs werden daher einfach nur
+                            Services definiert, die von den verschiedenen Clients aufgerufen werden können. Technisch geshen wird
+                            dabei zwischen <b>Stateless Session Beans</b>, <b>Stateful Session Beans</b> und <b>Message Driven Beans</b>
+                            unterschieden. Was das ist schauen wir uns allerdings erst weiter hinten an.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            🛢
+                        </td>
+                        <td>
+                            <b>Persistence Entities</b> dienen schließlich dem Lesen und Schreiben von Daten in einer Datenbank.
+                            Die Entities sind hierfür als gewöhnliche Javabeans definiert, deren Objekte immer einer Zeile in
+                            einer Tabelle entsprechen.
+                        </td>
+                    </tr>
+                </table>
                 <p>
                     Das Grobgerüst einer Java-Enterprise-Anwendung könnte daher so aussehen:
                 </p>
@@ -505,7 +527,7 @@
                     Wie du siehst, ist das gar nicht so kompliziert, auch wenn wir uns hier noch nicht um die
                     Einzelheiten kümmern wollen. Zumindest kann man aber schon erkennen, dass eine klare
                     Aufgabenteilung zwischen den Klassen zu herrschen scheint. Abschließend bleibt hier dann
-                    nur noch zu sagen, dass Java&nbsp;EE eine ganze Reihe von APIs definiert, auf die innerhalb
+                    nur noch zu sagen, dass Jakarta&nbsp;EE eine ganze Reihe von APIs definiert, auf die innerhalb
                     der Klassen zugegriffen werden kann. Welche das sind, siehst du auf der Folie.
                 </p>
             </aside>
@@ -581,18 +603,16 @@
                         >
                         <p>
                             Dieses Beispiel zeigt ein großes Webportal mit mehreren, von der restlichen Anwendungslogik entkoppelten Webfrontends.
-                            Zur besseren Skalierung wurden sie in einem eigenen <b>Webcontainer</b> genannten Anwendungsserver deployed.
-                            Zusätzlich werden die Dienste fremder Anbieter per Webserviceaufruf in das Portal integriert.
+                            Zur besseren Skalierung werden getrennte Server für die Webfrontends (sog. „Webcontainer"¹) und das Backend genutzt.
+                            Im Backend werden zusätzlich die Dienste fremder Anbieter per Webservice integriert.
                         </p>
                         <p style="line-height: 1; margin-bottom: 1em;">
                             <small>
                                 <small>
-                                    ¹ Vollwertige Java&nbsp;EE-Applikationsserver bestehen im Grunde genommen aus nichts anderem als einem
+                                    ¹ Vollwertige Jakarta&nbsp;EE-Applikationsserver bestehen im Grunde genommen aus nichts anderem als einem
                                     Webcontainer und einem EJB-Container, wobei der Webcontainer die Servlet- und webbezogenen APIs zur
-                                    Verfügung stellt und der EJB-Container den Rest. Wenn man aber weiß, dass man die mit dem EJB-Container
-                                    vorausgelieferten Klassen nicht nutzen will, weil man sie nicht braucht oder weil man sich nicht darauf
-                                    verlassen will, dass der Server die richtigen Versionen bereitstellt, kann man auch nur einen Webcontainer
-                                    installieren.
+                                    Verfügung stellt und der EJB-Container den Rest. Wenn man aber weiß, dass man die Funktionen des EJB-Containers
+                                    nicht benötigt, kann man den Webcontainer auch separat installieren.
                                 </small>
                             </small>
                         </p>
@@ -616,14 +636,14 @@
             </article>
             <aside>
                 <p>
-                    Auf dieser Folie siehst du zwei typische Anwendungsbeispiele für die Java Enterprise Edition: Eine Geschäftsanwendung,
-                    wie sie als interne Anwendung in einem Supermarkt betrieben werden könnte sowie ein großes Webportal mit mehreren
-                    Frontends und Schnittstellen zu externen Webserviceanbietern. In beiden Fällen eignet sich die Java Enterprise Edition
+                    Auf dieser Folie siehst du zwei typische Anwendungsbeispiele für die Jakarta Enterprise Edition: Eine Geschäftsanwendung,
+                    wie sie als interne Anwendung in einem Supermarkt betrieben werden könnte, sowie ein großes Webportal mit mehreren
+                    Frontends und Schnittstellen zu externen Webserviceanbietern. In beiden Fällen eignet sich die Jakarta Enterprise Edition
                     aufgrund folgender Eigenschaften besonders gut:
                 </p>
                 <ul>
                     <li>
-                        <b>Persistence Entities:</b> Dank der Java Persistence API kann mit einfachen Beanklassen ein ausgefeiltes Datenmodell
+                        <b>Persistence Entities:</b> Dank der Java Persistence API kann mit einfachen Klassen ein ausgefeiltes Datenmodell
                         realisiert werden, bei dem Java automatisch die Objekte dieser Klassen in der Datenbank ablegen und von dort wieder
                         rausholen kann. Ebenso unterstützt Java eine mächtige Anfragesprache, mit der relativ einfach auch komplexe Suchen auf
                         der Datenbank ausgeführt werden können.
@@ -639,19 +659,19 @@
                     </li>
                     <li>
                         <b>Webcontainer:</b> Jeder Applikationsserver beinhaltet bereits einen Webcontainer, in dem neben statischen Webseiten
-                        auch in javabasierte Webanwendungen ausführbar sind.
+                        auch in Java realisierte Webanwendungen ausführbar sind.
                     </li>
 
                     <li>
-                        <b>Webservices:</b> Mit der Java Enterprise Edition können sowohl fremde Webservices aufgerufen als auch eigene Webservices
+                        <b>Webservices:</b> Mit der Jakarta Enterprise Edition können sowohl fremde Webservices aufgerufen als auch eigene Webservices
                         angeboten werden. Für die Erstellung der Webservices müssen hierfür nur eine Hand voll Annotationen in die vorhandenen
                         EJBs aufgenommen werden.
                     </li>
                     <li>
                         <b>Flexibles Deployment:</b>
-                        Das Deployment von Java&nbsp;EE ist so flexibel, dass entweder alle Bestandteile einer Anwendung in einem gemeinsamen
-                        oder einem getrennten Applikationsserver zum Laufen gebracht werden können. Falls die Anwendung sauber programmiert
-                        wurde, sind hierfür keine Änderungen an der Software erforderlich.
+                        Das Deployment von Jakarta&nbsp;EE ist so flexibel, dass entweder alle Bestandteile einer Anwendung in einem gemeinsamen
+                        oder in getrennten Applikationsservern zum Laufen gebracht werden können. Falls die Anwendung sauber programmiert
+                        wurde, sind hierfür keine Änderungen am Quellcode nötig.
                     </li>
                 </ul>
             </aside>
@@ -660,10 +680,10 @@
         <section data-background-color="rgb(231, 221, 141)">
             <h1>Aufgabe 1: Ein kleines Java-EE-Quiz</h1>
             <article>
-                <h2>Aufgabe 1.1: Die Java Enterprise Edition</h2>
+                <h2>Aufgabe 1.1: Die Jakarta Enterprise Edition</h2>
 
                 <p>
-                    a) Um was für eine Middleware handelt es sich bei der Java Enterprise Edition?
+                    a) Um was für eine Middleware handelt es sich bei der Jakarta Enterprise Edition?
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
@@ -675,7 +695,7 @@
                 </ol>
 
                 <p>
-                    b) Wo gibt es die Java Enterprise Edition zum herunterladen?
+                    b) Wo gibt es die Jakarta Enterprise Edition zum herunterladen?
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
@@ -686,6 +706,9 @@
                     </li>
                     <li>
                         Bei den Herstellern der Applikationsserver
+                    </li>
+                    <li>
+                        Bei der Eclipse Foundation
                     </li>
                     <li>
                         Gar nicht, sie ist in der Sprache Java enthalten
@@ -888,12 +911,12 @@
             </article>
             <aside>
                 <p>
-                    Um dir einen kurzen Überblick zu geben, womit wir uns im folgenden nun beschäftigen werden, haben wir hier
+                    Um dir einen kurzen Überblick zu geben, womit wir uns im Folgenden nun beschäftigen werden, haben wir hier
                     nochmal die zwei Arten zusammengefasst, wie die serverseitige Logik einer Webanwendung realisiert werden kann.
-                    Dabei läuft es im Wesentlichen auf die Frage hinaus, ob die fachlichen Anwendungsfunktionen untrennbar mit dem
+                    Dabei läuft es im Wesentlichen darauf hinaus, ob die fachlichen Anwendungsfunktionen untrennbar mit dem
                     Rest der Anwendung verschmolzen sind oder ob beide Teile unabhängig voneinander existieren können. Insbesondere
                     steht dabei die Frage im Raum, ob der angezeigte HTML-Code bereits auf dem Server oder erst im Browser generiert
-                    wird und ob die Fachfunktionen auch für andere Clients zur Verfügung stehen.
+                    wird und ob die Fachfunktionen auch für andere Clients zur Verfügung stehen sollen.
                 </p>
                 <ul>
                     <li>
@@ -905,18 +928,18 @@
                     <li>
                         <b>Clientseitige Webanwendungen mit Backendserver:</b> Moderne Webanwendungen sehen eine strikte Trennung
                         zwischen den fachlichen Funktionen auf dem Server und der Benutzeroberfläche im Browser vor. Technisch
-                        gesehen handelt es sich daher um zwei getrennte Anwendungen, die losgelöst voneinander häufig auch von
-                        unterschiedlichen Teams entwickelt werden. Der Server bietet hierfür eine Reihe von Webservices, die der
+                        gesehen handelt es sich daher um zwei getrennte Anwendungen, die losgelöst voneinander und häufig auch von
+                        getrennten Teams entwickelt werden. Der Server bietet hierfür eine Reihe von Webservices, die der
                         Browser bei Bedarf aufrufen kann.
                     </li>
                 </ul>
                 <p>
                     Auch wenn hier von klassischen und modernen Webanwendungen die Rede ist, haben beide Arten ihre jeweiligen
-                    Vor- und Nachteile, so dass es falsch wäre, sich pauschal auf eine davon zu versteifen. Klassische Webanwendungen
+                    Vor- und Nachteile, so dass es falsch wäre, sich pauschal nur auf eine davon zu fixieren. Klassische Webanwendungen
                     haben den Vorteil, dass sie einfach zu entwickeln sind, schnell zu guten Ergebnissen führen und auch von einem
                     kleinen Team betreut werden können. Nachteilig daran ist, dass die Fachfunktionen meist sehr eng mit der Anwendung
-                    verflochten sind und, da der Browser sehr häufig eine neue Seite vom Server laden muss, die Performance nicht so
-                    gut wie bei rein clientseitigen Anwendungen ist. Moderne Webanwendungen mit getrenntem Serverbackend haben diese
+                    verflochten sind und, da der Browser ständig neue Seiten vom Server laden muss, die Performance nicht so
+                    gut wie bei rein clientseitigen Anwendungen ist. Clientseitige Webanwendungen mit getrenntem Serverbackend haben diese
                     Nachteile nicht, jedoch sind sie aufwändiger in der Entwicklung, sowohl was den Browserteil angeht als auch die
                     Webservice-Schnittstelle zur Kapselung der fachlichen Logik.
                 </p>
@@ -1084,11 +1107,11 @@
                     <a href="https://de.wikipedia.org/wiki/Model_View_Controller" target="_blank">Model-View-Controller</a>-Ansatz
                     etabliert, so dass heute beinahe jede Webanwendung nach diesem Muster aufgebaut ist. So ist es kein Wunder, dass
                     auch fast jedes Webframework mit MVC wirbt, obwohl die Meinungen darüber, was zum Model, zur View oder zum Controller
-                    gehört, doch schon sehr auseinander gehen. 🙄 Interessant dabei ist jedoch, dass das Konzept gar nicht für das Web
-                    entwickelt wurde, sondern bereits 1979 am <a href="Xeroc PARC https://de.wikipedia.org/wiki/Xerox_PARC" target="_blank">Xerox PARC</a>
+                    gehört, doch sehr auseinander gehen. 🙄 Interessant dabei ist jedoch, dass das Konzept gar nicht für das Web
+                    entwickelt wurde, sondern bereits 1979 am <a href="https://de.wikipedia.org/wiki/Xerox_PARC" target="_blank">Xerox PARC</a>
                     für die Programmiersprache <a href="https://de.wikipedia.org/wiki/Smalltalk_(Programmiersprache)" target="_blank">Smalltalk</a>
-                    und den <a href="https://de.wikipedia.org/wiki/Xerox_Alto" target="_blank">Xeror Alto</a>-Computer¹, der allgemein als
-                    der erste Computer mit grafischer Benutzeroberfläche, Desktop und Maus 🖱️ gilt, erfunden wurde.
+                    und den <a href="https://de.wikipedia.org/wiki/Xerox_Alto" target="_blank">Xerox Alto</a>-Computer¹, der allgemein als
+                    der erste Computer mit grafischer Benutzeroberfläche, Desktop und Maus 🖱️ gilt.
                 </p>
                 <p>
                     <small>
@@ -1142,15 +1165,15 @@
                         viel komfortablere Möglichkeiten zur Verfügung stehen.
                     </li>
                     <li>
-                        <b>Controller:</b> Er ist die Schokolade, die Model und View zusammenhält. Der Controller kümmert sich daher um
-                        die Vermittlung zwischen View und Model, indem er zum richtigen Zeitpunkt die richtigen Methoden aufruft.
+                        <b>Controller:</b> Er ist die Schokolade, die Model und View zusammenhält. Der Controller kümmert sich um
+                        die Vermittlung zwischen Model und View, indem er zum richtigen Zeitpunkt die richtigen Methoden aufruft.
                     </li>
                 </ul>
                 <p>
-                    Hinzu kommt, dass keine Abhängigkeiten vom Model zur View oder dem Controller bestehen dürfen. Das Model stellt lediglich
-                    Funktionen bereit, die von den anderen beiden Schichten aufgerufen werden, um somit die Möglichkeit offen zu halten,
-                    später weitere Benutzeroberflächen mit demselben Model zu entwickeln. Umgekehrt ist es jedoch oftmals erlaubt, dass die
-                    View direkt auf das Model zugreift.
+                    Hinzu kommt, dass keine Abhängigkeiten vom Model zur View oder vom Model zum Controller bestehen dürfen. Das Model stellt
+                    lediglich (fachliche) Funktionen bereit, die von den anderen beiden Schichten aufgerufen werden. Somit soll die Möglichkeit
+                    offen gehalten werden, zum selben Model später zusätzliche Benutzeroberflächen zu entwickeln. Umgekehrt ist es deshalb oft
+                    erlaubt, dass View und Controller direkt auf das Model zugreifen.
                 </p>
                 <p>
                     Soweit die Theorie. Bezogen auf Webanwendungen mit Java heißt das folgendes:
@@ -1169,8 +1192,8 @@
                     </li>
                 </ul>
                 <p>
-                    In welcher Reihenfolge daher was passiert, siehst du auf der Folie. Generell handelt es sich dabei aber um denselben
-                    Ablauf, den wir bereits in <a href="../../../webprog/4-server/servlets/#2" target="_blank">Webprogrammierung</a>
+                    In welcher Reihenfolge was passiert, siehst du auf der Folie. Generell handelt es sich dabei aber um denselben
+                    Ablauf, den wir bereits in <a href="../../../webprog/4-server/http_jsp_servlets/#17" target="_blank">Webprogrammierung</a>
                     kennengelernt haben.
                 </p>
             </aside>
@@ -1422,7 +1445,7 @@
                             aria-labelledby = "mvc-beispiel-servlet-tab"
                         >
                             <p>
-                                Dies ist das Servlet, dass bei jeder <tt>GET</tt>- und <tt>POST</tt>-Anfrage durchlaufen wird.
+                                Dies ist das Servlet, das bei jeder <tt>GET</tt>- und <tt>POST</tt>-Anfrage durchlaufen wird.
                             </p>
                             <source-code language="java">
                                 package dhbwka.wwi.vertsys.javee.guestbook;
@@ -1637,7 +1660,7 @@
                 <p>
                     Bist du bereit für ein wenig Quellcode? Auf dieser Folie siehst du eine einfache Webanwendung, deren einzige Seite
                     nach Model-View-Controller strukturiert wurde. Die gute Nachricht daran ist: Es sieht eigentlich nicht wirklich
-                    anders aus, als das was wir zuletzt in <a href="../../../webprog/4-server/servlets/#8" target="_blank">Webprogrammierung</a>
+                    anders aus, als das was wir zuletzt in <a href="../../../webprog/4-server/http_jsp_servlets/#23" target="_blank">Webprogrammierung</a>
                     gemacht haben. 🤗 Die schlechte Nachricht ist: JSP, Stylesheet und Servlet werden wir hier daher nicht sonderlich
                     erklären. 🤐 Diese kannst du ja einen Folien von letztem Semester nachlesen.
                 </p>
@@ -1646,8 +1669,8 @@
                 <p>
                     Linus Torvalds wird das Zitat zugeschrieben „gute Programmierer scheren sich nicht um Algorithmen, sondern um
                     Datenstrukturen”. 💬 Vor allem anderen sollten wir uns daher erst das Datenmodell unserer kleinen Anwendung
-                    überlegen. Für den Anfang soll es nichts Kompliziertes sein. Ein Gästebuch, in dem jeder Eintrag die folgenden
-                    drei Felder besitzt, reicht fürs Erste:
+                    überlegen. Für den Anfang soll es nichts Kompliziertes sein. Ein Gästebuch mit folgenden Feldern je Eintrag
+                    soll uns erst mal genügen:
                 </p>
                 <ul>
                     <li>
@@ -1733,13 +1756,13 @@
                 <p>
                     Das Serlvet sollte eigentlich keine Überraschungen bieten. Einzig neu ist die Annotation
                     <src-code language="java">@EJB</src-code>, mit der wir uns eine Referenz auf die Enterprise Java Bean
-                    besorgen. Auf den ersten Blick sieht das zwar wie ein Fehler aus, aber tatsächlich sorgt Java dafür,
-                    dass die Variable immer mit einer Referenz belegt ist, wobei die Bean hierfür sogar einem anderen Server
-                    liegen könnte.
+                    besorgen. Auf den ersten Blick sieht das zwar wie ein Fehler aus, weil der Variable niemals ein Wert
+                    zugewiesen wird, aber tatsächlich sorgt Java dafür, dass hier eine Referenz auf unsere EJB zur Verfügung
+                    steht. Selbst, wenn die Bean auf einem anderen Server liegen würde!
                 </p>
                 <p>
-                    Das ist tatsächlich schon alles, ganz ehrlich. Um das zu beweisen, zeigen wir dir auf der
-                    nächsten Folie, wie du das Projekt in Netbeans nachbauen kannst.
+                    Das ist tatsächlich schon alles (vom Inhalt der Methoden abgesehen), ganz ehrlich. Um das zu beweisen,
+                    eigen wir dir auf der nächsten Folie, wie du das Projekt in Netbeans nachbauen kannst.
                 </p>
             </aside>
         </section>
@@ -1805,10 +1828,55 @@
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                Ändere dein Eintrag bei <tt>Persistence Unit Name</tt> auf <tt>default</tt>. <br />
-                                Im Feld <tt>Data Source</tt> musst du <tt>jdbc/__default</tt> auswählen.
+                                An dieser Stelle kannst du alles so lassen, wie es ist. Wir konfigurieren
+                                die Datenbankverbindung im nächsten Schritt manuell.
                             </p>
                             <img class="active d-block w-100" src="mvc-beispiel-08.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Öffne die Datei <tt>persistence.xml</tt> im Ordner <tt>Other Sources</tt> → <tt>src/main/resources</tt>
+                                und tausche sie durch folgendes XML aus. Dadurch weiß die Anwendung, wie sie auf die Datenbank zugreifen kann.
+                            </p>
+                            <img src="netbeans-persistence.xml.png" class="active d-block" style="max-width: 100%; margin-bottom: 1em;" />
+                            <source-code language="xml">
+                                &lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+                                &lt;persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.1" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"&gt;
+                                    &lt;persistence-unit name="default" transaction-type="JTA"&gt;
+                                        &lt;provider&gt;org.apache.openjpa.persistence.PersistenceProviderImpl&lt;/provider&gt;
+                                        &lt;jta-data-source&gt;Default-Database-Managed&lt;/jta-data-source&gt;
+                                        &lt;non-jta-data-source&gt;Default-Database-Unmanaged&lt;/non-jta-data-source&gt;
+
+                                        &lt;properties&gt;
+                                            &lt;property name="javax.persistence.schema-generation.database.action" value="create"/&gt;
+                                            &lt;property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" /&gt;
+                                        &lt;/properties&gt;
+                                    &lt;/persistence-unit&gt;
+                                &lt;/persistence&gt;
+                            </source-code>
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Nicht zwingend notwendig aber empfohlen ist, im gleichen Ordner noch eine Datei namens <tt>orm.xml</tt>
+                                mit folgendem Inhalt anzulegen. Dadurch werden Konflikte mit anderen Anwendungen in der Datenbank vermieden.
+                            </p>
+                            <img src="netbeans-orm.xml.png" class="active d-block" style="max-width: 100%; margin-bottom: 1em;" />
+                            <source-code language="xml">
+                                &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+                                &lt;entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                                                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+                                                 version="1.0"&gt;
+
+                                    &lt;persistence-unit-metadata&gt;
+                                        &lt;persistence-unit-defaults&gt;
+                                            &lt;!-- Dieser Wert muss für jede Anwendung ein anderer sein! --&gt;
+                                            &lt;schema&gt;GAESTEBUCH_MVC_BEISPIEL&lt;/schema&gt;
+                                        &lt;/persistence-unit-defaults&gt;
+                                    &lt;/persistence-unit-metadata&gt;
+
+                                &lt;/entity-mappings&gt;
+                            </source-code>
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
@@ -1874,21 +1942,16 @@
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                Wenn alles gute geht, sollte der Browser dann folgendes Bild anzeigen.
+                                Wenn alles gut geht, sollte der Browser dann folgendes Bild anzeigen.
                             </p>
                             <img class="active d-block w-100" src="mvc-beispiel-ergebnis.jpg" />
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                Das war's auch schon. <br />
-                                Zwar waren das jetzt schon einige Schritte. <br />
-                                Du musstest aber auch gleich fünf Dateien übernehmen. <br />
-                                &nbsp;&nbsp;
-                                1️⃣ &nbsp;&nbsp;
-                                2️⃣ &nbsp;&nbsp;
-                                3️⃣ &nbsp;&nbsp;
-                                4️⃣ &nbsp;&nbsp;
-                                5️⃣ &nbsp;&nbsp;
+                                Das war's auch schon.
+                                Zwar waren das jetzt schon einige Schritte.
+                                Dafür ist das Projekt von Anfang an sauber gegliedert.
+                                🧽🛀🧹✨
                             </p>
                             <img class="active d-block w-25 m-auto" src="../../finish.svg" />
                         </div>
@@ -1909,8 +1972,8 @@
                     Im Prinzip ist es ganz einfach. Du legst einfach ein neues Webprojekt an und kopierst die Quellcodes
                     aus der vorherigen Folie hinein. In Vorbereitung auf spätere Projekte nutzen wir hier allerdings
                     den Projekttyp <b>Web Application</b> aus der Kategorie <b>Maven</b>. Am Anfang macht das zwar noch
-                    keinen Unterschied. Später können wir dadurch aber ganz einfach die benötigten Zusatzbibliotheken
-                    in unsere Projekte einbinden, ohne sie manuell herunterladen zu müssen.
+                    keinen Unterschied. Später können wir dadurch aber ganz einfach weitere Bibliotheken in unsere Projekte
+                    einbinden, ohne sie manuell herunterladen zu müssen.
                 </p>
             </aside>
         </section>
@@ -1919,7 +1982,7 @@
             <h1>Aufgabe 2: Deine erste Enterprise Java Bean</h1>
             <article>
                 <p>
-                    Lege in Netbeans ein <a href="../http/#8" target="_blank">Maven Java-Webprojekt</a> an und probiere folgende Sachen aus:
+                    Lege in Netbeans ein <a href="#11">Maven Java-Webprojekt</a> an und probiere folgende Sachen aus:
                 </p>
 
                 <ol>
@@ -1931,6 +1994,9 @@
                     </li>
                     <li>
                         Lege die Klassen <tt>GuestbookEntry</tt>, <tt>GuestbookBean</tt> und <tt>GuestbookSerlvet</tt> wie gezeigt an.
+                    </li>
+                    <li>
+                        Lege die beiden Konfigurationsdateien <tt>persistence.xml</tt> und <tt>orm.xml</tt> wie gezeigt an.
                     </li>
                     <li>
                         Starte die Anwendung und schaue, ob alles fehlerfrei funktioniert.
@@ -2156,7 +2222,7 @@
             <aside>
                 <p>
                     Na zum Glück war vieles eine Wiederholung aus Webprogrammierung.
-                    Ein paar Sachen waren dann doch aber neu, so dass wir den neu
+                    Ein paar Sachen waren dann doch aber neu, so dass wir dein neu
                     erworbenes Wissen gleich mal testen wollen. 🥞
                 </p>
             </aside>
@@ -2301,8 +2367,8 @@
                     </li>
                 </ul>
                 <p>
-                    Anstelle von <code>@Stateless</code> verwendet man dan einfach eine der anderen
-                    Annotationen¹, zum Beispiel so:
+                    Anstelle von <code>@Stateless</code> verwendet man dann einfach eine der anderen
+                    Annotationen, zum Beispiel so:
                 </p>
                 <source-code language="java">
                     @Singleton
@@ -2336,7 +2402,7 @@
                 <p>
                     Hinzu kommt, dass sich ein Client niemals darauf verlassen kann, bei mehreren Methodenaufrufen immer dieselbe Objektinstanz
                     zugewiesen zu bekommen. Denn im Hintergrund erzeugt der Server gleich mehrere Objekte (einen sogenannten Pool) und
-                    weist dem Client bei jedem Aufruf eine Instanz zu, die zu diesem Zeitpunkt gerade nicht verwendet wird.¹ Man kann sich
+                    weist dem Client bei jedem Aufruf eine Instanz zu, die zu diesem Zeitpunkt gerade nicht verwendet wird. Man kann sich
                     in der Klasse also nicht mal eben einen Wert für später merken. Dies muss immer in der HTTP-Session des Servlets oder
                     in der Datenbank erfolgen.
                 </p>
@@ -2345,25 +2411,15 @@
                 <p>
                     Stateful Session Beans, man kann es sich schon denken, gehören immer genau einem Client. Hier erzeugt der Server für
                     jeden Client ein eigenes Objekt und stellt sicher, dass alle Methodenaufrufe immer von derselben Objektinstanz
-                    beantwortet werden. Sie belegen daher deutlich mehr Ressourcen auf dem Server und sollten daher nur verwendet werden,
+                    beantwortet werden. Sie belegen somit deutlich mehr Ressourcen auf dem Server und sollten nur verwendet werden,
                     wenn es wirklich zwingend erforderlich ist.
                 </p>
                 <p>
-                    Besonders trickreich könnte man jetzt auf die Idee kommen, trotzdem einfach alle EJBs als Stateful Session Beans zu
-                    kennzeichnen. 🦊 Doch genau das funktioniert bei Webanwendungen leider nicht wie erhofft und ist daher ein beliebter
-                    Anfängerfehler. 🦆 Denn aus Sicht der EJBs ist der Client nicht der Anwender vor dem Bildschirm sondern das Servlet,
-                    das die EJB verwendet. Und genau da liegt das Problem. Die meisten Server erzeugen genau eine Servletinstanz, die
-                    dann auch nur eine EJB-Instanz zugewiesen bekommt. Der einzig richtige Weg ist daher, die Bean in der Session
-                    abzulegen, wenn sie genau einem Anwender gehören soll.¹
-                </p>
-                <p>
-                    <small>
-                        ¹ Nein, <code>@SessionScoped</code> funktioniert hier leider auch nicht. Siehe die beiden Beispiele auf Moodle.
-                    </small>
-                </p>
-                <p>
-                    Willst du in einem Servlet wirklich eine Stateful Session Bean verwenden, um sie einem bestimmten Benutzer zuzuweisen,
-                    musst du das daher so anstellen:
+                    An dieser Stelle ist jedoch Vorsicht geboten! Bei Stateful Session Beans ist mit dem Client nicht zwingend der
+                    Anwender am Bildschirm gemeint. Gerade bei Webanwendungen handelt es sich beim Client in der Regel um ein Servlet,
+                    von dem es meistens nur eine Objektinstanz für alle User gibt. Böse Falle! 🦊 Will man daher eine Stateful Session
+                    Bean in einer Webanwendung nutzen, muss man sich die Bean-Instanz manuell besorgen und in der HTTP Session ablegen.
+                    Folgender Quellcode wird hierfür benötigt:
                 </p>
                 <source-code language="java">
                     @WebServlet
@@ -2402,25 +2458,22 @@
                 <h3>Message Driven Beans</h3>
                 <p>
                     Der Name verät schon, dass es sich hierbei nicht um Session Beans wie bei all den anderen handelt.
-                    Und das ist auch richtig so, denn im Gegensatz zu den anderen Beans kann man hier nicht einfach
-                    irgendwelche Business Methoden definieren und irgendwo innerhalb der Anwendung aufrufen. Stattdessen
-                    verbindet sich eine Message Driven Bean mit einem Message Broker (Vgl. <a href="#4">Folie 4</a>)
-                    und empfängt über ihn asynchrone Nachrichten. 📨 Dieses Programmiermodell schauen wir uns aber erst
-                    ganz am Ende der Vorlesung an. 🔭
+                    Und das ist auch richtig so, denn im Gegensatz zu den anderen Arten verbindet sich eine Message
+                    Driven Bean immer mit einem „Message Broker” (auch „Message Server”) genannt, um asynchrone
+                    Nachrichten über eine FIFO-Queue zu empfangen (vgl. <a href="#4">Folie 4</a>). 📨
+                    Dieses Programmiermodell schauen wir uns ggf. ein anderes mal an. 🔭
                 </p>
 
                 <h2>Und welche soll ich nehmen?</h2>
                 <p>
                     Das ist eigentlich ganz einfach. Eigentlich solltest du immer <b>Stateless Session Beans</b> nehmen,
                     es sei denn, du bist dir ganz sicher, einen anderen Typ zu benötigen. <b>Stateful Session Beans</b>
-                    solltest du hingegen möglichst vermeiden, da sie bei Webanwendungen nicht an die Benutzersession
-                    gebunden sind und sich daher komplett anders verhalten, als man es intuitiv erwarten würde. Sie ermöglichen
-                    es gerade nicht, benutzerabhängig Werte auf dem Server zwischenzuspeichern.
+                    solltest du hingegen nur verwenden, wenn du diesen Typ wirklich benötigst.
                 </p>
                 <p>
                     <b>Singleton Session Beans</b> können eine leichtgewichtige Alternative zu Stateless Session Beans
                     sein, wenn du dir absolut sicher bist, dass deine Klasse threadsicher ist. Doch vorzeitige Optimierung
-                    ist ja bekanntlich die Wurzel allen übels. Wenn es also keinen konkreten Grund gibt, solltest du
+                    ist ja bekanntlich die Wurzel allen Übels. Wenn es also keinen konkreten Grund gibt, solltest du
                     einfach bei Stateless Session Beans bleiben.
                 </p>
                 <p>
@@ -2489,7 +2542,7 @@
                 <p>
                     Auf <a href="#4">Folie 4</a> steht, dass Softwarekomponenten austauschbar sein sollten, so dass man
                     ohne großen Aufwand eine vorhandene Komponente später durch eine andere ersetzen kann. Beispielsweise
-                    könnte man eine Komponente zur Zahlungsabwicklung in ein paar Jahren durch eine verbesserte Version
+                    könnte man eine Komponente zur Zahlungsabwicklung irgendwann durch eine verbesserte Version
                     mit weiteren Zahlungsoptionen austauschen wollen. Doch wie soll das gehen, wenn unsere Enterprise
                     Java Beans ganz einfache Javaklassen sind, die weder von einer anderen Klasse erben noch irgendein
                     Interface implementieren? 🤔
@@ -2499,7 +2552,7 @@
                 </p>
                 <p>
                     <i>
-                        – Wirklich!? Aber man müsste doch alle Stellen anpassen, an denen eine EJB verwendet wird, um
+                        – Wirklich!? Aber dann man müsste ja alle Stellen anpassen, an denen eine EJB verwendet wird, um
                         sie auszutauschen …
                     </i>
                     <span style="font-weight: bold; color: crimson; text-shadow: 1px 1px 1px rgba(0,0,0,0.5);">❓❓❓</span>
@@ -2514,10 +2567,9 @@
                 </p>
                 <p>
                     Weil Java einen nicht zwingt, austauschbare Komponenten zu schreiben, wenn man sie nicht braucht.
-                    Unsere bisherigen EJBs besitzen kein sogenanntes <b>Business Interface</b> und sind somit nicht
-                    einfach austauschbar. Sie können auch nur innerhalb der eigenen Webanwendung verwendet und nicht
-                    über Rechnergrenzen hinweg aufgerufen werden. Das ist aber völlig okay, denn oftmals will man das
-                    auch gar nicht und dann schreibt man eben Beans ohne Interface. Auf fachchinesisch heißt das
+                    Unsere bisherigen EJBs besitzen kein sogenanntes <b>Business Interface</b> und sind somit weder
+                    entfernt aufrufbar noch einfach austauschbar. Das ist aber völlig okay, denn oftmals will man das
+                    auch gar nicht und dann schreibt man eben Beans ohne Interface. Auf fachchinesisch 🇨🇳 heißt das
                     <b>Local No-Interface View</b>.
                 </p>
             </aside>
@@ -2596,13 +2648,13 @@
                             aria-labelledby = "interfaces-local-tab"
                         >
                             <p>
-                                Ein Local Interface definiert Methoden, die innerhalb derselben JVM aufrufbar sind.
+                                Ein <b>Local Interface</b> definiert Methoden, die innerhalb derselben JVM aufrufbar sind.
                                 Der Aufrufer kann dabei auch Teil einer anderen Anwendung sein, solange sie im selben Server
                                 in derselben JVM läuft.
                             </p>
                             <source-code language="java">
                                 /**
-                                 * Deklaration der verfügbaren Business Methoden
+                                 * Deklaration der verfügbaren Business Methoden als Local Interface
                                  */
                                 @Local
                                 public interface Payment {
@@ -2640,12 +2692,12 @@
                             aria-labelledby = "interfaces-remote-tab"
                         >
                             <p>
-                                Ein Remote Interface definiert Methoden, die auch über JVM- und Rechnergrenzen hinweg aufrufbar sind.
+                                Ein <b>Remote Interface</b> definiert Methoden, die auch über JVM- und Rechnergrenzen hinweg aufrufbar sind.
                                 Dies wird heutzutage zugunsten von Webservices aber nur noch selten gemacht.
                             </p>
                             <source-code language="java">
                                 /**
-                                 * Deklaration der entfernt aufrufbaren Business Methoden
+                                 * Deklaration der entfernt aufrufbaren Business Methoden als Remote Interface
                                  */
                                 @Remote
                                 public interface MovieSearch {
@@ -2730,10 +2782,11 @@
                 <p>
                     Falls man dann doch einmal austauschbare Komponenten schreiben will, kann man die Methoden
                     der EJBs ganz einfach in einem <b>Business Interface</b> deklarieren und eine oder mehrere
-                    Enterprise Java Beans schreiben, die das Interface implementieren. Auf Seiten der Verwender
-                    muss man dann nur aufpassen, dass man sich schön auf das Interface und niemals auf einer der
-                    Klassen bezieht. Jedoch steht man noch vor der Wahl, ob man das Interface als Local oder
-                    Remote kennzeichnet (beides zusammen ist nicht erlaubt):
+                    Enterprise Java Beans schreiben, die das Interface implementieren. So wie man das in Java
+                    eben immer machen würde, wenn mehrere Klassen dieselbe Schnittstelle besitzen sollen. Auf
+                    Seiten der Verwender muss man dann nur aufpassen, sich schön immer nur auf das Interface
+                    und niemals auf direkt auf die Klassen zu beziehen. Jedoch steht man noch vor der Wahl,
+                    ob man das Interface als Local oder Remote kennzeichnet (beides zusammen ist nicht erlaubt):
                 </p>
                 <ul>
                     <li>
@@ -2784,7 +2837,7 @@
                 </source-code>
                 <p>
                     Hat man hingegen mehrere Klassen, die dasselbe Interface implementieren, muss man sie
-                    über einen zusätzlichen Namen außeinanderhalten. Der Name muss dabei innerhalb der
+                    über einen zusätzlichen Namen auseinanderhalten. Der Name muss dabei innerhalb der
                     gesamten Anwendung eindeutig sein und darf nur für eine EJB-Klasse verwendet werden.
                 </p>
                 <source-code language="java">
@@ -2938,7 +2991,7 @@
                     <iframe src="https://www.youtube-nocookie.com/embed/fHDNWf_ws38" allow="encrypted-media" allowfullscreen></iframe>
                 </div>
                 <p>
-                    Im Grunde genommen gibt es hier eigentlich gar nichts besonderes zu beachten. Man muss nur wissen, dass
+                    Im Grunde genommen gibt es hier eigentlich gar nichts Besonderes zu beachten. Man muss nur wissen, dass
                     dadurch natürlich nicht die Grundgesetze der Sprache Java aufgehoben werden. Das heißt, bevor im obigen
                     Beispiel die Dependency Injection laufen kann, muss natürlich erst mal von allen beteiligten Klassen ein
                     Objekt erzeugt werden. Dies hat zur Folge, dass die Variable zu dem Zeitpunkt, wenn der Konstruktor läuft,
@@ -3249,7 +3302,7 @@
             </article>
             <aside>
                 <p>
-                    Inzwischen solltest du dich schon ganz gut mit der Java Enterprise Edition auskennen.
+                    Inzwischen solltest du dich schon ganz gut mit der Jakarta Enterprise Edition auskennen.
                     Zur Kontrolle haben wir hier ein paar Fragen für dich. 👸🏻
                 </p>
                 <p style="font-size: 7em;">
@@ -3281,7 +3334,7 @@
                 <h4>Auswahl des richtigen Architekturansatzes</h4>
                 <ul>
                     <li>
-                        Mache dich mit dem Funktionsumfang von Java&nbsp;EE vertraut.
+                        Mache dich mit dem Funktionsumfang von Jakarta&nbsp;EE vertraut.
                     </li>
                     <li>
                         Schaue dich auch nach Alternativen für andere Programmiersprachen um.
@@ -3347,7 +3400,7 @@
                 <h4>Sonstige Tipps</h4>
                 <ul>
                     <li>
-                        Mache dich mit dem Benutzer- und Rollenkonzept von Java&nbsp;EE vertraut.
+                        Mache dich mit dem Benutzer- und Rollenkonzept von Jakarta&nbsp;EE vertraut.
                     </li>
                     <li>
                         Sichere deine Enterprise Java Beans durch Berechtigungsabfragen.
