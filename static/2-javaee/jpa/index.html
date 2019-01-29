@@ -12,10 +12,10 @@
         <header>
             <h2>Inhaltsverzeichnis</h2>
             <p>
-                Das klappt ja schon ganz gut mit Java&nbsp;EE und MVC, wir haben sogar schon
-                eigene Webseiten mit Datenbank im Hintergrund geschrieben. Die schönsten Sachen
-                haben wir aber noch gar nicht gesehen. Hier lernst du nun, deine eigenen
-                Persistence Entities  und Enterprise Java Beans zu schreiben. 🖋️
+                Das klappt ja schon ganz gut mit Jakarta&nbsp;EE und MVC. Wir haben sogar schon
+                eine kleine, datenbankbasierte Webanwendung geschrieben. Das Schönste steht uns
+                aber erst noch bevor. Denn hier lernst du nun, deine eigenen Persistence Entities
+                und dazu passende Enterprise Java Beans zu schreiben. 🖋️
             </p>
         </header>
 
@@ -36,7 +36,7 @@
                         erklären, was ein <span class="dhbw-lightblue font-weight-bold">O/R-Mapper</span> ist und welche Vor- und Nachteile er hat.
                     </li>
                     <li>
-                        alle Schritte zur Entwicklung einer neuen Java-EE-Anwendung beschreiben.
+                        alle Schritte zur Entwicklung einer neuen Jakarta-EE-Anwendung beschreiben.
                     </li>
                     <li>
                         die <span class="dhbw-lightblue font-weight-bold">Datenbankwerkzeuge von Netbeans</span> bedienen.
@@ -54,10 +54,10 @@
                         <span class="dhbw-lightblue font-weight-bold">Fremdschlüsselbeziehungen</span> zwischen zwei Entities sauber abbilden.
                     </li>
                     <li>
-                        beschreiben, was eine <span class="dhbw-lightblue font-weight-bold">Persistence Unit</span> ist und wofür wie sie benötigen.
+                        beschreiben, was eine <span class="dhbw-lightblue font-weight-bold">Persistence Unit</span> ist und wofür wir sie benötigen.
                     </li>
                     <li>
-                        den <span class="dhbw-lightblue font-weight-bold">Entity Manager</span> zum lesen, schreiben und löschen von Daten benutzen.
+                        den <span class="dhbw-lightblue font-weight-bold">Entity Manager</span> zum Lesen, Schreiben und Löschen von Daten benutzen.
                     </li>
                     <li>
                         komplexe <span class="dhbw-lightblue font-weight-bold">Datenabfragen mit JQL</span> fomulieren.
@@ -70,29 +70,28 @@
             </article>
             <aside>
                 <p>
-                    Die heutige Einheit steh ganz im Zeichen der Datenbank und beendet damit den Zyklus zur serverseitigen
-                    Webentwicklung. Denn nachdem du nun die Java Enterprise Edition kennengelernt hast, die serverseitige
+                    Die heutige Einheit steht ganz
+                    <a href="https://www.youtube.com/watch?v=bLRIwUoS690" target="_blank">im Zeichen des Drachen</a> 🐉
+                    bzw. der Datenbank. Denn nachdem du nun die Jakarta Enterprise Edition kennengelernt hast, die serverseitige
                     Erzeugung von HTML-Code mit Servlets und JSP verstehst, eigene Enterprise Java Beans programmieren und
-                    das alles zu einer übersichtlichen MVC-Architektur verknüpfen kannst, fehlt dir nur noch eins: Das
-                    Datenmodell deiner Anwendung auf Basis einer relationalen Datenbank. 🛢
+                    das alles zu einer übersichtlichen MVC-Architektur verknüpfen kannst, fehlt dir nur noch eins: <b>Das
+                    Datenmodell deiner Anwendung.</b> 🛢
                 </p>
                 <p>
-                    Die Programmierung ist dabei gar nicht mal so schwer, ja eigentlich sogar ziemlich einfach 👍🏻, so dass
-                    die Java Enterprise Edition ihrem Namen hier alle Ehre macht. Sind die Daten eines Unternehmens doch sein
-                    Ein und Alles und liegt auch so einfach viel zu vielen Webanwendungen einer Datenbank zugrunde. Am Anfang
-                    werden wir uns daher ein wenig mit den Konzepten beschäftigen, welche Möglichkeiten Java&nbsp;EE uns bietet
-                    (Stichwort „O/R-Mapping”) und wie Netbeans uns dabei unterstützt. Danach tauchen wir dann auch schon direkt
-                    in den Quellcode ein und definieren unsere eigenen Persistence Entities. Zunächst nur ganz einfache mit
-                    einer fortlaufenden ID als Schlüsselwert und ein paar einfachen Feldern und gleich danach komplexere Entities
-                    mit zusammengesetzten Schlüsseln und Fremdschlüsselbeziehungen.
+                    Die Programmierung ist dabei gar nicht mal so schwer, ja eigentlich sogar ziemlich einfach 🎂. Um zu verstehen,
+                    was dabei im Hintergrund passiert, werden wir uns am Anfang zunächst ein wenig mit dem zugrunde liegenden Konzept
+                    (dem <b>„O/R-Mapping”</b>) beschäftigen. Dadurch lernen wir, wie Jakarta und andere Frameworks ganz normale Objektinstanzen
+                    einer Programmiersprache in die Datensätze einer relationalen Datenbank verwandelt. Das schauen wir uns dann
+                    auch gleich von der praktischen Seite an, indem wir uns erst mit den <b>Datenbankwerkzeugen von Netbeans</b> und
+                    direkt danach mit der <b>Entwicklung eigener Persistence Entities</b> beschäftigen.
                 </p>
                 <p>
-                    Danach wenden wir uns dann die Verwendung der Persistence Entities zu und lernen, was der Entity Manager
-                    ist, wie wir an ihn herankommen und welche Methoden er zum lesen, schreiben und löschen von Daten bietet.
-                    Dabei schauen wir uns dann auch die Java Persistence Query Language an, mit der wir komplexe Suchanfragen in
-                    einer SQL-ähnlichen Sprache an jede beliebige Datenbank schicken können. Das alles mündet dann in einer Empfehlung
-                    zur Implementierung von Java Enterprise Beans, so dass du deinen Clients eine konsistente und dennoch
-                    leistungsfähige Schnittstelle zur Nutzung des Datenmodells anbieten kannst.
+                    Danach wenden wir uns dann der Verwendung der Persistence Entities zu und lernen, was der <b>Entity Manager</b>
+                    ist, wie wir an ihn herankommen und welche Methoden er zum <b>Lesen, Schreiben und Löschen von Daten</b> bietet.
+                    Dabei schauen wir uns dann auch die <b>Java Persistence Query Language</b> an, mit der wir komplexe Suchanfragen in
+                    einer herstellerneutralen, SQL-ähnlichen Sprache an die Datenbank schicken können. Beenden werden wir das
+                    Kapitel dann mit einer Empfehlung, wie du ganz einfach sinnvolle <b>Enterprise Java Beans</b> um deine Persistence
+                    Entities bauen kannst.
                 </p>
                 <p>
                     Das ist unser Fahrplan 🚂🚞🚞🚞 für heute und wir wünschen dir jetzt schon viel Spaß!
@@ -135,14 +134,14 @@
                             🛢️
                         </td>
                         <td>
-                            <b>JPA:</b> Auf JDBC aufbauende API für O/R-Mapper, die Javaobjekte in Tabelleneinträge und umgekehrt umwandeln
+                            <b>JPA:</b> Auf JDBC aufbauende API für O/R-Mapper, die Javaobjekte in Tabelleneinträge und umgekehrt verwandeln
                         </td>
                     </tr>
                 </table>
             </article>
             <aside>
                 <p>
-                    Die Java Enterprise Edition kennt zwei Klassenbibliotheken für den Datenbankzugriff: JDBC und JPA. JDBC steht dabei
+                    Die Jakarta Enterprise Edition kennt zwei Klassenbibliotheken für den Datenbankzugriff: JDBC und JPA. JDBC steht dabei
                     für <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/" target="_blank">Java Database Connection</a>
                     und ist eine allgemeine API, mit der SQL-Befehle an eine Datenbank gesendet werden können. Es handelt sich dabei um die
                     zugrunde liegende Schnittstelle, die immer genutzt wird, wenn auf eine Datenbank zugegriffen wird. Jedoch ist die
@@ -198,9 +197,8 @@
                 </p>
                 <p>
                     Viel angenehmer ist da JPA, was für <b>Java Persistence API</b> steht. Dabei handelt es sich um eine
-                    Klassenbibliothek, die zur Nutzung eines sogenannten O/R-Mappers dient, der zwischen den relationalen
-                    Welt der Datenbank und der objektorientierten Welt von Java vermittelt. Dadurch wird es möglich,
-                    Code wie folgenden zu schreiben:
+                    eigene Klassenbibliothek zur Nutzung eines O/R-Mappers, der zwischen der relationalen Welt der Datenbank
+                    und der objektorientierten Welt von Java vermittelt. Dadurch wird es möglich, Code wie folgenden zu schreiben:
                 </p>
                 <source-code language="java">
                     @Statelss
@@ -208,10 +206,12 @@
                         @PersistenceContext
                         EntityManager em;
 
+                        /* Suche Buch anhand seiner ISBN */
                         public Buch findBuchByIsbn(String isbn) {
                             return em.find(Buch.class, isbn);
                         }
 
+                        /* Speichere neues Buch in der Datenbank */
                         public void saveNewBuch(Buch buch) {
                             em.persist(buch);
                         }
@@ -222,11 +222,11 @@
                 <p>
                     Hm, das sieht schon viel besser aus. Fast zu einfach. 😌 Doch ja, es ist wirklich so. Die Grundidee
                     ist schlicht, dass es zu jeder Tabelle eine Javaklasse gibt, deren Objekte den Zeilen der Tabelle
-                    entsprechen. Wollen wir eine Zeile auslesen, erzeugt der O/R-Mapper automatisch ein solches Objekt
+                    entsprechen. Wollen wir eine Zeile auslesen, erzeugt der O/R-Mapper automatisch ein passendes Objekt
                     und übergibt ihm die Werte aus der Datenbank. Soll stattdessen ein neuer Datensatz geschrieben werden,
-                    erzeugen wir das Objekt einfach selbst und übergeben es dem O/R-Mapper. Die ganzen hässlichen Einzelheiten,
-                    wie wir sie oben gesehen haben, brauchen wir dabei nicht beachten. Das macht der O/R-Mapper für uns.
-                    Wir müssen lediglich eine Bean² mit den richtigen Feldern bereitstellen:
+                    erzeugen wir das Objekt einfach selbst und übergeben es dem O/R-Mapper. Den Rest macht dann der O/R-Mapper
+                    für uns, ohne dass wir auch nur eine Zeile SQL-Code schreiben müssen. Wir müssen lediglich das
+                    Datenmodell sauber modellieren und hierfür ganz gewöhnliche Beanklassen² ausprogrammieren.
                 </p>
                 <p>
                     <small>
@@ -316,8 +316,8 @@
                             aria-labelledby = "vorgehen-uebersicht-tab"
                         >
                             <p>
-                                Die untenstehende Zeichnung zeigt die wesentlichen Schritte, die bei der Entwicklung einer Java-EE-Anwendung anfallen.
-                                Die wichtigsten davon schauen wir uns anhand eines kleinen Fallbeispiels auf den folgenden Reitern etwas genauer an.
+                                Die untenstehende Zeichnung zeigt die wesentlichen Schritte, die bei der Entwicklung einer Jakarta-EE-Anwendung anfallen.
+                                Die wichtigsten davon schauen wir uns anhand eines kleinen Fallbeispiels etwas genauer an.
                             </p>
                             <img src="vorgehen-uebersicht.svg" alt="Schritte während der Entwicklung" class="d-block" style="width: 100%;" />
                         </div>
@@ -429,7 +429,7 @@
                         >
                             <p>
                                 Darauf aufbauend können wir nun Services definieren, die sinnvolle Funktionen rund um die Entitäten zur Verfügung stellen.
-                                Im einfachsten Fall bieten wir hierfür die üblichen CRUD-Operationen: <span class="dhbw-lightblue">Create</span>,
+                                Im einfachsten Fall bieten wir die üblichen CRUD-Operationen: <span class="dhbw-lightblue">Create</span>,
                                 <span class="dhbw-lightblue">Read</span>, <span class="dhbw-lightblue">Update</span> und <span class="dhbw-lightblue">Delete</span>.
                             </p>
 
@@ -526,7 +526,7 @@
             <aside>
                 <p>
                     Ordnung ist das halbe Leben. Was im Alltag gilt, gilt natürlich auch bei der Entwicklung großer Anwendungen,
-                    wie sie bei Java&nbsp;EE häufig vorkommen. Bevor du also einfach so drauf los programmierst, solltest du eine
+                    wie sie bei Jakarta&nbsp;EE häufig vorkommen. Bevor du also einfach so drauf los programmierst, solltest du eine
                     möglichst genaue Vorstellung davon haben, was für eine Anwendung du schreiben willst, wie der Quellcode aufgebaut
                     sein muss und wie du hierfür am besten vorgehst. Kurz um: Du brauchst einen Plan, damit du dich nicht in eine Ecke
                     programmierst, aus der du nur schwer wieder herauskommst: 🙃
@@ -542,10 +542,9 @@
                     </small>
                 </p>
                 <p>
-                    Das Gute daran ist, dass das gar nicht so schwer ist, wie du jetzt vielleicht denken magst. Denn immerhin gibt es
-                    die Java Enterprise Edition nun schon so lange, dass reichlich viel Erfahrung in ihre Entwicklung geflossen ist.
-                    Ein klein wenig strukturiertes Vorgehen gepaart mit ein paar einfachen Regeln und hier und da bewährten Techniken
-                    aus dem Software-Engingeering-Fundus und schon ergibt der Rest fast von alleine. 🦋
+                    Das Gute daran ist, dass das gar nicht so schwer ist. Denn immerhin gibt es die Jakarta Enterprise Edition nun schon
+                    so lange, dass reichlich viel Erfahrung in ihre Entwicklung geflossen ist. Ein klein wenig strukturiertes Vorgehen
+                    gepaart mit einfachen Regeln aus dem Software-Engingeering-Fundus und schon ergibt sich der Rest fast von alleine. 🦋
                 </p>
                 <p>
                     Anfangen solltest du daher immer mit dem Datenmodell, denn es ist das Fundament, auf dem alles andere aufbaut. Bevor
@@ -568,7 +567,7 @@
                     wobei du dir aussuchen kannst, ob du erst die Klassen schreibst und daraus dann Tabellen generieren lässt, oder
                     ob du erst die Tabellen anlegst und daraus dann die Klassen generierst. Alternativ kannst du natürlich auch sowohl
                     die Klassen als auch die Tabellen manuell anlegen, je nachdem, was dir lieber ist. In der Vorlesung machen wir es
-                    uns jedoch einfach und schreiben nur die Klassen. Den Rest darf Java&nbsp;EE alleine machen. 😋 Wie die Klassen
+                    uns jedoch einfach und schreiben nur die Klassen. Den Rest darf Jakarta&nbsp;EE alleine machen. 😋 Wie die Klassen
                     hierfür aussehen müssen, schauen wir uns gleich genauer an. Für den Anfang reicht es aber zu wissen, dass es sich
                     um ganz normale Javaklassen handelt, von denen je ein Objekt einer Tabellenzeile entspricht. Die Klassen müssen
                     hierfür lediglich mit <code>@Entity</code> gekennzeichnet werden und für jedes Tabellenfeld ein Attribut mit
@@ -637,7 +636,7 @@
                     }
                 </source-code>
                 <p>
-                    Fehlt dann nur noch die Benutzeroberfläche, wobei dir hier das volle Programm zur Verfügung steht: Serverseitige
+                    Fehlt dann nur noch die Benutzeroberfläche, für die dir das volle Programm zur Verfügung steht: Serverseitige
                     Webanwendungen, clientseitige Webanwendungen oder Native Clients für verschiedene Betriebssysteme. Alles ist erlaubt.
                 </p>
             </aside>
@@ -649,15 +648,14 @@
                 <p>
                     In der Vorlesung nutzen wir <a href="https://db.apache.org/derby/" target="_blank">Apache Derby</a>,
                     da diese Datenbank ohne Installation auskommt und Netbeans von Haus aus darauf zugreifen kann.
-                    Natürlich könnten wir auch fast jede andere Datenbank nutzen. Aber Derby funktioniert schon ganz prima.
+                    Natürlich könnten wir auch jede andere Datenbank nutzen. Aber Derby funktioniert schon ganz prima.
                 </p>
                 <img src="netbeans-derby.png" alt="Netbeans mit gestarteter Derby-Datenbank" class="d-block" style="width: 100%;" />
             </article>
             <aside>
                 <p>
                     Tja, das ist eine gute Frage. Dank der weiten Verbreitung von Java und JDBC können wir eigentlich jede beliebige
-                    Datenbank verwenden. Jede Datenbank, die etwas auf sich hält, kommt auch mit einem JDBC-Treiber, auf den der
-                    Applikationsserver zugreifen kann.
+                    Datenbank verwenden. Jede Datenbank, die etwas auf sich hält, kommt auch mit einem JDBC-Treiber für Java.
                 </p>
                 <p>
                     Für den Produktiveinsatz unserer Anwendungen ist das wichtig zu wissen. Für die Entwicklung ist es uns jedoch
@@ -702,7 +700,7 @@
                 </ul>
                 <div id="netbeans-dbtools-carousel" class="carousel slide" style="margin-bottom: 1em;" data-interval="false">
                     <div class="carousel-inner">
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item img-thumbnail active">
                             <p>
                                 Links findest du den Reiter <i>Services</i> mit dem Menüpunkt <i>Databases</i>. Dort sollte die Datenbank bereits
                                 eingetragen sein, so dass du dich nur noch mit Rechtsklick und <i>Connect…</i> verbinden musst. Benutzername und
@@ -721,7 +719,7 @@
                             <p>
                                 Daraufhin öffnet sich folgendes Fenster. Übernimm die Werte aus dem Screenshot und teste die Verbindung mit
                                 <i>Test Connection</i>. Wenn alles in Ordnung ist, klicke auf <i>Finish</i>. Benutzername und Passwort lauten
-                                weiterhin jeweils <b>app</b>.
+                                jeweils <b>app</b>.
                             </p>
                             <img class="active d-block w-100" src="netbeans-dbtools-04.png" />
                         </div>
@@ -729,7 +727,7 @@
                             <p>
                                 Sobald die Verbindung hergestellt ist, werden links die vorhandenen Datenbankschemas mit ihren Tabellen
                                 angezeigt. Standardmäßig befinden sich alle Tabellen im Schema <i>APP</i>. In der Vorlesung werden wir
-                                allerdings für jede Aufgabe ein eigenes Schema anlegen.
+                                allerdings für jede Anwendung ein eigenes Schema anlegen, um Konflikte zu vermeiden. 🌩️
                             </p>
                             <img class="active d-block w-100" src="netbeans-dbtools-05.png" />
                         </div>
@@ -747,13 +745,13 @@
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                Mit einem Rechtsklick auf eine Tabelle lassen sich nachträglich weitere Felder anhängen.
+                                Mit einem Rechtsklick auf eine Tabelle lassen sich nachträglich noch weitere Felder anhängen.
                             </p>
                             <img class="active d-block w-100" src="netbeans-dbtools-08.png" />
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                So sieht dann das Fenster zum Anhängen eines weiteren Felds aus.
+                                So sieht dann das Fenster zum Anhängen eines weiteren Feldes aus.
                             </p>
                             <img class="active d-block w-100" src="netbeans-dbtools-09.png" />
                         </div>
@@ -814,16 +812,16 @@
                 </p>
                 <ul>
                     <li>
-                        eine manuelle Verbindung zur Datenbank herstellen kannst.
+                        eine manuelle Verbindung zur Datenbank herstellen kannst,
                     </li>
                     <li>
-                        Tabellen von Hand anlegen und bearbeiten kannst.
+                        Tabellen von Hand anlegen und bearbeiten kannst,
                     </li>
                     <li>
-                        Tabellen wieder löschen kannst.
+                        Tabellen wieder löschen kannst,
                     </li>
                     <li>
-                        die Inhalte einer Tabelle anzeigen kannst.
+                        die Inhalte einer Tabelle anzeigen kannst,
                     </li>
                     <li>
                         sowie Tabellenzeilen einfügen, bearbeiten und löschen kannst.
@@ -843,7 +841,7 @@
                 <h2>Aufgabe 1.1: Datenbankzugriffe mit Java</h2>
 
                 <p>
-                    a) Welche beiden Datenbank-APIs kennt die Java Enterprise Edition?
+                    a) Welche beiden Datenbank-APIs kennt die Jakarta Enterprise Edition?
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
@@ -868,7 +866,7 @@
                         Sie legen passende Tabellen für die Persistence Entities an.
                     </li>
                     <li>
-                        Sie dienen als Low-Level API dazu, SQL-Befehle an die Datenbank zu schicken.
+                        Sie dienen als Low-Level API, um SQL-Befehle an die Datenbank zu schicken.
                     </li>
                     <li>
                         Sie sprechen einen O/R-Mapper an, der Tabelleneinträge in Javaobjekte umwandeln kann.
@@ -886,7 +884,7 @@
                         Sie legt passende Tabellen für die Persistence Entities an.
                     </li>
                     <li>
-                        Sie dient als Low-Level API dazu, SQL-Befehle an die Datenbank zu schicken.
+                        Sie dient als Low-Level API, um SQL-Befehle an die Datenbank zu schicken.
                     </li>
                     <li>
                         Sie spricht einen O/R-Mapper an, der Tabelleneinträge in Javaobjekte umwandeln kann.
@@ -938,7 +936,7 @@
                 </ol>
 
                 <p>
-                    c) Welche Methoden sollten die Enterprise Java Beans in aller Regel beinhalten?
+                    c) Welche Methoden sollten Enterprise Java Beans in aller Regel beinhalten?
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
@@ -973,37 +971,7 @@
                 </ol>
 
                 <p>
-                    b) Welche Datenbank liefert Netbeans praktischerweise schon mit aus?
-                </p>
-                <ol class="dhbw-liste-mit-viel-text">
-                    <li>
-                        Apache Derby
-                    </li>
-                    <li>
-                        MariaDB
-                    </li>
-                    <li>
-                        Microsoft SQL Server
-                    </li>
-                    <li>
-                        Oracle Express Edition
-                    </li>
-                    <li>
-                        Oracle mySQL
-                    </li>
-                    <li>
-                        PostgreSQL
-                    </li>
-                    <li>
-                        SQLite
-                    </li>
-                    <li>
-                        Keine
-                    </li>
-                </ol>
-
-                <p>
-                    c) Welche der folgenden Datenbankoperationen können mit Netbeans ausgeführt werden?
+                    b) Welche der folgenden Datenbankoperationen können mit Netbeans ausgeführt werden?
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
@@ -1039,13 +1007,13 @@
                         <b>Lösung:</b> <br />
                         Aufgabe 1.1: 4, 2, 3 <br />
                         Aufgabe 1.2: 3 → 4 → 6 → 5 → 1 → 7 → 2, 2, 3 <br />
-                        Aufgabe 1.3: 3, 1, alle
+                        Aufgabe 1.3: 3, alle
                     </small>
                 </p>
             </article>
             <aside>
                 <p>
-                    So, das erste wäre geschafft. 👏🏼 Zeit für eine kurze Pause und ein kleines Quiz. 🍨
+                    So, der Anfang wäre geschafft. 👏🏼 Zeit für eine kurze Pause und ein kleines Quiz. 🍨
                     Danach schauen wir uns die Programmierung an.
                 </p>
             </aside>
@@ -1382,9 +1350,9 @@
                     handelt und dass der Wert beim Speichern automatisch vergeben wird, wenn er leer ist.
                 </p>
                 <p>
-                    Hinzu kommen dann einfach noch ein paar weitere Nichtschlüsselfelder (die immer <code>private</code> oder
-                    <code>protected</code> sein sollten) samt Settern und Gettern sowie mindestens ein öffentlicher, parameterloser
-                    Konstruktor und fertig ist unsere Klasse. Also eigentlich ganz einfach, wie du auf der Folie siehst. 😎
+                    Hinzu kommen dann noch ein paar Nichtschlüsselfelder (die immer <code>private</code> oder <code>protected</code>
+                    sein sollten) samt Settern und Gettern sowie mindestens ein öffentlicher, parameterloser Konstruktor und fertig
+                    ist unsere Klasse. Also eigentlich ganz einfach, wie du auf der Folie siehst. 😎
                 </p>
             </aside>
         </section>
@@ -1426,11 +1394,12 @@
                             🐪
                         </td>
                         <td>
-                            Die Klasse muss mit <code>@IdClass</code> der Entity zugeordnet werden.
+                            Die Klasse muss mit <code>@IdClass</code> einer Persistence Entity zugeordnet werden.
                         </td>
                     </tr>
                 </table>
                 <source-code language="java">
+                    /* Schlüsselwerte für ein Buch */
                     public class BuchId {
                         private String isbn = "";
                         private int auflage = 0;
@@ -1439,16 +1408,18 @@
                         // Setter und Getter …
                     }
 
+                    /* Die eigentliche Persistence Entity */
                     @Entity
                     @IdClass(BuchId.class)
                     public class Buch {
+                        // Hier wiederholen sich die Schlüsselwerte!
                         @Id
                         private String isbn = "";
 
                         @Id
                         private int auflage = 0;
 
-                        // Der ganze Rest …
+                        // Und hier kommt der ganze Rest …
                     }
                 </source-code>
             </article>
@@ -1470,15 +1441,15 @@
                 <p>
                     Häufiger als man denkt, reicht das auch völlig aus. Manchmal kommt man aber um einen zusammengesetzten
                     Schlüssel mit mehreren Feldern nicht herum. Im Prinzip muss man dafür einfach nur mehrere Felder mit
-                    <code>@Id</code> auszeichnen, zusätzlich braucht man aber noch eine weitere Klasse, die nur den Schlüssel 🗝️
+                    <code>@Id</code> auszeichnen. Zusätzlich braucht man aber noch eine weitere Klasse, die nur den Schlüssel 🗝️
                     definiert.
                 </p>
                 <p>
                     Im Beispiel auf der Folie sieht man schön, wie die Klasse <code>BuchId</code> die beiden Felder <code>isbn</code>
                     und <code>auflage</code> definiert. Es handelt sich um die beiden Schlüsselfelder, mit denen eine ganz bestimmte
                     Auflage eines Buchs identifiziert wird. Vor der Klasse <code>Buch</code> steht daher die Annotation
-                    <src-code language="java">@IdClass(BuchId.class)</src-code>, um zu definieren, dass die Klasse <code>BuchId</code>
-                    die Schlüsselfelder vorschreibt. Zusätzlich befinden sich innerhalb von <code>Buch</code> ebenfalls die beiden Werte
+                    <src-code language="java">@IdClass(BuchId.class)</src-code>, um festzulegen, dass die Klasse <code>BuchId</code>
+                    diese beiden Schlüsselfelder vorschreibt. Zusätzlich befinden sich innerhalb von <code>Buch</code> ebenfalls die beiden Werte
                     <code>isbn</code> und <code>auflage</code>, jeweils mit <code>@Id</code> ausgestattet, damit sie auch tatsächlich in
                     der Datenbank gespeichert werden.
                 </p>
@@ -1585,14 +1556,15 @@
             </article>
             <aside>
                 <p>
-                    In vielen Fällen kann Java aus dem Namen einer Klasse und ihrer Felder sowie den dazugehörigen Datentypen genug
+                    In vielen Fällen kann Jakarta aus dem Namen einer Klasse, ihren Feldern sowie den dazugehörigen Datentypen genug
                     herauslesen, um sinnvolle Tabellen in der Datenbank anzulegen. Lässt man die Tabellen jedoch nicht automatisch
-                    anlegen, sondern schreibt Entities zu bereits vorhandenen Tabellen, muss man Java hier und da ein wenig auf die
-                    Sprünge helfen, 🏇 damit beides auch wirklich zusammen passt. Dasselbe gilt auch, wenn man Sachen definieren
-                    will, die sich aus dem Javacode alleine nicht ableiten lassen, beispielsweise die maximale Länge eines Stringfelds. 📏
+                    anlegen, sondern schreibt Persistence Entities zu bereits vorhandenen Tabellen, muss man Jakarta hier und da ein
+                    wenig auf die Sprünge helfen, 🏇 damit beides auch wirklich zusammen passt. Dasselbe gilt auch, wenn man Sachen
+                    definieren will, die sich aus dem Javacode alleine nicht ableiten lassen, beispielsweise die maximale Länge eines
+                    Strings. 📏
                 </p>
                 <p>
-                    Der allgemeinen Logik von Java&nbsp;EE folgenden müssen hierfür nur ein paar mehr Annotationen in die Klassen
+                    Der allgemeinen Logik von Jakarta&nbsp;EE folgendend müssen hierfür nur weitere Annotationen in die Klassen
                     eingebaut werden. Ein etwas größeres Beispiel könnte daher wie auf der Folie dargestellt aussehen. Die Annotationen
                     haben dabei folgende Bedeutung:
                 </p>
@@ -1609,8 +1581,7 @@
                                 <b>name:</b> Name der Tabelle
                             </li>
                             <li>
-                                <b>schema:</b> Datenbankschema, in dem die Tabelle angelegt wird (wenn die Datenbank mehrere Schemas
-                                besitzt und nicht das Standardschema verwendet werden soll)
+                                <b>schema:</b> Datenbankschema, in dem die Tabelle angelegt wird (falls abweichend vom Standardschema)
                             </li>
                             <li>
                                 <b>indexes:</b> Mit <code>@Index</code> definierte Indizes zur Beschleunigung häufiger Lesezugriffe
@@ -1633,11 +1604,11 @@
                     </dt>
                     <dd>
                         <p>
-                            Steht vor einem einzelnen Feld und definiert weitere Eigenschaften des Felds.
+                            Steht vor einem einzelnen Feld und definiert weitere Eigenschaften des Feldes.
                         </p>
                         <ul>
                             <li>
-                                <b>name:</b> Name des Felds
+                                <b>name:</b> Name des Feldes
                             </li>
                             <li>
                                 <b>length:</b> Maximale Feldlänge
@@ -1649,7 +1620,7 @@
                                 <b>scale:</b> Anzahl der Nachkommastellen bei nummerischen Feldern
                             </li>
                             <li>
-                                <b>nullable:</b> Boolean, ob das Feld Null-Werte beinhalten darf
+                                <b>nullable:</b> Boolean, ob das Feld <src-code>null</src-code>-Werte beinhalten darf
                             </li>
                             <li>
                                 <b>insertable:</b> Boolean, ob das Feld beim Einfügen neuer Sätze berücksichtigt wird
@@ -2083,8 +2054,8 @@
                 <p>
                     Fremdschlüsselbeziehungen gehören zu den großen Stärken relationaler Datenbanken und natürlich kann auch
                     die Java Persistence API damit umgehen. Doch im Gegensatz zu den Datenbanken legt JPA hier noch eine Schippe
-                    an Komfort drauf und bildet die Beziehungen zwischen zwei Entities nicht einfach durch Übernehmen der
-                    Schlüsselwerte der einen Entity in die andere Entity ab. Kurz, so läuft es nicht: 🙃
+                    an Komfort drauf und bildet die Beziehungen zwischen zwei Entities nicht einfach durch Kopieren der
+                    Schlüsselwerte ab. Kurz, so läuft es nicht: 🙃
                 </p>
                 <source-code language="java">
                     @Entity
@@ -2125,9 +2096,8 @@
                 <p>
                     Das ist wirklich elegant! 👒 Wir brauchen nämlich nur ein Objekt vom Typ <code>Buch</code> aus der Datenbank zu lesen
                     und bekommen alle Daten zum <code>Verlag</code> kostenlos mit dazu, ohne eine zweite Datenbankabfrage absetzen
-                    zu müssen. Das macht der O/R-Mapper bereits im Hintergrund, ohne dass wir uns darum kümmern müssen. Allerdings sollten
-                    wir ihm deshalb auch sagen, wenn er die Daten vorerst nicht zu laden braucht, da sie ohnehin nicht immer benötigt
-                    werden:
+                    zu müssen. Das erledigt der O/R-Mapper gleich automatisch mit, ohne dass wir uns darum kümmern müssen. Allerdings
+                    sollten wir ihm deshalb auch sagen, in welchen Fällen sich das nicht lohnt, weil die Daten nur selten benötigt werden:
                 </p>
                 <source-code language="java">
                     @Entity
@@ -2135,7 +2105,7 @@
                         @Id
                         private String isbn = "";
 
-                        // Richtiger Fremdschlüssel
+                        // Bloß nicht zu viel machen
                         @ManyToOne(fetchType=FetchType.LAZY)
                         private Verlag verlag = null;
                         …
@@ -2147,8 +2117,8 @@
                 </p>
                 <p>
                     Des Weiteren können wir in Java auch sogenannte <b>bidirektionale Beziehungen</b> herstellen, was es so in der
-                    Datenbankwelt nicht gibt. Damit ist gemeint, dass nicht nur die Entität A auf B verweisen sondern auch B zurück
-                    auf A verweisen kann. Ohne dass dieser zusätzliche Verweis in der Datenbank abgelegt wird. Möglich macht das das
+                    Datenbankwelt nicht gibt. Damit ist gemeint, dass nicht nur die Entität A auf B sondern auch B zurück auf A
+                    verweisen kann – ohne dass dieser zusätzliche Verweis in der Datenbank abgelegt wird. Möglich macht das das
                     Attribut <code>mappedBy</code> der verwendeten Annotationen, das immer den Feldnamen innerhalb der Quellentität
                     enthält.
                 </p>
@@ -2156,6 +2126,7 @@
                     @Entity
                     public class Buch {
                         …
+                        // Vorwärtsgerichteter Fremdschlüssel
                         @ManyToOne
                         Verlag verlag = null;
                     }
@@ -2163,6 +2134,7 @@
                     @Entity
                     public class Verlag {
                         …
+                        // Rückwärtsgerichteter Fremdschlüssel
                         @OneToMany(mappedBy="verlag")
                         List&lt;Buch&gt; buecher = new ArrayList&lt;&gt;();
                     }
@@ -2480,7 +2452,7 @@
                 <p>
                     Nach so vielen neuen Informationen wollen wir unser neu erworbenes Wissen doch gleich mal anwenden.
                     Auf dieser Folie siehst du daher ein größeres Beispiel über ein
-                    <a href="http://www.schauburg.de/">nicht ganz unbekanntes Kino hier in Karlsruhe</a>. 📽️
+                    <a href="http://www.schauburg.de/" target="_blank">nicht ganz unbekanntes Kino hier in Karlsruhe</a>. 📽️
                     Denn Bücher 📚 haben wir jetzt wahrlich genug gesehen. 😛
                 </p>
                 <img src="schauburg.jpg" alt="" class="d-block img-thumbnail" style="width: 100%;" />
@@ -2651,7 +2623,7 @@
                 </ol>
 
                 <p>
-                    e) Wie kann der Name einer Tabelle oder eines Felds in der Datenbank überschrieben werden?
+                    e) Wie kann der Name einer Tabelle oder eines Feldes in der Datenbank überschrieben werden?
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
@@ -2731,7 +2703,7 @@
                         Beziehungen in beide Richtungen zwischen zwei Entitäten
                     </li>
                     <li>
-                        Beziehungen mit mehr als einer Startidentität
+                        Beziehungen mit mehr als einer Startentität
                     </li>
                 </ol>
 
@@ -2845,23 +2817,71 @@
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                Im darauf folgenden Fenster musst du die folgenden Werte übernehmen, damit hinterher alles
-                                so läuft, wie es soll. 🚶🏿
+                                Die Werte im darauf folgenden Fenster kannst du allerdings ignorieren.
+                                Für den TomEE-Server benötigen wir eine spezielle Konfiguration, die
+                                wir einfach im XML-Quellcode hinterlegen werden.
                             </p>
                             <img class="active d-block w-100" src="persistence-unit-04.png" />
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
                                 Im Menü links taucht nun die Datei <tt>persistence.xml</tt> auf. Netbeans bietet hierfür
-                                auch gleich einen praktischen Editor.
+                                auch gleich einen praktischen Editor, der uns an dieser Stelle aber leider auch nicht
+                                weiterhilft. 🙅‍♀️
                             </p>
                             <img class="active d-block w-100" src="persistence-unit-05.png" />
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                So sieht der XML-Code der Datei aus. Der grafische Editor ist aber einfacher zu bedienen.
+                                Das ist die Ansicht, die wir haben wollen. So sieht der XML-Quellcode der Datei aus.
                             </p>
                             <img class="active d-block w-100" src="persistence-unit-06.png" />
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Ersetze den Quellcode durch folgenden Inhalt. Er legt fest, welchen O/R-Mapper
+                                unser Projekt benutzt und welche vom Applikationsserver bereitgestellte Datenbankverbindung
+                                hierfür verwendet wird. Diese Version ist für den in der Vorlesung verwendeten TomEE-Server. 🐈
+                            </p>
+                            <source-code language="xml">
+                                &lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+                                &lt;persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.1" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"&gt;
+                                    &lt;persistence-unit name="default" transaction-type="JTA"&gt;
+                                        &lt;provider&gt;org.apache.openjpa.persistence.PersistenceProviderImpl&lt;/provider&gt;
+                                        &lt;jta-data-source&gt;Default-Database-Managed&lt;/jta-data-source&gt;
+                                        &lt;non-jta-data-source&gt;Default-Database-Unmanaged&lt;/non-jta-data-source&gt;
+
+                                        &lt;properties&gt;
+                                            &lt;property name="javax.persistence.schema-generation.database.action" value="create"/&gt;
+                                            &lt;property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" /&gt;
+                                        &lt;/properties&gt;
+                                    &lt;/persistence-unit&gt;
+                                &lt;/persistence&gt;
+                            </source-code>
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <p>
+                                Wenn wir schon dabei sind, lege gleich noch eine Datei namens <tt>orm.xml</tt> mit folgendem
+                                Inhalt an. Sie legt fest, welches Datenbankschema wir verwenden, um Konflikte mit anderen
+                                Anwendungen zu vermeiden.
+                            </p>
+                            <img src="persistence-unit-08.png" class="active d-block" style="max-width: 100%; margin-bottom: 1em;" />
+                            <source-code language="xml">
+                                &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+                                &lt;entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                                                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+                                                 version="1.0"&gt;
+
+                                    &lt;persistence-unit-metadata&gt;
+                                        &lt;persistence-unit-defaults&gt;
+                                            &lt;!-- Dieser Wert muss für jede Anwendung ein anderer sein! --&gt;
+                                            &lt;schema&gt;NAME_DER_APP_HIER&lt;/schema&gt;
+                                        &lt;/persistence-unit-defaults&gt;
+                                    &lt;/persistence-unit-metadata&gt;
+
+                                &lt;/entity-mappings&gt;
+                            </source-code>
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
@@ -2883,55 +2903,26 @@
             <aside>
                 <p>
                     Bisher sind wir immer davon ausgegangen, dass der Applikationsserver mit nur einer Datenbank verbunden ist und daher
-                    einfach alles seinen richtigen Weg läuft. Das muss aber nicht so sein, ein Applikationsserver kann durchaus mit mehreren
-                    Datenbanken verbunden sein, so dass jede darauf laufende Anwendung seine eigene Datenbank nutzt. Ja, das ist sogar der
-                    Normalfall, selbst wenn die Datenbanken alle vom selben Datenbankserver verwaltet werden.¹ 🐄
+                    einfach alles seinen Weg läuft. 🏞️ Das muss aber nicht so sein, ein Applikationsserver kann durchaus mit mehreren
+                    Datenbankservern verbunden sein, so dass jede Anwendung auf beliebig viele Datenbanken zugreifen könnte. 🐄
                 </p>
                 <p>
-                    <small>
-                        ¹ Typische Datenbankserver wie <a href="https://mariadb.org/" target="_blank">MariaDB</a> oder
-                        <a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a> können mehrere, logische Datenbanken verwalten,
-                        um somit mehrere Anwendungen sauber zu isolieren. Dadurch ist es dann auch kein Problem, wenn zwei Datenbanken
-                        gleichnamige Tabellen beinhalten.
-                    </small>
-                </p>
-                <p>
-                    Aus diesem Grund benötigt jede Java-EE-Anwendung mindestens eine sogenannte <b>Persistence Unit</b>, die definiert,
+                    Aus diesem Grund benötigt jede Jakarta-EE-Anwendung mindestens eine sogenannte <b>Persistence Unit</b>, die definiert,
                     welche Datenbank sie verwendet. Technisch gesehen bedeutet das, dass die Anwendung eine Datei mit dem Namen
                     <tt>persistence.xml</tt> beinhalten muss, in der mindestens eine solche Persistence Unit definiert ist.
-                    Doch anstatt jetzt die XML-Syntax zu erklären, zeigen dir die Bilder auf der Folie, wie die Datei mit Netbeans
-                    angelegt und bearbeitet werden kann.
+                    In der Folie siehst du, wie du sie anlegen kannst und welchen Inhalt sie hierfür haben muss.
                 </p>
                 <p>
-                    Die Felder im Anlagewizard haben dabei folgende Bedeutung:
+                    Die hier gezeigte Konfiguration ist bereits auf den TomEE-Server 🐈 zugeschnitten, den wir schon die ganze Zeit benutzen.
+                    Sie verwendet eine unter den Namen <tt>Default-Database-Managed</tt> und <tt>Default-Database-Unmanaged</tt> definierte
+                    Datenbankverbindung, die wir in Vorbereitung auf die Vorlesung für dich bereits in der Serverkonfiguration hinterlegt
+                    haben. 🧰
                 </p>
-                <ul>
-                    <li>
-                        <b>Persistence Unit Name:</b> Name der Persistence Unit, unter der sie im Quellcode angesprochen wird.
-                        Der Name sollte daher kurz und einprägsam sein, auch wenn er bei vorliegen von nur einer Persistence
-                        Unit nicht weiter benötigt wird.
-                    </li>
-                    <li>
-                        <b>Persistence Provider:</b> Die verwendete O/R-Mapper-Implementierung. Die Vorauswahl <i>EclipseLink</i>
-                        geht völlig in Ordnung. Wie an den meisten Stellen erlaubt Java eben, dass es mehrere Implementierungen
-                        zu einer API gibt.
-                    </li>
-                    <li>
-                        <b>Data Source:</b> Der Name der Datenbank, so wie sie im Applikationsserver konfiguriert wurde. Im
-                        Echtbetrieb müssten wir die Konfiguration erst anlegen, für die Übungen reicht aber die von Netbeans
-                        bereitgestellte Konfiguration <tt>jdbc/__default</tt>.
-                    </li>
-                    <li>
-                        <b>Table Generation Strategy:</b> Wer legt die Tabellen an und wie oft geschieht dies? Legst du die
-                        Tabellen selbst an (None) oder sollen sie beim ersten Start der Anwendung automatisch angelegt werden?
-                        Falls ja, soll dies nur einmalig erfolgen (Create) oder bei jedem Start der Anwendung erneut (Drop and Create)?
-                    </li>
-                </ul>
                 <p>
-                    Für die Übungen bietet es sich an, als Anlagestrategie <i>Create</i> zu wählen, damit die Inhalte der Tabellen
-                    nicht verloren gehen. Jedoch musst du dann hin und wieder die Tabellen von Hand löschen, da nicht jede Änderung
-                    an den Persistence Entities immer in den Tabellen nachgezogen wird. Komische Fehlermeldungen beim Lesen oder
-                    Schreiben, beispielsweise dass die Tabelle ein bestimmtes Feld nicht enthält, können hier ein Hinweis sein. 🔔
+                    Außerdem sorgt sie dafür, dass alle Tabellen automatisch für uns angelegt werden. Jedoch kann es hin und wieder vorkommen,
+                    dass du die Tabellen nach umfangreichen Codeänderungen manuell löschen musst, damit sie zum Code passend neu angelegt werden.
+                    Komische Fehlermeldungen beim Lesen oder Schreiben, beispielsweise dass die Tabelle ein bestimmtes Feld nicht enthält, können
+                    hier ein Hinweis sein. 🔔
                 </p>
             </aside>
         </section>
@@ -2969,7 +2960,7 @@
                             🗄️
                         </td>
                         <td>
-                            Die Annotation funktioniert in Serlvets und in EJBs, sollte aber nur in EJBs verwendet werden.
+                            Die Annotation funktioniert in Servlets und in EJBs, sollte aber nur in EJBs verwendet werden.
                         </td>
                     </tr>
                 </table>
@@ -3132,7 +3123,7 @@
                     }
                 </source-code>
                 <p>
-                    Ist das geschafft, können wir die auf der Folie dargestellten Methoden verwenden, um Datensätze auszulesen,
+                    Ist das geschafft, können wir die auf der Folie dargestellten Methoden verwenden, um Datensätze zu lesen,
                     zu schreiben oder zu löschen. Es ist wirklich ziemlich einfach, wie das folgende Beispiel zeigt:
                 </p>
                 <source-code language="java">
@@ -3643,7 +3634,7 @@
                     daher Services zur Verfügung, die diese aufrufen können. Diesen Satz haben wir jetzt schon so
                     oft gehöhrt. Doch wonach soll man die EJBs unterscheiden und welche Methoden sollen sie
                     besitzen? 😓 Das ist gar nicht so leicht zu beantworten, wenn man noch nicht so viel Erfahrung
-                    mit Java&nbsp;EE oder ähnlichen Plattformen hat und ein gutes Stück weit lässt sich auch gar
+                    mit Jakarta&nbsp;EE oder ähnlichen Plattformen hat und ein gutes Stück weit lässt sich auch gar
                     keine allgemeingültige Antwort auf diese Frage finden. Dennoch hat es sich in der Praxis bewährt,
                     einen gewissen Grundstock an EJBs anzubieten, der sich einfach an den vorhandenen Persistence
                     Entities orientiert.  Die Überlegung dahinter ist, dass sehr viele Benutzeroberflächen und
@@ -3663,7 +3654,7 @@
                             🔎
                         </td>
                         <td>
-                            Sie erlauben die Suche nach Datensätzen anhand einzelner Felder.
+                            Sie suchen Datensätzen anhand einzelner Felder.
                         </td>
                     </tr>
                     <tr>
@@ -3671,7 +3662,7 @@
                             🖊️
                         </td>
                         <td>
-                            Sie besitzen ein Formular zum Anlegen und Bearbeiten von Datensätzen.
+                            Sie legen neue Datensätze an oder bearbeiten diese.
                         </td>
                     </tr>
                     <tr>
@@ -3711,8 +3702,8 @@
                 </ul>
                 <p>
                     Die Folie zeigt dabei zwei Möglichkeiten sie auszuprogrammieren. Einmal durch Copy&amp;Paste für
-                    jede einzelne EJB oder mit etwas Zauberei als abstrakte Basisklasse. Letzterer Weg spart natürlich
-                    eine ganze Menge Schreibarbeit.
+                    jede einzelne EJB oder mit etwas Zauberei als abstrakte Basisklasse. Letzteres spart natürlich
+                    eine Menge Schreibarbeit.
                 </p>
             </aside>
         </section>
@@ -3913,7 +3904,7 @@
                             aria-labelledby = "aufgabe4-loesung2-tab"
                         >
                             <p>
-                                Und hier die vereinfachte Version auf Basis unserer selbst-entworfenen <a href="#19">EntityBean</a>.
+                                Und hier die vereinfachte Version auf Basis unserer selbstentworfenen <a href="#19">EntityBean</a>.
                             </p>
                             <source-code language="java">
                                 @Stateless
@@ -3946,7 +3937,7 @@
             </article>
             <aside>
                 <p>
-                    Hier kannst du das eben gelernte gleich praktisch Anwenden, indem du ein paar Enterprise
+                    Hier kannst du das eben Gelernte gleich praktisch anwenden, indem du ein paar Enterprise
                     Java Beans zum Lesen und Schreiben von Datensätzen definierst. Gerne in Netbeans, wenn du
                     willst aber auch gerne einfach auf Papier. 📃
                 </p>
@@ -3996,7 +3987,7 @@
                     </li>
                     <li>
                         <source-code language="java">
-                            @DataSource("jdbc/__default")
+                            @DataSource("jdbc/default")
                             @EntityManager em;
                         </source-code>
                     </li>
@@ -4037,7 +4028,7 @@
                         Die Selektionen laufen schneller als mit nativem SQL.
                     </li>
                     <li>
-                        Es bietet eine über alle Datenbankhersteller einheitliche Syntax.
+                        Sie bietet eine über alle Datenbankhersteller einheitliche Syntax.
                     </li>
                 </ol>
 
@@ -4046,13 +4037,13 @@
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
-                        Es ist nicht ganz so schnell wie natives SQL.
+                        Sie ist nicht ganz so schnell wie natives SQL.
                     </li>
                     <li>
-                        Es gibt kein <code>UPDATE</code> und <code>DELETE</code>.
+                        Sie kennt kein <code>UPDATE</code> und <code>DELETE</code>.
                     </li>
                     <li>
-                        Es funktioniert nicht mit jeder Datenbank.
+                        Sie funktioniert nicht mit jeder Datenbank.
                     </li>
                 </ol>
 
@@ -4154,7 +4145,7 @@
                         Vermeide bidirektionale Beziehungen, wenn du sie nicht wirklich brauchst.
                     </li>
                     <li>
-                        Nutze Lzay Loading für Beziehungen, wenn ihre Daten nicht bei jedem Aufruf benötigt werden.
+                        Nutze Lazy Loading für Beziehungen, wenn ihre Daten nicht bei jedem Aufruf benötigt werden.
                     </li>
                     <li>
                         Mache regen Gebrauch von <code>@Column</code> zur Spezifizierung der Tabellenfelder.
@@ -4166,13 +4157,13 @@
                         Definiere Indizies für sehr häufg gebrauchte Selektionen.
                     </li>
                     <li>
-                        Lege komplexe oder an mehreren Stellen benötigte Selektionen in der Entityklasse als <code>@NamedQuery</code> an.
+                        Lege komplexe oder an mehreren Stellen benötigte Selektionen als <code>@NamedQuery</code> an.
                     </li>
                     <li>
                         Belege alle Attribute mit einem sinnvollen Startwert vor.
                     </li>
                     <li>
-                        Vermeide es, Tabellenfelder mit <b>nullable=True</b> zu definieren.
+                        Vermeide es, Tabellenfelder mit <src-code lang="java">nullable=True</src-code> zu definieren.
                     </li>
                     <li>
                         Spendiere jeder Persistence Entity mehrere Konstruktoren, um ihre Benutzung zu vereinfachen.
