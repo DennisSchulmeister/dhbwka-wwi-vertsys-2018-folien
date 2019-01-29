@@ -43,18 +43,19 @@
                     <dd>
                         <p>
                             <small>
-                                Konzeptionelle Vertiefung der Netzwerkprogrammierung im
-                                weiteren Sinne: Von datenbankgestützten Webanwendungen
+                                Von datenbankgestützten Webanwendungen
                                 bis Internet of Things und alles dazwischen
                             </small>
                         </p>
                         <ul>
                             <li>Grundlagen verteilter Systeme</li>
-                            <li>Datenbankgestützte Webanwendungen mit MVC-Architektur</li>
-                            <li>Clientseitige Webanwendungen mit AJAX-Zugriff auf den Server</li>
-                            <li>SOAP- und REST-Webservices als Lingua Franca verteilter Anwendungen</li>
-                            <li>Entfernte Methodenaufrufe mit dem gRPC-Framework</li>
-                            <li>Räumlich und zeitlich getrennte IoT-Anwendungen mit MQTT</li>
+                            <li>Allgemeines zur Nutzung von Java auf dem Server</li>
+                            <li>Entwicklung serverseitiger Datenbankanwendungen mit Java</li>
+                            <li>EJB und JPA zur Kapselung der Geschäftslogik verteilter Anwendungen</li>
+                            <li>Entfernte Serviceaufrufe mit SOAP- und REST-Webservices</li>
+                            <li>AJAX-Zugriff auf ein REST-Backend aus dem Browser heraus</li>
+                            <!-- <li>Entfernte Methodenaufrufe mit dem gRPC-Framework</li> -->
+                            <!-- <li>Räumlich und zeitlich getrennte IoT-Anwendungen mit MQTT</li> -->
                         </ul>
                     </dd>
                 </dl>
@@ -62,9 +63,9 @@
             <aside>
                 <p>
                     <i>
-                        Der Vorlesungsraum, unendliche Weiten. Wir schreiben das Jahr <span id="intro-year">2018</span>.
+                        Der Vorlesungsraum, unendliche Weiten. Wir schreiben das Jahr <span id="intro-year">2019</span>.
                         Dies sind die Abenteuer des Raumschiffs Business Computer Science¹, das mit seiner 200 Mann
-                        starken Besatzung 3 Jahre unterwegs ist, um neue Welten zu erforschen, neues Leben und neue
+                        starken Besatzung drei Jahre unterwegs ist, um neue Welten zu erforschen, neues Leben und neue
                         Zivilisationen. Viele Lichtjahre von Zuhause entfernt dringen die Studierenden in Galaxien
                         vor, die nie ein Mensch zuvor gesehen hat. 🚀
                     </i>
@@ -72,7 +73,7 @@
                 <script>
                     // Race-Condition 😐 Aber lecture-slides.js hat noch keinen Hook, um die Folien zu verändern,
                     // bevor die HTML-Elemente aus dem DOM entfernt werden. Als Fallback steht im HTML daher
-                    // der Festwert 2018.
+                    // der Festwert 2019.
                     yearElement = document.getElementById("intro-year");
 
                     if (yearElement) {
@@ -93,7 +94,7 @@
                 </p>
                 <p>
                     Oder ging das doch irgendwie anders? 🤔📺 Auf jeden Fall wirst du aber zustimmen, dass wir bereits
-                    in Webprogrammierung viele interessante Dinge kennengelernt haben. In Verteilte Systeme wollen wir
+                    in „Webprogrammierung” viele interessante Dinge kennengelernt haben. In „Verteilte Systeme” wollen wir
                     da natürlich in nichts nachstehen, weshalb wir auch hier wieder viele praxisrelevante Themen behandeln
                     werden. Doch zuvor eine kurze Wiederholung von letztem Semester, um den Zusammenhang zwischen beiden
                     Vorlesungen zu verdeutlichen.
@@ -108,36 +109,40 @@
                     sowohl die Anwendungslogik als auch die HTML-Erzeugung komplett vom Server gesteuert werden.
                 </p>
                 <p>
-                    Was wir dir damals noch nicht verraten haben ist, dass wir da tatsächlich schon ein wenig Verteilte
-                    Systeme gespielt haben. Denn natürlich ist das World Wide Web auch ein verteiltes System, das wir
-                    zur Ausführung unserer (verteilten) Webanwendungen verwenden. Es ist zwar keine furchtbar komplexe
-                    Architektur im Vergleich zu vielen anderen verteilten Systemen, aber verteilt ist es schon. Denn
-                    Begriffe wie „Client” (gemeint ist der Browser), „Server” oder „Übertragungsprotokoll” sind eigentlich
-                    Begriffe aus Verteilte Systeme. Was liegt also näher, als das weiter zu machen, wo wir das letzte mal
-                    aufgehört haben: Bei der Entwicklung serverseitiger Webanwendungen.
+                    Allerdings haben wir uns damals nur die absoluten Grundlagen der serverseitigen Webentwicklung
+                    angeschaut und uns sonst weitgehend nur mit dem Browser beschäftigt. Doch immerhin haben wir da
+                    schon ein wenig „Verteilte Systeme” gespielt, da auch das World Wide Web ein verteiltes System
+                    zur Ausführung von Webanwendungen ist. Zwar ist seine Architektur nicht gerade furchtbar komplex,
+                    das ist aber auch gerade das Gute daran. Doch immerhin sind solche Begriffe wie „Client” (gemeint
+                    war hier der Browser), „Server” oder „Übertragungsprotokoll” eigentlich Begriffe aus „Verteilte Systeme”.
+                    Was liegt also näher, als das weiter zu machen, wo wir das letzte mal aufgehört haben: Bei der
+                    Entwicklung serverseitiger Webanwendungen.
                 </p>
                 <p>
                     Nach einem kurzen thematischen Einstieg in die Entwicklung verteilter Systeme vertiefen wir die
-                    letztes Semester gelegten Grundlagen zur Java Enterprise Edition und lernen insbesondere, was
-                    Enterprise Java Beans sowie Entity-Klassen sind und wie wir damit eine saubere MVC-Architektur
-                    abbilden können.
+                    letztes Semester gelegten Grundlagen zur Jakarta Enterprise Edition und lernen insbesondere, was
+                    Enterprise Java Beans und Entity-Klassen sind, wie wir damit die Geschäftslogik auf dem Server
+                    anhand der MVC-Architektur sauber kapseln können und wie wir relationale Datenbanken an den
+                    Server anbinden können.
                 </p>
                 <p>
-                    Anschließend lernen wir mit SOAP und REST zwei Arten von Webservices kennen. Dadurch können wir dann
-                    auch Webanwendungen schreiben, die im Prinzip zwar rein clientseitig laufen, via AJAX jedoch einzelne
-                    Funktionen des Servers aufrufen, ohne eine neue HTML-Seite abrufen zu müssen. Außerdem können unsere
-                    Serverfunktionen so auch von anderen Clients zum Beispiel für Android und iOS oder sogar von den
-                    selbstentwickelten Programmen unserer Kunden und Geschäftspartner aufgerufen werden. Wir brechen an
-                    dieser Stelle aus zu völlig neuen Ufern auf und verlassen die liebgewonnene Browserumgebung. 🏖️
+                    Mit diesem Wissen können wir dann schon viele Spielarten verteilter Systeme realisieren. So richtig
+                    interessant wird es aber erst, wenn wir uns noch mit SOAP und REST beschäftigen, den beiden Standards
+                    schlechthin zur Kommunikation verteilter Anwendungen. Damit können wir dann auch clientseitige
+                    Web Apps schreiben, die einen Teil ihrer Funktion auf den Server auslagern (Stichwort „AJAX”), die
+                    Geschäftslogik auf dem Server auch aus Android- oder iOS-Anwendungen heraus aufrufen oder ganz allgemein
+                    in unterschiedlichen Programmiersprachen realisierte Komponenten unterschiedlicher Anbieter miteinander
+                    kombinieren. Wir brechen an dieser Stelle also durchaus aus zu völlig neuen Ufern auf und verlassen die
+                    liebgewonnene Browserumgebung gegen Ende der Vorlesung. 🏖️
                 </p>
-                <p>
+                <!-- <p>
                     Und wenn wir dann sowieso schon dabei sind, fremde Welten zu entdecken, fliegen wir gleich ein wenig
                     weiter und beschäftigen uns mit entfernten Methodenaufrufen (oft auf Remote Method Invocation, Remote
                     Procedure Call, Remote Function Call oder Object Request Broker genannt). Die freundlichen Leute von
                     Google werden uns dabei dann ein wenig unter die Arme greifen, da wir hierfür das von Google entwickelte
                     gRPC-Framework verwenden, dass neben C# und Python und ein paar anderen auch für Java verfügbar ist.
-                </p>
-                <p>
+                </p> -->
+                <!-- <p>
                     Abschließen werden wir die Vorlesung dann mit dem Publish/Subscribe-Modell und hier vor allem mit
                     dem IoT-Standardprotokoll MQTT. Hier sehen wir dann, dass die Welt nicht immer nur in Clients und
                     Server oder Request und Reply eingeteilt werden kann. Indem wir uns von dieser einfachen Darstellung
@@ -145,15 +150,29 @@
                     entwickeln, ohne wirklich viel dafür tun zu müssen. Die Programmierung ist sogar ziemlich simpel und
                     doch bekommen wir eine bessere Performance, automatische Lastverteilung und eine einfache
                     Ausfallsicherheit geschenkt. Alles Dinge, die für echte IoT-Anwendungen nicht ganz unerheblich sind.
-                </p>
+                </p> -->
                 <p>
-                    Also dann: Lasst und mutig dorthin vordringen, wo noch nie ein Mensch zuvor gewesen ist. 🛸
+                    In diesem Sinne: Lasst und mutig dorthin vordringen, wo noch nie ein Mensch zuvor gewesen ist. 🛸
                 </p>
             </aside>
         </section>
 
         <section>
-            <h1>Deine neuen Kompetenzen nach dieser Vorlesung</h1>
+            <h1>Internet of Things, ehrlich?</h1>
+            <article>
+                <img src="iot.jpg" class="img-fluid mx-auto d-block" />
+                <p>
+                    <small>
+                        <small>
+                            Bildnachweis: <a href="http://geek-and-poke.com/geekandpoke/2012/3/14/the-internet-of-things.html" target="_blank">Geek &amp; Poke, March 15, 2012</a>
+                        </small>
+                    </small>
+                </p>
+            </article>
+        </section>
+
+        <section>
+            <h1>Kompetenzziele der Vorlesung</h1>
             <article>
                 <h2>Sachkompetenz</h2>
                 <p>
@@ -169,11 +188,13 @@
                 </p>
                 <ul>
                     <li>Mit der Java Enterprise Edition vollwertige MVC-Webanwendungen entwickeln</li>
-                    <li>Clientanwendungen zum Aufruf von SOAP- und REST-Webservices entwickeln</li>
+                    <li>Datenbankgestützte Geschäftsanwendungen entwerfen und mit Java implementieren</li>
                     <li>Eigene SOAP- und REST-Webservices entwerfen und implementieren</li>
-                    <li>Entfernte Schnittstellen auf Basis entfernter Methodenaufrufe modellieren und erstellen</li>
-                    <li>Entfernte Methoden eines gRPC-Servers im Intra- oder Internet aufrufen</li>
-                    <li>Räumlich und zeitlich entkoppelte IoT-Anwendungen auf Basis von MQTT schreiben</li>
+                    <li>Clientanwendungen zum Aufruf von SOAP- und REST-Webservices in Java entwickeln</li>
+                    <li>AJAX-basierte Browser Apps zum Aufruf eines REST-Backend realisieren</li>
+                    <!-- <li>Entfernte Schnittstellen auf Basis entfernter Methodenaufrufe modellieren und erstellen</li> -->
+                    <!-- <li>Entfernte Methoden eines gRPC-Servers im Intra- oder Internet aufrufen</li> -->
+                    <!-- <li>Räumlich und zeitlich entkoppelte IoT-Anwendungen auf Basis von MQTT schreiben</li> -->
                     <li>Vorhandene Anwendungen der obigen Bereiche analysieren und weiterentwickeln</li>
                 </ul>
 
@@ -224,19 +245,94 @@
         </section>
 
         <section>
-            <h1>Internet of Things, ehrlich?</h1>
+            <h1>Aufbau der Vorlesung</h1>
             <article>
-                <img src="iot.jpg" class="img-fluid mx-auto d-block" />
-                <p>
-                    <small>
-                        <small>
-                            Bildnachweis: <a href="http://geek-and-poke.com/geekandpoke/2012/3/14/the-internet-of-things.html" target="_blank">Geek &amp; Poke, March 15, 2012</a>
-                        </small>
-                    </small>
-                </p>
-            </article>
-        </section>
+                <h2>Einführung</h2>
+                <ul>
+                    <li>
+                        Einführung in die Vorlesung
+                    </li>
+                    <li>
+                        Grundlagen verteilter Systeme
+                    </li>
+                    <li>
+                        Praktischer Einstieg
+                    </li>
+                </ul>
 
+                <h2>Jakarta Enterprise Edition</h2>
+                <ul>
+                    <li>
+                        Java auf dem Server mit „Enterprise Java Beans”
+                    </li>
+                    <li>
+                        Objektrelationale Datenbankzugriffe mit der „Java Persistence API”
+                    </li>
+                    <li>
+                        Verschiedene Fallbeispiele und Übungen
+                    </li>
+                </ul>
+
+                <h2>Webservices</h2>
+                <ul>
+                    <li>
+                        Das Schwergewicht: SOAP-Webservices
+                    </li>
+                    <li>
+                        Das Fliegengewicht: REST-Webservices
+                    </li>
+                    <li>
+                        Verschiedene Fallbeispiele und Übungen
+                    </li>
+                </ul>
+
+                <h2>Projekt</h2>
+                <ul>
+                    <li>
+                        Gruppenarbeit zur Entwicklung einer eigenen Anwendung
+                    </li>
+                    <li>
+                        Onlinetest zur Kontrolle des individuellen Lernfortschritts
+                    </li>
+                </ul>
+            </article>
+            <aside>
+                <p>
+                    Auf dieser Folie siehst du einen groben Überblick über unsere Vorlesungsinhalte. Beginnen tun wir
+                    gerade mit einer allgemeinen Einführung in die Vorlesung, bevor wir uns sodann auch gleich auf den
+                    Inhalt stürzen und uns mit den theoretischen Grundlagen verteilter Systeme beschäftigen. Im nächsten
+                    Foliensatz lernen wir daher, was ein verteiltes System überhaupt ist und wie es sich von einer
+                    verteilten Anwendung abgrenzen lässt. Auch lernen wir dann verschiedene Eigenschaften verteilter
+                    Systeme sowie gängige Architekturmuster zu ihrer Implementierung kennen.
+                </p>
+                <p>
+                    Weiter geht es dann mit der <b>Jakarta Enterprise Edition</b>, auch bekannt unter ihrem alten
+                    Namen (bis Anfang 2018) „Java Enterprise Edition”, kurz JEE. Hier lernen wir dann, was ein
+                    Applikationsserver ist und wie wir damit eigene Serveranwendungen realisieren können. Neben
+                    einem technischen Überblick lernen wir hier dann auch, die Geschäftslogik unserer Anwendungen
+                    mit „Enterprise Java Beans” objektorientiert zu verpacken und auf mehrere Server zu verteilen.
+                    Ebenso lernen wir, wie wir mit der „Java Persistence API” relationale Datenbanken anbinden können
+                    und wie wir unseren Quellcode ganz allgemein nach dem Model-View-Controller-Prinzip gliedern können.
+                    Anschauen werden wir uns das alles im Kontext serverseitiger Webanwendungen, da dies der häufigste
+                    Anwendungsfall von Java auf dem Server ist.
+                </p>
+                <p>
+                    Um uns allerdings nicht nur mit serverseitig generierten HTML-Oberflächen zufrieden zu geben,
+                    lernen wir dann im nächsten Schritt, was <b>Webservices</b> sind und wie sie mit einfachsten
+                    Mitteln die Integration heterogener Systemlandschaften möglich machen. Auf diese Weise können
+                    wir dann einzelne Komponenten einer Anwendung in unterschiedlichen Programmiersprachen entwickeln,
+                    unser Serverbackend auch in mobilen Android- oder iOS-Anwendungen oder AJAX-basierten Browser Apps
+                    aufrufen, sowie auf die öffentlichen Services fremder Anbieter zugreifen.
+                </p>
+                <p>
+                    Den krönenden Abschluss macht dann wieder ein <b>Programmierprojekt</b>, das ihr wie immer in
+                    kleinen Gruppen realisieren könnt, um eure eigene, verteilte Anwendung zu entwickeln. Hierfür
+                    werden wir dann wieder die Termine am Ende des Semesters für betreutes Programmieren und die
+                    Arbeit am Projekt reservieren. Ebenso werden wir hier einen kleinen Onlinetest schreiben, um
+                    zu sehen, ob sich auch wirklich jeder mit den Vorlesungsinhalten beschäftigt hat.
+                </p>
+            </aside>
+        </section>
         <section>
             <h1>Vorausgesetztes Wissen</h1>
             <article>
@@ -331,78 +427,190 @@
         <section>
             <h1>Benötigte Software</h1>
             <article>
+                <!-- TODO 2020: Drei Kategorien "Entwicklung", "Server", "Testwerkzeuge" wenn MQTT wieder Teil der Vorlesung ist-->
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md">
-                            <img src="netbeans.jpg" class="img-thumbnail d-block" style="width: 100%" />
-                            Netbeans IDE: Unbedingt darauf achten, die Java EE-Version herunterzuladen
+                            <a href="../../../software/" target="_blank">Installationsanleitung</a>
                         </div>
+                    </div>
+                    <!-- <div class="row">
                         <div class="col-md">
-                            <img src="glassfish.jpg" class="img-thumbnail d-block" style="width: 100%" />
-                            Glassfish Webserver: Ist in der Installation von Netbeans für Java EE enthalten
+                            <h2 style="margin: 0;">Werkzeuge</h2>
+                        </div>
+                    </div> -->
+                    <div class="row" style="margin-bottom: 0;">
+                        <div class="col-md-4">
+                            <img src="netbeans-splash.gif" class="img-thumbnail d-block" style="width: 100%" />
+                        </div>
+                        <div class="col-md-4">
+                            <img src="maven-logo.png" class="img-thumbnail d-block" style="width: 100%; height: 100%;" />
+                        </div>
+                        <div class="col-md-4">
+                            <img src="git-logo.svg" class="img-thumbnail d-block" style="width: 100%; height: 100%;" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            Apache Netbeans IDE
+                        </div>
+                        <div class="col-md-4">
+                            Apache Maven als Buildwerkzeug
+                        </div>
+                        <div class="col-md-4">
+                            git für die Versionsverwaltung
+                        </div>
+                    </div>
+
+                    <!-- <div class="row">
+                        <div class="col-md">
+                            <h2 style="margin: 0;">Entwicklungsserver</h2>
+                        </div>
+                    </div> -->
+                    <div class="row" style="margin-bottom: 0;">
+                        <div class="col-md-4">
+                            <img src="tomcat-logo.png" class="img-thumbnail d-block" style="width: 100%; height: 100%;" />
+                        </div>
+                        <div class="col-md-4">
+                            <img src="derby-logo.png" class="img-thumbnail d-block" style="width: 100%; height: 100%;" />
+                        </div>
+                        <div class="col-md-4">
+                            <img src="soapui-splash.jpg" class="img-thumbnail d-block" style="width: 100%; height: 100%;" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            Apache TomEE Applikationsserver
+                        </div>
+                        <div class="col-md-4">
+                            Apache Derby Datenbank
+                        </div>
+                        <div class="col-md-4">
+                            SoapUI für Webservice-Tests
                         </div>
                     </div>
                 </div>
             </article>
             <aside>
                 <p>
-                    Ein Glück, dass du dir für Webprogrammierung schon alle benötigten
-                    Programm installiert hast. 😖 Denn in Verteilte Systeme nutzen wir
-                    einfach dieselben Anwendungen. Vor allem geht es dabei um Netbeans
-                    als Java IDE sowie den Glassfish Applikationsserver für alles was
-                    mit der Java Enterprise Edition und Webservices zu tun hat.
-                    Theoretisch könntest du auch den Atom-Editor von letztem mal für
-                    die Javaentwicklung nutzen. Manche Sachen, wie das automatische
-                    Compilieren und Deployment nach jedem Speichern musst du dann
-                    von Hand ausführen. Wir empfehlen dir daher, dieses Semster ganz
-                    auf Netbeans zu setzen, um nicht mehr als nötig mit den Tools zu
-                    kämpfen. ⚔️
+                    Auch dieses Semester benötigen wir wieder einiges an Software, um sinnvoll arbeiten zu können.
+                    Längst vorbei sind doch die Zeiten, als es nur wenige Werkzeuge zur Auswahl gab und diese jedem
+                    Computer gleich noch beigelegt waren. Dafür gibt es heute umso bessere Werkzeuge und gerade die
+                    <a href="http://www.apache.org/" target="_blank">Apache Software Foundation</a> bietet für uns
+                    Java-Entwickler eine wahre Fundgrube professioneller Tools. Wie immer haben wir deshalb eine
+                    <a href="../../../software/" target="_blank">Anleitung, wie du zur Installation vorgehen musst,</a>
+                    online gestellt.
                 </p>
                 <dl>
                     <dt>Netbeans IDE</dt>
                     <dd>
                         <p>
-                            Zum Schreiben des Quellcodes werden wir die meiste Zeit
-                            die Netbeans IDE verwenden. Sie ist genau so leistungsfähig
-                            wie Eclipse, aber etwas einfacher zu bedienen und (hier
-                            spricht die langhährige Erfahrung) deutlich weniger
-                            fehleranfällig! 👺 <span style="color: red"> Bitte unbedingt
-                            darauf achten, Netbeans für Java EE herunterzuladen und zu
-                            installieren. </span>
+                            Netbeans ist dieser Vorlesung die IDE unserer Wahl. Zwar stehen Eclipse oder IntelliJ
+                            hier in nichts nach, Netbeans ist insgesamt etwas einfacher zu bedienen und kann anders
+                            als alle anderen Projekte erzeugen, die auch ohne die Netbeans IDE weiterbearbeitet
+                            werden können. Außerdem gehört es seit 2018 zu Apache, wo auch die meisten anderen von
+                            uns genutzten Werkzeuge herkommen.
+                        </p>
+                        <p>
+                            <a href="http://netbeans.apache.org/" target="_blank">http://netbeans.apache.org/</a>
                         </p>
                     </dd>
 
-                    <dt>Glassfish Applikationsserver</dt>
+                    <dt>Apache Maven</dt>
                     <dd>
-                        In der ersten Hälfte der Vorlesung, während wir uns mit der Java
-                        Enterprise Edition und mit Webservices beschäftigen, nutzen wir
-                        den Glassfish Applikationsserver zur Ausführung unserer Anwendungen.
-                        Das Gute daran ist, dass er bei der Netbeans für Java EE gleich
-                        mitinstalliert wird. Du brauchst ihn also nicht separat herunterzuladen.
+                        <p>
+                            Maven ist ein weit verbreitetes Buildwerkzeug für Java, das es uns erlaubt alle anfallenden
+                            Aufgaben zum Bauen unserer Softwareparkete zu automatisieren. Seine Konfiguration ist leider
+                            nicht immer ganz trivial, für Java ist es aber ein weit verbreiteter Standard. Des weiteren
+                            kann Maven fremde Bibliotheken zur Verwendung in unseren Projekten verwalten und herunterladen.
+
+                        </p>
+                        <p>
+                            <a href="https://maven.apache.org/" target="_blank">https://maven.apache.org/</a>
+                        </p>
+                    </dd>
+
+                    <dt>git</dt>
+                    <dd>
+                        <p>
+                            Kaum ein professionelles Softwareprojekt kommt heutzutage
+                            ohne eine gute Versionsverwaltung aus. Historisch gesehen
+                            gibt es viele gute Werkzeuge hierfür, das mit Abstand
+                            beliebteste ist jedoch git. git ermöglicht es dir, nicht
+                            nur sämtliche Änderungen an deinem Quellcode sauber zu
+                            dokumentieren und jederzeit nachzuvollziehen, es bietet
+                            auch hervorragende Möglichkeiten zum Teamwork. Genau das
+                            richtige für unsere Portfolioprüfung.&nbsp;😃
+                        </p>
+                        <p>
+                            <a href="https://git-scm.com/" target="_blank">https://git-scm.com/</a>
+                        </p>
+                    </dd>
+
+                    <dt>Apache TomEE</dt>
+                    <dd>
+                        <p>
+                            Für die Entwicklung serverseitiger Java-Anwendungen kommt fast immer ein so genannter
+                            Applikationsserver zum Einsatz. Verschiedene Hersteller bieten uns hier ihre Produkte
+                            an, die aufgrund gemeinsamer APIs in weiten Teilen kompatibel zueinander sind. Lange
+                            Zeit haben wir deshalb Oracle GlassFish in der Vorlesung verwendet. Inzwischen ist aber
+                            der TomEE von Apache die weitaus bessere Alternative für uns.
+                        </p>
+                        <p>
+                            <a href="http://tomee.apache.org/" target="_blank">http://tomee.apache.org/</a>
+                        </p>
+                    </dd>
+
+                    <dt>Apache Derby</dt>
+                    <dd>
+                        <p>
+                            Last but not least: Eine relationale SQL-Datenbank. Hier könnten wir im Grunde genommen
+                            jede beliebige SQL-Datenbank verwenden. Derby ist aber komplett in Java geschrieben, sehr
+                            klein und kommt völlig ohne Installation aus. Wenn nur alle Werkzeuge so wären …
+                        </p>
+                        <p>
+                            <a href="https://db.apache.org/derby/" target="_blank">https://db.apache.org/derby/</a>
+                        </p>
+                    </dd>
+
+                    <dt>SoapUI</dt>
+                    <dd>
+                        <p>
+                            Webservices testen kann man mit vielen Werkzeugen. Ein unschätzbares
+                            Universalwerkzeug hierfür ist jedoch SoapUI von SmartBear. Hiermit
+                            lassen sich ganz einfach beliebige SOAP- und REST-Webservices in
+                            allen Formen und Farben ausprobieren.
+                        </p>
+                        <p>
+                            <a href="https://www.soapui.org/" target="_blank">https://www.soapui.org/</a>
+                        </p>
                     </dd>
                 </dl>
-
-                <h2>Hinweis</h2>
-                <p>
-                    Eine ausführliche Anleitung zur Installation von Java, Netbeans
-                    und Glassfish findest du auf Moodle.
-                </p>
             </aside>
         </section>
 
         <section>
             <h1>Didaktisches Modell der Vorlesung</h1>
             <article>
-                <img src="didaktisches_modell.svg" style="width: 100%" />
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md">
+                            <img src="vorlesungsplanung1.svg" class="img-thumbnail d-block dhbw-box-shadow" style="width: 100%;" />
+                        </div>
+                        <div class="col-md">
+                            <img src="vorlesungsplanung2.svg" class="img-thumbnail d-block dhbw-box-shadow" style="width: 100%;" />
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside>
                 <h2>Schon wieder Vorlesung: Gähn!</h2>
                 <p>
                     Wenn alles schläft und einer spricht, dann nennt man das
-                    Unterricht. Nichts ist schlimmer als langezogene
+                    Unterricht. Nichts ist schlimmer als lang gezogene
                     Vorlesungen, in denen der Dozent mit monotoner Stimme
-                    eine Folie nach der anderen durch jagt. Folienkino nennt
-                    man das auch, und wir haben das alle schon mal erlebt.
+                    eine Folie nach der anderen durch jagt. Folienkino 🎦 nennt
+                    man das, und wir haben das alle schon mal erlebt.
                     Oder als Dozent auch schon mal gemacht.
                 </p>
                 <p>
@@ -419,100 +627,86 @@
                     Vormittagsschlaf stören will. ⛈
                 </p>
                 <p>
-                    In Webprogrammierung werden wir daher dasselbe machen.
+                    In „Verteilte Systeme” werden wir daher dasselbe machen.
                     Vor allem, da man Programmieren ja eben am Besten durch
                     Übung und Erfahrung lernt. Die Vorlesung ist daher nach dem
                     <b>Inverted Classroom Modell</b> gestaltet, dem wir
-                    allerdings eine etwas individuelle Note geben haben.
+                    allerdings eine etwas individuelle Note gegeben haben.
                     Doch was ist die Grundidee dahinter?
                 </p>
 
                 <h2>Das geht doch besser, oder?</h2>
                 <p>
                     Die Grundidee hinter dem Inverted Classroom Modell ist, dass
-                    ein Folienvortrag des Dozenten eigentlich Zeitverschwendung
-                    ist. Denn Folien lesen kann jeder selbst. Außerdem hat man
-                    dabei immer das Problem, dass jeder Student ein anderes Vorwissen
-                    oder (Gott bewahre) ein unterschiedlich starkes Interesse an den
-                    Themen hat. Bei einem Vortrag ist es daher immer so, dass
-                    manche gut folgen können, während andere schon bei der
-                    ersten Folie ausgestiegen sind. Kurz um: Ein Vortrag bringt
-                    eigentlich gar nichts.
+                    ein Folienvortrag oftmals eigentlich Zeitverschwendung ist.
+                    Denn Folien lesen kannst du selbst und man weiß als Vortragender
+                    nie, ob man gerade alle erreicht oder ob sich manche Zuhörer
+                    abgehängt fühlen oder gerade langweilen.
                 </p>
                 <p>
                     Aus diesem Grund wird das reine „Wissen ins Hirn Laden” in
-                    ein Selbststudium vor der eigentlichen Vorlesung verlagert,
-                    damit jeder in seinem eigenen Tempo und gemäß eigener Vorlieben
-                    lernen kann. Üblicherweiße werden hierfür eine Menge Videos
-                    online gestellt, die man sich dann anschauen muss. Das hatten
-                    wir auch eine Zeit lang, war dann aber doch nicht so toll.
-                    Denn naja, was sieht und hört man in so einem Video? Ja genau:
-                    Den Dozenten, wie er seine Folien vorträgt. Ganz großes Kino!
+                    ein Selbststudium vor der eigentlichen Vorlesung verlagert.
+                    Du kannst dann ganz gemütlich in deinem eigenen Tempo und gemäß
+                    eigener Vorlieben lernen. Auch kannst du einfach etwas nachschlagen,
+                    wenn du dich für ein Thema etwas mehr interessierst. Üblicherweiße
+                    werden hierfür Lernvideos verwendet. Das hatten wir auch mal eine
+                    Weile, war aber nicht wirklich toll. Denn naja, was ist so ein Video
+                    schon anderes als eine aufgezeichnete Vorlesung!?
                 </p>
                 <p>
-                    Deshalb verzichten wir für „Entwicklung verteilter Systeme”
-                    inzwischen komplett auf Videos und stellen dir dieses Folienskript
-                    zur Verfügung. Hier hast du zwar auch Folien, gleichzeitig ist
-                    aber auch ein ausführliches Skript dabei, mit dem sich viel besser
-                    lernen lässt.
-                </p>
-                <p>
-                    Zusätzlich findest du in Moodle Vorwissensabfragen,
-                    Selbsttests und Feedback-Formulare, damit du jederzeit deinen
-                    Lernfortschritt kontrollieren kannst.
+                    Inzwischen verzichten wir deshalb komplett auf Videos und stellen dir
+                    stattdessen dieses wunderbare, hervorragende, erstklassige Folienskript
+                    zur Verfügung. Hier gibt es zwar auch Folien, aber nicht diese
+                    PowerPoint-Kunstwerke, die man sonst so kennt. Wir verwenden stattdessen
+                    modernes HTML und liefern zu jeder Folie ein ausführliches Skript.
+                    In Moodle findest du darüber hinaus auch noch Vorwissensabfragen,
+                    Selbsttests und Feedback-Formulare, um das Skript in der Vorlesung zu
+                    verankern. ⚓
                 </p>
 
-                <h2>Und wie soll ich das ganze bearbeiten?</h2>
+                <h2>Ablauf der Vorlesung</h2>
                 <p>
-                    Gut das du fragst: Ziemlich einfach. Die Materialien in
-                    Moodle sind immer in einer festen Reihenfolge hinterlegt:
+                    Die Vorlesung selbst ist dann in drei große Abschnitte eingeteilt:
                 </p>
                 <ol>
                     <li>
-                        <b>Vorwissensabfrage:</b> Am Anfang steht immer ein kleiner
-                        Test zur Selbsteinschätzung. Mit ihm sollst du herausfinden,
-                        ob du vielleicht schon ein paar Dinge weißt und deshalb nicht
-                        so viel Zeit in das Selbststudium stecken musst.
+                        Einführung
                     </li>
                     <li>
-                        <b>Folienskripte:</b> Das ist das hier. Diese ästhetisch und
-                        modern gestalteten Folien, die du direkt im Browser lesen
-                        kannst, zusammen mit didaktisch sehr hochwertigen Erklärungen
-                        zu jeder Folie. Funktioniert auch auf dem Smartphone oder
-                        Tablet unterwegs. Wir haben es ausprobiert. 😉
+                        Theorieteil
                     </li>
                     <li>
-                        <b>Lernkontrolle:</b> Nachdem du dann das Skript bearbeitet hast,
-                        kommt wieder ein Test, der jetzt natürlich etwas umfangreicher
-                        und schwieriger ist. Hier fragen wir die wesentlichen Inhalte des
-                        Skripts ab, damit du deinen Lernerfolg kontrollieren kannst.
-                        Das Ergebnis des Tests fließt nicht in deine Note ein (nur ob
-                        du ihn gemacht hast).
-                    </li>
-                    <li>
-                        <b>Feedback:</b> Ganz wichtig. Denn auf das Selbststudium folgt
-                        eine Vorlesung und wir möchten natürlich wissen, wie es dir
-                        ergangen ist. Nimm der deshalb bitte unbedingt die paar Minuten
-                        Zeit, das Feedback auszufüllen. Du hilfst deinem Dozenten damit,
-                        eine gute Stunde vorzubereiten.
+                        Projekt
                     </li>
                 </ol>
-
-                <h2>Und was machen wir dann in der Vorlesung?</h2>
                 <p>
-                    Ist doch klar: Eis essen. 🍦 Nein, Spaß beiseite. In der Vorlesung
-                    kann dein Dozent nun zeigen, was er wirklich drauf hat. Denn hier
-                    vertiefen wir die Inhalte aus dem Selbststudium, zeigen dir tolle
-                    Tricks aus der Praxis und machen ganz viele Übungen. Auch das ist
-                    besser, als bei einer normalen Vorlesung, wo du die Übungen in der
-                    Regel daheim machen musst. Wenn du nicht weiter kommst, ist dein
-                    Dozent für dich da, um dir zu helfen.
+                    Die <b>Einführung</b> findet innerhalb der ersten Stunden statt. Hier
+                    stellen wir sicher, dass du Zugang zum richtigen Moodleraum hast und
+                    erklären dir, worum es in der Vorlesung geht. Unter Anderem durch
+                    Vorstellung dieser Folien hier. Zusätzlich beschäftigen wir uns auch
+                    gleich mit ein paar wichtigen Grundlagen, auf die wir im Laufe der
+                    Vorlesung immer wieder zurückgreifen werden.
                 </p>
                 <p>
-                    Das Ganze wiederholt sich je Kapitel in der Regel zwei mal, wobei
-                    das zweite Selbststudium nur aus einer Hausaufgabe besteht. Diese
-                    fliest zusammen mit den in Gruppenarbeit umgesetzten Programmieraufgaben
-                    in dein Portfolio ein. Doch dazu gleich mehr.
+                    Als nächstes folgt der <b>Theorieteil</b> mit den Onlinefolien zum
+                    Durcharbeiten. Je nach Vorlesungsplanung geht diese Phase ungefähr
+                    vier bis sechs Wochen. Hier wechseln sich Selbststudium, Vorlesungen
+                    und Übungsstunden ab, um dir alle Vorlesungsinhalte Schritt für Schritt
+                    beizubringen.
+                </p>
+                <p>
+                    Gegen Ende des Semesters startet dann das <b>Projekt</b>, in dem ihr
+                    wieder eine eigene Anwendung gestalten werden. Anders als letztes
+                    Semester ist die Technik dieses mal jedoch vorgegeben. Somit könnt
+                    ihr wieder alles gelernte direkt in der Praxis anwenden und dabei
+                    auch gleich noch die Portfolioprüfung miterledigen.
+                </p>
+                <p>
+                    Wie du siehst, haben wir viel vor. Auf diese Weise werden wir dich aber in
+                    kürzester Zeit (denn die Semester sind an der DHBW leider nicht sehr lang)
+                    von Null auf Hundert in die Lage versetzen, eigene Anwendungen zu konzipieren
+                    und zu entwickeln. Viel mehr, als das mit einer einfachen Folienvorlesung
+                    machbar wäre.
                 </p>
             </aside>
         </section>
@@ -524,48 +718,75 @@
             </article>
             <aside>
                 <p>
-                    In Moodle hat sich im Vergleich zum Vorsemester nicht wirklich viel verändert.
-                    Schaust du dir die Abbildung hier auf der Folie an, wirst du sehen, dass es
-                    Großen und Ganzen genau wie in Webprogrammierung aussieht. So gibt es weiterhin
-                    für jedes Kapitel einen eigenen Bereich, der durch eines der farbigen Kästchen
-                    aufgerufen wird. Darunter befinden sich dann einfach mehrere Überschriften,
-                    die dir verraten, in welchem Zusammenhang die jeweiligen Materialien bearbeitet
-                    werden müssen.
+                    Hier siehst du ein (fast) komplettes Beispiel für die
+                    Darstellung der Vorlesungsunterlagen in Moodle. Wie du
+                    siehst, ist es eigentlich ziemlich übersichtlich. So gibt
+                    es für jedes Kapitel der Vorlesung einen eigenen Bereich,
+                    der durch eines der farbigen Kästchen aufgerufen wird.
+                    Darunter befinden sich dann einfach mehrere Überschriften,
+                    die dir verraten, in welchem Zusammenhang die jeweiligen
+                    Materialien bearbeitet werden müssen.
                 </p>
                 <dl>
-                    <dt>Lernziele</dt>
-                    <dd>
-                        Hier findest du die Lernziele des Kapitels, logisch. 🙂
-                        Da die Lernziele so wie dieses Skript in ganzen Sätzen
-                        formuliert sind, nehmen sie in manchmal etwas viel Platz
-                        ein. Deshalb musst du sie erst mit einem Klick auf die
-                        Überschrift aufklappen.
-                    </dd>
-
                     <dt>Selbststudium</dt>
                     <dd>
-                        Unter dieser Überschrift befindet sich immer eine
-                        komplette Selbststudiumseinheit. Das heißt, du findest
-                        hier alle Unterlagen, die bis zur darauf folgenden
-                        Vorlesungsstunde zu bearbeiten sind. Wenn du genau
-                        hin siehst, erkennst du, dass die Anordnung der
-                        Links genau unserem didaktischen Modell entspricht.
+                        <p>
+                            Unter dieser Überschrift befindet sich immer eine
+                            komplette Selbststudiumseinheit. Das heißt, du findest
+                            hier alle Unterlagen, die bis zur darauf folgenden
+                            Vorlesungsstunde zu bearbeiten sind.
+                        </p>
+                        <ol>
+                            <li>
+                                <b>Vorwissensabfrage:</b> Jedes Selbststudium beginnt
+                                mit einer kleinen Vorwissensabfrage, um dich auf das
+                                Thema einzustimmen. Außerdem bekommst du dadurch ein
+                                Gefühl dafür, ob du schon ein klein wenig über das
+                                Thema weißt.
+                            </li>
+                            <li>
+                                <b>Onlinefolien:</b> Das eigentliche Selbststudium
+                                erfolgt dann, indem du die Onlinefolien durcharbeitest.
+                                Sie wurden mit viel Liebe 💓 gestaltet und beinhalten
+                                neben den Folien selbst auch ausführliche Erklärungen
+                                und Übungsaufgaben. Stelle sicher, die Aufgaben alle
+                                komplett zu bearbeiten, um ein optimales Lernergebnis
+                                zu erzielen.
+                            </li>
+                            <li>
+                                <b>Lernkontrolle:</b> Nachdem du mit den Folien durch
+                                bist, füllst du vor der nächsten Vorlesungsstunde noch
+                                die Lernkontrolle aus. Allerdings gibt es nur einen
+                                Versuch und die Zeit ist begrenzt. Denn das Ergebnis
+                                der Lernkontrolle fließt in deine spätere Note ein.
+                            </li>
+                            <li>
+                                <b>Feedback:</b> Ganz wichtig. Denn auf das Selbststudium folgt
+                                eine Vorlesung und wir möchten natürlich wissen, wie es dir
+                                ergangen ist. Nimm der deshalb bitte unbedingt die paar Minuten
+                                Zeit, das Feedback auszufüllen. Du hilfst deinem Dozenten damit,
+                                eine gute Stunde vorzubereiten.
+                            </li>
+                            <li>
+                                <b>Quellcodes:</b> Zu manchen Einheiten findest du
+                                nach der Lernkontrolle noch zusätzliche Quellcodes,
+                                die überwiegend in den Folien besprochen wurden.
+                                Beinhalten die Folien zum Beispiel kleinere
+                                Beispielanwendungen, kannst du dir hier den kompletten
+                                Quellcode dazu herunterladen.
+                            </li>
+                        </ol>
                     </dd>
 
                     <dt>Vorlesung</dt>
                     <dd>
                         Auf jedes Selbststudium folgt eine Vorlesung, in der
                         wir die gelernten Inhalte anwenden und vertiefen werden.
-                        Unter dieser Überschrift finden sich deshalb (bald)
-                        die Aufgaben, Beispiele und sonstigen Unterlagen, die
-                        wir dafür benötigen.
-                    </dd>
-
-                    <dt>Portfolio-Aufgabe</dt>
-                    <dd>
-                        Diese Überschrift ist immer dunkelblau, damit sie sich
-                        etwas abhebt. Hier findest du (auch bald) die Aufgabenstellungen
-                        für die Portfolioprüfung (siehe nächste Folie).
+                        Unter dieser Überschrift finden sich deshalb alle
+                        Aufgaben, Beispiele und sonstigen Unterlagen, die
+                        wir dafür benötigen. Im Laufe der Vorlesung werden
+                        wir dich darauf aufmerksam machen, wenn hier neue
+                        Materialien hinzukommen.
                     </dd>
                 </dl>
             </aside>
@@ -578,117 +799,136 @@
                     <b>Zuerst die gute Nachricht:</b> Es gibt immer noch keine Klausur. 😅 <br />
                     <b>Dann die Ernüchterung:</b> Trotzdem gibt es wieder eine Note. 😰
                 </p>
-
                 <ul>
-                    <li>Portfolioprüfung mit Programmieraufgaben und benoteten Hausaufgaben</li>
-                    <li>Parallel zu den Hausaufgaben gibt es kein weiteres Selbststudium</li>
-                    <li>Für die Programmieraufgaben steht ein ganzer Tag zur Verfügung</li>
-                    <li>Die Programmieraufgaben werden wie gehabt im 3er-Team bearbeitet</li>
+                    <li>
+                        Die Prüfung erfolgt im Rahmen einer Portfolioprüfung.
+                    </li>
+                    <li>
+                        Einen Teil des Portfolios werdet ihr in Dreiergruppen bearbeiten.
+                    </li>
+                    <li>
+                        Den Rest muss jeder selbst beisteuern, da es keine Gruppennoten gibt.
+                    </li>
                 </ul>
 
-                <table>
+                <h2>Zusammensetzung des Portfolios</h2>
+                <table class="dhbw-table-border" style="width: 100%; margin-bottom: 1em; font-size: 90%;">
+                    <thead>
+                        <tr>
+                            <th>I/G</th>
+                            <th>P/S</th>
+                            <th>Artefakt</th>
+                            <th>Schwierigkeit</th>
+                            <th>Abgabefrist</th>
+                            <th>Gewichtung</th>
+                        </tr>
+                    </thead>
                     <tr>
-                        <td colspan="2" class="dhbw-lightblue font-weight-bold" style="padding-top: 1em;">
-                            Teilnahme am Studium
-                        </td>
+                        <td>I</td>
+                        <td>S</td>
+                        <td><b>Einleitungsbericht</b></td>
+                        <td>Beurteilen</td>
+                        <td>Sonntag, 7. April 2019</td>
+                        <td>1</td>
                     </tr>
                     <tr>
-                        <td>Einleitung und Reflexionsbericht (je eine Seite)</td>
-                        <td class="text-right">5 Punkte</td>
+                        <td>I</td>
+                        <td>S</td>
+                        <td><b>Lernkontrollen und Feedbacks</b></td>
+                        <td>Erinnern</td>
+                        <td>Gemäß Vorlesungsplan</td>
+                        <td>2</td>
                     </tr>
                     <tr>
-                        <td>Pünktliche Einreichung der Lernkontrollen und Feedbacks</td>
-                        <td class="text-right">10 Punkte</td>
+                        <td>G</td>
+                        <td>P</td>
+                        <td><b>Quellcode der Anwendung</b></td>
+                        <td>Anwenden</td>
+                        <td>Sonntag, 7. April 2019</td>
+                        <td>4</td>
                     </tr>
                     <tr>
-                        <td>Bewertung der Gruppenarbeit durch die Gruppenmitglieder</td>
-                        <td class="text-right">5 Punkte</td>
-                    </tr>
-
-                    <tr>
-                        <td colspan="2" class="dhbw-lightblue font-weight-bold" style="padding-top: 1em;">
-                            Benotete Hausaufgaben
-                        </td>
+                        <td>G</td>
+                        <td>P</td>
+                        <td><b>Kurzbeschreibung der Anwendung</b></td>
+                        <td>Analysieren, Beurteilen</td>
+                        <td>Sonntag, 7. April 2019</td>
+                        <td>2</td>
                     </tr>
                     <tr>
-                        <td>Hausaufgabe zu Enterprise Java Beans</td>
-                        <td class="text-right">15 Punkte</td>
+                        <td>I</td>
+                        <td>S</td>
+                        <td><b>Onlinetest während der Vorlesung</b></td>
+                        <td>Erinnern, Verstehen</td>
+                        <td>Gemäß Vorlesungsplan</td>
+                        <td>2</td>
                     </tr>
                     <tr>
-                        <td>Hausaufgabe zu SOAP-Webservices</td>
-                        <td class="text-right">15 Punkte</td>
-                    </tr>
-                    <tr>
-                        <td>Hausaufgabe zu entfernten Methodenaufrufen</td>
-                        <td class="text-right">15 Punkte</td>
-                    </tr>
-                    <tr>
-                        <td>Hausaufgabe zu Publish/Subscribe</td>
-                        <td class="text-right">15 Punkte</td>
-                    </tr>
-
-                    <tr>
-                        <td colspan="2" class="dhbw-lightblue font-weight-bold" style="padding-top: 1em;">
-                            Benotete Gruppenarbeiten
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Entwicklung einer MVC-Webanwendung</td>
-                        <td class="text-right">20 Punkte</td>
-                    </tr>
-                    <tr>
-                        <td>Entwicklung einer REST/AJAX-Webanwendung</td>
-                        <td class="text-right">20 Punkte</td>
-                    </tr>
-                    <tr>
-                        <td>Entwicklung einer IoT-Anwendung mit gRPC</td>
-                        <td class="text-right">20 Punkte</td>
-                    </tr>
-                    <tr>
-                        <td>Entwicklung einer IoT-Anwendung mit MQTT</td>
-                        <td class="text-right">20 Punkte</td>
+                        <td>I</td>
+                        <td>S</td>
+                        <td><b>Reflexionsbericht</b></td>
+                        <td>Beurteilen</td>
+                        <td>Sonntag, 7. April 2019</td>
+                        <td>1</td>
                     </tr>
                 </table>
+                <p>
+                    <b>I/G:</b> I = Individualleitung, G = Gruppenleistung <br />
+                    <b>P/S:</b> P = Programmierprojekt, S = Studieninhalte <br />
+                    <b>Schwierigkeit:</b> Erinnern &lt; Verstehen &lt; Anwenden &lt; Analysieren &lt; Beurteilen
+                </p>
 
-                <div style="margin-top: 1em"></div>
-
-                <p style="color: darkred;">
-                    ➥ Bewertungsformular auf Moodle
+                <h2>Berechnung der Endnote</h2>
+                <p>
+                    <table>
+                        <tr style="padding: 0; border: 0px solid black; border-bottom-width: 1px;">
+                            <td>
+                                Σ (Einzelnote × Gewichtung)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Σ (Gewichtung)
+                            </td>
+                        </tr>
+                    </table>
                 </p>
             </article>
             <aside>
+                <h2>Nachteile einer Klausur</h2>
                 <p>
-                    An dieser Stelle haben wir gute Nachrichten für dich: Auch dieses Semester
-                    gibt es keine Klausur sondern eine Portfolioprüfung. Das Grundprinzip haben
-                    wir dabei aus Webprogrammierung übernommen, so dass wie beim letzten Mal
-                    ein Teil des Portfolios in Eigenleistung und ein anderer Teil als Gruppenarbeit
-                    verdient wird. Bei den Gruppenarbeiten handelt es sich weiterhin um die
-                    gewohnten Programmieraufgaben, die während einer Vorlesungsstunde begonnen und
-                    am selben Abend abgegeben werden müssen. Hierfür arbeitet ihr wieder in
-                    Dreiergruppen zusammen.
-                </p>
-                <p>
-                    Im Gegensatz zu Webprogrammierung haben wir aber einen etwas größen Fokus auf
-                    den individuellen Lernerfolg und dein persönliches Verständnis der vermittelten
-                    Inhalte. Deshalb wurde in jeder Vorlesungseinheit ein Selbststudium durch eine
-                    benotete Hausaufgabe ersetzt, die in Einzelleistung zu bearbeiten und in der
-                    Regel zwei Tage vor der nächsten Vorlesung abzugeben ist.
-                </p>
-                <p>
-                    Ebenso verdienst du dir wieder einen kleinen Anteil durch die pünktliche Einreichung
-                    der Lernkontrollen und Feedbacks und indem du dich mit den anderen Gruppenmitgliedern
-                    gut stellst. Am Ende des Semesters musst du dann auch wieder einen Einleitungsbericht
-                    und einen Reflexionsbericht mit je einer Seite Mindestumfang einreichen.
+                    Über die Nachteile einer Klausur haben wir schon letztes Semester
+                    gesprochen. Klausuren auf Papier haben zwar auch ihre Vorteile
+                    (z.B. bei der Bewertung), sind beim Programmieren aber auch immer
+                    etwas umständlich. Aber das weißt du ja alles schon …
                 </p>
 
-                <h2>Vorsicht bei Fehlzeiten!</h2>
+                <h2>Inhalt des Prüfungsportfolios</h2>
                 <p>
-                    An dieser Stelle eine dringende Warnung. Die Vorlesungstermine mit den Gruppenarbeiten
-                    sind Prüfungstermine. Du kannst also nur mit ärztlichem Attest fehlen oder wenn du
-                    durch die Studiengangsleitung entschuldigt wurdest. In diesem Fall wird die jeweilige
-                    Aufgabe für dich so gezählt, als wenn du daran mitgearbeitet hättest. In allen anderen
-                    Fällen wird die Aufgabe mit 0 Punkte bewertet. Bei mehr als einer unentschuldigten
-                    Fehlzeit werden die versäumten Prüfungen mündlich nachgeprüft.
+                    Statt einer Klausur machen wir also eine Portfolioprüfung, wie du
+                    sie auch aus anderen Vorlesungen her kennst. Ihr anliegen ist es,
+                    deinen individuellen Lernweg zu dokumentieren und hierfür verschiedene
+                    Artefakte zu sammeln, die dann bewertet werden. Jeder Student muss
+                    dabei sein eigenes Portfolio abgeben, auch wenn die meisten Aufgaben
+                    wie in der Praxis natürlich im Team bearbeitet werden. Auf der Folie
+                    siehst du, wie sich unser Portfolio zusammensetzt. Diese Unterlagen
+                    musst du am Ende des Semesters ausdrucken, abheften und im Sekretariat
+                    abgeben. 🖨️ Einzige Ausnahme sind die Quellcodes, die auf CD beigelegt
+                    werden müssen. 💿
+                </p>
+                <p>
+                    Zusätzlich lädst du alles zu den genannten Terminen in Moodle hoch,
+                    damit wir die Bewertung vornehmen können.
+                </p>
+
+                <h2>Berechnung der Note</h2>
+                <p>
+                    Die Benotung ist eigentlich relativ einfach. Jedes Artefakt
+                    in deinem Portfolio bekommt eine Einzelnote. Anschließend
+                    wird einfach anhand der verschiedenen Gewichtungen eine
+                    Durchschnittsnote gebildet. Die Formel dazu (solltest du
+                    dich wirklich nicht mehr daran erinnern 🐕), findest du
+                    auf der Folie.
                 </p>
             </aside>
         </section>
@@ -732,7 +972,7 @@
                         <p>
                             <b>Grundkurs Programmieren in Java</b>
                             <br />
-                            (Ratz, Scheffler, Seese, Wiesenberger), Hanser-Verlag
+                            (Ratz, Schulmeister-Zimolong, Seese, Wiesenberger), Hanser-Verlag
                         </p>
                     </li>
                     <li>
@@ -764,6 +1004,13 @@
                         </p>
                     </li>
                 </ul>
+                <p>
+                    An dieser Stelle meinen wir es auch ernst mit <b>Grundkurs Programmieren in Java</b>.
+                    Und das nicht nur, weil die Kollegen Ratz und Schulmeister-Zimolong hier an der DHBW
+                    unterrichten, 👨🏻‍🏫 sondern weil wir in „Verteilte Systeme” durchgängig Java programmieren
+                    werden. Wenn du jetzt noch Wissenslücken in Java hast, versuche diese schleunigst zu
+                    schließen, damit die Vorlesung nicht zum Albtraum wird. 👹
+                </p>
             </aside>
         </section>
 
@@ -788,7 +1035,7 @@
 
                 <h4>Urheberrecht und Lizenzvereinbarung</h4>
                 <p>
-                    © 2018 Dennis Schulmeister-Zimolong im Auftrag der DHBW Karlsruhe<br/>
+                    © 2018 – 2019 Dennis Schulmeister-Zimolong im Auftrag der DHBW Karlsruhe<br/>
                     <a href="https://github.com/DennisSchulmeister/dhbwka-wwi-vertsys-folien" target="_blank">https://github.com/DennisSchulmeister/dhbwka-wwi-vertsys-folien</a>
                 </p>
                 <img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons Lizenzvertrag" />

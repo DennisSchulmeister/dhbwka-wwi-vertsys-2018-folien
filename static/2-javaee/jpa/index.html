@@ -647,9 +647,9 @@
             <h1>Welche Datenbank nutzen wir eigentlich?</h1>
             <article>
                 <p>
-                    Netbeans enthält die Datenbank <a href="https://db.apache.org/derby/" target="_blank">Apache Derby</a>.
-                    Selbstverständlich können wir auch jede andere Datenbank verwenden, wenn wir sie selbst konfigurieren.
-                    Aber wozu? Derby funktioniert prima.
+                    In der Vorlesung nutzen wir <a href="https://db.apache.org/derby/" target="_blank">Apache Derby</a>,
+                    da diese Datenbank ohne Installation auskommt und Netbeans von Haus aus darauf zugreifen kann.
+                    Natürlich könnten wir auch fast jede andere Datenbank nutzen. Aber Derby funktioniert schon ganz prima.
                 </p>
                 <img src="netbeans-derby.png" alt="Netbeans mit gestarteter Derby-Datenbank" class="d-block" style="width: 100%;" />
             </article>
@@ -660,11 +660,11 @@
                     Applikationsserver zugreifen kann.
                 </p>
                 <p>
-                    Für den Produktiveinsatz unserer Anwendungen ist das wichtig zu wissen. Für die Entwicklung ist es und jedoch
-                    ein Stück weit egal, da Netbeans bereits eine Datenbank samt passender Glassfish-Konfiguration mitliefert.
-                    Sie hört auf den Namen <a href="https://db.apache.org/derby/" target="_blank">Apache Derby</a>, ist in Java
-                    geschrieben und wird automatisch mitgestartet, wenn wir unsere Anwendungen laufen lassen. Es ist schon alles
-                    fix und fertig eingerichtet, wir müssen nichts tun. Wie schön. ☺️
+                    Für den Produktiveinsatz unserer Anwendungen ist das wichtig zu wissen. Für die Entwicklung ist es uns jedoch
+                    ein Stück weit egal, da wir mit <a href="https://db.apache.org/derby/" target="_blank">Apache Derby</a> eine
+                    sehr gute Datenbank an der Hand haben, die keinerlei besondere Installation erfordert. Wir müssen lediglich
+                    darauf achten, in Netbeans erst den Datenbankserver und dann den Applikationsserver zu starten, und schon
+                    läuft alles wie von alleine. Wie schön. ☺️
                 </p>
             </aside>
         </section>
@@ -691,29 +691,22 @@
                     </li>
                     <li>
                         <small>
-                            <a href="#netbeans-dbtools-carousel" role="button" data-slide-to="5">Tabellen bearbeiten</a>
+                            <a href="#netbeans-dbtools-carousel" role="button" data-slide-to="4">Tabellen bearbeiten</a>
                         </small>
                     </li>
                     <li>
                         <small>
-                            <a href="#netbeans-dbtools-carousel" role="button" data-slide-to="11">Inhalte anzeigen und ändern</a>
+                            <a href="#netbeans-dbtools-carousel" role="button" data-slide-to="10">Inhalte anzeigen und ändern</a>
                         </small>
                     </li>
                 </ul>
                 <div id="netbeans-dbtools-carousel" class="carousel slide" style="margin-bottom: 1em;" data-interval="false">
                     <div class="carousel-inner">
-                        <div class="carousel-item img-thumbnail active">
-                            <p>
-                                Bevor die Datenbank genutzt werden kann, muss sie gestartet werden. Am einfachsten startest du hierfür
-                                eine Webanwendung. Die Datenbank wird dann automatisch mitgestartet.
-                            </p>
-                            <img class="active d-block w-100" src="netbeans-dbtools-01.png" />
-                        </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
                                 Links findest du den Reiter <i>Services</i> mit dem Menüpunkt <i>Databases</i>. Dort sollte die Datenbank bereits
                                 eingetragen sein, so dass du dich nur noch mit Rechtsklick und <i>Connect…</i> verbinden musst. Benutzername und
-                                Passwort lauten jeweils <b>app</b>.
+                                Passwort lauten jeweils <b>app</b>. Auf diese Weise wird der Datenbankserver gestartet.
                             </p>
                             <img class="active d-block w-100" src="netbeans-dbtools-02.png" />
                         </div>
@@ -735,7 +728,8 @@
                         <div class="carousel-item img-thumbnail">
                             <p>
                                 Sobald die Verbindung hergestellt ist, werden links die vorhandenen Datenbankschemas mit ihren Tabellen
-                                angezeigt. Unsere Tabellen befinden sich alle im Schema <i>APP</i>.
+                                angezeigt. Standardmäßig befinden sich alle Tabellen im Schema <i>APP</i>. In der Vorlesung werden wir
+                                allerdings für jede Aufgabe ein eigenes Schema anlegen.
                             </p>
                             <img class="active d-block w-100" src="netbeans-dbtools-05.png" />
                         </div>
@@ -814,9 +808,9 @@
             </article>
             <aside>
                 <p>
-                    Nicht nur, dass Netbeans bereits eine fix und fertige Datenbank mitliefert, die wir beim Programmieren unserer
-                    Anwendungen benutzen können, es hat auch so noch ein paar Tricks parat, die hin und wieder nützlich sind.
-                    Auf den nachfolgenden Bildern siehst du daher, wie du …
+                    Auf der vorherigen Seite stand, dass Netbeans direkt auf eine Derby-Datenbank zugreifen kann. Das ist
+                    wirklich praktisch, denn wie wir hier sehen, hat Netbeans ein paar Tricks parat, die hin und wieder
+                    ganz nützlich sind. Auf den nachfolgenden Bildern siehst du daher, wie du …
                 </p>
                 <ul>
                     <li>
@@ -2487,7 +2481,7 @@
                     Nach so vielen neuen Informationen wollen wir unser neu erworbenes Wissen doch gleich mal anwenden.
                     Auf dieser Folie siehst du daher ein größeres Beispiel über ein
                     <a href="http://www.schauburg.de/">nicht ganz unbekanntes Kino hier in Karlsruhe</a>. 📽️
-                    Denn Bücher 📚 haben jetzt wahrlich genug gesehen. 😛
+                    Denn Bücher 📚 haben wir jetzt wahrlich genug gesehen. 😛
                 </p>
                 <img src="schauburg.jpg" alt="" class="d-block img-thumbnail" style="width: 100%;" />
                 <p>
@@ -2813,6 +2807,7 @@
             </article>
         </section>
 
+        <!-- TODO: Neuschreiben -->
         <section>
             <h1>Ohne Persistence Unit geht es nicht</h1>
             <article>
@@ -4261,7 +4256,7 @@
 
                 <h4>Urheberrecht und Lizenzvereinbarung</h4>
                 <p>
-                    © 2018 Dennis Schulmeister-Zimolong im Auftrag der DHBW Karlsruhe<br/>
+                    © 2018 – 2019 Dennis Schulmeister-Zimolong im Auftrag der DHBW Karlsruhe<br/>
                     <a href="https://github.com/DennisSchulmeister/dhbwka-wwi-vertsys-folien" target="_blank">https://github.com/DennisSchulmeister/dhbwka-wwi-vertsys-folien</a>
                 </p>
                 <img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons Lizenzvertrag" />

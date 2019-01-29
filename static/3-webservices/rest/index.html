@@ -774,7 +774,7 @@
                     allermeisten REST-Webservices besitzen auch keine, sondern kommen nur mit einer menschenlesbaren Dokumentation oder (zumindest bei den großen
                     Anbietern) mehreren <a href="https://de.wikipedia.org/wiki/Software_Development_Kit" target="_blank">SDKs</a> für verschiedene Programmiersprachen.
                     Im Javaumfeld hat sich jedoch das  <a href="https://en.wikipedia.org/wiki/Web_Application_Description_Language" target="_blank">WADL-Format</a>
-                    als mögliche Alternative entwickelt. Es handelt sich dabei um eine automatisch generierte XML-Datei, die man durch Anhängen von <code>application.wadl</code>
+                    als mögliche Alternative entwickelt. Es handelt sich dabei um eine automatisch generierte XML-Datei, die man durch Anhängen von <code>?_wadl</code>
                     an die Basis-URL des Webservices abrufen kann. Sie beschreibt die erlaubten URLs, auch mit möglichen Platzhaltern und URL-Parametern sowie die
                     jeweils zulässigen HTTP-Verben und welche Datenformate der Server jeweils empfangen und senden kann. Optional kann sie auch Schemadefinitionen
                     für die ausgetauschten Daten enthalten. Wie wir auf der nächsten Folien sehen werden, lassen sich in Java entwickelte REST-Services dadurch in
@@ -807,7 +807,7 @@
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                Durch Anhängen von <tt>application.wadl</tt> an die URL können wir die WADL-Beschreibung abrufen.
+                                Durch Anhängen von <tt>?_wadl</tt> an die URL können wir die WADL-Beschreibung abrufen.
                             </p>
                             <img class="active d-block w-100" src="soapui-02.png" />
                         </div>
@@ -1306,7 +1306,7 @@
                                 public class Song implements Serializable {
 
                                     @Id
-                                    @GeneratedValue(generator = "song_ids")
+                                    @GeneratedValue(strategy = GenerationType.TABLE, generator = "song_ids")
                                     @TableGenerator(name = "song_ids", initialValue = 0, allocationSize = 50)
                                     private final long id = 0L;
 
@@ -1794,8 +1794,8 @@
                 </p>
                 <ol>
                     <li>
-                        Glassfish 4.1.1, der mit Netbeans 8.2 ausgeliefert wird, hat einen blöden Bug, der genau dies verhindert
-                        und stattdessen die Anwendung abstürzen lässt.¹ 😟
+                        In manchen alten Applikationsservern gab es zumindest früher einen Bug, der genau dies verhinderte
+                        und stattdessen die Anwendung abstürzen lies. 😟
                     </li>
                     <li>
                         Wir können, so wie es auf der Folie gezeigt wurde, keine Fehlermeldungen an den Client senden. Wirft
@@ -1804,13 +1804,13 @@
                     </li>
                 </ol>
                 <p>
-                    <small>
-                        ¹ In Glassfish 5.0 ist der Bug behoben.
-                    </small>
                 </p>
                 <p>
-                    Auf dieser Folie siehst du daher einen Lösungsansatz, der beide Probleme elegant umgeht. 💃 Dem Glassfish-Bug
+                    Auf dieser Folie siehst du daher einen Lösungsansatz, der beide Probleme elegant umgeht. 💃 Dem Server-Bug
                     werden wir mit der <a href="https://github.com/google/gson" target="_blank">GSON-Bibliothek von Google</a> Herr.
+                    Auch wenn das heutzutage eigentlich nicht mehr nötig sein sollte. Aber sicher ist sicher …
+                </p>
+                <p>
                     Und um die Möglichkeit zu schaffen, auch Fehlermeldungen zurückzusenden, definieren wir eine spezielle
                     <b>Response-Klasse</b>, die einen Stautscode, einen Meldungstext sowie die eigentlichen Nutzdaten enthalten kann.
                     Das Gute daran ist, dass der Code dadurch gar nicht so viel komplizierter wird. Ganz im Gegenteil, so sollte man es
@@ -2915,26 +2915,26 @@
                         </li>
                         <li class="nav-item">
                             <a
-                                id            = "auth-glassfishwebxml-tab"
+                                id            = "auth-tomee-tab"
                                 class         = "nav-link"
                                 data-toggle   = "tab"
-                                href          = "#auth-glassfishwebxml"
+                                href          = "#auth-tomee"
                                 role          = "tab"
-                                aria-controls = "auth-glassfishwebxml"
+                                aria-controls = "auth-tomee"
                             >
-                                glassfish-web.xml
+                                Konfiguration für TomEE
                             </a>
                         </li>
                         <li class="nav-item">
                             <a
-                                id            = "auth-realm-tab"
+                                id            = "auth-glassfish-tab"
                                 class         = "nav-link"
                                 data-toggle   = "tab"
-                                href          = "#auth-realm"
+                                href          = "#auth-glassfish"
                                 role          = "tab"
-                                aria-controls = "auth-realm"
+                                aria-controls = "auth-glassfish"
                             >
-                                Realm
+                                Konfiguration für GlassFish
                             </a>
                         </li>
                     </ul>
@@ -2967,7 +2967,7 @@
                                     @Column(name = "PASSWORD_HASH", length = 64)
                                     private String passwordHash;
 
-                                    @ElementCollection
+                                    @ElementCollectionauth-realm
                                     @CollectionTable(
                                             name = "REST_USER_GROUP",
                                             joinColumns = @JoinColumn(name = "USERNAME")
@@ -3068,7 +3068,7 @@
                                     &lt;/security-constraint&gt;
 
                                     &lt;!-- Definition, dass es die Rolle überhaupt gibt --&gt;
-                                    &lt;security-role&gt;
+                                    &lt;security-role&gt;auth-realm
                                         &lt;role-name&gt;rest-beispiel-user&lt;/role-name&gt;
                                     &lt;/security-role&gt;
 
@@ -3080,17 +3080,87 @@
                                 &lt;/web-app&gt;
                             </source-code>
                         </div>
-                        <!-- glassfish-web.xml -->
+                        <!-- Konfiguration für TomEE -->
                         <div
-                            class           = "tab-pane fade"
-                            id              = "auth-glassfishwebxml"
+                            class           = "tab-pane fade show"
+                            id              = "auth-tomee"
                             role            = "tabpanel"
-                            aria-labelledby = "auth-glassfishwebxml-tab"
+                            aria-labelledby = "auth-tomee-tab"
                         >
                             <p>
-                                Diese Datei, die ebenfalls im Verzeichnis <tt>WEB-INF</tt> liegen muss, gehört nicht zu Java,
-                                sondern zum Glassfish. Hier wird jeder Benutzergruppe, so wie sie in der Datenbank gespeichert ist,
-                                eine Rolle zugeordnet, die der Server prüfen kann.
+                                Der TomEE-Server benötigt eine Datei namens <tt>context.xml</tt>, die im Verzeichnis
+                                <tt>META-INF</tt> der Webanwendung angelegt werden muss (im Bereich <tt>Web Pages</tt>
+                                in Netbeans). Diese Datei beinhaltet alle TomEE-spezifischen Einstellungen der App
+                                und besitzt deshalb folgenden Inhalt:
+                            </p>
+                            <source-code language="xml">
+                                &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+                                &lt;!-- Tomcat/TomEE-spezifische Konfiguration                            --&gt;
+                                &lt;!-- Vgl. https://tomcat.apache.org/tomcat-9.0-doc/config/context.html --&gt;
+                                &lt;Context path="/REST_Server_Beispiel" swallowOutput="true"&gt;
+                                    &lt;!-- LockOutRealm: Sperrt den Benutzer nach zu vielen Fehlversuchen aus --&gt;
+                                    &lt;Realm className="org.apache.catalina.realm.LockOutRealm"&gt;
+                                        &lt;!-- Anwendungsspezifischer Auth-Mechanismus --&gt;
+                                        &lt;Realm
+                                            className      = "org.apache.catalina.realm.DataSourceRealm"
+
+                                            dataSourceName = "Default-Database-Unmanaged"
+                                            userTable      = "rest_server_beispiel.rest_user"
+                                            userNameCol    = "username"
+                                            userCredCol    = "password_hash"
+
+                                            userRoleTable  = "rest_server_beispiel.rest_user_group"
+                                            roleNameCol    = "groupname"
+                                        &gt;
+                                            &lt;CredentialHandler
+                                                className = "org.apache.catalina.realm.MessageDigestCredentialHandler"
+                                                algorithm = "SHA-256"
+                                            /&gt;
+                                        &lt;/Realm&gt;
+                                    &lt;/Realm&gt;
+                                &lt;/Context&gt;
+                            </source-code>
+                            <p>
+                                Der Wert <code>Default-Database-Unmanaged</code> ist dabei der Namen einer
+                                Datenbankverbindung, die in der Serverkonfiguration in der Datei <tt>conf/tomee.xml</tt>
+                                (im Server selbst) definiert sein muss. Das haben wir in der Vorlesung bereits für
+                                dich erledigt, indem wir hier folgenden Inhalt eingetragen haben:
+                            </p>
+                            <source-code language="xml">
+                                &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+                                &lt;tomee&gt;
+                                    &lt;!-- Datenbankverbindungen --&gt;
+                                    &lt;Resource id="Default-Database-Managed" type="javax.sql.DataSource"&gt;
+                                      JdbcDriver = org.apache.derby.jdbc.ClientDriver
+                                      JdbcUrl    = jdbc:derby://localhost:1527/sample
+                                      UserName   = app
+                                      Password   = app
+                                      JtaManaged = true
+                                    &lt;/Resource&gt;
+
+                                    &lt;Resource id="Default-Database-Unmanaged" type="javax.sql.DataSource"&gt;
+                                      JdbcDriver = org.apache.derby.jdbc.ClientDriver
+                                      JdbcUrl    = jdbc:derby://localhost:1527/sample
+                                      UserName   = app
+                                      Password   = app
+                                      JtaManaged = false
+                                    &lt;/Resource&gt;
+                                &lt;/tomee&gt;
+                            </source-code>
+                        </div>
+                        <!-- Konfiguration für GlassFish -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "auth-glassfish"
+                            role            = "tabpanel"
+                            aria-labelledby = "auth-glassfish-tab"
+                        >
+                            <p>
+                                Der GlassFish-Server benötigt zunächst eine Datei namens <tt>glassfish-web.xml</tt>, die im
+                                Verzeichnis <tt>WEB-INF</tt> der Webanwendung angelegt werden muss. Sie gehört nicht zu Java,
+                                sondern zu GlassFish und ordnet jeder Rolle eine Benutzergruppe zu, die der Server dann
+                                letztlich in der Datenbank sucht. Der Einfachheit halber benennen wir hier Rolle und
+                                Benutzergruppe gleich, so dass die Datei folgenden Inhalt besitzt:
                             </p>
                             <source-code language="xml">
                                 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -3107,17 +3177,12 @@
                                     &lt;parameter-encoding default-charset="UTF-8" /&gt;
                                 &lt;/glassfish-web-app&gt;
                             </source-code>
-                        </div>
-                        <!-- Realm -->
-                        <div
-                            class           = "tab-pane fade show"
-                            id              = "auth-realm"
-                            role            = "tabpanel"
-                            aria-labelledby = "auth-realm-tab"
-                        >
+
                             <p>
-                                Und damit der Server wirklich weiß, in welchen Tabellen die Benutzerdaten liegen, müssen wir wieder eine
-                                neues „Realm” in der Glassfish-Adminkonsole anlegen. Wie immer musst du hier besonders auf Tippfehler achten.
+                                Und damit der Server wirklich weiß, in welchen Tabellen die Benutzerdaten liegen, müssen wir die
+                                Adminkonsole aufrufen und dort ein neues „Realm” anlegen. Wie immer musst du hier besonders auf
+                                Tippfehler achten. Der Name des Realm muss dem <src-code language="xml">&lt;realm-name&gt;</src-code>
+                                aus der <tt>web.xml</tt> entsprechen.
                             </p>
                             <img src="auth-realm.png" alt="Realm-Konfiguration im Glassfish" class="d-block" style="width: 100%;" />
                         </div>
@@ -3182,8 +3247,8 @@
                 </source-code>
                 <p>
                     Damit sind schon alle Grundlagen gelegt. Jetzt müssen wir nur noch festlegen, für welche Aufrufe der Benutzer sich
-                    anmelden muss und welche Rollen (die wir später auf Benutzergruppen mappen) er hierfür benötigt. Dies erfolgt in
-                    der Datei <tt>WEB-INF\web.xml</tt> anhand der Webservice-URLs und der HTTP-Verben:
+                    anmelden muss und welche Rollen er hierfür benötigt.² Dies erfolgt in der Datei <tt>WEB-INF\web.xml</tt> anhand der
+                    Webservice-URLs und der HTTP-Verben:
                 </p>
                 <source-code language="xml">
                     &lt;web-app&gt;
@@ -3219,30 +3284,35 @@
                     &lt;/web-app&gt;
                 </source-code>
                 <p>
-                    Die Trennung zwischen Benutzergruppen und Rollen in Java ist etwas umständlich gelöst. Aus Sicht der Anwendung gibt
-                    es eigentlich nur Benutzergruppen, die ein Benutzer haben kann. Der Server möchte aber Rollen abprüfen, die hierfür
-                    in einer serverspezifischen Konfiguration den Gruppen zugeordnet werden müssen. Für Glassfish erfolgt dies in der
-                    Datei <tt>WEB-INF\glassfish-web.xml</tt>, die ungefähr so aussehen muss:
+                    <small>
+                        ² Eine Rolle definiert, welche Berechtigungen ein bestimmter Anwender besitzt.
+                        In den meisten Webframeworks handelt es sich dabei lediglich um einen String,
+                        der mit dem Benutzerstammsatz verknüpft und innerhalb der Anwendung geprüft
+                        wird. Zum Beispiel könnte eine Anwendung bestimmte Aktionen nur dann zulassen,
+                        wenn der Anwender die Rolle „admin” besitzt. Oder sie könnte voraussetzen, dass
+                        ein Anwender die Rolle „app-user” besitzen muss, um sich einloggen zu können,
+                        aber dass nur Benutzer mit der zusätzlichen Rolle „app-maintainer” auch Daten
+                        ändern dürfen.
+                    </small>
                 </p>
-                <source-code language="xml">
-                    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
-                    &lt;!DOCTYPE glassfish-web-app PUBLIC
-                        "-//GlassFish.org//DTD GlassFish Application Server 3.1 Servlet 3.0//EN"
-                        "http://glassfish.org/dtds/glassfish-web-app_3_0-1.dtd"&gt;
-
-                    &lt;glassfish-web-app error-url=""&gt;
-                        &lt;security-role-mapping&gt;
-                            &lt;role-name&gt;rest-beispiel-user&lt;/role-name&gt;
-                            &lt;group-name&gt;rest-beispiel-user&lt;/group-name&gt;
-                        &lt;/security-role-mapping&gt;
-
-                        &lt;parameter-encoding default-charset="UTF-8" /&gt;
-                    &lt;/glassfish-web-app&gt;
-                </source-code>
                 <p>
-                    Zum Schluss muss dann noch in der Glassfish-Adminkonsole das in der <tt>\WEB-INF\web.xml</tt> benannte „Realm”
-                    angelegt werden, damit das Ganze funktioniert. Einen Screenshot hierzu findest du auf der Folie. 🖼️ Danach sollte
-                    es nicht mehr möglich sein, ändernde Zugriffe auszuführen, ohne sich über
+                    Wie es aber hier mit der Konfiguration weiter geht, hängt vom verwendeten Applikationsserver ab.
+                    Denn die Authentifizierung und Autorisierung von Benutzern wird in Java vom Server und nicht von
+                    Anwendung gehandhabt. Aus diesem Grund muss im Server ein sog. „Realm” konfiguriert werden, das
+                    definiert, wie die Benutzer und ihre Berechtigungen überprüft werden können. In der Vorlesung
+                    hinterlegen wir hier die passenden Datenbanktabellen unserer Anwendung. Viele Unternehmen binden
+                    stattdessen aber auch
+                    <a href="https://en.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol" target="_blank">LDAP-Verzeichnisse</a>
+                    oder ein <a href="https://en.wikipedia.org/wiki/Active_Directory" target="_blank">Active Directory</a>
+                    an, damit sich die Benutzer in allen Anwendungen immer mit demselben Benutzernamen und Passwort
+                    anmelden können.
+                </p>
+                <p>
+                    Die Folie zeigt die Konfiguration sowohl für <a href="http://tomee.apache.org/" target="_blank">Apache TomEE</a>
+                    (den wir in der Vorlesung verwenden) als auch für
+                    <a href="https://projects.eclipse.org/proposals/eclipse-glassfish" target="_blank">Eclipse GlassFish</a>
+                    (der Referenzimplementierung für Jakarta EE). 🖼️ Wenn alles gut läuft, sollte es danach nicht mehr möglich sein,
+                    ändernde Zugriffe auszuführen, ohne sich über
                     <a href="https://de.wikipedia.org/wiki/HTTP-Authentifizierung#Basic_Authentication" target="_blank">HTTP Basic Authentication</a>
                     anzumelden.
                 </p>
@@ -3861,7 +3931,7 @@
 
                 <h4>Urheberrecht und Lizenzvereinbarung</h4>
                 <p>
-                    © 2018 Dennis Schulmeister-Zimolong im Auftrag der DHBW Karlsruhe<br/>
+                    © 2018 – 2019 Dennis Schulmeister-Zimolong im Auftrag der DHBW Karlsruhe<br/>
                     <a href="https://github.com/DennisSchulmeister/dhbwka-wwi-vertsys-folien" target="_blank">https://github.com/DennisSchulmeister/dhbwka-wwi-vertsys-folien</a>
                 </p>
                 <img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons Lizenzvertrag" />
