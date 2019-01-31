@@ -12,9 +12,9 @@
         <header>
             <h2>Inhaltsverzeichnis</h2>
             <p>
-                Nicht immer besitzt eine Webanwendung auch wirklich eine grafische Weboberfläche.
-                Manchmal reicht es auch schon aus, ein paar Funktionen über das Web entfernt aufrufbar
-                zu machen. Wie das geht, erfährst du hier.
+                Nicht jede Webanwendung generiert zwangsläufig HTML-Code zur Anzeige im Browser.
+                Manche Anwendungen stellen auch nur ein paar Funktionen zum entfernten Aufruf
+                durch andere Anwendungen zur Verfügung. Wie das geht, erfährst du hier.
             </p>
         </header>
 
@@ -29,7 +29,8 @@
                 <h3>Nach Abschluss dieser Einheit kannst du …</h3>
                 <ul>
                     <li>
-                        Die Idee hinter SOAP-Webservices und <span class="dhbw-lightblue font-weight-bold">typische Anwendungsfälle</span> beschreiben.
+                        Die Idee hinter <span class="dhbw-lightblue font-weight-bold">SOAP-Webservices</span> und
+                        <span class="dhbw-lightblue font-weight-bold">typische Anwendungsfälle</span> beschreiben.
                     </li>
                     <li>
                         <span class="dhbw-lightblue font-weight-bold">SOAP-Nachrichten</span> interpretieren sowie eigene SOAP-Anfragen formulieren.
@@ -44,13 +45,13 @@
                         Eigene SOAP-Webservices mit den <span class="dhbw-lightblue font-weight-bold">JAX-WS-Annotationen</span> von Java entwickeln.
                     </li>
                     <li>
-                        Java-EE-Anwendungen mit SOAP-Webservices <span class="dhbw-lightblue font-weight-bold">übersichtlich und wartbar</span> strukturieren.
+                        Jakarta-EE-Anwendungen mit SOAP-Webservices <span class="dhbw-lightblue font-weight-bold">übersichtlich und wartbar</span> strukturieren.
                     </li>
                     <li>
                         Entfernte Webservices mit JAX-WS aus Java heraus aufrufen.
                     </li>
                     <li>
-                        Netbeans zur Generierung der für den Aufruf benötigten Webservice-Stubs verwenden.
+                        Netbeans zur Generierung der für den Aufruf benötigten <span class="dhbw-lightblue font-weight-bold">Webservice-Stubs</span> verwenden.
                     </li>
                 </ul>
                 <span style="font-size: 240px; color: white;" class="dhbw-text-shadow" >🏁</span>
@@ -60,27 +61,25 @@
                     Seitdem wir uns das erste mal in Webprogrammierung mit Java auf dem Server beschäftigt haben, ist viel passiert.
                     Inzwischen können wir nicht nur einfache Webseiten serverseitig mit Java generieren, sondern wir können ganze
                     Webanwendungen schreiben, die einer logischen Struktur aus Datenhaltung, Serviceklassen und Weboberfläche entsprechen.
-                    Doch nicht immer muss eine Java-EE-Anwendung eine serverseitige Weboberfläche beinhalten, manchmal will man
-                    stattdessen einfach nur die Funktionen einer EJB für entfernte Clients über das Internet aufrufbar machen.
-                    Oder man will, obwohl eine Anwendung eine Weboberfläche besitzt, auch anderen Clients die Möglichkeit geben,
-                    dieselben Funktionen im Hintergrund zu nutzen.
+                    Doch nicht immer muss eine Jakarta-EE-Anwendung eine serverseitige Weboberfläche beinhalten, manchmal will man
+                    stattdessen einfach nur die Funktionen einer EJB für entfernte Clients aufrufbar machen. Oder man will, obwohl
+                    eine Anwendung eine Weboberfläche besitzt, auch anderen Clients die Möglichkeit geben, dieselben Backend-Services
+                    zu nutzen.
                 </p>
                 <p>
-                    Das Mittel der Wahl hierfür sind oftmals Webservices, da sie weder ein bestimmtes Betriebssystem noch eine
+                    Das Mittel der Wahl sind hier oftmals Webservices, da sie weder ein bestimmtes Betriebssystem noch eine
                     bestimmte Programmiersprache voraussetzen. Clients und Server können dadurch in jeder beliebigen Sprache
                     für jedes beliebige Betriebssystem programmiert werden, wodurch die gesamte Architektur sehr flexibel wird.
-                    Zusätzich können sie aus fast jedem Intranet heraus aufgerufen werden, da sie wie das World Wide Web ebenfalls
-                    auf HTTP basieren und somit von den meisten Firewalls durchgelassen werden. Dementsprechend hoch ist daher
-                    ihre Verbreitung insbesondere geschäftlichen Umfeld, wo gute Firewalls und restriktive Netzzugänge zur
-                    Absicherung einfach dazu gehören.
+                    Zusätzlich können sie aus fast jedem Intranet heraus aufgerufen werden, da Webservices auf HTTP basieren
+                    (daher der Name) und somit von den meisten Firewalls durchgelassen werden. Dementsprechend hoch ist also
+                    ihre Verbreitung, insbesondere geschäftlichen Umfeld, wo häufig restriktive Firewalls anzutreffen sind.
                 </p>
                 <p>
                     In diesem Kapitel schauen wir uns ausschließlich SOAP-Webservices an, bevor wir im nächsten Kapitel auch
                     REST-Webservices kennenlernen werden. Du erfährst daher, was ein SOAP-Webservice ist, wie der technisch
-                    Funktioniert und wie du sowohl eigene Webservices entwickeln als auch entfernte Webservices mit Java
-                    aufrufen kannst. Dabei zeigen wir dir dann auch, warum jeder SOAP-Webservice immer eine sogenannte WSDL
-                    beinhaltet und wie du damit einen Webservices mit SoapUI testen sowie alle benötigten Klassen für seinen
-                    Aufruf generieren lassen kannst.
+                    funktioniert und wie du sowohl eigene Webservices entwickeln als auch entfernte Webservices mit Java
+                    aufrufen kannst. Hierbei zeigen wir dir auch, warum jeder SOAP-Webservice immer eine sogenannte WSDL
+                    beinhaltet und wie er damit in SoapUI getestet und der Quellcode für seinen Aufruf generiert werden kann.
                 </p>
             </aside>
         </section>
@@ -172,10 +171,10 @@
                         >
                             <p>
                                 Sehr häufig werden Webservices dazu genutzt, B2B-Szenarios zwischen mehreren Unternehmen abzubilden, wofür ein Unternehmen
-                                Webservices bietet, die von seinen Kunden und Lieferanten aufgerufen werden können. Dadurch können die Systeme aller
-                                beteiligten Unternehmen untereinander Daten austauschen, um manuelle Prozessschritte zu eliminieren. Die nachfolgende
-                                Abbildung zeigt zum Beispiel, wie ein Großkunde eine Bestellung bei einem Händler aufgibt, was wiederum zur automatischen
-                                Erteilung eines Produktions- und eines Lieferauftrags bei zwei weiteren Unternehmen führt.
+                                Webservices bietet, die von seinen Kunden und Lieferanten aufgerufen werden können. Dadurch können die Systeme untereinander
+                                Daten austauschen, um manuelle Prozessschritte zu eliminieren. Die Abbildung zeigt zum Beispiel, wie ein Großkunde 🐕 eine
+                                Bestellung bei einem Händler aufgibt, was wiederum zur automatischen Erteilung eines Produktions- und eines Lieferauftrags
+                                bei zwei weiteren Unternehmen führt.
                             </p>
                             <img src="usecase-b2b.svg" alt="Systemintegration zwischen Unternehmen" class="d-block" style="width: 100%;" />
                             <p>
@@ -210,19 +209,20 @@
             <aside>
                 <p>
                     Bisher haben wir HTTP nur als Übertragungsprotokoll für HTML-Seiten, die ein Browser von einem Webserver abrufen kann, kennengelernt.
-                    Im Zusammenhang mit EJBs kann HTTP aber auch etwas ganz anderes: Die Methoden einer Stateless Session Bean durch entfernte Clients
+                    Im Zusammenhang mit EJBs kann HTTP aber auch etwas ganz anderes: Die Methoden einer <b>Stateless Session Bean</b> durch entfernte Clients
                     aufrufbar machen, und zwar auch dann (oder, besser gesagt, gerade dann), wenn diese Clients keine Browser sondern einfach irgendwelche
-                    Programme sind. Man spricht dann von einem <b>Webservice</b>, da die Enterprise Java Beans gewöhnliche Webtechnologien benutzen, um ihre
-                    Methoden entfernt aufrufbar zu machen. Die Idee dahinter hat dabei eigentlich gar nichts mit Java zu tun, da sich Webservices mit nahezu
-                    jeder Programmiersprache sowohl erstellen als auch aufrufen lassen. Jedoch geht dies mit Java, wie du bald sehen wirst, besonders einfach.
+                    Programme sind. Man spricht dann von einem <b>Webservice</b> aufgrund Webtechnologien, die hierfür genutzt werden. Die Idee dahinter hat
+                    eigentlich gar nichts mit Java zu tun, da sich Webservices mit nahezu jeder Sprache sowohl erstellen als auch aufrufen lassen. Jedoch
+                    geht dies mit Java besonders einfach.
                 </p>
                 <p>
-                    Die Webservices, um dies hier geht, nennen sich <b>SOAP-Webservices</b>, was ursprünglich mal für <b>Simple Object Access Protocol</b>
-                    stand. Doch wie bei vielen  <a href="https://de.wikipedia.org/wiki/SOAP" target="_blank">von Microsoft erfundenen</a> Dingen, ist das
-                    Protokoll weder einfach noch wirklich objektorientiert, 😉 so dass SOAP heute nur noch für SOAP steht. ✨ Denn rund um SOAP sind im Laufe
-                    der Jahre viele verwandte Standards entstanden, die zwar allesamt reale Probleme, wie zum Beispiel die Signierung und Verschlüsselung der
-                    übertragenen Daten, lösen, dafür aber auch sehr komplex sind. Wir begüngen uns an dieser Stelle daher nur mit den Grundlagen, bei denen
-                    es immer auf folgendes hinausläuft:
+                    Die Webservices, um dies hier geht, nennen sich <a href="https://de.wikipedia.org/wiki/SOAP" target="_blank">SOAP-Webservices</a>,
+                    was ursprünglich mal für <b>Simple Object Access Protocol</b> stand. Doch wie bei vielen
+                    <a href="https://en.wikipedia.org/wiki/History_of_Microsoft" target="_blank">von Microsoft erfundenen</a> Dingen, ist das Protokoll
+                    weder einfach noch objektorientiert, 😉 so dass SOAP heute nur noch für SOAP steht. ✨ Denn rund um SOAP sind im Laufe der Jahre
+                    viele verwandte Standards entstanden, die zwar allesamt reale Probleme, wie zum Beispiel die Signierung und Verschlüsselung der
+                    übertragenen Daten, lösen, dafür aber auch sehr komplex sind. Wir begüngen uns an dieser Stelle daher nur mit den Grundlagen, bei
+                    denen es immer auf folgendes hinausläuft:
                 </p>
                 <ul>
                     <li>
@@ -246,8 +246,8 @@
                 <p>
                     Aufgrund seines Alters (SOAP wurde bereits 1999 erfunden), der prinzipbedingten Plattformunabhängigkeit, der vielen angrenzenden Standards
                     sowie der ausgereiften Frameworks und Entwicklungswerkzeuge ist SOAP heute bei vielen Unternehmen im Einsatz. Insbesondere bei verteilten
-                    Business-To-Business-Anwendungen ist SOAP das Mittel der Wahl und wird erst seit kurzem vermehrt durch REST² abgelöst. Typische Use Cases
-                    sind daher die auf der Folie gezeigten, wenn zum Beispiel die Lieferkette zwischen zwei Unternehmen elektronisch abgebildet wird oder einfach
+                    Business-To-Business-Anwendungen ist SOAP das Mittel der Wahl und wird erst seit Kurzem vermehrt durch REST² abgelöst. Typische Use Cases
+                    sind daher die auf der Folie gezeigten, wenn zum Beispiel die Lieferkette zwischen zwei Unternehmen 🚚 elektronisch abgebildet oder einfach
                     nur mehrere, voneinander unabhängige Anwendungen über einen Integrationsserver miteinander verbunden werden sollen.
                 </p>
                 <p>
@@ -267,8 +267,20 @@
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
                             <a
-                                id            = "details-wsdl-tab"
+                                id            = "details-transfer-tab"
                                 class         = "nav-link active"
+                                data-toggle   = "tab"
+                                href          = "#details-transfer"
+                                role          = "tab"
+                                aria-controls = "details-transfer"
+                            >
+                                HTTP und XML-Format
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "details-wsdl-tab"
+                                class         = "nav-link"
                                 data-toggle   = "tab"
                                 href          = "#details-wsdl"
                                 role          = "tab"
@@ -278,23 +290,25 @@
                                 WSDL-Beschreibung
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a
-                                id            = "details-transfer-tab"
-                                class         = "nav-link"
-                                data-toggle   = "tab"
-                                href          = "#details-transfer"
-                                role          = "tab"
-                                aria-controls = "details-transfer"
-                            >
-                                HTTP und XML-Format
-                            </a>
-                        </li>
                     </ul>
                     <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
-                        <!-- WSDL-Beschreibung -->
+                        <!-- HTTP und XML-Format -->
                         <div
                             class           = "tab-pane fade show active"
+                            id              = "details-transfer"
+                            role            = "tabpanel"
+                            aria-labelledby = "details-transfer-tab"
+                        >
+                            <p>
+                                Anfrage und Antwort werden im SOAP-XML-Format kodiert und durch einen einfachen HTTP-Aufruf übertragen. Die aufgerufene URL, sowie
+                                der genaue Inhalte der XML-Nachrichten ergibt sich aus der WSDL-Beschreibung. Der Aufruf erfolgt immer als POST-Anfrage.
+                            </p>
+                            <img src="beispiel-request.svg" alt="" class="d-block" style="width: 100%; margin-bottom: 3em;" />
+                            <img src="beispiel-response.svg" alt="" class="d-block" style="width: 100%;" />
+                        </div>
+                        <!-- WSDL-Beschreibung -->
+                        <div
+                            class           = "tab-pane fade"
                             id              = "details-wsdl"
                             role            = "tabpanel"
                             aria-labelledby = "details-wsdl-tab"
@@ -326,7 +340,7 @@
                                         📃
                                     </td>
                                     <td>
-                                        Zusammenfassung mehrere Operationen zu einem <span class="dhbw-lightblue font-weight-bold">Interface</span> (WSDL 2.0) bzw. <span class="dhbw-lightblue font-weight-bold">Port Type</span> (WSDL 1.1)
+                                        Zusammenfassung mehrerer Operationen zu einem <span class="dhbw-lightblue font-weight-bold">Interface</span> (WSDL 2.0) bzw. <span class="dhbw-lightblue font-weight-bold">Port Type</span> (WSDL 1.1)
                                     </td>
                                 </tr>
                                 <tr>
@@ -412,110 +426,44 @@
                                 &lt;/definitions&gt;
                             </source-code>
                         </div>
-                        <!-- HTTP und XML-Format -->
-                        <div
-                            class           = "tab-pane fade"
-                            id              = "details-transfer"
-                            role            = "tabpanel"
-                            aria-labelledby = "details-transfer-tab"
-                        >
-                            <p>
-                                Anfrage und Antwort werden im SOAP-XML-Format kodiert und durch einen einfachen HTTP-Aufruf übertragen. Die aufgerufene URL, sowie
-                                der genaue Inhalte der XML-Nachrichten ergibt sich aus der WSDL-Beschreibung. Der Aufruf erfolgt immer als POST-Anfrage.
-                            </p>
-                            <img src="beispiel-request.svg" alt="" class="d-block" style="width: 100%; margin-bottom: 3em;" />
-                            <img src="beispiel-response.svg" alt="" class="d-block" style="width: 100%;" />
-                        </div>
                     </div>
                 </div>
             </article>
             <aside>
                 <p>
-                    Da der SOAP-Standard unabhängig von Java oder irgend einer anderen Sprache erfunden wurde, besitzt er ein paar Besonderheiten, die wir bei der
+                    Da der SOAP-Standard 🧼 unabhängig von Java ☕ oder irgend einer anderen Sprache erfunden wurde, besitzt er ein paar Besonderheiten, die wir bei der
                     Entwicklung beachten müssen. Deshalb ist es ganz gut, zu verstehen, wie ein SOAP-Webservice funktioniert und welche Daten bei einem Aufruf über
-                    die Leitung gehen. Auf dieser Folien schauen wir uns daher die folgenden Sachen an:
+                    die Leitung gehen. Auf dieser Folie schauen wir uns daher die folgenden Sachen an:
                 </p>
                 <ul>
                     <li>
-                        Wie die aufrufbaren Methoden eines SOAP-Webservices formal definiert werden
+                        Wie die Methoden eines SOAP-Webservices definiert werden
                     </li>
                     <li>
-                        Welche URL ein Webservice besitzt und wie das HTTP-Protokoll beim Aufruf verwendet wird
+                        Welche URL ein Webservice besitzt
                     </li>
                     <li>
-                        Welchen Aufbau jede SOAP-Nachricht, also jede Anfrage oder Antwort, besitzt
+                        Wie das HTTP-Protokoll beim Aufruf verwendet wird
                     </li>
                     <li>
-                        Wie der Name der aufgerufenen Methode, ihre Parameter und der Rückgabewert kodiert werden
+                        Welchen Aufbau die Anfragen und Antworten besitzen
+                    </li>
+                    <li>
+                        Wie Name, Parameter und Rückgabewert der Methoden kodiert werden
                     </li>
                 </ul>
                 <p>
                     Den Bezug zu Java lassen wir dabei erst einmal außen vor. Wir wollen erst verstehen, wie SOAP ganz allgemein funktioniert.
                 </p>
 
-                <h2>Formale Definition</h2>
+                <h2>Nutzung von HTTP und XML</h2>
                 <p>
-                    Eine Besonderheit von SOAP ist, dass es zu jedem Webservice eine sogenannte WSDL-Beschreibung gibt, in der alle für den Aufruf des Webservices
-                    benötigten Informationen in einem maschinenlesbaren XML-Format definiert sind. Dementsprechend steht WSDL auch für <b>Webservice Definition
-                    Language</b>. Das Format ist ein wenig kompliziert aufgebaut und nicht so sehr dafür gedacht, von Hand geschrieben oder ausgewertet zu werden.
-                    Vielmehr dient es dazu, durch Werkzeugprogramme ausgewertet zu werden, um zum Beispiel ein fertiges Codegerüst für Client oder Server zu generieren.
-                    Inzwischen gibt es zwei Versionen des WSDL-Standards: <a href="https://www.w3.org/TR/2001/NOTE-wsdl-20010315" target="_blank">WSDL 1.1</a> und
-                    <a href="https://www.w3.org/TR/2007/REC-wsdl20-20070626/" target="_blank">WSDL 2.0</a>, viele Frameworks unterstützen jedoch nur die ältere Version,
-                    obwohl WSDL 2.0 bereits 2007 spezifiziert wurde und gegenüber der Vorversion von 2001 einige Vereinfachungen enthält. 😕 Java nutzt daher
-                    standardmäßig ebenfalls die Version 1.1.
-                </p>
-                <p>
-                    Vereinfacht gesagt besitzt eine WSDL-Datei folgende Inhalte:
-                </p>
-                <ul>
-                    <li>
-                        <b>Typdefinitionen:</b> Damit klar ist, welche XML-Daten an den Webservice gesendet werden können und welche XML-Daten er zurückschickt,
-                        befindet sich am Anfang der WSDL ein Bereich mit <a href="https://de.wikipedia.org/wiki/XML_Schema" target="_blank">XML-Schema-Definitionen</a>.
-                        Hier wird für jede Methode eine Anfragestruktur und eine Antwortstruktur definiert und festgelegt, welche XML-Elemente sie enthalten.
-                    </li>
-                    <li>
-                        <b>Nachrichtendefinitionen:</b> Als nächstes folgt ein Bereich, in dem die Methoden (im SOAP-Jargon „Operationen” genannt) selbst definiert
-                        werden. Hier wird also festgelegt, welche Operationen es gibt, wie sie heißen, und welche XML-Schema-Definitionen für Anfrage und Antwort
-                        herangezogen werden.
-                    </li>
-                    <li>
-                        <b>Interfaces / Port Types:</b> In Java sind wir es gewohnt, dass sich ein Programm aus mehreren Klassen zusammensetzt, in denen die Methoden
-                        des Programms enthalten sind. Ein ähnliches Konzept gibt es auch für Webservices, wobei hier nicht zwischen Klassen und Objekten unterschieden
-                        wird. Stattdessen besitzt jeder Webservice mindestens ein „Interface” (WSDL 2.0) bzw. „Port Type” (WSDL 1.1), dem die aufrufbaren Operationen
-                        zugewiesen werden. Somit künnen durch Definition mehrere Interfaces bzw. Port Types sozusagen Gruppen gebildet werden, die alle Operationen
-                        eines Aufgabenbereichs zusammenfassen.
-                    </li>
-                    <li>
-                        <b>Bindings:</b> Last but not least müssen natürlich noch URL, Übertragungsprotokoll und Aufrufsemantik¹ des Webservices definiert werden.
-                        Dies erfolgt am Ende der WSDL durch das sogenannte Binding, das als eigenständige Struktur zunächst definiert und dann den Interfaces
-                        bzw. Port Types zugewiesen wird.
-                    </li>
-                </ul>
-                <p>
-                    Ein minimales Beispiel für eine WSDL-Datei findest du auf den Folien, auch wenn du die XML-Elemente jetzt nicht auswändig lernen musst. 👻
-                </p>
-                <p>
-                    <small>
-                        ¹ In der Theorie kennt SOAP noch andere Übertragungsprotokolle außer HTTP, dies wird in der Praxis aber kaum genutzt. Ebenso kennt SOAP
-                        noch weitere Aufrufsemantiken, die sich nicht am klassischen Methodenaufruf orientieren, beispielsweise Anfragen ohne Antwort. Dies kommt
-                        ab und zu vor, der synchrone Methodenaufruf mit Anfrage und direkt darauf folgender Antwort wird jedoch am häufigsten verwendet.
-                    </small>
-                </p>
-
-                <h2>Nutzung von HTTP</h2>
-                <p>
-                    Durch die Bindings besitzt jedes Interface bzw. jeder Port Type (und damit in Java jede EJB, die wir zu einem Webservice machen) eine eigene URL
-                    wie <a href="https://example.com/soap/bestellungen/">https://example.com/soap/bestellungen/</a>. An diese URL können HTTP-Anfragen zum Aufruf der
-                    verschiedenen Operationen geschickt werden, wobei die URL dann bei allen Anfragen stets die gleiche ist. Wichtig ist, dass dabei nur
-                    <a href="../../../webprog/4-server/http/#2" target="_blank">HTTP-POST-Anfragen</a> erlaubt sind, da POST in der
-                    <a href="https://tools.ietf.org/html/rfc2616#section-9.5" target="_blank">HTTP-Spezifikation</a> als allgemeines Verb zum Senden von Daten an den
-                    Server definiert ist.
-                </p>
-
-                <h2>Das XML-Datenformat</h2>
-                <p>
-                    Sowohl die Anfrage also auch die Antwort eines Webserviceaufrufs folgen einem festen Schema, das auch als das SOAP-XML-Format bekannt ist.
-                    Die Daten haben dabei in beiden Fällen folgenden, groben Aufbau:
+                    Das Grundprinzip hinter SOAP ist eigentlich ganz einfach. Wie der Begriff „Webservice” bereits andeutet wird dieselbe technische
+                    Infrastruktur wie im World Wide Web genutzt, insbesondere HTTP als Übertragungsprotokoll und XML als Datenformat.
+                    Daraus ergibt sich, dass Webservices einem einfachen Request/Response-Verfahren folgen, bei dem der Client eine in XML formulierte
+                    Anfrage an den Server schickt und dann auf eine Antwort darauf wartet. Die Anfrage wird dabei bei SOAP immer als POST-Anfrage
+                    gesendet. Andere HTTP-Verben kommen nicht zum Einsatz. Zusätzlich müssen die übertragenen XML-Daten einem festen Schema mit folgendem,
+                    groben Aufbau entsprechen:
                 </p>
                 <source-code language="xml">
                     &lt;soap:Envelope
@@ -545,6 +493,57 @@
                     das den Namen der aufgerufenen Operation definiert. Innerhalb davon befinden sich dann weitere Elemente für die übergebenen
                     Parameter bzw. den Rückgabewert des Aufrufs.
                 </p>
+
+
+
+                <h2>Formale Definition</h2>
+                <p>
+                    Eine Besonderheit von SOAP ist, dass es zu jedem Webservice eine sogenannte WSDL-Beschreibung gibt, in der alle für den Aufruf des Webservices
+                    benötigten Informationen in einem maschinenlesbaren XML-Format definiert sind. Dementsprechend steht WSDL auch für <b>Webservice Definition
+                    Language</b>. Das Format ist ein wenig kompliziert aufgebaut und nicht so sehr dafür gedacht, von Menschen gelesen oder geschrieben zu werden.
+                    Vielmehr dient es dazu, durch Werkzeugprogramme ausgewertet zu werden, um zum Beispiel ein fertiges Codegerüst für Client oder Server zu generieren.
+                    Inzwischen gibt es zwei Versionen des WSDL-Standards: <a href="https://www.w3.org/TR/2001/NOTE-wsdl-20010315" target="_blank">WSDL 1.1</a> und
+                    <a href="https://www.w3.org/TR/2007/REC-wsdl20-20070626/" target="_blank">WSDL 2.0</a>, viele Frameworks unterstützen jedoch nur die ältere Version,
+                    obwohl WSDL 2.0 bereits 2007 spezifiziert wurde und gegenüber der Vorversion von 2001 einige Vereinfachungen enthält. 😕 Java nutzt daher
+                    standardmäßig ebenfalls die Version 1.1.
+                </p>
+                <p>
+                    Vereinfacht gesagt besitzt eine WSDL-Datei folgende Inhalte:
+                </p>
+                <ul>
+                    <li>
+                        <b>Typdefinitionen:</b> Damit klar ist, welche XML-Daten an den Webservice gesendet werden können und welche XML-Daten er zurückschickt,
+                        befindet sich am Anfang der WSDL ein Bereich mit <a href="https://de.wikipedia.org/wiki/XML_Schema" target="_blank">XML-Schema-Definitionen</a>.
+                        Hier wird für jede Methode eine Anfragestruktur und eine Antwortstruktur definiert und festgelegt, welche XML-Elemente sie enthalten.
+                    </li>
+                    <li>
+                        <b>Nachrichtendefinitionen:</b> Als nächstes folgt ein Bereich, in dem die Methoden (im SOAP-Jargon „Operationen” genannt) definiert werden.
+                        Hier wird also festgelegt, welche Operationen es gibt, wie sie heißen, und welche XML-Schema-Definitionen für Anfrage und Antwort
+                        herangezogen werden.
+                    </li>
+                    <li>
+                        <b>Interfaces / Port Types:</b> In Java sind wir es gewohnt, dass sich ein Programm aus mehreren Klassen zusammensetzt, in denen die Methoden
+                        des Programms enthalten sind. Ein ähnliches Konzept gibt es auch für Webservices, wobei hier nicht zwischen Klassen und Objekten unterschieden
+                        wird. Stattdessen besitzt jeder Webservice mindestens ein „Interface” (WSDL 2.0) bzw. „Port Type” (WSDL 1.1), dem die aufrufbaren Operationen
+                        zugewiesen werden. Somit können durch Definition mehrerer Interfaces bzw. Port Types sozusagen Gruppen gebildet werden, die alle Operationen
+                        eines Aufgabenbereichs zusammenfassen.
+                    </li>
+                    <li>
+                        <b>Bindings:</b> Last but not least müssen natürlich noch URL, Übertragungsprotokoll und Aufrufsemantik¹ des Webservices definiert werden.
+                        Dies erfolgt am Ende der WSDL durch das sogenannte „Binding”, das als eigenständige Struktur zunächst definiert und dann den Interfaces
+                        bzw. Port Types zugewiesen wird.
+                    </li>
+                </ul>
+                <p>
+                    Ein minimales Beispiel für eine WSDL-Datei findest du auf den Folien, auch wenn du die XML-Elemente jetzt nicht auswendig lernen musst. 👻
+                </p>
+                <p>
+                    <small>
+                        ¹ In der Theorie kennt SOAP noch andere Übertragungsprotokolle außer HTTP, dies wird in der Praxis aber kaum genutzt. Ebenso kennt SOAP
+                        noch weitere Aufrufsemantiken, die sich nicht am klassischen Methodenaufruf orientieren, beispielsweise Anfragen ohne Antwort. Dies kommt
+                        ab und zu vor, der synchrone Methodenaufruf mit Anfrage und direkter Antwort wird jedoch am häufigsten verwendet.
+                    </small>
+                </p>
             </aside>
         </section>
 
@@ -566,8 +565,8 @@
                     <div class="carousel-inner">
                         <div class="carousel-item img-thumbnail active">
                             <p>
-                                Angenommen, du hast einen Webservice entwickelt und startest diesen in Netbeans. Dann zeigt Nebeans am Ende
-                                des Glassfish-Protokolls die URLs des Webservices an.
+                                Angenommen, du hast einen Webservice entwickelt und startest diesen in Netbeans. Dann zeigt Netbeans am Ende
+                                des Server-Protokolls die URLs des Webservices an.
                             </p>
                             <img class="active d-block w-100" src="soapui-01.png" />
                         </div>
@@ -579,7 +578,7 @@
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                Für SoapUI musst du die WSDLs nicht manuell herunterladen. Du musst allerdings je WSDL ein neues SOAP-Projekt anlegen.
+                                In SoapUI musst du je WSDL ein neues SOAP-Projekt anlegen.
                             </p>
                             <img class="active d-block w-100" src="soapui-03.png" />
                         </div>
@@ -609,7 +608,7 @@
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                SoapUI het bereits zu jeder Operation eine Beispielanfrage generiert, die sich per Doppelklick öffnen lässt.
+                                SoapUI hat bereits zu jeder Operation eine Beispielanfrage generiert, die sich per Doppelklick öffnen lässt.
                             </p>
                             <img class="active d-block w-100" src="soapui-08.png" />
                         </div>
@@ -634,7 +633,7 @@
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                Über die „raw”-Buttons lassen sich die HTTP-Rohdaten der Anfrage und Antwort anzeigen. Dadurch siehst du dann auch die gesendeten Header Fields.
+                                Über die „Raw”-Buttons lassen sich die HTTP-Rohdaten der Anfrage und Antwort anzeigen. Dadurch siehst du dann auch die gesendeten Header Fields.
                             </p>
                             <img class="active d-block w-100" src="soapui-12.png" />
                         </div>
@@ -657,7 +656,7 @@
             </article>
             <aside>
                 <p>
-                    Die einfachste Möglichkeit, einen neuen Webservice kennenzulernen oder auch seine eigenen Webservices zu testen, ist sie
+                    Die einfachste Möglichkeit, einen neuen Webservice kennenzulernen oder eigene Webservices zu testen, ist sie
                     mit dem freien Tool <a href="https://www.soapui.org/downloads/soapui.html" target="_blank">SoapUI</a> zu untersuchen.
                     Die nachfolgenden Abbildungen zeigen dir, wir du eine WSDL in SoapUI importieren und die Webserviceaufrufe testen kannst. 🔬
                 </p>
@@ -696,7 +695,7 @@
                 <h2>Aufgabe 2.1: Allgemeine Fragen</h2>
 
                 <p>
-                    a) Für welche der typischen Anwendungsfälle wird SOAP typischerweise genutzt
+                    a) Für welche typischen Anwendungsfälle wird SOAP oft genutzt?
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
@@ -988,8 +987,8 @@
                                     <div class="col-md-8">
                                         <p>
                                             <b>Code First:</b> Eine bestehende Javaklasse wird durch Annotationen zu einem Webservice ausgebaut. Java erzeugt automatisch eine dazu passende WSDL.
-                                            Hierfür kann das Kommandozeilenwerkzeug <code>wsgen</code> bzw. die in Netbeans enthaltene GUI dafür verwendet werden. Durch Anhängen von <code>?wsdl</code>
-                                            an die Webserivce-URL lässt sich diese jedoch auch zur Laufzeit abrufen.
+                                            Hierfür kann das Kommandozeilenwerkzeug <code>wsgen</code> bzw. die in Netbeans enthaltene GUI verwendet werden. Durch Anhängen von <code>?wsdl</code>
+                                            an die Webservice-URL lässt sich diese jedoch auch zur Laufzeit abrufen.
                                         </p>
                                         <img src="jaxws-code-first.svg" alt="Aufruf von wsgen für Code-First-Ansatz" class="d-block" style="width: 100%;" />
                                     </div>
@@ -1001,7 +1000,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <p>
-                                            <b>Contract First:</b> Das serversitige Codegerüst wird anhand einer vorhandenen WSDL generiert. Die WSDL wird hierfür mit dem Werkzeugprogramm
+                                            <b>Contract First:</b> Das serverseitige Codegerüst wird anhand einer vorhandenen WSDL generiert. Die WSDL wird hierfür mit dem Werkzeugprogramm
                                             <code>wsimport</code> bzw. der in Netbeans enthaltenen GUI eingelesen und verarbeitet.
                                         </p>
                                         <img src="jaxws-contract-first.svg" alt="Aufruf von wsimport für Contract-First-Ansatz" class="d-block" style="width: 100%;" />
@@ -1069,13 +1068,13 @@
                                     <div class="col-md">
                                         <h3 class="dhbw-lightblue">@WebParam</h3>
                                         <p>
-                                            Kennzeichnet einen Methodenparameter und legt fest, wie er im XML übergeben werden muss, z.B. wie das dazugehörige XML-Tag heißen muss.
+                                            Kennzeichnet einen Methodenparameter und legt fest, wie er im XML übergeben werden muss, z.B. wie das dazugehörige XML-Element heißen muss.
                                         </p>
                                     </div>
                                     <div class="col-md">
                                         <h3 class="dhbw-lightblue">@WebResult</h3>
                                         <p>
-                                            Steht vor einer Methode und legt fest, welchen Namen des XML-Tag heißt, in dem der Rückgabewert an den Aufrufer gesendet wird.
+                                            Steht vor einer Methode und legt fest, welchen Namen das XML-Element besitzt, in dem der Rückgabewert an den Aufrufer gesendet wird.
                                         </p>
                                     </div>
                                 </div>
@@ -1116,7 +1115,7 @@
                             aria-labelledby = "eigene_ws-beispiel-tab"
                         >
                         <p>
-                            Innerhalb der Java Enterprise Edition dürfen nur <b>Stateless Session Beans</b> als Webservice gekennzeichnet werden.
+                            Innerhalb der Jakarta Enterprise Edition dürfen nur <b>Stateless Session Beans</b> als Webservice gekennzeichnet werden.
                             Es empfiehlt sich dabei, immer eine eigene EJB nur für den Webservice zu definieren, anstatt einfach die ohnehin schon
                             vorhandenen EJBs zum Webservice zu machen. Dadurch hat man eine klarere Trennung und läuft nicht Gefahr, zu viele
                             Methoden entfernt aufrufbar zu machen. So wie im nachfolgenden Beispiel, das einen Webservice zur Verwaltung von
@@ -1191,55 +1190,55 @@
             <aside>
                 <p>
                     Mit Java einen eigenen Webservice zu programmieren ist eigentlich nicht schwer. Es ist sogar ziemlich einfach,
-                    da man nur ein paar einfache Handgriffe mit den Werkzeugen <code>wsgen</code> und <code>wsimport</code> dafür
-                    erledigen muss. Oder du verwendest die grafischen Werkzeuge von Netbeans und überlässt den Aufruf der beiden
-                    Programme der IDE. So oder so, du musst wirklich nicht viel tun, um zu deinem eigenen SOAP-Webservice zu kommen.
-                    Zunächst musst du dir jedoch überlegen, wie du eigentlich vorgehen willst:
+                    da wir nur ein paar einfache Handgriffe mit den Werkzeugen <code>wsgen</code> und <code>wsimport</code>
+                    erledigen müssen. Doch selbst diese kann Netbeans für uns automatisieren. Zuvor muss natürlich klar sein, was
+                    für ein Webservice entwickelt werden soll und welches Vorgehen dafür in Frage kommt:
                 </p>
                 <ul>
                     <li>
                         <b>Code First:</b> So handhaben wir es in der Vorlesung, da es weniger Arbeit macht. Wir schreiben einfach
-                        eine Javaklasse und lassen uns dann daraus den Webservice und dazu passende WSDL generieren.
+                        eine Javaklasse und lassen uns daraus den Webservice und seine WSDL generieren.
                     </li>
                     <li>
                         <b>Contract First:</b> So würde man es häufig in der Praxis machen, wenn man den Webservice versionieren und
-                        dabei sicherstellen will, dass er sich zwischen zwei Versionen nicht inkompatibel ändert. In diesem Fall würden
-                        wir die WSDL von Hand vorschreiben und uns dann mit <code>wsimport</code> die dazugehörigen Klassen generieren lassen.
+                        sicherstellen will, dass er sich zwischen zwei Versionen nicht inkompatibel ändert. In diesem Fall würden
+                        wir die WSDL von Hand schreiben und dann mit <code>wsimport</code> passende Webservice-Klassen generieren lassen.
                     </li>
                 </ul>
                 <p>
-                    Code First ist dabei wirklich das einfachere Vorgehen, da wir uns um nichts kümmern müssen. Nichtmal das Programm
+                    Code First ist dabei wirklich bequem. Wir müssen uns um so gut wie nichts kümmern. Nicht einmal das Programm
                     <code>wsgen</code> müssen wir aufrufen, da sich die WSDL durch Anhängen von <code>?wsdl</code> an die Webservice-URL
-                    ohnehin jederzeit frisch abrufen läasst. Alles was wir wirklich brauchen ist eine <b>Stateless Session Bean</b> und
-                    <b>vier grundlegende Annotationen</b> aus der JAX-WS-Bibliothek. Und schon haben wir einen Webservice, ohne hierfür
-                    wirklich etas programmieren zu müssen.
+                    ohnehin jederzeit frisch abrufen lässt. Alles was wir wirklich brauchen ist eine <b>Stateless Session Bean</b> und
+                    <b>vier grundlegende Annotationen</b> aus der JAX-WS-Bibliothek. Schon haben wir einen Webservice.
                 </p>
                 <ul>
                     <li>
                         <src-code language="java">@WebService</src-code>: Diese Annotation muss vor der Klasse stehen, um sie als Webservice auszuzeichnen.
                     </li>
                     <li>
-                        <src-code language="java">@WebMethod</src-code>: Mindestens eine Methode der Klasse muss dann mit dieser Annotation versorgt werden,
-                        Denn hierüber steuert sich, welche Operationen für den Webservice freigegeben wurden.
+                        <src-code language="java">@WebMethod</src-code>: Mindestens eine Methode der Klasse muss mit dieser Annotation in den
+                        Webservice aufgenommen werden. Über den Webservice können nämlich nur die mit <src-code>@WebMethod</src-code> gekennzeichneten
+                        Methoden aufgerufen werden.
                     </li>
                     <li>
                         <src-code language="java">@WebParam(name = "…")</src-code>: Die nächsten beiden Annotationen werden streng genommen gar nicht benötigt, sollten
-                        aber trotzdem immer verwendet werden. Denn Java verliert beim Compilieren einer Klasse die Namen ihrer Methodenparameter. Mit dieser Annotation
-                        kann der Name daher wieder zugewiesen werden, wobei der exakt selbe Name dann auch im XML verwendet wird. Zusätzlich kann hier festgelegt werden,
-                        ob der Parameter im SOAP-Body (Vorgabe) oder im SOAP-Header (nur bei <src-code language="java">header = true</src-code>) übergeben wird.
+                        aber trotzdem immer verwendet werden. Denn Java verliert beim Compilieren einer Klasse die Namen ihrer Methodenparameter, wodurch die Parameter
+                        im XML nur durchnummeriert werden können. Mit <src-code language="java">@WebParam</src-code> können wir sicherstellen, dass auch im XML ein
+                        sprechender Name verwendet wird. Zusätzlich kann hier festgelegt werden, ob der Parameter im SOAP-Body (Vorgabe) oder im SOAP-Header
+                        (nur bei <src-code language="java">header = true</src-code>) übergeben wird.
                     </li>
                     <li>
-                        <src-code language="java">@WebResult</src-code>: Und mit dieser Annotation legst du fest, wie das XML-Element für den Rückfabewert der Operation
-                        innerhalb der SOAP-Antwort heißen soll.Die Annotation muss daher genau wie <src-code language="java">@WebbMethod</src-code> direkt vor eine Methode
-                        stehen.
+                        <src-code language="java">@WebResult</src-code>: Mit dieser Annotation legst du fest, wie das XML-Element für den Rückgabewert einer Methode
+                        in der Antwort heißen soll. Die Annotation muss daher genau wie <src-code language="java">@WebbMethod</src-code> direkt vor einer
+                        Methode stehen.
                     </li>
                 </ul>
                 <p>
-                    Ein Beispiel hierfür findest du im letzten Reiter auf der Folie. Dort siehst du dann auch, wie die Webservice-EJB
-                    im Hintergrund auf zwei weitere EJBs zugreift, wodurch sich möglichst wenig Anwendungslogik in der Webservice-Klasse
-                    selbst befindet. Das solltest du in deinen eigenen Projekten später dann genau so handhaben. Denn nur so hast du
-                    wirklich die volle Kontrolle darüber, welche Operationen der Webservice bietet und welche zwar intern genutzt werden,
-                    aber eben nicht für fremde Clients bestimmt sind. 🕵️
+                    Ein Beispiel hierfür findest du im letzten Reiter auf der Folie. Dort siehst du auch, wie die Webservice-EJB
+                    im Hintergrund auf zwei weitere EJBs zugreift, um die fachliche Logik von der Webservice-Definition zu trennen.
+                    Das solltest du in deinen eigenen Projekten später genau so handhaben, weil du sonst keine Kontrolle darüber
+                    hast, welche Operationen der Webservice bietet und welche Methoden nur für den internen Gebrauch (nicht über
+                    den Webservice) zur Verfügung stehen.
                 </p>
             </aside>
         </section>
@@ -1482,7 +1481,7 @@
                                         <p>
                                             Der Benutzer selbst ist eine einfache Persistence Entity, wobei hier ein paar Besonderheiten berücksichtigt werden,
                                             wie zum Beispiel, dass das Passwort nur als Hashwert gespeichert wird. Dementsprechend gibt es weiter unten ein
-                                            paar Hilfsmethoden zum Änderung und Prüfen des Passworts.
+                                            paar Hilfsmethoden zum Ändern und Prüfen des Passworts.
                                         </p>
                                         <source-code language="java">
                                             @Entity
@@ -1635,37 +1634,50 @@
             </article>
             <aside>
                 <p>
-                    Einen kleinen Nachteil haben Webservices mit Java leider: Wenn man sich nicht darum kümemrt, stehen sie sperrangelweit offen
-                    und können von beliebigen Personen von Nah und Fern aufgerufen werden. Manchmal ist das vielleicht gewollt, häufiger wird man
-                    der Abruf aber eher auf eine begrenzte Anzahl an Benutzern beschränken wollen. Oder man will sicherstellen, dass einzelne
-                    Benutzer nur bestimmte Operationen aber nicht alle Operationen aufrufen dürfen, beispielsweise weil ein einfacher Benutzer
-                    nur seine eigenen Daten ändern können soll. Früher oder später muss daher eine Benutzer- und Berechtigungsverwaltung her.
+                    Einen kleinen Nachteil haben Webservices mit Java ja doch: Wenn man sich nicht um ihre Absicherung kümmert, stehen
+                    sie sperrangelweit offen und können von beliebigen Personen nah und fern aufgerufen werden. 😮 Manchmal ist das gewollt,
+                    in der Regel wird man den Aufruf aber auf berechtigte Benutzer beschränken wollen. Oft soll sogar für jede einzelne
+                    Methode unterschieden werden, welche Benutzer sie aufrufen dürfen. Früher oder später muss daher eine Benutzer- und
+                    Berechtigungsverwaltung her. 📇 Bekanntermaßen wird in diesem Zusammenhang ja zwischen <b>Authentifizierung</b> und
+                    <b>Autorisierung</b> unterschieden, wobei erstes nur die Prüfung der Logindaten¹ und zweites die Prüfung der
+                    Berechtigungen² beschreibt. Für beide Sachen hat Jakarta&nbsp;EE eine Lösung parat, doch wie sich zeigt, kann diese
+                    mit SOAP nicht immer sinnvoll genutzt werden.
                 </p>
                 <p>
-                    Bekanntlichermaßen wird in diesem Zusammenhang ja zwischen <b>Authentifizierung</b> und <b>Autorisierung</b> unterschieden,
-                    wobei erstes nur die Prüfung der Logindaten und zweiteres die Prüfung der tatsächlichen Berechtigungen beschreibt. FÜr beide
-                    Sachen hat Java&nbsp;EE zumindest ansatzweise eine Lösung parat, doch wie sich zeigt, können diese für SOAP nicht wirklich
-                    genutzt werden.
+                    <small>
+                        ¹ <i>Wer ist das überhaupt?</i> <br />
+                        ² <i>Was darf er/sie denn?</i>
+                    </small>
                 </p>
                 <p>
-                    Prinzipiell kommen dabei zunächst einmal zwei Verfahren in Betracht, die in der Praxis beide häufig anzutreffen sind:
+                    Ganz unabhängig von Java kommen prinzipiell zwei Verfahren in Betracht, wie sich ein Benutzer an einem SOAP-Webservice
+                    authentifizieren kann. Beide Verfahren sind in der Praxis häufig anzutreffen:
                 </p>
                 <table style="margin-bottom: 1em">
                     <tr>
                         <td style="padding-right: 0.5em;">
-                            1️⃣
+                            📝
                         </td>
                         <td>
-                            Die Authentifizierung erfolgt auf Ebene des HTTP-Protokolls durch einen sogenannten <b>HTTP Basic Auth</b>, bei dem
-                            Benutzername und Passwort als Teil der HTTP Header Fields übertragen werden.
+                            <b>Authentifizierung auf Protokollebene:</b> Für dieses Verfahren schreibt HTTP verschiedene Möglichkeiten
+                            vor, wie Benutzername und Passwort in den Kopdaten einer HTTP-Anfrage an den Server geschickt werden können.
+                            In der Regel prüft der Webserver die Anmeldedaten dann schon, bevor die Anfrage überhaupt an den eigentlichen
+                            Webservice übergeben wird und antwortet im Fehlerfall mit genau definierten HTTP-Statuscodes (z.B. mit
+                            <i>403 Forbidden</i>). Häufige Übertragungsarten sind hier
+                            <a href="https://de.wikipedia.org/wiki/HTTP-Authentifizierung#Basic_Authentication" target="_blank">HTTP Basic Auth</a> und
+                            <a href="https://de.wikipedia.org/wiki/HTTP-Authentifizierung#Digest_Access_Authentication" target="_blank">HTTP Digest Auth</a>.
                         </td>
                     </tr>
                     <tr>
                         <td style="padding-right: 0.5em;">
-                            2️⃣
+                            📝
                         </td>
                         <td>
-                            Die Werte für Benutzername und Passwort werden als Teil der SOAP-Anfrage übertragen.
+                            <b>Authentifizierung auf Anwendungsebene:</b> Alternativ kann auch die Anwendung selbst die Anmeldedaten
+                            des Benutzers prüfen. Hierfür schreibt der Webservice einfach vor, dass Benutzername und Passwort
+                            (oder jede beliebigen anderen Felder, die einen Benutzer identifizieren) als Teil der SOAP-Anfrage im
+                            XML-Datenstrom mitgesendet werden müssen. Es obliegt dann dem (Java)Code des Webservices, die Anmeldedaten zu
+                            prüfen.
                         </td>
                     </tr>
                 </table>
@@ -1687,7 +1699,7 @@
                             ☺️
                         </td>
                         <td>
-                            Das Verfahren wird von allen Clients unterstützt, da es sich um ein Standardverfahren zu Authentifizierung via HTTP handelt.
+                            Das Verfahren wird von allen Clients unterstützt, da es integraler Bestandteil des HTTP-Protokolls ist.
                         </td>
                     </tr>
                     <tr>
@@ -1695,8 +1707,7 @@
                             ☺️
                         </td>
                         <td>
-                            Der Applicaitonsserver kann automatisch erkennen, welchen Benutzergruppen ein Anwender gehört und kann daher die durch
-                            <src-code language="java">@RolesAllowed("…")</src-code> verursachten Zugriffsbeschränkungen automatisch prüfen.
+                            Der Applikationsserver kann neben den Anmeldedaten auch gleich die Berechtigungen des Benutzers prüfen.
                         </td>
                     </tr>
                 </table>
@@ -1709,9 +1720,9 @@
                             🙄
                         </td>
                         <td>
-                            Die Konfiguration erfolgt für jeden Applikationsserver unterschiedlich. Für jeden Applikationsserver muss eine spezielle
-                            XML-Datei im Quellcode abgelegt werden, in der das Verfahren definiert wurde. Leider sind die XML-Anweisungen hierfür
-                            zumindest beim Glassfisch sehr, sehr, sehr schlecht dokumentiert.
+                            Die Konfiguration erfolgt für jeden Applikationsserver unterschiedlich. Jeder Hersteller macht andere Vorgaben,
+                            wie das Verfahren konfiguriert werden muss, meistens in Form einer speziellen XML-Datei im Quellcode der Anwendung.
+                            Leider gibt es häufig keine gute oder aktuelle Dokumentation dazu.
                         </td>
                     </tr>
                     <tr>
@@ -1719,21 +1730,30 @@
                             🙄
                         </td>
                         <td>
-                            Glassfish liefert zumindest in der getesteten Version 4.1.1 keine saubere Fehlermeldung, wenn ein Client ungültige
-                            Anmeldedaten sendet. Stattdessen wird der Statuscode 500 <i>Server Error</i> zusammen mit einer HTML-Fehlerseite
-                            zurückgegeben. Damit kann ein Webservice-Client aber nichts anfangen, da sich das HTML nicht auswerten lässt.
+                            Einige Applikationsserver liefern keine saubere Fehlermeldung, wenn ein Client ungültige Anmeldedaten sendet.
+                            Anstelle einer maschinenlesbaren Antwort im SOAP-XML-Format wird häufig eine HTML-Seite gesendet, was bei einem
+                            SOAP-Webservice eigentlich völlig Banane ist. 🍌
                         </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 0.5em;">
+                            🙄
+                        </td>
+                        <td>
+                            Der Glassfish-Server, den wir in der Vorlesung inzwischen nicht mehr verwenden, liefert sogar noch mit
+                            <i>500 Server Error</i> einen komplett falschen Statuscode, der eigentlich für ein komplett anderes
+                            Problem im Server oder im Quellcode steht.
                     </tr>
                 </table>
                 <p>
-                    Bleibt also nur noch das andere Verfahren, bei dem Benutzername und Passwort in der SOAP-Nachricht (meistens im SOAP-Header)
-                    stehen. Das funktioniert soweit auch ganz gut, mit nur einem großen Pferdefuß: 🐎 Es gibt im Standard keinerlei vorgesehene
-                    Methoden, mit der die empfangenen Logindaten an den Applikationsserver zur Prüfung und für den Login des Benutzers übergeben
-                    werden können. Es gibt sie einfach nicht. Und das schon seit Jahren, wenn nicht Jahrzehnten!
+                    Bleibt also nur das andere Verfahren, bei dem Benutzername und Passwort in der SOAP-Nachricht (meistens im SOAP-Header)
+                    stehen, als vernünftige Lösung. Das funktioniert soweit auch ganz gut, hat aber einen anderen Pferdefuß: 🐎 Es gibt in
+                    Jakarta&nbsp;EE keinerlei Methoden, mit der die empfangenen Logindaten an den Applikationsserver zur Prüfung übergeben
+                    werden können. Was man auch versucht, es gibt sie einfach nicht. Und das schon seit Jahren, wenn nicht Jahrzehnten! 📆
                 </p>
                 <p>
                     Die beste Lösung ist daher, seine eigene, kleine Benutzerverwaltung zu programmieren. Ein Minimalbeispiel dazu findest du
-                    auf der Folien. Dort siehst du dann auch wieder die Aufteilung zwischen Persistence Entity, normaler EJB und Webservice-EJB.
+                    auf der Folie.
                 </p>
             </aside>
         </section>
@@ -1756,13 +1776,13 @@
                     <div class="carousel-inner">
                         <div class="carousel-item img-thumbnail active">
                             <p>
-                                Als Beispiel soll der Filmwebservice vom Anfang dieses Kapitels herhalten. 🎥 Er muss in Netbeans ausgeführt werden.
+                                Als Beispiel soll der Filmwebservice von <a href="#5">Folie 5</a> herhalten. 🎥 Er muss in Netbeans ausgeführt werden.
                             </p>
                             <img class="active d-block w-100" src="aufruf-01.png" />
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                Den Aufruf packen wir in eine neue Anwendung, für die du ein neues Projekt anlegen solltest.
+                                Den Aufruf packen wir in eine neue Anwendung, für die du ein neues Projekt anlegen musst.
                             </p>
                             <img class="active d-block w-100" src="aufruf-02.png" />
                         </div>
@@ -1774,7 +1794,7 @@
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                Dieses Fenster kennst du ja schon. Trage einen sinnvollen Namen und klicke auf „Finish”.
+                                Dieses Fenster kennst du ja schon. Trage einen sinnvollen Namen ein und klicke auf „Finish”.
                             </p>
                             <img class="active d-block w-100" src="aufruf-04.png" />
                         </div>
@@ -1792,9 +1812,9 @@
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                In diesem Fenster musst du dann angeben, wo sich die WSDL befindet. Im Screenshot haben wir einfach die URL hinterlegt,
-                                was du auch so im echten Leben tun solltest, damit du die Client-Klassen jederzeit auffrischen lassen kannst, wenn sich
-                                die WSDL mal ändert.
+                                In diesem Fenster musst du dann angeben, wo sich die WSDL befindet. Im Screenshot haben wir einfach ihre URL hinterlegt,
+                                was du so auch im echten Leben tun solltest. Denn so kannst du die Client-Klassen jederzeit auffrischen lassen, wenn sich
+                                die WSDL einmal ändert.
                             </p>
                             <img class="active d-block w-100" src="aufruf-07.png" />
                         </div>
@@ -1851,7 +1871,7 @@
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                Das Ergebnis unserer Mühen. Es hat geklappt, der Webservice lässt sich tatsächlich aufrufen.
+                                Das Ergebnis unserer Mühen. Es hat geklappt. Der Webservice lässt sich tatsächlich aufrufen. 🥳
                             </p>
                             <img class="active d-block w-100" src="aufruf-09.png" />
                         </div>
@@ -1859,7 +1879,7 @@
                             <p>
                                 Na, das war doch mal einfach. Bis auf die zwei Klassennamen, die man immer etwas suchen muss,
                                 war das doch echt nicht schwer. Und es funktioniert natürlich auch in jeder anderen Art von
-                                Java-Anwendung, also zum Beispiel auch in einer Java-EE-Webanwendung.
+                                Java-Anwendung, also zum Beispiel auch in einer Jakarta-EE-Webanwendung.
                                 <span style="font-weight: bold; color: green; text-shadow: 1px 1px 1px rgba(0,0,0,0.5)">✔️</span>
                             </p>
                             <img class="active d-block w-25 m-auto" src="../../finish.svg" />
@@ -1877,9 +1897,9 @@
             </article>
             <aside>
                 <p>
-                    Fremde Webservices aufzurufen ist eigentlich gar nicht schwer, wenn man die WSDL dazu hat. Die Bilder auf der
-                    Folie zeigen dir, wie du die WSDL in Netbeans importieren kannst und welchen Code du zum Aufruf eines Webservices
-                    schreiben musst. 🖼️
+                    Fremde SOAP-Webservices aufzurufen ist fast genauso leicht, wie einen eigenen Webservice zu entwickeln, wenn man
+                    die WSDL-Beschreibung des Webservices vorliegen hat. Die Bilder auf der Folie zeigen dir, wie du eine WSDL in
+                    Netbeans importieren kannst und welchen Code du dann schreiben musst. 🖼️
                 </p>
             </aside>
         </section>
@@ -1925,8 +1945,8 @@
                         >
                             <p>
                                 Was liegt näher, als mit SOAP eine Daily Soap zu programmieren? 💘 Du weißt schon, diese täglichen Serien im Vorabendprogramm,
-                                die sich immer um den Alltag derselben Personen drehen. 💑 Hierfür haben wir auf Moodle eine Vorlage mit einem dazu passenden
-                                Datenmodell vorbereitet. Lade diese herunter und importiere sie in Netbeans.
+                                die sich immer um den Alltag derselben Personen drehen. 💑 Hierfür haben wir auf Moodle eine Vorlage mit dem Datenmodell
+                                vorbereitet. Lade diese herunter und importiere sie in Netbeans.
                             </p>
                             <p>
                                 a) In der Vorlage ist bereits eine Klasse namens <code>AdminWebservice</code> mit der Methode <code>createExampleData</code>
@@ -2066,9 +2086,9 @@
             <aside>
                 <p>
                     Zum Abschluss des Kapitels kannst du hier deinen ersten, eigenen Webservice schreiben.
-                    Nichts besonderes. Du solltest aber mal alle Schritte von der Anlage des neuen Projekts,
-                    dem Ausprogrammieren der Klassen und dem Test mit SoapUI einmal durchlaufen, bevor es mit
-                    der Vorlesung weiter geht. 🏇
+                    Nichts Besonderes. Du solltest aber mal alle Schritte von der Anlage des neuen Projekts
+                    über das Ausprogrammieren der Klassen bis zum Test mit SoapUI einmal durchlaufen, bevor
+                    es mit der Vorlesung weiter geht. 🏇
                 </p>
                 <img src="../../github_atom.png" class="img-fluid d-block"/>
                 <p>
@@ -2139,12 +2159,12 @@
                                     Ausgehend von einer als Webservice deklarierten Javaklasse wird eine WSDL-Datei generiert.
                                 </li>
                                 <li>
-                                    Ausgehend von einer auf anderem Wege erstellten WSDL wird das Codegerüst in Java generiert-
+                                    Ausgehend von einer auf anderem Wege erstellten WSDL wird das Codegerüst in Java generiert.
                                 </li>
                             </ol>
 
                             <p>
-                                b) Welche Annotation steht vor eine Klasse und zeichnet sie als Webservices aus?
+                                b) Welche Annotation zeichnet eine Klasse als Webservices aus?
                             </p>
                             <ol class="dhbw-liste-mit-viel-text">
                                 <li>
@@ -2162,7 +2182,7 @@
                             </ol>
 
                             <p>
-                                c) Welche Annotation steht vor einer Methode und zeichnet sie als Webservice-Operation aus?
+                                c) Welche Annotation zeichnet eine Methode als Webservice-Operation aus?
                             </p>
                             <ol class="dhbw-liste-mit-viel-text">
                                 <li>
@@ -2180,7 +2200,7 @@
                             </ol>
 
                             <p>
-                                d) Welche Annotation steht vor einem Methodenparameter, um seinen Namen zu setzen?
+                                d) Welche Annotation legt den Namen eines Methodenparameters fest?
                             </p>
                             <ol class="dhbw-liste-mit-viel-text">
                                 <li>
@@ -2198,7 +2218,7 @@
                             </ol>
 
                             <p>
-                                e) Welche Möglichkeiten bietet Java&nbsp;EE zur Erstellung eines Webservices?
+                                e) Welche Möglichkeiten bietet Jakarta&nbsp;EE zur Erstellung eines Webservices?
                             </p>
                             <ol class="dhbw-liste-mit-viel-text">
                                 <li>
@@ -2320,8 +2340,8 @@
             </article>
             <aside>
                 <p>
-                    Jetzt hast du es gleich geschafft, das Kapitel ist bald vorbei. Nur noch ein paar Fragen zur
-                    Kontrolle beantworten und schon kann es auf zu neuen Ufern weiter gehen. ⛵
+                    Jetzt hast du es gleich geschafft. Das Kapitel ist bald vorbei. Nur noch ein paar Fragen zur
+                    Kontrolle beantworten und schon kann es auf zu neuen Ufern gehen. ⛵
                 </p>
             </aside>
         </section>
@@ -2352,22 +2372,22 @@
                         Vermeide Namenskollisionen mit den Webservices anderer Anwendungen auf demselben Server.
                     </li>
                     <li>
-                        Überlege dir bei Entities und geschachtelten Objekten, ob du wirklich immer das gesamte Objekt übertragen willst.
+                        Überlege dir bei Entities und tief geschachtelten Objekten, ob du wirklich alle Daten übertragen willst.
                     </li>
                     <li>
-                        Schreibe deshalb auch abgespekte Datentransferklassen, die nur die wirklich benötigten Felder für einen Parameter besitzen.
+                        Schreibe deshalb auch abgespeckte Datentransferklassen für die wirklich zu übertragenden Daten.
                     </li>
                     <li>
-                        Keine Methode mit Rückgabewert ohne die Annotation <tt class="dhbw-lightblue">@WebResult(name="…")</tt>!
+                        Keine Methode mit Rückgabewert ohne die Annotation <src-code language="java">@WebResult(name="…")</src-code>!
                     </li>
                     <li>
-                        Kein Methodenparameter einer freigegebenen Methode ohne <tt class="dhbw-lightblue">@WebParam(name="…")</tt>!
+                        Kein Methodenparameter ohne <src-code language="java">@WebParam(name="…")</src-cpde>!
                     </li>
                     <li>
-                        Verschiebe allgemeine Parameter wie Benutzername und Passwort in den SOAP-Header statt in den SOAP-Body.
+                        Verschiebe allgemeine Parameter wie Benutzername und Passwort in den SOAP-Header.
                     </li>
                     <li>
-                        Teile einen Webservice auf mehrere EJBs auf, um eine sinnvolle Strukturierung der Operationen zu erhalten.
+                        Teile einen Webservice in mehrere EJBs auf, um eine sinnvolle Strukturierung zu erhalten.
                     </li>
                 </ul>
 
@@ -2380,16 +2400,16 @@
                         Dokumentiere für deine Clients, wie sie sich am Webservice authentifizieren können.
                     </li>
                     <li>
-                        Vermeide die Java-EE-Funktionen zur Rechteverwaltung, da diese mit SOAP kaum zum Laufen zu bringen sind.
+                        Vermeide die Jakarta-EE-Funktionen zur Rechteverwaltung, da diese mit SOAP nicht gut funktionieren.
                     </li>
                     <li>
                         Verwende zur Übertragung immer das verschlüsselte HTTPS-Protokoll.
                     </li>
                     <li>
-                        Überlege dir, den Inhalt der SOAP-Nachrichtne zu signieren und bei Bedarf ebenfalls zu Verschlüsseln (Stichwort: WS-SEC).
+                        Überlege dir, den Inhalt der SOAP-Nachrichten zu signieren und zu verschlüsseln (Stichwort: WS-SEC).
                     </li>
                     <li>
-                        Mache niemals eine ohnehin schon vorhandene EJB zum Webservices. Gönne jedem Webservices seine eigene EJB-Klasse, nur für ihn.
+                        Mache niemals eine ohnehin schon vorhandene EJB zum Webservice. Gönne jedem Webservices seine persönliche Klasse.
                     </li>
                 </ul>
 
@@ -2405,10 +2425,10 @@
                         Behalte aber nicht zu viele SOAP-Nachrichten, da dies Speicher belegt und dem Datenschutz entgegen steht.
                     </li>
                     <li>
-                        Erstelle eine ausgiebige Prosa-Dokumentation des Webservices mit der Bedeutung seiner Operationen und Parameter.
+                        Erstelle eine ausgiebige Dokumentation des Webservices, in der alle Operationen genaustens erklärt werden.
                     </li>
                     <li>
-                        Überlege dir den Webservice ggf. zu versionieren, stelle dabei aber auch die Verfügbarkeit alter Versionen sicher.
+                        Überlege dir, den Webservice zu versionieren. Stelle dabei aber auch die Verfügbarkeit alter Versionen sicher.
                     </li>
                 </ul>
 
