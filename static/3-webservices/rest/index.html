@@ -13,8 +13,8 @@
             <h2>Inhaltsverzeichnis</h2>
             <p>
                 Moderne Webservices werden immer mehr als REST-Webservices entworfen und es scheint
-                fast so, als wäre SOAP vielerorts gar kein Thema mehr. In dieser Stelle gehen wir
-                daher näher auf REST ein und zeigen, wie es mit Java funktioniert.
+                fast so, als wäre SOAP vielerorts gar kein Thema mehr. An dieser Stelle nehmen wir
+                den Herausforderer daher gründlich unter die Lupe. 🔍
             </p>
         </header>
 
@@ -39,7 +39,7 @@
                         Erklären, was eine <span class="dhbw-lightblue font-weight-bold">WADL-Beschreibung</span> ist und welche Vorteile sie bietet.
                     </li>
                     <li>
-                        WADL-Dateien in <span class="dhbw-lightblue font-weight-bold">SoapUI</span> importieren und fremde Webservices damit testen,
+                        WADL-Dateien in <span class="dhbw-lightblue font-weight-bold">SoapUI</span> importieren und fremde Webservices damit testen.
                     </li>
                     <li>
                         Eigene REST-Webservices mit den <span class="dhbw-lightblue font-weight-bold">JAX-RS-Annotationen</span> von Java implementieren.
@@ -58,17 +58,19 @@
             </article>
             <aside>
                 <p>
-                    Während im Unternehmenskontext SOAP-Webservices immer noch eine gewisse Vormachtstellung haben,
-                    hat sich andernorts eine leichtgewichtigere Alternative namens REST etabliert, die viel mehr
-                    auf den Gegebenheiten des HTTP-Protokolls aufbaut, sehr häufig XML durch JSON ersetzt und somit
-                    insgesamt einfach besser zum World Wide Web und seinen angrenzenden Technologien passt. SOAP ist
-                    dadurch zwar nicht obsolet, an verschiedenen Stellen wurde es aber dennoch nahezu vollständig durch
-                    REST verdrängt. Grund genug also, dass wir uns diesen Shooting Star 🌠 etwas genauer anschauen
-                    und auch hier versuchen zu verstehen, was REST ist, wie es funktioniert und wo die Unterschiede
-                    zu SOAP liegen.
+                    <a href="https://www.youtube.com/watch?v=suUUaRQQC08" target="_blank">REST In Peace!</a> 🏜️
                 </p>
                 <p>
-                    In diesem Zusammenhang werden wir dann auch sehen, das REST-Webservices insgesamt viel leichtfüßiger
+                    So könnte das etwas zynische Motto des heutigen Kapitels lauten. Denn während im Unternehmenskontext
+                    SOAP immer noch eine gewisse Vormachtstellung hat, hat sich andernorts eine leichtgewichtigere Alternative
+                    namens REST etabliert, die viel mehr auf den Gegebenheiten des HTTP-Protokolls aufbaut, sehr häufig XML durch
+                    JSON ersetzt und somit insgesamt einfach besser zum World Wide Web und seinen angrenzenden Technologien passt.
+                    SOAP ist dadurch zwar nicht obsolet, an verschiedenen Stellen wurde es aber dennoch nahezu vollständig durch
+                    REST verdrängt. Grund genug also, dass wir uns diesen Shooting Star 🌠 etwas genauer anschauen und auch hier
+                    versuchen zu verstehen, <b>was REST ist</b>, wie es funktioniert und wo die <b>Unterschiede zu SOAP</b> liegen.
+                </p>
+                <p>
+                    In diesem Zusammenhang werden wir dann auch sehen, dass REST-Webservices insgesamt viel leichtfüßiger
                     als SOAP aufgestellt sind, indem sie nicht nur das komplizierte XML-Format sondern mit ihm auch
                     die WSDL-Beschreibungen und damit einen großen Teil der darauf aufbauenden Werkzeuge und hoch-komplexer
                     WS-*-Standards über Board werfen. 🚢 Dafür muss man allerdings etwas mehr Aufwand treiben, um einen
@@ -77,17 +79,16 @@
                     aber nicht denselben Komfort.
                 </p>
                 <p>
-                    Im zweiten Teil der Folien werden wir dann in gewohnter Weise auf die <b>Programmierung</b> eingehen
+                    Im zweiten Teil werden wir dann in gewohnter Weise auf die <b>Programmierung</b> eingehen
                     und dabei zeigen, wie mit einfachen Mitteln ein eigener REST-Webservice in Java implementiert werden
-                    kann. Dabei werden wir dann auch nochmal auf die Bedeutung von REST für die Entwicklung clientseitiger
-                    Webanwendungen eingehen und das <b></b>AJAX-Prinzip</b> von letztem Semester nochmal aufgreifen,
-                    um somit aus dem Browser heraus mit clientseitigem JavaScript, die REST-Funktionen unseres Servers
-                    aufzurufen. Da aber REST nicht nur für die Entwicklung von Webanwendungen sondern sehr häufig auch
-                    auch zur Kommunikation mobiler Apps mit dem Backend genutzt wird, zeigen wir anschließend auch,
-                    wie ein <b>Aufruf aus Java</b> heraus gelingen kann.
+                    kann. Dabei werden wir auch nochmal auf die Bedeutung von REST für die <b>Entwicklung clientseitiger
+                    Webanwendungen</b> eingehen und das <b>AJAX-Prinzip</b> von letztem Semester nochmal aufgreifen, um
+                    die REST-Funktionen unseres Servers aufzurufen. Da aber REST nicht nur für Webanwendungen sondern
+                    häufig auch für mobile Apps genutzt wird, zeigen wir anschließend auch, wie ein <b>Aufruf aus Java</b>
+                    heraus gelingen kann.
                 </p>
                 <p>
-                    Dies ist unser Fahrplan für die heutige Einheit, bevor wir den Themenkomplex Java&nbsp;EE dann
+                    Dies ist unser Arbeitsvorrat für heute, bevor wir den Themenkomplex Jakarta&nbsp;EE dann
                     endgültig abschließen können.
                 </p>
             </aside>
@@ -308,6 +309,9 @@
                 </div>
             </article>
             <aside>
+                <div class="embed-responsive embed-responsive-16by9" style="margin-bottom: 1em">
+                    <iframe src="https://www.youtube-nocookie.com/embed/Nzf-TbvswDU" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
                 <p>
                     Um zu verstehen, wie sich SOAP und REST unterscheiden und warum beide so definiert sind, wie sie sind,
                     muss man sich die Hintergründe und die Entstehung beider Ansätze anschauen.
@@ -343,8 +347,8 @@
                 </ul>
                 <p>
                     Aus diesem Grund ist die Wahl von HTTP-POST zur Datenübertragung und XML als Datenformat auch nur pragmatisch,
-                    da jedes Unternehmen durch die weitere Verbreitung des World Wide Web ohnehin schon auf den Abruf von Daten via
-                    HTTP vorbereitet ist es und es für XML seit jeher ein exzellentes Tooling gibt. Ebenso lässt sich dadurch erklären,
+                    da jedes Unternehmen durch die weite Verbreitung des World Wide Web ohnehin schon auf den Abruf von Daten via
+                    HTTP vorbereitet ist und es für XML seit jeher ein exzellentes Tooling gibt. Ebenso lässt sich dadurch erklären,
                     wie rund um SOAP eine ganze Menge <a href="https://de.wikipedia.org/wiki/WS-*" target="_blank">WS-*</a> genannter
                     Standards entstehen konnten, die so höchst unterschiedliche Themen wie die XML-Signierung, die Übertragung von
                     Binärdaten oder die Modellierung von Geschäftsprozessen abdecken.
@@ -404,7 +408,7 @@
                     </small>
                 </p>
                 <p>
-                    Das Format der übertragenen Daten ist dabei nicht verbindlich definiert, aller meistens wird jedoch JSON
+                    Das Format der übertragenen Daten ist dabei nicht verbindlich definiert, allermeistens wird jedoch JSON
                     verwendet, da es platzsparender als XML ist und mit JavaScript besonders einfach verarbeitet werden kann.
                     Auch gibt es nicht zwingend eine formale XML-Beschreibung, die alle Operationen eines Webservices sowie
                     die syntaktische Struktur der übertragenen Daten definiert. Hierfür gibt es zwar WADL (Web Application
@@ -446,7 +450,7 @@
                         <li class="nav-item">
                             <a
                                 id            = "technik-post-tab"
-                                class         = "nav-link"
+                                class         = "nav-link"xZ9BZ7a30qU
                                 data-toggle   = "tab"
                                 href          = "#technik-post"
                                 role          = "tab"
@@ -523,7 +527,7 @@
                             <p>
                                 Im Gegensatz zu SOAP besitzen REST-Webservices meistens keine formale Beschreibung.
                                 Viele REST-API-Anbieter liefern daher vorgefertigte SDKs zum Aufruf ihrer Services
-                                mit verschiedenen Sprachen. Im Java-Umfeld hat man sich stattdessen das
+                                mit verschiedenen Sprachen. Im Javaumfeld hat man sich stattdessen das
                                 <a href="https://en.wikipedia.org/wiki/Web_Application_Description_Language" target="_blank">WADL-Format</a>
                                 als eine Art „WSDL für beliebige Webanwendungen” überlegt. Es beschreibt die URLs
                                 eines Webservices und mit welchen HTTP-Methoden sie aufgerufen werden.
@@ -656,7 +660,7 @@
                                             &lt;resource path="{id}"&gt;
                                                 &lt;!--
                                                 Die ID kann ein beliebiger String sein. Häufig kommt es aber
-                                                auch vor, dass es sich um einen Long oder irgend einen anderen,
+                                                auch vor, dass es sich um einen Long oder irgendeinen anderen
                                                 primitiven Datentypen handeln muss.
                                                 --&gt;
                                                 &lt;param name="id" style="template" type="xs:string"/&gt;
@@ -716,16 +720,9 @@
                 <p>
                     Auf dieser Folie siehst du ein Beispiel dafür, wie die verschiedenen HTTP-Verben bei REST genutzt werden, um Daten vom Server
                     zu lesen oder zu schreiben. Als Ressourcen dienen dabei die Episoden einer Fernsehserie¹. Anhand dieses Beispiels sieht man auch
-                    schön, wie unterschiedliche URLs bei REST eine unterschiedliche Bedeutungen haben. So handelt es sich bei der URL
-                    <code>/rest/xfiles2018/</code> um eine <b>Collection</b>, also um eine Liste von Ressourcen, die mit einer einzigen GET-Anfrage
-                    abgerufen werden kann. Diese URL, die eine Liste von Episoden beschreibt, erlaubt daher nur GET und POST-Anfragen:
-                </p>
-                <p>
-                    <small>
-                        ¹ Hier Akte X, die im Jahr 2018 mit <a href="https://en.m.wikipedia.org/wiki/The_X-Files_(season_11)" target="_blank">Season 11</a>
-                        schon zum zweiten mal nach dem eigentlichen Ende 2002 auf die heimischen Fernseher zurückkehrt.
-                    </small>
-                    👽
+                    schön, wie unterschiedliche URLs bei REST unterschiedliche Bedeutungen haben. So handelt es sich bei der URL <code>/rest/xfiles2018/</code>
+                    um eine <b>Collection</b>, also um eine Liste von Ressourcen, die mit einer einzigen GET-Anfrage abgerufen werden kann. Diese URL,
+                    die eine Liste von Episoden beschreibt, erlaubt daher nur GET und POST-Anfragen:
                 </p>
                 <ul>
                     <li>
@@ -735,6 +732,13 @@
                         <b>POST:</b> Speichern eines neuen Eintrags
                     </li>
                 </ul>
+                <p>
+                    <small>
+                        ¹ Hier Akte X, die im Jahr 2018 mit <a href="https://en.m.wikipedia.org/wiki/The_X-Files_(season_11)" target="_blank">Season 11</a>
+                        schon zum zweiten mal nach dem eigentlichen Ende 2002 auf die heimischen Fernseher zurückkehrte.
+                    </small>
+                    👽
+                </p>
                 <p>
                     Bei der URL <code>/rest/xfiles2018/2AYW04/</code> handelt es sich hingegen um eine einzelne Episode, 🛸 also um eine einzelne
                     Ressource des Webservices. Sie erlaubt die folgenden HTTP-Anfragen:
@@ -756,14 +760,14 @@
                 <p>
                     Bei GET und DELETE müssen keine weiteren Daten an den Server gesendet werden. Die URL alleine reicht bereits aus, damit der Server
                     weiß, um welchen Datensatz es sich handelt und wie er damit umgehen muss. Bei POST muss hingegen der komplette Datensatz an den
-                    Server geschickt werden, damit dieser die vorhandene Version überschreiben kann. Bei PATCH (sofern es der Webservice unterstützt)
-                    müssen hingegen nur die Felder übertragen werden, die man auch tatsächlich ändern will.
+                    Server geschickt werden, damit dieser die vorhandene Version überschreiben kann. Bei PATCH, sofern es der Webservice unterstützt,
+                    müssen hingegen nur die Felder übertragen werden, die man tatsächlich ändern will.
                 </p>
                 <p>
                     Als Datenformat kommt bei allen Anfragen jeweils JSON zum Einsatz, was der Client durch das Header Field <code>Accept: application/json</code>
                     signalisiert. Er fordert den Server damit auf, seine Daten im JSON-Format zu übertragen. Dass die zurückgeschickten Daten dann auch wirklich
                     im JSON-Format kommen, wird hingegen durch das Header Field <code>Content-Type: application/json</code> definiert. Dadurch können sich Client
-                    und Server auf ein Datenformat einigen, sofern der Server mehre davon unterstützt. Häufig kommt es daher vor, dass man die URL eines REST-Services
+                    und Server auf ein Datenformat einigen, wenn der Server mehre unterstützt. Häufig kommt es daher vor, dass man die URL eines REST-Services
                     auch einfach im Browser eingeben kann, um eine HTML-Darstellung der Ressource zu erhalten, oder dass noch weitere Formate wie XML oder
                     <a href="https://de.wikipedia.org/wiki/YAML" target="_blank">YAML</a> unterstützt werden.
                 </p>
@@ -772,7 +776,8 @@
                 <p>
                     Ursprünglich war für REST-Webservices keine formale Beschreibung ähnlich der WSDL für SOAP vorgesehen, und sehr viele, wenn nicht sogar die
                     allermeisten REST-Webservices besitzen auch keine, sondern kommen nur mit einer menschenlesbaren Dokumentation oder (zumindest bei den großen
-                    Anbietern) mehreren <a href="https://de.wikipedia.org/wiki/Software_Development_Kit" target="_blank">SDKs</a> für verschiedene Programmiersprachen.
+                    Anbietern) mehreren <a href="https://de.wikipedia.org/wiki/Software_Development_Kit" target="_blank">SDKs</a> für verschiedene Programmiersprachen
+                    im Gepäck. 🛍️
                     Im Javaumfeld hat sich jedoch das  <a href="https://en.wikipedia.org/wiki/Web_Application_Description_Language" target="_blank">WADL-Format</a>
                     als mögliche Alternative entwickelt. Es handelt sich dabei um eine automatisch generierte XML-Datei, die man durch Anhängen von <code>?_wadl</code>
                     an die Basis-URL des Webservices abrufen kann. Sie beschreibt die erlaubten URLs, auch mit möglichen Platzhaltern und URL-Parametern sowie die
@@ -819,7 +824,7 @@
                         </div>
                         <div class="carousel-item img-thumbnail">
                             <p>
-                                Im folgenden Fenster musst du auf <i>Import WADL…</i> klicken, um die WADL-Beschreibung zu importieren.
+                                Im folgenden Fenster musst du auf <i>Import WADL…</i> klicken.
                             </p>
                             <img class="active d-block w-100" src="soapui-04.png" />
                         </div>
@@ -910,7 +915,7 @@
                                     Klicke jeden Link einmal an und schaue, was passiert.
                                 </li>
                                 <li>
-                                    Falls die Links mit der ID 151 keine Daten liefern, tausche die ID in der URL aus.
+                                    Falls die Links mit der ID 10 keine Daten liefern, tausche die ID in der URL aus.
                                 </li>
                                 <li>
                                     Schaue dir die WADL-Datei an und versuche, sie zu verstehen.
@@ -934,7 +939,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md">
-                            <img src="aufgabe1-browser.png" alt="Screenshot des Webservices im Browser" class="d-block img-thumbnail" style="width: 100%; background-color: rgb(72, 116, 140);" />
+                            <img src="aufgabe1-browser.jpg" alt="Screenshot des Webservices im Browser" class="d-block img-thumbnail" style="width: 100%; background-color: rgb(72, 116, 140);" />
                         </div>
                         <div class="col-md">
                             <img src="aufgabe1-soapui.png" alt="Screenshot des Webservices in SoapUI" class="d-block img-thumbnail" style="width: 100%; background-color: rgb(72, 116, 140);" />
@@ -983,7 +988,7 @@
                 </ol>
 
                 <p>
-                    c) REST-Webservices bieten einen ähnlich großen Funktionsumfang, wie SOAP mit seinen WS-*-Standards.
+                    c) REST-Webservices bieten einen ähnlich großen Funktionsumfang wie SOAP mit seinen WS-*-Standards.
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
@@ -997,32 +1002,32 @@
                 <h2>Aufgabe 2.2: Fragen zur Technik</h2>
 
                 <p>
-                    a) Welche Aufgabe hat das <code>Accept</code>-Header-Field bei einem REST-Aufruf?
+                    a) Welche Aufgabe hat das <code>Accept</code> Header Field bei einem REST-Aufruf?
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
-                        Es beschreibt das Datenformat, dass der Server an den Client sendet.
+                        Es beschreibt das Datenformat, das der Server an den Client sendet.
                     </li>
                     <li>
-                        Es beschreibt das Datenformat, dass der Client an den Server sendet.
+                        Es beschreibt das Datenformat, das der Client an den Server sendet.
                     </li>
                     <li>
-                        Es beschreibt das Datenformat, dass der Client gerne vom Server empfangen möchte.
+                        Es beschreibt das Datenformat, das der Client gerne vom Server empfangen möchte.
                     </li>
                 </ol>
 
                 <p>
-                    b) Welche Aufgabe hat das <code>Content-Type</code>-Header-Field bei einem REST-Aufruf?
+                    b) Welche Aufgabe hat das <code>Content-Type</code> Header Field bei einem REST-Aufruf?
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
-                        Es beschreibt das Datenformat, dass der Server an den Client sendet.
+                        Es beschreibt das Datenformat, das der Server an den Client sendet.
                     </li>
                     <li>
-                        Es beschreibt das Datenformat, dass der Client an den Server sendet.
+                        Es beschreibt das Datenformat, das der Client an den Server sendet.
                     </li>
                     <li>
-                        Es beschreibt das Datenformat, dass der Client gerne vom Server empfangen möchte.
+                        Es beschreibt das Datenformat, das der Client gerne vom Server empfangen möchte.
                     </li>
                 </ol>
 
@@ -1088,7 +1093,7 @@
             </article>
             <aside>
                 <p>
-                    Sehr schön, damit haben wir auch schon alle notwendigen Grundlagen zu REST durch.
+                    Sehr schön! Damit haben wir auch schon alle notwendigen Grundlagen zu REST durch.
                     Um sicherzugehen, dass du dir alles merken konntest, gibt es hier ein paar Fragen dazu. ☘️
                 </p>
             </aside>
@@ -1180,7 +1185,7 @@
                                         <h2>Application-Klasse</h2>
                                         <p>
                                             Ein REST-Webservice besitzt in Java immer mindestens zwei Klassen. Eine zentrale Application-Klasse als Einstieg,
-                                            in der der URL-Prefix definiert wird, sowie mindestens eine Klasse für die eigentlichen Collections und Resourcen.
+                                            in der der URL-Prefix definiert wird, sowie mindestens eine Klasse für die eigentlichen Collections und Ressourcen.
                                             Die Applikation-Klasse bindet dabei alle anderen Klassen in ihrem Quellcode ein.
                                         </p>
                                     </div>
@@ -1221,7 +1226,7 @@
                                     <div class="col-md">
                                         <h3>@PUT</h3>
                                         <p>
-                                            Kennzeichnet eine Methode, die bei einer PUT-Anfrage aufgerufen wird und der Änderung von Daten dient.
+                                            Kennzeichnet eine Methode, die bei einer PUT-Anfrage aufgerufen wird und dem Speichern von Daten dient.
                                         </p>
                                     </div>
                                     <div class="col-md">
@@ -1326,7 +1331,7 @@
                                  * einen Grundstock an Standardmethoden anzubieten.
                                  */
                                 @Stateless
-                                public class SongBean extends EntityBean<Song, Long> {
+                                public class SongBean extends EntityBean&lt;Song, Long&gt; {
 
                                     public SongBean() {
                                         super(Song.class);
@@ -1351,7 +1356,7 @@
                             <source-code language="java">
                                 /**
                                 * Einstiegspunkt für unseren REST-Webservice. Hier werden der URL-Prefix aller
-                                * Aufrufe definiert (über @ApplicationPath), sowie alle Collections und Ressourcen
+                                * Aufrufe definiert (über @ApplicationPath) sowie alle Collections und Ressourcen
                                 * dem Webservice hinzugefügt. Diese Klasse muss daher immer angepasst werden,
                                 * wenn weitere Collections oder Ressourcen hinzukommen.
                                  */
@@ -1382,7 +1387,7 @@
                                 Bei den eigentlichen Webservice-Klassen, die jeweils für eine Collection oder Ressource des Webservices stehen,
                                 handelt es sich wieder um altbekannte Stateless Session Beans. 👴🏽 Ihre Methoden werden durch die übrigen Annotationen
                                 auf die verschiedenen URLs und HTTP-Verben gemappt. Fangen wir also mit der Klasse für eine <b>Collection</b> an,
-                                um eine ganze Liste auszulesen (bzw. Einträge suchen) und neue Einträge anlegen zu können:
+                                um eine Liste auslesen, Einträge suchen und neue Einträge anlegen zu können:
                             </p>
                             <source-code language="java">
                                 /**
@@ -1483,7 +1488,7 @@
                     anders und erfordert deshalb auch mehr Annotationen. Hat man aber einmal den Dreh raus, 🎗️ ist es auch nicht wirklich kompliziert.
                     Man muss sich nur ein paar Gedanken darüber machen, wie die URLs des Webservices aufgebaut sein sollen und welche Ressource
                     mit welcher URL angesprochen wird. Auch muss man sich natürlich überlegen, welche HTTP-Verben und damit auch welche Operationen
-                    man überhaupt unterstützen will. Eine gutes Vorgehen ist dabei folgendes:
+                    man überhaupt unterstützen will. Ein gutes Vorgehen ist dabei folgendes:
                 </p>
                 <p>
                     Zunächst legt man über die <b>Application-Klasse</b> des Webservices seine Basis-URL fest. Also den Prefix, mit dem alle
@@ -1496,8 +1501,7 @@
                 </source-code>
                 <p>
                     In diesem Beispiel beginnen also alle URLs mit <code>/api/</code>. Anschließend definiert man je Ressource zwei Webservice-Klassen
-                    und führt sie innerhalb der Application-Klasse auf. Eine Klasse für die Collection zum Auslesen einer Liste und zur Anlage neuer Daten
-                    sowie eine für einzelne Ressourcen.
+                    und führt sie innerhalb der Application-Klasse auf. Eine Klasse für die Collection sowie eine für einzelne Ressourcen.
                 </p>
                 <source-code language="java">
                     @ApplicationPath("api")
@@ -1515,7 +1519,7 @@
                     }
                 </source-code>
                 <p>
-                    Die Webservice-Klassen bekommen, da sie ja für eine Ressource mit einer eindeutigen URL stehen, über die <code>@Path</code>-Annotation
+                    Die Webservice-Klassen bekommen, da sie ja für eine Ressourcenart mit eindeutigen URLs stehen, über die <code>@Path</code>-Annotation
                     einen eigenen URL-Prefix unterhalb der Basis-URL zugewiesen:
                 </p>
                 <source-code language="java">
@@ -1528,7 +1532,7 @@
                     public class SongResource { … }
                 </source-code>
                 <p>
-                    Hier haben wir es zum Beispiel mit der Ressource <tt>Songs</tt> zu tun, die über die URL <code>/api/Songs/</code> für die Collection
+                    Hier haben wir es zum Beispiel mit der Ressourcenart <tt>Songs</tt> zu tun, die über die URL <code>/api/Songs/</code> für die Collection
                     sowie <code>/api/Songs/{id}</code> für einen einzelnen Song angesprochen wird. <code>{id}</code> ist dabei ein Platzhalter, der durch
                     die eigentliche ID ersetzt werden muss.
                 </p>
@@ -1636,8 +1640,8 @@
                                 Dadurch wird das Build-Werkzeug <a href="https://maven.apache.org/" target="_blank">Maven</a> anstelle von
                                 <a href="https://ant.apache.org/" target="_blank">Ant</a> verwendet. Dies ermöglicht es uns, ganz einfach
                                 fremde Abhängigkeiten wie die <a href="https://github.com/google/gson" target="_blank">GSON-Bibliothek</a>
-                                hinzufügen können, ohne die hierfür notwendigen Daten manuell herunterladen zu müssen. Außerdem lässt sich
-                                das Projekt somit auch in anderen IDEs öffnen oder gar völlig ohne IDE weiterentwickeln.
+                                hinzuzufügen. Außerdem lässt sich das Projekt somit auch in anderen IDEs öffnen oder gar völlig ohne IDE
+                                weiterentwickeln.
                             </p>
                             <img src="maven-webapp.png" alt="Maven / Web Application ist der richtige Projekttyp" class="d-block" style="width: 100%;" />
                         </div>
@@ -1690,10 +1694,10 @@
                             </p>
                             <ul>
                                 <li>
-                                    <b>song:</b> RÜckgabedaten eines einzelnen Songs, falls die Methode immer nur einen Song liefern kann.
+                                    <b>song:</b> Rückgabedaten eines einzelnen Songs, falls die Methode immer nur einen Song liefern kann.
                                 </li>
                                 <li>
-                                    <b>songs:</b> Rückgabedaten einer ganzen Liste von Songs, falls die Methode potentiell mehrere Einträge liefern kann.
+                                    <b>songs:</b> Rückgabedaten einer Liste von Songs, falls die Methode potentiell mehrere Einträge liefern kann.
                                 </li>
                                 <li>
                                     <b>status:</b> Ein einfacher Statuscode wie <tt>OK</tt> oder <tt>ERROR</tt>, anhand dessen der Client
@@ -1957,7 +1961,7 @@
                                             Unirest for Java
                                             ================
 
-                                            Damit lassen sich ganz leicht, HTTP-Anfragen absetzen.
+                                            Damit lassen sich ganz leicht HTTP-Anfragen absetzen.
                                             http://unirest.io/java.html
                                         --&gt;
                                         &lt;dependency&gt;
@@ -2169,8 +2173,8 @@
             </article>
             <aside>
                 <p>
-                    Im Grunde genommen ist der Aufruf eines REST-Webservices mit Java gar nicht so schwer. Nur leider können
-                    wir uns hierfür keinen fertigen Code generieren lassen, so dass das meiste selbst programmieren müssen.
+                    Im Grunde genommen ist der Aufruf eines REST-Webservices mit Java nicht wirklich schwer. Nur leider können
+                    wir uns hierfür keinen fertigen Code generieren lassen, so dass wir das meiste selbst programmieren müssen.
                     Und da Java auch noch ein ziemlich strenges Typsystem hat (kein Objekt ohne Klasse), fällt der Code im ersten
                     Augenblick etwas umfangreicher als zum Beispiel in Python oder JavaScript aus. Es ist aber trotzdem machbar
                     und wir zeigen dir hier, wie du mit einer einfachen Vorgehensweise zu einem guten Ergebnis kommst. 💮
@@ -2185,8 +2189,8 @@
                         werden muss, wenn man eine normale Desktopanwendung oder Android App schreiben will.
                     </li>
                     <li>
-                        Die Authentifizierung am Server ist auch hier kein Bestandteil des Standards, so dass man selbst für
-                        den Client Code schreiben muss, der nur mit einer speziellen JAX-RS-Implementierung funktioniert.
+                        Die Authentifizierung am Server ist auch hier kein Bestandteil des Standards, so dass man selbst auf
+                        clientseite Code schreiben muss, der nur mit einer speziellen JAX-RS-Implementierung funktioniert. 😱
                     </li>
                     <li>
                         Die API ist in vielen Punkten umständlicher, als sie es eigentlich sein müsste.
@@ -2222,12 +2226,12 @@
                 <h2>Datentransferklassen</h2>
                 <p>
                     Arbeitet man auf dem Server viel mit Persistence Entities, liegt es natürlich nahe, einzelne Entity-Objekte
-                    als Methodenparameter oder Rückgabewert zu benutzen, so dass eine JSON-Repräsentation der Objekte mit dem
-                    Client ausgetauscht wird. Clientseitig kann man das JSON dann entweder als einfachen String betrachten oder
-                    mit speziellen JSON-Klassen bearbeiten. Am einfachsten ist es jedoch, wenn man für den Client passende Klassen
-                    schreibt, deren Objekte ebenfalls von und nach JSON umgewandelt werden können. Sie besitzen im Zweifelsfall
-                    dieselben Felder, wie die Entities auf dem Server, benötigen aber keine Setter und Getter, da alle Attribute
-                    einfach <code>public</code> sein können:
+                    als Methodenparameter oder Rückgabewert zu benutzen. Die auf diese Weise ausgetauschte JSON-Repräsentation
+                    der Entities kann der Client dann entweder als einfachen String betrachten oder mit einer speziellen
+                    JSON-Klassenbibliothek bearbeiten. Beides ist aber ziemlich umständlich und führt nicht gerade zu gutem Code.
+                    Besser ist es deshalb, die Entityklassen auf dem Client so nachzubauen, dass sie in eine identische JSON-Darstellung
+                    (de)serialisiert werden können. Hierfür müssen sie nur dieselben Felder wie die Entities auf dem Server besitzen,
+                    jedoch ohne Getter und Setter, da die Attribute hier einfach <code>public</code> sein können:
                 </p>
                 <source-code language="java">
                     public class Song {
@@ -2251,8 +2255,8 @@
                 </source-code>
                 <p>
                     Das Ziel ist es dabei, die clientseitigen Methoden genau gleich wie auf dem Server zu nennen. Zusätzlich brauchen
-                    wir noch ein paar Helferlein, um die URL austauschbar zu machen oder die Anmeldedaten mit Benutzername und Passwort
-                    zu übergeben, damit ein fertiger Webservice-Aufruf später so aussehen kann:
+                    wir dann nur noch ein paar Helferlein, um die URL überschreiben zu können oder die Anmeldedaten zu übergeben.
+                    Ziel ist es, dass ein fertiger Webservice-Aufruf hinterher einfach nur so aussieht:
                 </p>
                 <source-code language="java">
                     SongCollection songCollection = new SongCollection();
@@ -2324,7 +2328,7 @@
                     }
                 </source-code>
                 <p>
-                    Das ist auch der Code, der mit reinem JAX-RS so umständlich ist. 👹 Mit Unirest und Gson ist er aber ganz easy, sogar so sehr,
+                    Das ist auch der Code, der mit reinem JAX-RS viel umständlicher wäre. 👹 Mit Unirest und Gson ist er aber ganz easy, sogar so sehr,
                     dass man ihn direkt irgendwo ein sein Programm einbauen könnte, wenn man sich den Stress mit dem Schreiben einer ganzen Klasse
                     nicht machen wollte. Das sollte man dann aber nur in kleinen Testprogrämmchen so machen. 🤫
                 </p>
@@ -2374,7 +2378,7 @@
                                     <div class="col-md">
                                         <p>
                                             Dann wollen wir doch gleich mal Hand anlegen 🤚🏽 und den in Moodle hinterlegten Beispiel-Webservice erweitern.
-                                            Und zwar, um beim Beispiel mit der Musik zu bleiben, um eine neue Eintragsart für Songtexte. Diese muss zunächst
+                                            Und zwar (um bei der Musik zu bleiben) um eine neue Ressourcenart für Songtexte. Diese muss zunächst
                                             als Entity und EJB hinzugefügt und anschließend über einen REST-Webservice aufrufbar gemacht werden. 🎙️
                                         </p>
                                         <p>
@@ -2635,7 +2639,7 @@
                 <h2>Aufgabe 4.1: Eigene REST-Webservices entwickeln</h2>
 
                 <p>
-                    a) Welche Aufgaben hat die <code>Application</code>-Klasse vpm JAX-RS?
+                    a) Welche Aufgaben hat die <code>Application</code>-Klasse von JAX-RS?
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
@@ -2657,7 +2661,7 @@
                 </p>
                 <ol class="dhbw-liste-mit-viel-text">
                     <li>
-                        VOr einer Webservice-Klasse
+                        Vor einer Webservice-Klasse
                     </li>
                     <li>
                         Vor einem Klassenattribut
@@ -2755,7 +2759,7 @@
                         Gson wird für die JSON-(De)Serialisierung und Unirest zum Senden der HTTP-Anfragen genutzt.
                     </li>
                     <li>
-                        Gson wird zum Importierend der WADL-Beschreibung genutzt und Unirest für WSDLs.
+                        Gson wird zum Importieren der WADL-Beschreibung genutzt und Unirest für WSDLs.
                     </li>
                 </ol>
 
@@ -2773,7 +2777,7 @@
                         Weil sich der Webservice sonst nicht aufrufen lässt, wenn er anstelle eines Strings ein Objekt erwartet.
                     </li>
                     <li>
-                        Weil nur so strukturierte Antwortdaten an den Client gesndet werden können.
+                        Weil nur so strukturierte Antwortdaten an den Client gesendet werden können.
                     </li>
                 </ol>
 
@@ -2875,7 +2879,7 @@
                             🔥
                         </td>
                         <td>
-                            REST-Webservices lassen sich mit Java viel einfacher absichern, als SOAP-Webservices.
+                            REST-Webservices lassen sich mit Java viel einfacher absichern als SOAP-Webservices.
                         </td>
                     </tr>
                     <tr>
@@ -2925,7 +2929,7 @@
                                 Konfiguration für TomEE
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a
                                 id            = "auth-glassfish-tab"
                                 class         = "nav-link"
@@ -2936,7 +2940,7 @@
                             >
                                 Konfiguration für GlassFish
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                     <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
                         <!-- User-Entity -->
@@ -2948,7 +2952,7 @@
                         >
                             <p>
                                 Zunächst benötigen wir eine Entity, um Benutzer in der Datenbank speichern zu können.
-                                Sie entspricht im Wesentlichen dem Beispiel, dass wir auch schon in den EJB-Aufgaben
+                                Sie entspricht im Wesentlichen dem Beispiel, das wir auch schon in den EJB-Aufgaben
                                 gesehen haben.
                             </p>
                             <source-code language="java">
@@ -2985,7 +2989,7 @@
                                 }
 
                                 /**
-                                 * Spezielle EJB zum Anlegen eines Benutzers. Dies ist im Prinzip dieselbe EJB,
+                                 * Spezielle EJB zum Anlegen eines Benutzers. Dies ist im Prinzip dieselbe EJB
                                  * wie im jTodo-Beispiel.
                                  */
                                 @Stateless
@@ -3072,7 +3076,7 @@
                                         &lt;role-name&gt;rest-beispiel-user&lt;/role-name&gt;
                                     &lt;/security-role&gt;
 
-                                    &lt;!-- Art der Authentifzierung --&gt;
+                                    &lt;!-- Art der Authentifizierung --&gt;
                                     &lt;login-config&gt;
                                         &lt;auth-method&gt;BASIC&lt;/auth-method&gt;
                                         &lt;realm-name&gt;rest-beispiel&lt;/realm-name&gt;
@@ -3149,7 +3153,7 @@
                             </source-code>
                         </div>
                         <!-- Konfiguration für GlassFish -->
-                        <div
+                        <!-- <div
                             class           = "tab-pane fade"
                             id              = "auth-glassfish"
                             role            = "tabpanel"
@@ -3185,7 +3189,7 @@
                                 aus der <tt>web.xml</tt> entsprechen.
                             </p>
                             <img src="auth-realm.png" alt="Realm-Konfiguration im Glassfish" class="d-block" style="width: 100%;" />
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </article>
@@ -3210,8 +3214,7 @@
                 </p>
                 <p>
                     Davon ausgehend, dass wir die Benutzer einfach in einer Tabelle speichern wollen, benötigen wir wie gewohnt eine Entity-Klasse,
-                    die mindestens den Benutzernamen, das gehashte Passwort sowie die zugeordneten Benutzergruppen speichert. Zusätzlich benötigen
-                    wir natürlich auch eine dazu passende EJB.
+                    die mindestens den Benutzernamen, das gehashte Passwort sowie die zugeordneten Benutzergruppen speichert.
                 </p>
                 <source-code langauge="java">
                     @Entity
@@ -3233,7 +3236,11 @@
 
                         …
                     }
-
+                </source-code>
+                <p>
+                    Zusätzlich benötigen wir natürlich auch eine dazu passende EJB.
+                </p>
+                <source-code language="java">
                     @Stateless
                     public class UserBean {
                         @PersistenceContext
@@ -3297,7 +3304,7 @@
                 </p>
                 <p>
                     Wie es aber hier mit der Konfiguration weiter geht, hängt vom verwendeten Applikationsserver ab.
-                    Denn die Authentifizierung und Autorisierung von Benutzern wird in Java vom Server und nicht von
+                    Denn die Authentifizierung und Autorisierung von Benutzern wird vom Server und nicht von der
                     Anwendung gehandhabt. Aus diesem Grund muss im Server ein sog. „Realm” konfiguriert werden, das
                     definiert, wie die Benutzer und ihre Berechtigungen überprüft werden können. In der Vorlesung
                     hinterlegen wir hier die passenden Datenbanktabellen unserer Anwendung. Viele Unternehmen binden
@@ -3308,10 +3315,8 @@
                     anmelden können.
                 </p>
                 <p>
-                    Die Folie zeigt die Konfiguration sowohl für <a href="http://tomee.apache.org/" target="_blank">Apache TomEE</a>
-                    (den wir in der Vorlesung verwenden) als auch für
-                    <a href="https://projects.eclipse.org/proposals/eclipse-glassfish" target="_blank">Eclipse GlassFish</a>
-                    (der Referenzimplementierung für Jakarta EE). 🖼️ Wenn alles gut läuft, sollte es danach nicht mehr möglich sein,
+                    Die Folie zeigt die Konfiguration für <a href="http://tomee.apache.org/" target="_blank">Apache TomEE</a>,
+                    den wir auch in der Vorlesung benutzen. 🖼️ Wenn alles gut läuft, sollte es danach nicht mehr möglich sein,
                     ändernde Zugriffe auszuführen, ohne sich über
                     <a href="https://de.wikipedia.org/wiki/HTTP-Authentifizierung#Basic_Authentication" target="_blank">HTTP Basic Authentication</a>
                     anzumelden.
@@ -3653,6 +3658,9 @@
                 </div>
             </article>
             <aside>
+                <div class="embed-responsive embed-responsive-16by9" style="margin-bottom: 1em">
+                    <iframe src="https://www.youtube-nocookie.com/embed/Zp4L89oLrmE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
                 <p>
                     An dieser Stelle wird es dann mal Zeit für etwas Werbung. 📺 Wir unterbrechen das laufende Programm und
                     kommen nochmal auf das <a href="../../2-javaee/ejb/#8" target="_blank">EJB-Kapitel</a>, bzw. einen Teil
@@ -3690,7 +3698,7 @@
                 <p>
                     Bis auf das Schlüsselwort <code>await</code> sollte dir das nicht ungewöhnlich vorkommen, sondern einfach
                     nur den Methoden entsprechen, die der Webservice eben bietet. Dieselben Methoden wollen wir auch in JavaScript
-                    haben, wofür wir eine eigene Klasse schreiben müssen.
+                    haben, wofür wir zwei eigene Klassen schreiben müssen.
                 </p>
 
                 <h2>Webservice-Klassen schreiben</h2>
@@ -3749,9 +3757,9 @@
                 </source-code>
                 <p>
                     Mehr ist es schon gar nicht, auch wenn du dich erst wieder an JavaScript etwas gewöhnen musst. 🤗
-                    Das Komplizierteste an der ganzen Geschichte ist nur, dass man sich den Code eben auch nicht für
-                    JavaScript irgendwie automatisch generieren lassen kann, sondern jedes mal von Hand schreiben muss.
-                    Das ist ein wenig lästig und zugegeben auch etwas mühsam. Aber was wäre schon eine perfekte Welt? 🌍
+                    Das Komplizierteste an der ganzen Geschichte ist eben auch hier, dass der gesamte Code von Hand
+                    geschrieben werden muss und nicht automatisch generiert werden kann. Das ist ein wenig lästig und
+                    zugegeben auch etwas mühsam. Aber was wäre schon eine perfekte Welt? 🌍
                 </p>
                 <p>
                     Das vollständige Beispiel findest du auf Moodle.
@@ -3782,34 +3790,34 @@
                 <h4>Definition eines Webservices</h4>
                 <ul>
                     <li>
-                        Definiere eine logische URL-Struktur für deine Webservice, die den REST-Prinzipien entspricht.
+                        Definiere eine logische URL-Struktur, die den REST-Prinzipien entspricht.
                     </li>
                     <li>
-                        Verwende einen einheitlichen URL-Prefix, den du ausschließlich für REST-Webservices reservierst.
+                        Verwende einen einheitlichen URL-Prefix für alle REST-Webservices.
                     </li>
                     <li>
-                        GET-Anfragen sollten immer nur Daten lesen und niemals Daten ändern.
+                        GET-Anfragen dürfen niemals Daten ändern!
                     </li>
                     <li>
-                        Nutze POST an eine Collection und PUT an eine Resource zur Anlage und zum Speichern von Einträgen.
+                        Nutze POST und PUT zur Anlage und zum Speichern von Einträgen.
                     </li>
                     <li>
-                        Überlege dir, welche Datenformate dein Webservice unterstützen muss und unterstütze bei Bedarf mehr als ein Format.
+                        Unterstütze bei Bedarf mehr als ein Datenformat.
                     </li>
                     <li>
-                        Programmiere Collections und Resourcen in verschiedenen Javaklassen, auch wenn es sich um dieselben Einträge handelt.
+                        Programmiere Collections und Ressourcen immer in verschiedenen Javaklassen.
                     </li>
                     <li>
-                        Definiere eine einheitliche Antwortstruktur für alle Webservice-Methoden, die auch Fehlermeldungen zurückliefern kann.
+                        Definiere eine einheitliche Antwortstruktur, die auch Fehlermeldungen zurückliefern kann.
                     </li>
                     <li>
-                        Verwende Objekte deiner Entity-Klassen, um Datensätze an den Webservice zu übergeben oder an den Client zu senden.
+                        Verwende Objekte deiner Entity-Klassen, um Datensätze mit dem Webservice auszutauschen.
                     </li>
                     <li>
-                        Überlege dir aber auch, abgespeckte Datentransferklassen zu programmieren, wenn du nicht alle Felder übertragen willst.
+                        Verwende reduzierte Datentransferklassen, wenn nicht alle Felder übertragen werden sollen.
                     </li>
                     <li>
-                        Baue deine Webservices immer als Frontend zu bereits vorhandenen EJBs und vermeide direkte Logik in den Webservice-Klassen.
+                        Baue deine Webservices immer als Frontend zu bereits vorhandenen EJBs.
                     </li>
                     <li>
                         Setze dich mit <a href="https://en.wikipedia.org/wiki/HATEOAS" target="_blank">HATEOAS</a> und
@@ -3823,7 +3831,7 @@
                         Sichere deine Webservices mit einer Benutzer- und Rechteverwaltung ab.
                     </li>
                     <li>
-                        Verwende HTTP Basic Authentication oder HTTP Digest Authentication zur Übertragung der Anmeldedaten.
+                        Verwende HTTP Basic Auth oder HTTP Digest Auth zur Übertragung der Anmeldedaten.
                     </li>
                     <li>
                         Verwende zur Übertragung immer das verschlüsselte HTTPS-Protokoll.
@@ -3848,17 +3856,20 @@
                 <h4>Betrieb eines Webservices</h4>
                 <ul>
                     <li>
-                        Liefere eine ausführliche Dokumentation zu deinen REST-Webservices inklusive vollständiger Beispielanfragen und Antworten.
+                        Liefere eine Dokumentation zu deinen REST-Webservices inklusive vollständiger Beispielanfragen und Antworten.
                     </li>
                     <li>
                         Verwende Werkzeuge wie <a href="https://swagger.io/" target="_blank">Swagger</a> oder
                         <a href="https://dzone.com/articles/rest-api-documentation-using-jaxrs-analyzer" target="_blank">JAXRS-ANALYZER</a> zur Dokumentation.
                     </li>
                     <li>
-                        Überlege dir, eigene SDKs für verschiedene Programmiersprachen anzubieten und deinen Clients zur Verfügung zu stellen.
+                        Überlege dir, eigene SDKs für verschiedene Programmiersprachen zur Verfügung zu stellen.
                     </li>
                     <li>
-                        Prüfe, ob du deinen Webservice über die URL versionieren musst und betriebe dann immer auch mehrere Versionen parallel.
+                        Prüfe, ob der Webservice über die URL versioniert werden muss.
+                    </li>
+                    <li>
+                        Schalte die alten Webservice-Versionen aber nicht sofort ab, wenn eine neue Version kommt.
                     </li>
                     <li>
                         Richte ein Monitoring und ein Logging für den Webservice ein.
@@ -3891,7 +3902,7 @@
                         Es sei denn, das SDK ist schlecht gemacht und verursacht mehr Probleme als es löst.
                     </li>
                     <li>
-                        Nutze vorzugsweise REST anstelle von SOAP, wenn du mobile Clients und Browser damit bedienen willst.
+                        Nutze vorzugsweise REST anstelle von SOAP, wenn du mobile Clients und Browser bedienen willst.
                     </li>
                 </ul>
             </article>
