@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Folienskript zur Vorlesung \"Verteilte Systeme\" im Studiengang Wirtschaftsinformation an der DHBW Karlsruhe",
     "author": "Dennis Schulmeister-Zimolong",
-    "license": "BSD-3-Clause",
+    "license": "CC-BY-4.0",
     "homepage": "https://github.com/DennisSchulmeister/dhbwka-wwi-vertsys-folien#readme",
     "bugs": {
         "url": "https://github.com/DennisSchulmeister/dhbwka-wwi-vertsys-folien/issues"
