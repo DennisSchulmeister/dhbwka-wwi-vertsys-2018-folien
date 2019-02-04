@@ -161,6 +161,18 @@
                                 Mehrere Rechenkerne
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "vertsys-definition-leitfragen-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#vertsys-definition-leitfragen"
+                                role          = "tab"
+                                aria-controls = "vertsys-definition-leitfragen"
+                            >
+                                Leitfragen
+                            </a>
+                        </li>
                     </ul>
                     <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
                         <!-- Ach, ein System -->
@@ -194,7 +206,8 @@
                             <p>
                                 Die klassische Definition eines verteilten Systems: Mehre <b>voneinander unabhängige Computer</b>
                                 (Prozessoren) <b>mit jeweils eigenem Hauptspeicher</b> tauschen über ein Netzwerk Daten miteinander
-                                Daten aus, um <b>eine gemeinsame Aufgabe</b> zu bearbeiten.
+                                Daten aus, um <b>eine gemeinsame Aufgabe</b> zu bearbeiten. Die Trennung in mehrere Computer bleibt
+                                dem Anwender dabei weitgehend verborgen.
                             </p>
                             <p>
                                 <img src="verteiltes-system.jpg" alt="Skizze eines verteilten Systems mit mehreren Computern" style="width: 100%" />
@@ -237,6 +250,36 @@
                                     </small>
                                 </small>
                             </p>
+                        </div>
+                        <!-- Leitfragen -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "vertsys-definition-leitfragen"
+                            role            = "tabpanel"
+                            aria-labelledby = "vertsys-definition-leitfragen-tab"
+                        >
+                            <p>
+                                Ein verteiltes System umfasst alle Hard- und Softwarekomponenten, die wir bei der Entwicklung
+                                eigener, verteilter Anwendungen als gegeben voraussetzen. Es ist sozusagen die „Plattform” auf der wir
+                                aufsetzen. Leitfragen zur Gestaltung eines verteilten Systems könnten daher sein:
+                            </p>
+                            <ul>
+                                <li>
+                                    Welche Hardwarekomponenten beinhaltet das System?
+                                </li>
+                                <li>
+                                    Welches Betriebssystem und welche Middleware kommen zum Einsatz?
+                                </li>
+                                <li>
+                                    Welcher Hardwareknoten übernimmt welche Aufgabe?
+                                </li>
+                                <li>
+                                    Wie ist das Netzwerk aufgebaut?
+                                </li>
+                                <li>
+                                    Und so weiter …
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -503,6 +546,18 @@
                                 Weitere Beispiele
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a
+                                id            = "vertan-leitfragen-tab"
+                                class         = "nav-link"
+                                data-toggle   = "tab"
+                                href          = "#vertan-leitfragen"
+                                role          = "tab"
+                                aria-controls = "vertan-leitfragen"
+                            >
+                                Leitfragen
+                            </a>
+                        </li>
                     </ul>
                     <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
                         <!-- Beispiel: World Wide Web -->
@@ -591,6 +646,36 @@
                                 </li>
                             </ul>
                         </div>
+                        <!-- Leitfragen -->
+                        <div
+                            class           = "tab-pane fade"
+                            id              = "vertan-leitfragen"
+                            role            = "tabpanel"
+                            aria-labelledby = "vertan-leitfragen-tab"
+                        >
+                            <p>
+                                Eine verteilte Anwendung ist eine Anwendung, die ein verteiltes System zur Lösung ihres Anwendungsproblems
+                                nutzt und aus mehreren Teilprogrammen (Softwarekomponenten) besteht, die untereinander durch den Austausch
+                                von Nachrichten kommunizieren. Leitfragen zur Gestaltung einer verteilten Anwendung könnten daher sein:
+                            </p>
+                            <ul>
+                                <li>
+                                    In welche Teilaspekte kann ich mein Problem zerlegen?
+                                </li>
+                                <li>
+                                    Welche Programme laufen auf welchen Rechnerknoten?
+                                </li>
+                                <li>
+                                    Welches Programm muss was in welcher Reihenfolge machen?
+                                </li>
+                                <li>
+                                    Welche Nachrichten tauschen die Programme untereinander aus?
+                                </li>
+                                <li>
+                                    Und so weiter …
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </article>
@@ -640,7 +725,7 @@
                 </ul>
                 <p>
                     Leitfragen, die wir uns hier stellen, könnten zum Beispiel sein: <i>In welche Teilaspekte kann ich mein Problem
-                    zerlegen? Welche Programme laufen auf welchen Rechnernknoten? Welches Programm muss was in welcher Reihenfolge
+                    zerlegen? Welche Programme laufen auf welchen Rechnerknoten? Welches Programm muss was in welcher Reihenfolge
                     machen? Welche Nachrichten tauschen die Programme untereinander aus?</i> Und so weiter und so fort.
                 </p>
             </aside>
