@@ -1,5 +1,5 @@
-<!DOCTYPE html lang="de">
-<html>
+<!DOCTYPE html>
+<html lang="de">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -1389,7 +1389,7 @@
                                             public class UserBean {
 
                                                 @PersistenceContext
-                                                EntityManager em;
+                                                protected EntityManager em;
 
                                                 /**
                                                  * Registrieren eines neuen Benutzers
@@ -2382,7 +2382,7 @@
                         Keine Methode mit Rückgabewert ohne die Annotation <src-code language="java">@WebResult(name="…")</src-code>!
                     </li>
                     <li>
-                        Kein Methodenparameter ohne <src-code language="java">@WebParam(name="…")</src-cpde>!
+                        Kein Methodenparameter ohne <src-code language="java">@WebParam(name="…")</src-code>!
                     </li>
                     <li>
                         Verschiebe allgemeine Parameter wie Benutzername und Passwort in den SOAP-Header.

@@ -66,7 +66,7 @@
                     SOAP immer noch eine gewisse Vormachtstellung hat, hat sich andernorts eine leichtgewichtigere Alternative
                     namens REST etabliert, die viel mehr auf den Gegebenheiten des HTTP-Protokolls aufbaut, sehr häufig XML durch
                     JSON ersetzt und somit insgesamt einfach besser zum World Wide Web und seinen angrenzenden Technologien passt.
-                    SOAP ist dadurch zwar nicht obsolet, an verschiedenen Stellen wurde es aber dennoch nahezu vollständig durch
+                    SOAP ist dadurch zwar nicht olang="de"bsolet, an verschiedenen Stellen wurde es aber dennoch nahezu vollständig durch
                     REST verdrängt. Grund genug also, dass wir uns diesen Shooting Star 🌠 etwas genauer anschauen und auch hier
                     versuchen zu verstehen, <b>was REST ist</b>, wie es funktioniert und wo die <b>Unterschiede zu SOAP</b> liegen.
                 </p>
@@ -451,7 +451,7 @@
                         <li class="nav-item">
                             <a
                                 id            = "technik-post-tab"
-                                class         = "nav-link"xZ9BZ7a30qU
+                                class         = "nav-link"
                                 data-toggle   = "tab"
                                 href          = "#technik-post"
                                 role          = "tab"
@@ -2997,7 +2997,7 @@
                                 public class UserBean {
 
                                     @PersistenceContext
-                                    EntityManager em;
+                                    protected EntityManager em;
 
                                     /**
                                      * Registrieren eines neuen Benutzers.
@@ -3233,7 +3233,7 @@
                                 joinColumns = @JoinColumn(name = "USERNAME")
                         )
                         @Column(name = "GROUPNAME")
-                        List<String> groups = new ArrayList&lt;&gt;();
+                        List&lt;String&gt; groups = new ArrayList&lt;&gt;();
 
                         …
                     }
@@ -3245,7 +3245,7 @@
                     @Stateless
                     public class UserBean {
                         @PersistenceContext
-                        EntityManager em;
+                        protected EntityManager em;
 
                         public void signup(String username, String password, String... groups)
                                 throws UserAlreadyExistsException {
@@ -3266,7 +3266,7 @@
                                 &lt;web-resource-name&gt;Songs&lt;/web-resource-name&gt;
                                 &lt;url-pattern&gt;/api/Songs/*&lt;/url-pattern&gt;
 
-                                <&lt;!-- Aber nur bei diesen HTTP-Verben --&gt;
+                                &lt;!-- Aber nur bei diesen HTTP-Verben --&gt;
                                 &lt;http-method&gt;PUT&lt;/http-method&gt;
                                 &lt;http-method&gt;POST&lt;/http-method&gt;
                                 &lt;http-method&gt;PATCH&lt;/http-method&gt;

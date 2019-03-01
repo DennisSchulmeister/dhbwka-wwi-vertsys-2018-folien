@@ -205,7 +205,7 @@
                     @Statelss
                     public class GanzEinfach {
                         @PersistenceContext
-                        EntityManager em;
+                        protected EntityManager em;
 
                         /* Suche Buch anhand seiner ISBN */
                         public Buch findBuchByIsbn(String isbn) {
@@ -445,7 +445,7 @@
                                 @Stateless
                                 public class BuchService {
                                     @PersistenceContext
-                                    EntityManager em;
+                                    protected EntityManager em;
 
                                     // Bücher selektieren
                                     public Buch findByIsbn(String isbn) { … }
@@ -601,7 +601,7 @@
                     @Stateless
                     public class BuchService {
                         @PersistenceContext
-                        EntityManager em;
+                        protected EntityManager em;
 
                         // Bücher selektieren
                         public Buch findByIsbn(String isbn) { … }
@@ -627,7 +627,7 @@
                     @WebService
                     public class BuchService {
                         @PersistenceContext
-                        EntityManager em;
+                        protected EntityManager em;
 
                         @WebMethod
                         @WebResult(name="buch")
@@ -1627,7 +1627,7 @@
                                 <b>insertable:</b> Boolean, ob das Feld beim Einfügen neuer Sätze berücksichtigt wird
                             </li>
                         </ul>
-                    </tdd>
+                    </dd>
 
                     <dt>
                         <code>@Lob</code>
@@ -2970,7 +2970,7 @@
                     @Stateless
                     public class KinoBean {
                         @PersistenceContext
-                        EntityManager em;
+                        protected EntityManager em;
                         …
                     }
                 </source-code>
@@ -3064,7 +3064,7 @@
                                 @Stateless
                                 public class MitarbeiterBean {
                                     @PersistenceContext
-                                    EntityManager em;
+                                    protected EntityManager em;
 
                                     /**
                                      * Auslesen eines einzelnen Mitarbeiters
@@ -3119,7 +3119,7 @@
                     @Stateless
                     public class MisterBean {
                         @PersistenceContext
-                        EntityManager em;
+                        protected EntityManager em;
                         …
                     }
                 </source-code>
@@ -3131,7 +3131,7 @@
                     @Stateless
                     public class MitarbeiterBean {
                         @PersistenceContext
-                        EntityManager em;
+                        protected EntityManager em;
 
                         /**
                          * Auslesen eines einzelnen Mitarbeiters
@@ -3251,7 +3251,7 @@
                                 @Statless
                                 public class JqlSelectBeispiel {
                                     @PersistenceContext
-                                    EntityManager em;
+                                    protected EntityManager em;
 
                                     public List&lt;Film&gt; sucheFilm(String name, int vonJahr, int bisJahr, Genre genre) {
                                             return em.createQuery(
@@ -3317,7 +3317,7 @@
                     @Statless
                     public class SelectBeispiel1 {
                         @PersistenceContext
-                        EntityManager em;
+                        protected EntityManager em;
 
                         public List&lt;Film&gt; sucheNameUndJahr(
                             String name, int vonJahr, int bisJahr) {
@@ -3341,7 +3341,7 @@
                     @Statless
                     public class SelectBeispiel2 {
                         @PersistenceContext
-                        EntityManager em;
+                        protected EntityManager em;
 
                         public List&lt;Film&gt; filmeAnWochentag(Wochentag wochentag) {
                             return em.createQuery(
@@ -3503,7 +3503,7 @@
                                 @Stateless
                                 public class StandortBean {
                                     @PersistenceContext
-                                    EntityManager em;
+                                    protected EntityManager em;
 
                                     //
                                     // Vorhandene Datensätze finden
@@ -3565,7 +3565,7 @@
                                 public abstract class EntityBean&lt;Entity, EntityId&gt; {
 
                                     @PersistenceContext
-                                    EntityManager em;
+                                    protected EntityManager em;
 
                                     private final Class&lt;Entity&gt; entityClass;
 
@@ -3825,7 +3825,7 @@
                                 @Stateless
                                 public class FilmBean {
                                     @PersistenceContext
-                                    EntityManager em;
+                                    protected EntityManager em;
 
                                     //
                                     // Vorhandene Datensätze finden
@@ -3865,7 +3865,7 @@
                                 @Stateless
                                 public class MitwirkenderBean {
                                     @PersistenceContext
-                                    EntityManager em;
+                                    protected EntityManager em;
 
                                     //
                                     // Vorhandene Datensätze finden
@@ -3911,7 +3911,7 @@
                                 @Stateless
                                 public class FilmBean extends EntityBean&lt;Film, Long&gt; {
                                     @PersistenceContext
-                                    EntityManager em;
+                                    protected EntityManager em;
 
                                     public FilmBean {
                                         super(Film.class);
@@ -4196,7 +4196,7 @@
                         Lagere sich häufig wiederholenden Code in einer allgemeinen Basisklasse aus.
                     </li>
                     <li>
-                        Nutze immer <code>addParameter()</code>, um Feldwerte in eine <code>WHERE</code>-Bedingung einzubauen.
+                        Nutze immer <code>setParameter()</code>, um Feldwerte in eine <code>WHERE</code>-Bedingung einzubauen.
                     </li>
                     <li>
                         Biete spezielle Suchmethoden für häufiger benötigte Selektionen.

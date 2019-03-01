@@ -1413,7 +1413,7 @@
                                 public class GuestbookBean {
 
                                     @PersistenceContext
-                                    EntityManager em;
+                                    protected EntityManager em;
 
                                     /**
                                      * @return Liste mit allen Gästebucheinträgen
@@ -1723,7 +1723,7 @@
 
                         // Damit greifen wir auf die Datenbank zu
                         @PersistenceContext
-                        EntityManager em;
+                        protected EntityManager em;
 
                         public List&lt;GuestbookEntry&gt; findAllEntries() { … }
                         public GuestbookEntry createNewEntry(String name) { … }
