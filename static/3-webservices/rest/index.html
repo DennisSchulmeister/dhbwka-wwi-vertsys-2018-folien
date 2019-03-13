@@ -1588,238 +1588,114 @@
         <section>
             <h1>Die Antwortdaten flexibler gestalten</h1>
             <article>
-                <div>
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item">
-                            <a
-                                id            = "antwortdaten-projekttyp-tab"
-                                class         = "nav-link active"
-                                data-toggle   = "tab"
-                                href          = "#antwortdaten-projekttyp"
-                                role          = "tab"
-                                aria-controls = "antwortdaten-projekttyp"
-                                aria-expanded = "true"
-                            >
-                                Maven-Projekt anlegen
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a
-                                id            = "antwortdaten-pom-tab"
-                                class         = "nav-link"
-                                data-toggle   = "tab"
-                                href          = "#antwortdaten-pom"
-                                role          = "tab"
-                                aria-controls = "antwortdaten-pom"
-                            >
-                                Erweiterung der pom.xml
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a
-                                id            = "antwortdaten-code-tab"
-                                class         = "nav-link"
-                                data-toggle   = "tab"
-                                href          = "#antwortdaten-code"
-                                role          = "tab"
-                                aria-controls = "antwortdaten-code"
-                            >
-                                Änderungen am Quellcode
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
-                        <!-- Maven-Projekt anlegen -->
-                        <div
-                            class           = "tab-pane fade show active"
-                            id              = "antwortdaten-projekttyp"
-                            role            = "tabpanel"
-                            aria-labelledby = "antwortdaten-projekttyp-tab"
-                        >
-                            <p>
-                                Damit der hier beschriebene Trick funktioniert, ist es wichtig, das Projekt als <b>Maven-Projekt</b> anzulegen.
-                                Dadurch wird das Build-Werkzeug <a href="https://maven.apache.org/" target="_blank">Maven</a> anstelle von
-                                <a href="https://ant.apache.org/" target="_blank">Ant</a> verwendet. Dies ermöglicht es uns, ganz einfach
-                                fremde Abhängigkeiten wie die <a href="https://github.com/google/gson" target="_blank">GSON-Bibliothek</a>
-                                hinzuzufügen. Außerdem lässt sich das Projekt somit auch in anderen IDEs öffnen oder gar völlig ohne IDE
-                                weiterentwickeln.
-                            </p>
-                            <img src="maven-webapp.png" alt="Maven / Web Application ist der richtige Projekttyp" class="d-block" style="width: 100%;" />
-                        </div>
-                        <!-- Erweiterung der pom.xml -->
-                        <div
-                            class           = "tab-pane fade"
-                            id              = "antwortdaten-pom"
-                            role            = "tabpanel"
-                            aria-labelledby = "antwortdaten-pom-tab"
-                        >
-                            <p>
-                                Innerhalb des Ordners <b>Project Files</b> findet sich dann die Datei <tt>pom.xml</tt>. Sie gehört zu Maven und
-                                beschreibt das gesamte Projekt, unter anderem auch, welche Abhängigkeiten es besitzt. Die nachfolgenden Zeilen
-                                müssen im Bereich <src-code language="xml">&lt;dependencies&gt;…&lt;/dependencies&gt;</src-code> eingefügt werden:
-                            </p>
-                            <source-code language="xml">
-                                &lt;project&gt;
-                                    …
-                                    &lt;dependencies&gt;
-                                        …
-                                        &lt;!--
-                                            Google GSON
-                                            ===========
+                <p>
+                    Hier siehst du, wie du auch Fehlermeldungen sauber an den Client schicken kannst. Hierzu musst du
+                    das <code>Song</code>-Objekt oder das <src-code language="java">List&lt;Song&gt;</Song></src-code>,
+                    das im Erfolgsfall zurückgeliefert wird, in eine Hilfsklasse verlagern, die zusätzlich noch einen
+                    Statuscode und einen Fehlertext beinhalten kann. Soe hat deshalb in diesem Beispiel somit folgenden Aufbau:
+                </p>
+                <ul>
+                    <li>
+                        <b>song:</b> Rückgabedaten eines einzelnen Songs, falls die Methode immer nur einen Song liefern kann.
+                    </li>
+                    <li>
+                        <b>songs:</b> Rückgabedaten einer Liste von Songs, falls die Methode potentiell mehrere Einträge liefern kann.
+                    </li>
+                    <li>
+                        <b>status:</b> Ein einfacher Statuscode wie <tt>OK</tt> oder <tt>ERROR</tt>, anhand dessen der Client
+                        erkennen kann, ob der Aufruf erfolgreich war.
+                    </li>
+                    <li>
+                        <b>exception:</b> Der Name der aufgetretenen Exception, falls es zu einem Fehler kam.
+                    </li>
+                    <li>
+                        <b>message:</b> Eine für den Anwender verständliche Status- oder Fehlermeldung, die der Client bei Bedarf
+                        anzeigen kann.
+                    </li>
+                </ul>
+                <p>
+                    Der Einfachheit halber legen wir die Klasse als innere Klasse an. Der neue Quellcode sieht dadurch wie folgt aus.
+                    Natürlich muss die Klasse <code>SongResource</code> analog dazu angepasst werden, auch wenn das hier nicht gezeigt wird.
+                </p>
+                <source-code language="java">
+                    /**
+                     * Collection "Songs" zum Suchen von Songs und Speichern neuer Songs.
+                     */
+                    @Stateless
+                    @Path("Songs")
+                    public class SongCollection {
 
-                                            Damit lässt sich ein Javaobjekt nach JSON umwandeln und umgekehrt.
-                                            https://mvnrepository.com/artifact/com.google.code.gson/gson
-                                        --&gt;
-                                        &lt;dependency&gt;
-                                            &lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;
-                                            &lt;artifactId&gt;gson&lt;/artifactId&gt;
-                                            &lt;version&gt;2.8.2&lt;/version&gt;
-                                        &lt;/dependency&gt;
-                                    &lt;/dependencies&gt;
-                                    …
-                                &lt;/project&gt;
-                            </source-code>
-                        </div>
-                        <!-- Änderungen am Quellcode -->
-                        <div
-                            class           = "tab-pane fade"
-                            id              = "antwortdaten-code"
-                            role            = "tabpanel"
-                            aria-labelledby = "antwortdaten-code-tab"
-                        >
-                            <p>
-                                Und hier nun die angepasste Version der Klasse <code>SongCollection</code>. Innerhalb der Klasse befindet sich
-                                ein GSON-Objekt, das zum (De)serialisieren der JSON-Daten verwendet werden kann. Diese werden den Methoden daher
-                                nun als String übergeben und auch der Rückgabewert aller Methoden ist ein String. Zusätzlich beinhaltet die Klasse
-                                eine innere Klasse namens <code>Response</code>, die alle für eine Antwort benötigten Felder enthält.
-                            </p>
-                            <ul>
-                                <li>
-                                    <b>song:</b> Rückgabedaten eines einzelnen Songs, falls die Methode immer nur einen Song liefern kann.
-                                </li>
-                                <li>
-                                    <b>songs:</b> Rückgabedaten einer Liste von Songs, falls die Methode potentiell mehrere Einträge liefern kann.
-                                </li>
-                                <li>
-                                    <b>status:</b> Ein einfacher Statuscode wie <tt>OK</tt> oder <tt>ERROR</tt>, anhand dessen der Client
-                                    erkennen kann, ob der Aufruf erfolgreich war.
-                                </li>
-                                <li>
-                                    <b>exception:</b> Der Name der aufgetretenen Exception, falls es zu einem Fehler kam.
-                                </li>
-                                <li>
-                                    <b>message:</b> Eine für den Anwender verständliche Status- oder Fehlermeldung, die der Client bei Bedarf
-                                    anzeigen kann.
-                                </li>
-                            </ul>
-                            <p>
-                                Die veränderte <code>SongCollection</code>-Klasse sieht dadurch wie folgt aus. Natürlich muss die Klasse
-                                <code>SongResource</code> analog dazu angepasst werden, auch wenn das hier nicht gezeigt wird.
-                            </p>
-                            <source-code language="java">
-                                /**
-                                 * Collection "Songs" zum Suchen von Songs und Speichern neuer Songs.
-                                 */
-                                @Stateless
-                                @Path("Songs")
-                                public class SongCollection {
+                        @EJB
+                        SongBean songBean;
 
-                                    @EJB
-                                    SongBean songBean;
+                        /**
+                         * Datencontainer für die Antwortdaten, die von den Methoden unten jeweils
+                         * zurückgeschickt werden können.
+                         */
+                        public static class Response {
 
-                                    // GSON-Objekt zur (De)serialisierung von JSON
-                                    Gson gson = new GsonBuilder().create();
+                            public Song song;
+                            public List&lt;Song&gt; songs;
+                            public String status;
+                            public String exception;
+                            public String message;
+                        }
 
-                                    /**
-                                     * Datencontainer für die Antwortdaten, die von den Methoden unten jeweils
-                                     * zurückgeschickt werden können.
-                                     */
-                                    public class Response {
+                        /**
+                         * GET /api/Songs/List/
+                         * Auslesen einer Liste von Musikstücken.
+                         */
+                        @GET
+                        @Produces(MediaType.APPLICATION_JSON)
+                        public Response findSongs() {
+                            Response response = new Response();
 
-                                        public Song song;
-                                        public List&lt;Song&gt; songs;
-                                        public String status;
-                                        public String exception;
-                                        public String message;
-                                    }
+                            try {
+                                response.songs = this.songBean.findAll();
+                                response.status = "OK";
+                            } catch (Exception ex) {
+                                response.status = "ERROR";
+                                response.exception = ex.getClass().getName();
+                                response.message = ex.getMessage();
+                            }
 
-                                    /**
-                                     * GET /api/Songs/List/
-                                     * Auslesen einer Liste von Musikstücken.
-                                     */
-                                    @GET
-                                    @Produces(MediaType.APPLICATION_JSON)
-                                    public String findSongs() {
-                                        Response response = new Response();
+                            return response;
+                        }
 
-                                        try {
-                                            response.songs = this.songBean.findAll();
-                                            response.status = "OK";
-                                        } catch (Exception ex) {
-                                            response.status = "ERROR";
-                                            response.exception = ex.getClass().getName();
-                                            response.message = ex.getMessage();
-                                        }
+                        /**
+                         * POST /api/Songs/
+                         * Speichern eines neuen Songs.
+                         */
+                        @POST
+                        @Consumes(MediaType.APPLICATION_JSON)
+                        @Produces(MediaType.APPLICATION_JSON)
+                        public Response saveNewSong(Song song) {
+                            Response response = new Response();
 
-                                        return this.gson.toJson(response);
-                                    }
+                            try {
+                                response.song = this.songBean.saveNew(song);
+                                response.status = "OK";
+                            } catch (Exception ex) {
+                                response.status = "ERROR";
+                                response.exception = ex.getClass().getName();
+                                response.message = ex.getMessage();
+                            }
 
-                                    /**
-                                     * POST /api/Songs/
-                                     * Speichern eines neuen Songs.
-                                     */
-                                    @POST
-                                    @Consumes(MediaType.APPLICATION_JSON)
-                                    @Produces(MediaType.APPLICATION_JSON)
-                                    public String saveNewSong(String json) {
-                                        Response response = new Response();
-
-                                        try {
-                                            Song song = this.gson.fromJson(json, Song.class);
-                                            response.song = this.songBean.saveNew(song);
-                                            response.status = "OK";
-                                        } catch (Exception ex) {
-                                            response.status = "ERROR";
-                                            response.exception = ex.getClass().getName();
-                                            response.message = ex.getMessage();
-                                        }
-
-                                        return this.gson.toJson(response);
-                                    }
-                                }
-                            </source-code>
-                        </div>
-                    </div>
-                </div>
+                            return response;
+                        }
+                    }
+                </source-code>
             </article>
             <aside>
                 <p>
                     Auf der vorherigen Folie hast du gesehen, dass Java automatisch alle Objekte, die einer Methode übergeben werden,
-                    von und nach JSON umwandeln kann. Allerdings gibt es hierbei zwei Probleme:
-                </p>
-                <ol>
-                    <li>
-                        In manchen alten Applikationsservern gab es zumindest früher einen Bug, der genau dies verhinderte
-                        und stattdessen die Anwendung abstürzen lies. 😟
-                    </li>
-                    <li>
-                        Wir können, so wie es auf der Folie gezeigt wurde, keine Fehlermeldungen an den Client senden. Wirft
-                        eine der Methoden eine Exception, stürzt die Anwendung ab und der Client bekommt eine 500er-Fehlerseite
-                        im HTML-Format. 🤯
-                    </li>
-                </ol>
-                <p>
-                </p>
-                <p>
-                    Auf dieser Folie siehst du daher einen Lösungsansatz, der beide Probleme elegant umgeht. 💃 Dem Server-Bug
-                    werden wir mit der <a href="https://github.com/google/gson" target="_blank">GSON-Bibliothek von Google</a> Herr.
-                    Auch wenn das heutzutage eigentlich nicht mehr nötig sein sollte. Aber sicher ist sicher …
-                </p>
-                <p>
-                    Und um die Möglichkeit zu schaffen, auch Fehlermeldungen zurückzusenden, definieren wir eine spezielle
-                    <b>Response-Klasse</b>, die einen Stautscode, einen Meldungstext sowie die eigentlichen Nutzdaten enthalten kann.
-                    Das Gute daran ist, dass der Code dadurch gar nicht so viel komplizierter wird. Ganz im Gegenteil, so sollte man es
-                    eigentlich immer machen. 🙂
+                    von und nach JSON umwandeln kann. Das ist natürlich sehr praktisch, jedoch fehlt uns dadurch eine Möglichkeit,
+                    im Fehlerfall eine saubere Fehlermeldung an den Client zu senden. Den im Gegensatz zu SOAP gibt es hierfür keine
+                    einheitliche Struktur, so dass wir nicht einfach eine Exception werfen können. Stattdessen müssen wir uns etwas
+                    anderes einfallen lassen: Um die Möglichkeit zu schaffen, Fehlermeldungen zurückzusenden, definieren wir einfach
+                    eine spezielle <b>Response-Klasse</b>, die einen Stautscode, einen Meldungstext sowie die eigentlichen Nutzdaten
+                    enthalten kann. Das Gute daran ist, dass der Code dadurch gar nicht so viel komplizierter wird. Ganz im Gegenteil,
+                    so sollte man es eigentlich immer machen. 🙂
                 </p>
             </aside>
         </section>
@@ -2487,9 +2363,7 @@
                                     @EJB
                                     SongtextBean songtextBean;
 
-                                    Gson gson = new GsonBuilder().create();
-
-                                    public class Response {
+                                    public static class Response {
 
                                         public Songtext songtext;
                                         public List&lt;Songtext&gt; songtexts;
@@ -2500,7 +2374,7 @@
 
                                     @GET
                                     @Produces(MediaType.APPLICATION_JSON)
-                                    public String findSongtexts() {
+                                    public Response findSongtexts() {
                                         Response response = new Response();
 
                                         try {
@@ -2512,17 +2386,16 @@
                                             response.message = ex.getMessage();
                                         }
 
-                                        return this.gson.toJson(response);
+                                        return response;
                                     }
 
                                     @POST
                                     @Consumes(MediaType.APPLICATION_JSON)
                                     @Produces(MediaType.APPLICATION_JSON)
-                                    public String saveNewSongtext(String json) {
+                                    public Response saveNewSongtext(Songtext songtext) {
                                         Response response = new Response();
 
                                         try {
-                                            Songtext songtext = this.gson.fromJson(json, Songtext.class);
                                             response.songtext = this.songtextBean.saveNew(songtext);
                                             response.status = "OK";
                                         } catch (Exception ex) {
@@ -2531,7 +2404,7 @@
                                             response.message = ex.getMessage();
                                         }
 
-                                        return this.gson.toJson(response);
+                                        return response;
                                     }
                                 }
                             </source-code>
@@ -2545,8 +2418,6 @@
                                     @EJB
                                     SongtextBean songtextBean;
 
-                                    Gson gson = new GsonBuilder().create();
-
                                     public class Response {
 
                                         public Songtext songtext;
@@ -2557,7 +2428,7 @@
 
                                     @GET
                                     @Produces(MediaType.APPLICATION_JSON)
-                                    public String getSongtext(@PathParam("id") long id) {
+                                    public Response getSongtext(@PathParam("id") long id) {
                                         Response response = new Response();
 
                                         try {
@@ -2569,17 +2440,16 @@
                                             response.message = ex.getMessage();
                                         }
 
-                                        return this.gson.toJson(response);
+                                        return response;
                                     }
 
                                     @PUT
                                     @Consumes(MediaType.APPLICATION_JSON)
                                     @Produces(MediaType.APPLICATION_JSON)
-                                    public String updateSong(String json) {
+                                    public Response updateSong(Songtext songtext) {
                                         Response response = new Response();
 
                                         try {
-                                            Songtext songtext = this.gson.fromJson(json, Songtext.class);
                                             response.songtext = this.songtextBean.update(songtext);
                                             response.status = "OK";
                                         } catch (Exception ex) {
@@ -2588,12 +2458,12 @@
                                             response.message = ex.getMessage();
                                         }
 
-                                        return this.gson.toJson(response);
+                                        return response;
                                     }
 
                                     @DELETE
                                     @Produces(MediaType.APPLICATION_JSON)
-                                    public String deleteSong(@PathParam("id") long id) {
+                                    public Response deleteSong(@PathParam("id") long id) {
                                         Response response = new Response();
 
                                         try {
@@ -2610,7 +2480,7 @@
                                             response.message = ex.getMessage();
                                         }
 
-                                        return this.gson.toJson(response);
+                                        return response;
                                     }
                                 }
                             </source-code>
