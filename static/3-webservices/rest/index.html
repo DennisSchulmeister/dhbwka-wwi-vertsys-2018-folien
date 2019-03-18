@@ -49,7 +49,7 @@
                         Das <span class="dhbw-lightblue font-weight-bold">AJAX-Prinzip</span> anwenden, um REST-Webservices aus clientseitigem JavaScript heraus aufzurufen.
                     </li>
                     <li>
-                        Entfernte REST-Webservices mit JAX-RS <span class="dhbw-lightblue font-weight-bold">aus Java heraus aufrufen</span>.
+                        Entfernte REST-Webservices <span class="dhbw-lightblue font-weight-bold">aus Java heraus aufrufen</span>.
                     </li>
                     <li>
                         Netbeans zur Generierung der hierfür benötigten Webservice-Stubs verwenden.
@@ -1246,15 +1246,15 @@
                                     <div class="col-md">
                                         <h3>@Produces</h3>
                                         <p>
-                                            Steht vor einer Methode und definiert den <a href="https://en.wikipedia.org/wiki/Media_type" target="_blank">MIME-Type</a>
-                                            der zurückgelieferten Daten.
+                                            Steht vor einer Klasse oder Methode und definiert den <a href="https://en.wikipedia.org/wiki/Media_type" target="_blank">MIME-Type</a>
+                                            der vom Webservice zurückgelieferten Daten (in der Regel JSON und/oder XML).
                                         </p>
                                     </div>
                                     <div class="col-md">
                                         <h3>@Consumes</h3>
                                         <p>
-                                            Steht vor einer Methode und definiert den <a href="https://en.wikipedia.org/wiki/Media_type" target="_blank">MIME-Type</a>
-                                            der durch die Methode verarbeiteten Daten.
+                                            Steht vor einer Klasse oder Methode und definiert den <a href="https://en.wikipedia.org/wiki/Media_type" target="_blank">MIME-Type</a>
+                                            der vom Webservice verarbeiteten Daten (in der Regel JSON und/oder XML).
                                         </p>
                                     </div>
                                 </div>
@@ -1275,8 +1275,8 @@
                                     <div class="col-md">
                                         <h3>@PathParam</h3>
                                         <p>
-                                            Kennzeichnet einen Methodenparameter, dessen Wert über einen Platzhaler in der URL ermittelt wird.
-                                            Zum Beispiel: <src-code language="java">@PathParam("id") String id</src-code>
+                                            Kennzeichnet einen Methodenparameter oder ein Klassenattribut, dessen Wert über einen Platzhaler in der URL
+                                            ermittelt wird. Zum Beispiel: <src-code language="java">@PathParam("id") String id</src-code>
                                         </p>
                                     </div>
                                 </div>
@@ -1284,9 +1284,18 @@
                                     <div class="col-md">
                                         <h3>@QueryParam</h3>
                                         <p>
-                                            Steht vor einem Methodenparameter und legt fest, dass dieser in Form eines URL-Parameters übergeben wird.
-                                            Zum Beispiel muss bei <src-code language="java">@QueryParam("search") String search</src-code> der String
-                                            <code>?search=Queen</code> an die URL abgehängt werden, um den Wert <tt><i>Queen</i></tt> zu übergeben.
+                                            Steht vor einem Methodenparameter oder Klassenattribut und legt fest, dass dieses in Form eines URL-Parameters
+                                            übergeben wird. Zum Beispiel muss bei <src-code language="java">@QueryParam("search") String search</src-code>
+                                            der String <code>?search=Queen</code> an die URL abgehängt werden, um den Wert <tt><i>Queen</i></tt> zu übergeben.
+                                        </p>
+                                    </div>
+                                    <div class="col-md">
+                                        <h3>@DefaultValue</h3>
+                                        <p>
+                                            Kann im Zusammenhang mit <src-code language="java">@PathParam</src-code> und <src-code language="java">@QueryParam</src-code>
+                                            genutzt werden, um optionale Parameter zu definieren. Sendet der Client den auf diese Weise gekennzeichneten
+                                            Parameter nicht mit, wird er mit dem hier angegebenen Defaultwert versorgt. Zum Beispiel:
+                                            <src-code language="java">@DefaultValue("") @QueryParam("search") String search</src-code>
                                         </p>
                                     </div>
                                 </div>
@@ -1369,7 +1378,6 @@
                                         Set&lt;Class&lt;?&gt;&gt; resources = new HashSet&lt;&gt;();
 
                                         // Hier für jede Webservice-Klasse eine Zeile hinzufügen
-                                        resources.add(SongCollection.class);
                                         resources.add(SongResource.class);
 
                                         return resources;
@@ -1386,66 +1394,69 @@
                         >
                             <p>
                                 Bei den eigentlichen Webservice-Klassen, die jeweils für eine Collection oder Ressource des Webservices stehen,
-                                handelt es sich wieder um altbekannte Stateless Session Beans. 👴🏽 Ihre Methoden werden durch die übrigen Annotationen
-                                auf die verschiedenen URLs und HTTP-Verben gemappt. Fangen wir also mit der Klasse für eine <b>Collection</b> an,
-                                um eine Liste auslesen, Einträge suchen und neue Einträge anlegen zu können:
+                                handelt es sich dieses mal ausnahmsweise nicht um die altbekannten Stateless Session Beans. Zwar kann man vor
+                                die Klasse <src-code language="java">@Stateless</src-code> schreiben, wenn man will, es bringt aber gar keinen
+                                Vorteil. Im Gegenteil: Die Annotationen <src-code language="java">@PathParam</src-code> und
+                                <src-code language="java">@QueryParam</src-code> funktionieren dann nicht vor Klassenattributen, da eine
+                                REST-Webservice-Klasse eigentlich nur für die Dauer einer HTTP-Anfrage instantiiert wird, was durch
+                                <src-code language="java">@Stateless</src-code> unterbunden wird.
+                            </p>
+                            <p>
+                                Stattdessen benötigen wir jedoch die unter „Benötigte Annotationen” gezeigten Annotationen, um die Eigenschaften
+                                des Webservices zu definieren. Fangen wir mit der URL des Webservices an. Die Annotationen <src-code language="java">@Consumes</src-code>
+                                und <src-code language="java">@Produces</src-code> zur Definition der unterstützten Datenformate können wir ebenfalls
+                                vorziehen, wenn wir wollen:
                             </p>
                             <source-code language="java">
                                 /**
-                                 * Collection "Songs" zum Suchen von Songs und Speichern neuer Songs.
+                                 * REST-Webservice zum Suchen, Speichern und Löschen von Songs.
                                  */
-                                @Stateless
                                 @Path("Songs")
-                                public class SongCollection {
+                                @Consumes(MediaType.APPLICATION_JSON)
+                                @Produces(MediaType.APPLICATION_JSON)
+                                public class SongResource {
 
                                     @EJB
                                     SongBean songBean;
-
+                            </source-code>
+                            <p>
+                                Dann kommen die Methoden, die sich eher auf die „Liste der Einträge” beziehen und deshalb keine Id
+                                in der URL besitzen. Es handelt sich dabei um GET- und POST-Anfragen:
+                            </p>
+                            <source-code language="java">
                                     /**
                                      * GET /api/Songs/List/
+                                     *
                                      * Auslesen einer Liste von Musikstücken.
                                      */
                                     @GET
-                                    @Produces(MediaType.APPLICATION_JSON)
                                     public List&lt;Song&gt; findSongs() {
                                         return this.songBean.findAll();
                                     }
 
                                     /**
                                      * POST /api/Songs/
+                                     *
                                      * Speichern eines neuen Songs.
                                      */
                                     @POST
-                                    @Consumes(MediaType.APPLICATION_JSON)
-                                    @Produces(MediaType.APPLICATION_JSON)
-                                    public String saveNewSong(Song song) {
+                                    public String saveNewSong(@Valid Song song) {
                                         return this.songBean.saveNew(song);
                                     }
                                 }
                             </source-code>
                             <p>
-                                Anschließend legen wir eine weitere Klasse für <b>einzelne Ressourcen</b> an. Streng genommen könnten die Methoden
-                                zwar auch alle in einer Klasse stehen (<code>@Path</code> kann auch vor einer Methode stehen), so ist es jedoch
-                                übersichtlicher und damit wartbarer.
+                                Weiter geht es mit den Methoden, die sich auf einen vorhandenen Datensatz mit bekannter Id beziehen. Hier
+                                benötigen wir die passenden Methoden, um auf GET-, PUT- und DELETE-Anfragen zu reagieren.
                             </p>
                             <source-code language="java">
-                                /**
-                                 * Ressource für einen einzelnen Song. Hier kann ein einzelner Song abgerufen,
-                                 * aktualisiert oder gelöscht werden.
-                                 */
-                                @Stateless
-                                @Path("Songs/{id}")
-                                public class SongResource {
-
-                                    @EJB
-                                    SongBean songBean;
-
                                     /**
                                      * GET /api/Songs/{id}/
+
                                      * Auslesen eines einzelnen Songs anhand seiner ID.
                                      */
                                     @GET
-                                    @Produces(MediaType.APPLICATION_JSON)
+                                    @Path("{id}")
                                     public Song getSong(@PathParam("id") long id) {
                                         return this.songBean.findById(id);
                                     }
@@ -1453,21 +1464,23 @@
 
                                     /**
                                      * PUT /api/Songs/{id}/
+
                                      * Aktualisieren eines vorhandenen Songs.
                                      */
                                     @PUT
-                                    @Consumes(MediaType.APPLICATION_JSON)
-                                    @Produces(MediaType.APPLICATION_JSON)
-                                    public Song updateSong(Song song) {
+                                    @Path("{id}")
+                                    public Song updateSong(@PathParam("id") long id, @Valid Song song) {
+                                        song.setId(id);
                                         return this.songBean.update(song);
                                     }
 
                                     /**
                                      * DELETE /api/Songs/{id}/
+
                                      * Löschen eines vorhandenen Songs.
                                      */
                                     @DELETE
-                                    @Produces(MediaType.APPLICATION_JSON)
+                                    @Path("{id}")
                                     public Song deleteSong(@PathParam("id") long id) {
                                         Song song = this.songBean.findById(id);
 
@@ -1479,6 +1492,9 @@
                                     }
                                 }
                             </source-code>
+                            <p>
+                                Und fertig ist unser REST-Webservice.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -1486,13 +1502,13 @@
             <aside>
                 <p>
                     Zugegeben, die Definition eigener Webservices ist mit REST etwas aufwändiger als mit SOAP. 🤦 Aber dafür tickt REST eben auch ganz
-                    anders und erfordert deshalb auch mehr Annotationen. Hat man aber einmal den Dreh raus, 🎗️ ist es auch nicht wirklich kompliziert.
+                    anders und erfordert deshalb auch mehr Annotationen. Hat man einmal den Dreh raus, 🎗️ ist es nicht wirklich kompliziert.
                     Man muss sich nur ein paar Gedanken darüber machen, wie die URLs des Webservices aufgebaut sein sollen und welche Ressource
                     mit welcher URL angesprochen wird. Auch muss man sich natürlich überlegen, welche HTTP-Verben und damit auch welche Operationen
                     man überhaupt unterstützen will. Ein gutes Vorgehen ist dabei folgendes:
                 </p>
                 <p>
-                    Zunächst legt man über die <b>Application-Klasse</b> des Webservices seine Basis-URL fest. Also den Prefix, mit dem alle
+                    Zunächst legt man über die sogenannte <b>Application-Klasse</b> die Basis-URL des REST-Webservices fest. Also den Prefix, mit dem alle
                     URLs des Webservices beginnen. Dies geschieht durch die Annotation <code>@ApplicationPath</code>, die vor einer Klasse,
                     die von <code>Application</code> erbt, steht:
                 </p>
@@ -1501,8 +1517,9 @@
                     public class MusicalRestAPI extends Application { … }
                 </source-code>
                 <p>
-                    In diesem Beispiel beginnen also alle URLs mit <code>/api/</code>. Anschließend definiert man je Ressource zwei Webservice-Klassen
-                    und führt sie innerhalb der Application-Klasse auf. Eine Klasse für die Collection sowie eine für einzelne Ressourcen.
+                    In diesem Beispiel beginnen also alle URLs mit <code>/api/</code>. Anschließend definiert man je Ressourcenart mindestens eine
+                    Webservice-Klasse und führt sie innerhalb der Application-Klasse auf. Dabei kann man entweder alle Methoden in eine Klasse
+                    packen, oder für die Collection sowie die eigentliche Ressource zwei Klassen definieren.¹ Wie man will …
                 </p>
                 <source-code language="java">
                     @ApplicationPath("api")
@@ -1512,7 +1529,6 @@
                             Set&lt;Class&lt;?&gt;&gt; resources = new HashSet&lt;&gt;();
 
                             // Hier für jede Webservice-Klasse eine Zeile hinzufügen
-                            resources.add(SongCollection.class);
                             resources.add(SongResource.class);
 
                             return resources;
@@ -1520,16 +1536,18 @@
                     }
                 </source-code>
                 <p>
+                    <small>
+                        ¹ Wir erinnern uns: Die Collection ist der Teil des Webservices, der keine Datensatz-Id in der URL enthält und daher eher
+                        eine „Liste von Einträgen” darstellt. Eine Ressource ist ein Eintrag in dieser Liste und besitzt daher eine eindeutige
+                        URL, in der ihr Id enthalten ist.
+                    </small>
+                </p>
+                <p>
                     Die Webservice-Klassen bekommen, da sie ja für eine Ressourcenart mit eindeutigen URLs stehen, über die <code>@Path</code>-Annotation
                     einen eigenen URL-Prefix unterhalb der Basis-URL zugewiesen:
                 </p>
                 <source-code language="java">
-                    @Stateless
                     @Path("Songs")
-                    public class SongCollection { … }
-
-                    @Stateless
-                    @Path("Songs/{id}")
                     public class SongResource { … }
                 </source-code>
                 <p>
@@ -1538,13 +1556,13 @@
                     die eigentliche ID ersetzt werden muss.
                 </p>
                 <p>
-                    Weiter geht es mit der Collection-Klasse. Sie bekommt zwei Methoden für GET- und POST-Anfragen, zum Auslesen einer Liste sowie
+                    Kommen wir nun zu den Methoden der Klasse. Zunächst definieren wir zwei Methoden für GET- und POST-Anfragen, zum Auslesen einer Liste sowie
                     zum Anlegen eines neuen Eintrags:
                 </p>
                 <source-code language="java">
                     @Stateless
                     @Path("Songs")
-                    public class SongCollection {
+                    public class SongResource {
 
                         @GET
                         @Produces(MediaType.APPLICATION_JSON)
@@ -1557,145 +1575,101 @@
                     }
                 </source-code>
                 <p>
-                    Die Ressourcenklasse für einzelne Datensätze hingegen bekommt Methoden für GET-, PUT- und DELETE-Anfragen.
+                    Dann kommen die Methoden, die sich auf einzelne Datensätze beziehen. Sie reagieren entsprechend auf GET-, PUT- und DELETE-Anfragen:
                 </p>
                 <source-code language="java">
                     @Stateless
-                    @Path("Songs/{id}")
+                    @Path("Songs")
                     public class SongResource {
+                        …
 
                         @GET
+                        @Path("{id}")
                         @Produces(MediaType.APPLICATION_JSON)
                         public Song getSong(@PathParam("id") long id) { … }
 
                         @PUT
+                        @Path("{id}")
                         @Consumes(MediaType.APPLICATION_JSON)
                         @Produces(MediaType.APPLICATION_JSON)
-                        public Song updateSong(Song song) { … }
+                        public Song updateSong(
+                                @PathParam("id") long id,
+                                @Valid Song song
+                        ) { … }
 
                         @DELETE
+                        @Path("{id}")
                         @Produces(MediaType.APPLICATION_JSON)
                         public Song deleteSong(@PathParam("id") long id) { … }
                     }
                 </source-code>
                 <p>
                     Dadurch hat mein eine saubere Quellcodestruktur und logische RESTful URLs, die nicht im Widerspruch zur Bedeutung der
-                    Methoden stehen.
+                    HTTP-Befehle stehen. Jetzt müssen die Methoden nur noch ausprogrammiert werden.
                 </p>
             </aside>
         </section>
 
         <section>
-            <h1>Die Antwortdaten flexibler gestalten</h1>
+            <h1>Über den Umgang mit Exceptions</h1>
             <article>
                 <p>
-                    Hier siehst du, wie du auch Fehlermeldungen sauber an den Client schicken kannst. Hierzu musst du
-                    das <code>Song</code>-Objekt oder das <src-code language="java">List&lt;Song&gt;</Song></src-code>,
-                    das im Erfolgsfall zurückgeliefert wird, in eine Hilfsklasse verlagern, die zusätzlich noch einen
-                    Statuscode und einen Fehlertext beinhalten kann. Soe hat deshalb in diesem Beispiel somit folgenden Aufbau:
-                </p>
-                <ul>
-                    <li>
-                        <b>song:</b> Rückgabedaten eines einzelnen Songs, falls die Methode immer nur einen Song liefern kann.
-                    </li>
-                    <li>
-                        <b>songs:</b> Rückgabedaten einer Liste von Songs, falls die Methode potentiell mehrere Einträge liefern kann.
-                    </li>
-                    <li>
-                        <b>status:</b> Ein einfacher Statuscode wie <tt>OK</tt> oder <tt>ERROR</tt>, anhand dessen der Client
-                        erkennen kann, ob der Aufruf erfolgreich war.
-                    </li>
-                    <li>
-                        <b>exception:</b> Der Name der aufgetretenen Exception, falls es zu einem Fehler kam.
-                    </li>
-                    <li>
-                        <b>message:</b> Eine für den Anwender verständliche Status- oder Fehlermeldung, die der Client bei Bedarf
-                        anzeigen kann.
-                    </li>
-                </ul>
-                <p>
-                    Der Einfachheit halber legen wir die Klasse als innere Klasse an. Der neue Quellcode sieht dadurch wie folgt aus.
-                    Natürlich muss die Klasse <code>SongResource</code> analog dazu angepasst werden, auch wenn das hier nicht gezeigt wird.
+                    Damit wir auf dem Server auftretende Fehler und Exceptions sauber an den Client melden können, definieren wir
+                    erst einmal eine Klasse mit den hierfür benötigten Werten:
                 </p>
                 <source-code language="java">
                     /**
-                     * Collection "Songs" zum Suchen von Songs und Speichern neuer Songs.
+                     * Antwortobjekt, das bei einer Exception an den Client gesendet wird.
                      */
-                    @Stateless
-                    @Path("Songs")
-                    public class SongCollection {
+                    public class ExceptionResponse {
+                        public String exception;
+                        public String message;
 
-                        @EJB
-                        SongBean songBean;
-
-                        /**
-                         * Datencontainer für die Antwortdaten, die von den Methoden unten jeweils
-                         * zurückgeschickt werden können.
-                         */
-                        public static class Response {
-
-                            public Song song;
-                            public List&lt;Song&gt; songs;
-                            public String status;
-                            public String exception;
-                            public String message;
-                        }
-
-                        /**
-                         * GET /api/Songs/List/
-                         * Auslesen einer Liste von Musikstücken.
-                         */
-                        @GET
-                        @Produces(MediaType.APPLICATION_JSON)
-                        public Response findSongs() {
-                            Response response = new Response();
-
-                            try {
-                                response.songs = this.songBean.findAll();
-                                response.status = "OK";
-                            } catch (Exception ex) {
-                                response.status = "ERROR";
-                                response.exception = ex.getClass().getName();
-                                response.message = ex.getMessage();
-                            }
-
-                            return response;
-                        }
-
-                        /**
-                         * POST /api/Songs/
-                         * Speichern eines neuen Songs.
-                         */
-                        @POST
-                        @Consumes(MediaType.APPLICATION_JSON)
-                        @Produces(MediaType.APPLICATION_JSON)
-                        public Response saveNewSong(Song song) {
-                            Response response = new Response();
-
-                            try {
-                                response.song = this.songBean.saveNew(song);
-                                response.status = "OK";
-                            } catch (Exception ex) {
-                                response.status = "ERROR";
-                                response.exception = ex.getClass().getName();
-                                response.message = ex.getMessage();
-                            }
-
-                            return response;
-                        }
+                        // Ggf. weitere Daten, die wir an den Client senden wollen
                     }
                 </source-code>
+                <p>
+                    Dann müssen wir nur noch einen so genannten <b>Exception Mapper</b> definieren, den Java bei Auftreten
+                    einer Exception automatisch aufruft. Er sorgt dafür, dass anstelle der normalen Antwort des Webservices
+                    die eben definierte Antwortstruktur mit einer Fehlerbeschreibung an den Client gesendet wird.
+                </p>
+                <source-code language="java">
+                    /**
+                     * JAX-RS Exception Mapper für beliebige Exceptions. Dieser sorgt dafür, dass
+                     * bei Auftreten einer Exception dennoch eine ordentliche Antwort an den Client
+                     * gesendet wird.
+                     */
+                    @Provider
+                    public class RestExceptionMapper implements ExceptionMapper&lt;Throwable&gt; {
+
+                        @Override
+                        public Response toResponse(Throwable ex) {
+                            ExceptionResponse result = new ExceptionResponse();
+                            result.exception = ex.getClass().getName();
+                            result.message = ex.getMessage();
+
+                            return Response.status(Response.Status.BAD_REQUEST).entity(result).build();
+                        }
+
+                    }
+                </source-code>
+                <p>
+                    Die hier gezeigte Klasse reagiert auf alle <code>Throwable</code>-Objekte, also wirklich auf jede Art von
+                    Fehler, die Java in Form einer Exception melden kann. Wenn wir wollen, können wir noch weitere Exception
+                    Mapper für konkretere Fehlerklassen definieren. Mindestens aber sollte jeder REST-Webservice die hier gezeigten
+                    beiden Klassen besitzen.
+                </p>
             </article>
             <aside>
                 <p>
-                    Auf der vorherigen Folie hast du gesehen, dass Java automatisch alle Objekte, die einer Methode übergeben werden,
-                    von und nach JSON umwandeln kann. Das ist natürlich sehr praktisch, jedoch fehlt uns dadurch eine Möglichkeit,
-                    im Fehlerfall eine saubere Fehlermeldung an den Client zu senden. Den im Gegensatz zu SOAP gibt es hierfür keine
-                    einheitliche Struktur, so dass wir nicht einfach eine Exception werfen können. Stattdessen müssen wir uns etwas
-                    anderes einfallen lassen: Um die Möglichkeit zu schaffen, Fehlermeldungen zurückzusenden, definieren wir einfach
-                    eine spezielle <b>Response-Klasse</b>, die einen Stautscode, einen Meldungstext sowie die eigentlichen Nutzdaten
-                    enthalten kann. Das Gute daran ist, dass der Code dadurch gar nicht so viel komplizierter wird. Ganz im Gegenteil,
-                    so sollte man es eigentlich immer machen. 🙂
+                    Schaut man sich den Quellcode eines in Java geschriebenen REST-Webservices an, ist dieser eigentlich nicht viel
+                    komplizierter als der Quellcode eines SOAP-Webservices. Im Unterschied zu SOAP muss man die Methoden des Webservices
+                    nur sinnvoll auf die zur Verfügung stehenden URLs und HTTP-Kommandos abbilden. Einen kleinen Nachteil hat REST dann
+                    aber leider doch, zumindest in Java: Es gibt keine einheitliche Struktur, wie Fehler bzw. auf dem Server auftretende
+                    Exceptions an den Client übermittelt werden können. Was bei Auftreten einer Exception in einer unserer REST-Klassen
+                    deshalb an den Client zurückgesendet wird, hängt vom jeweiligen Applikationsserver ab. Manche Server schicken in
+                    sogar HTML-Seiten an den Client, auch wenn dieser sie gar nicht verarbeiten kann. 🤦‍♀️ Doch zum Glück können wir ganz
+                    einfach eine eigene Struktur definieren, wie die Folie zeigt. 🙂
                 </p>
             </aside>
         </section>
@@ -1831,7 +1805,7 @@
                                         &lt;dependency&gt;
                                             &lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;
                                             &lt;artifactId&gt;gson&lt;/artifactId&gt;
-                                            &lt;version&gt;2.8.2&lt;/version&gt;
+                                            &lt;version&gt;2.8.5&lt;/version&gt;
                                         &lt;/dependency&gt;
 
                                         &lt;!--
@@ -1865,13 +1839,13 @@
                             </p>
                             <source-code language="java">
                                 // Zugriff auf den Webservice ermöglichen
-                                SongCollection songCollection = new SongCollection();
+                                SongResource songResource = new SongResource("https://…"); // URL optional
                                 songCollecion.setAuthData("username", "password");
 
                                 // Alle Songs der Dire Straits abrufen
-                                SongCollection.Response response = songCollection.findSongs("Dire Straits");
+                                Song[] songs = songResource.findSongs("Dire Straits");
 
-                                if (response.code.equals("OK")) {
+                                if (songs != null) {
                                     for (Song song : response.songs) {
                                         // Empfangene Daten anzeigen
                                         …
@@ -1885,7 +1859,7 @@
                                 song.songwriters = "Mark Knopfler";
                                 song.releaseYear = 1985;
 
-                                songCollection.saveNewSong(song);
+                                songResource.saveNewSong(song);
                             </source-code>
 
                             <hr />
@@ -1902,8 +1876,40 @@
                         >
                             <p>
                                 Bei den Webservice-Klassen orientieren wir uns dabei komplett am Server und programmieren seine Klassen
-                                im Grunde genommen nach. Nur, dass wir sie ein wenig vereinfachen und dass wir natürlich an den entscheidenden
-                                Stellen HTTP-Anfragen an den Server schicken. 🔌
+                                im Grunde genommen nach. Nur, dass wir sie ein wenig vereinfachen und dass wir natürlich innerhalb der
+                                Methoden HTTP-Anfragen an den Server schicken. 🔌 Zunächst benötigen wir aber zwei Hilfsklassen, um vom
+                                Server zurückgelieferte Fehler richtig erkennen zu können:
+                            </p>
+                            <source-code language="java">
+                                /**
+                                 * Antwortstruktur, die der Server bei Auftreten einer Exception an den Client sendet.
+                                 */
+                                public class ExceptionResponse {
+                                    public String exception;
+                                    public String message;
+
+                                    // Ggf. weitere Daten, die der Server im Fehlerfall übermittelt
+                                }
+
+                                /**
+                                 * Exception für vom Server zurückgelieferte Fehler.
+                                 */
+                                public class WebAppException extends Exception {
+
+                                    private final ExceptionResponse exceptionResponse;
+
+                                    public WebAppException(ExceptionResponse exceptionResponse) {
+                                        super(exceptionResponse.message);
+                                        this.exceptionResponse = exceptionResponse;
+                                    }
+
+                                    public ExceptionResponse getExceptionResponse() {
+                                        return this.exceptionResponse;
+                                    }
+                                }
+                            </source-code>
+                            <p>
+                                Und natürlich eine Klasse für die vom Server empfangenen Songdaten:
                             </p>
                             <source-code language="java">
                                 /**
@@ -1916,68 +1922,13 @@
                                     public String songwriters = "";
                                     public int releaseYear = 0;
                                 }
-
+                            </source-code>
+                            <p>
+                                Dann können wir die eigentlichen Webservice-Klasse bauen:
+                            </p>
+                            <source-code language="java">
                                 /**
-                                 * Webservice-Stub für die Song Collection
-                                 */
-                                public class SongCollection {
-                                    public static final URL = "https://localhost:8080/REST_Server_Beispiel/api/Songs/";
-
-                                    public String url = URL;
-                                    public String username = "";
-                                    public String password = "";
-
-                                    // Konstruktoren
-                                    public SongCollection() {
-                                    }
-
-                                    public SongCollection(String url) {
-                                        this.url = url;
-                                    }
-
-                                    // Benutzername und Passwort setzen
-                                    public setAuthData(String username, String password) {
-                                        this.username = username;
-                                        this.password = password;
-                                    }
-
-                                    // Hilfsklasse für die Antwortdaten des Webservices
-                                    public class Response {
-                                        public Song song;
-                                        public List&lt;Song&gt; songs;
-                                        public String status;
-                                        public String exception;
-                                        public String message;
-                                    }
-
-                                    // Methoden des Webservices
-                                    public Response findSongs(String query) {
-                                        // Anfrage an den Server senden
-                                        HttpResponse&lt;String&gt; httpResponse = Unirest.get(this.url)
-                                                .queryString("query", query)
-                                                .header("accept", "application/json")
-                                                .asString();
-
-                                        // Antwort als Response-Objekt zurückgeben
-                                        return this.gson.fromJson(httpResponse.getBody(), Response.class);
-                                    }
-
-                                    public Response saveNewSong(Song song) {
-                                        // Anfrage an den Server senden
-                                        HttpResponse&lt;String&gt; httpResponse = Unirest.post(this.url)
-                                                .header("accept", "application/json")
-                                                .header("content-type", "application/json")
-                                                .basicAuth(this.username, this.password)
-                                                .body(this.gson.toJson(song))
-                                                .asString();
-
-                                        // Antwort als Response-Objekt zurückgeben
-                                        return this.gson.fromJson(httpResponse.getBody(), Response.class);
-                                    }
-                                }
-
-                                /**
-                                 * Webservice-Stub für die Song Ressource
+                                 * Webservice-Stub für den Song-Webservice
                                  */
                                 public class SongResource {
                                     public static final URL = "https://localhost:8080/REST_Server_Beispiel/api/Songs/";
@@ -1986,7 +1937,10 @@
                                     public String username = "";
                                     public String password = "";
 
+                                    //
                                     // Konstruktoren
+                                    //
+
                                     public SongResource() {
                                     }
 
@@ -1994,33 +1948,95 @@
                                         this.url = url;
                                     }
 
+                                    //
                                     // Benutzername und Passwort setzen
+                                    //
+
                                     public setAuthData(String username, String password) {
                                         this.username = username;
                                         this.password = password;
                                     }
 
-                                    // Hilfsklasse für die Antwortdaten des Webservices
-                                    public class Response {
-                                        public Song song;
-                                        public String status;
-                                        public String exception;
-                                        public String message;
+                                    //
+                                    // Methoden für die gesamte Collection
+                                    //
+
+                                    /**
+                                     * Songs suchen.
+                                     */
+                                    public Song[] findSongs(String query) throws UnirestException, WebAppException {
+                                        // HTTP-Anfrage senden
+                                        HttpResponse&lt;String&gt; httpResponse = Unirest.get(this.url)
+                                                .queryString("query", query)
+                                                .header("accept", "application/json")
+                                                .asString();
+
+                                        // Exception werfen, wenn der Server einen Fehler meldet
+                                        try {
+                                            ExceptionResponse er = this.gson.fromJson(httpResponse.getBody(), ExceptionResponse.class);
+                                            throw new WebAppException(er);
+                                        } catch (JsonSyntaxException ex) {
+                                            // Okay, keine Fehlerdaten empfangen
+                                        }
+
+                                        // Antwortdaten zurückgeben
+                                        return this.gson.fromJson(httpResponse.getBody(), Song[].class);
                                     }
 
-                                    // Methoden des Webservices
-                                    public Response getSong(long id) throws UnirestException {
-                                        // Anfrage an den Server senden
+                                    /**
+                                     * Neuen Song speichern.
+                                     */
+                                    public Song saveNewSong(Song song) throws UnirestException, WebAppException {
+                                        // HTTP-Anfrage senden
+                                        HttpResponse&lt;String&gt; httpResponse = Unirest.post(this.url)
+                                                .header("accept", "application/json")
+                                                .header("content-type", "application/json")
+                                                .basicAuth(this.username, this.password)
+                                                .body(this.gson.toJson(song))
+                                                .asString();
+
+                                        // Exception werfen, wenn der Server einen Fehler meldet
+                                        try {
+                                            ExceptionResponse er = this.gson.fromJson(httpResponse.getBody(), ExceptionResponse.class);
+                                            throw new WebAppException(er);
+                                        } catch (JsonSyntaxException ex) {
+                                            // Okay, keine Fehlerdaten empfangen
+                                        }
+
+                                        // Antwortdaten zurückgeben
+                                        return this.gson.fromJson(httpResponse.getBody(), Song.class);
+                                    }
+
+                                    //
+                                    // Methoden für einzelne Resourcen
+                                    //
+
+                                    /**
+                                     * Einzelnen Song auslesen.
+                                     */
+                                    public Song getSong(long id) throws UnirestException, WebAppException {
+                                        // HTTP-Anfrage senden
                                         HttpResponse&lt;String&gt; httpResponse = Unirest.get(this.url + id + "/")
                                                 .header("accept", "application/json")
                                                 .asString();
 
-                                        // Antwort als Response-Objekt zurückgeben
-                                        return this.gson.fromJson(httpResponse.getBody(), Response.class);
+                                        // Exception werfen, wenn der Server einen Fehler meldet
+                                        try {
+                                            ExceptionResponse er = this.gson.fromJson(httpResponse.getBody(), ExceptionResponse.class);
+                                            throw new WebAppException(er);
+                                        } catch (JsonSyntaxException ex) {
+                                            // Okay, keine Fehlerdaten empfangen
+                                        }
+
+                                        // Antwortdaten zurückgeben
+                                        return this.gson.fromJson(httpResponse.getBody(), Song.class);
                                     }
 
-                                    public Response updateSong(Song song) throws UnirestException {
-                                        // Anfrage an den Server senden
+                                    /**
+                                     * Aktualisieren eines Songs.
+                                     */
+                                    public Song updateSong(Song song) throws UnirestException, WebAppException {
+                                        // HTTP-Anfrage senden
                                         HttpResponse&lt;String&gt; httpResponse = Unirest.post(this.url + song.id + "/")
                                                 .header("accept", "application/json")
                                                 .header("content-type", "application/json")
@@ -2028,21 +2044,39 @@
                                                 .body(this.gson.toJson(song))
                                                 .asString();
 
-                                        // Antwort als Response-Objekt zurückgeben
-                                        return this.gson.fromJson(httpResponse.getBody(), Response.class);
+                                        // Exception werfen, wenn der Server einen Fehler meldet
+                                        try {
+                                            ExceptionResponse er = this.gson.fromJson(httpResponse.getBody(), ExceptionResponse.class);
+                                            throw new WebAppException(er);
+                                        } catch (JsonSyntaxException ex) {
+                                            // Okay, keine Fehlerdaten empfangen
+                                        }
+
+                                        // Antwortdaten zurückgeben
+                                        return this.gson.fromJson(httpResponse.getBody(), Song.class);
                                     }
 
-                                    public Response deleteSong(long id) throws UnirestException {
-                                        // Anfrage an den Server senden
+                                    /**
+                                     * Song löschen.
+                                     */
+                                    public Song deleteSong(long id) throws UnirestException, WebAppException {
+                                        // HTTP-Anfrage senden
                                         HttpResponse&lt;String&gt; httpResponse = Unirest.delete(this.url + id + "/")
                                                 .header("accept", "application/json")
                                                 .basicAuth(this.username, this.password)
                                                 .asString();
 
-                                        // Antwort als Response-Objekt zurückgeben
-                                        return this.gson.fromJson(httpResponse.getBody(), Response.class);
+                                        // Exception werfen, wenn der Server einen Fehler meldet
+                                        try {
+                                            ExceptionResponse er = this.gson.fromJson(httpResponse.getBody(), ExceptionResponse.class);
+                                            throw new WebAppException(er);
+                                        } catch (JsonSyntaxException ex) {
+                                            // Okay, keine Fehlerdaten empfangen
+                                        }
+
+                                        // Antwortdaten zurückgeben
+                                        return this.gson.fromJson(httpResponse.getBody(), Song.class);
                                     }
-                                 }
                             </source-code>
                         </div>
                     </div>
@@ -2058,7 +2092,7 @@
                 </p>
                 <p>
                     Sucht man im Internet nach REST-Aufrufen mit Java, kommen dabei lauter Beispiele zur offiziellen JAX-RS-API
-                    zu Tage. Diese haben aber ein paar schwerwiegende Nachteile, weshalb wir sie hier <b>nicht</b> verwenden werden:
+                    zu Tage. Diese haben aber ein paar Nachteile, weshalb wir sie hier <b>nicht</b> verwenden werden:
                 </p>
                 <ul>
                     <li>
@@ -2067,7 +2101,7 @@
                     </li>
                     <li>
                         Die Authentifizierung am Server ist auch hier kein Bestandteil des Standards, so dass man selbst auf
-                        clientseite Code schreiben muss, der nur mit einer speziellen JAX-RS-Implementierung funktioniert. 😱
+                        Clientseite Code schreiben muss, der nur mit einer speziellen JAX-RS-Implementierung funktioniert. 😱
                     </li>
                     <li>
                         Die API ist in vielen Punkten umständlicher, als sie es eigentlich sein müsste.
@@ -2120,39 +2154,61 @@
                     }
                 </source-code>
 
-                <h2>Webservice-Klassen</h2>
+                <h2>Klassen zur Fehlerbehandlung</h2>
                 <p>
-                    Der nun folgende Schritt ist eigentlich optional, erhöht aber ungemein die Übersicht. Anstatt einfach
-                    an beliebigen Stellen unseres Programms HTTP-Anfragen an den Server zu schicken, kapseln wir sie alle
-                    in einer eigenen Klasse. Von der Struktur können wir uns dabei 1:1 am Server orientieren:
+                    Wie wir auf der letzten Folie gesehen haben, besitzt jeder REST-Webservice eine eigene Struktur, wie Fehler
+                    an den Client gemeldet werden. Diese müssen wir daher ebenfalls nachbauen:
                 </p>
                 <source-code language="java">
-                    public class SongCollection { … }
-                    public class SongResource { … }
+                    public class ExceptionResponse {
+                        public String exception;
+                        public String message;
+                    }
                 </source-code>
                 <p>
-                    Das Ziel ist es dabei, die clientseitigen Methoden genau gleich wie auf dem Server zu nennen. Zusätzlich brauchen
-                    wir dann nur noch ein paar Helferlein, um die URL überschreiben zu können oder die Anmeldedaten zu übergeben.
-                    Ziel ist es, dass ein fertiger Webservice-Aufruf hinterher einfach nur so aussieht:
+                    Damit wir die Fehler bei der Benutzung des Webservices einfach erkennen können, werden wir bei einem vom Server
+                    gemeldeten Fehler einfach eine Exception werfen. Diese sieht wie folgt aus:
                 </p>
                 <source-code language="java">
-                    SongCollection songCollection = new SongCollection();
-                    songCollecion.setAuthData("username", "password");
-                    SongCollection.Response response = songCollection.findSongs("Dire Straits");
+                    public class WebAppException extends Exception {
 
-                    if (response.code.equals("OK")) {
-                        for (Song song : response.songs) {
+                        private final ExceptionResponse exceptionResponse;
+
+                        public WebAppException(ExceptionResponse exceptionResponse) {
+                            super(exceptionResponse.message);
+                            this.exceptionResponse = exceptionResponse;
+                        }
+
+                        public ExceptionResponse getExceptionResponse() {
+                            return this.exceptionResponse;
+                        }
+                    }
+                </source-code>
+
+                <h2>Webservice-Klassen</h2>
+                <p>
+                    Kommen wir nun zur eigentlichen Webservice-Klasse, mit deren Hilfe wir mit dem Server reden werden.
+                    Sie soll möglichst genauso aussehen, wie die Klasse, die den Webservice auf dem Server definiert,
+                    damit wir sie ungefähr so verwenden können:
+                </p>
+                <source-code language="java">
+                    SongResource songResource = new SongResource("https://…"); // URL optional
+                    songResource.setAuthData("username", "password");
+                    
+                    Song[] songs = songCollection.findSongs("Dire Straits");
+
+                    if (songs != null) {
+                        for (Song song : songs) {
                             // Empfangene Daten anzeigen
                             …
                         }
                     }
                 </source-code>
                 <p>
-                    Hierfür benötigen wir folgendes Grundgerüst für die <code>SongCollection</code>. Die Klasse <code>SongResource</code>
-                    ist natürlich ähnlich aufgebaut.
+                    Hierfür benötigen wir folgendes Grundgerüst für die Klasse <code>SongResource</code>:
                 </p>
                 <source-code language="java">
-                    public class SongCollection {
+                    public class SongResource {
                         public static final URL = "https://…";
 
                         public String url = URL;
@@ -2160,10 +2216,10 @@
                         public String password = "";
 
                         // Konstruktoren
-                        public SongCollection() {
+                        public SongResource() {
                         }
 
-                        public SongCollection(String url) {
+                        public SongResource(String url) {
                             this.url = url;
                         }
 
@@ -2173,18 +2229,12 @@
                             this.password = password;
                         }
 
-                        // Hilfsklasse für die Antwortdaten des Webservices
-                        public class Response {
-                            public Song song;
-                            public List&lt;Song&gt; songs;
-                            public String status;
-                            public String exception;
-                            public String message;
-                        }
-
                         // Methoden des Webservices
-                        public Response findSongs(String query) { … }
-                        public Response saveNewSong(Song song) { … }
+                        public Song[] findSongs(String query) throws WebAppException { … }
+                        public Song saveNewSong(Song song) throws WebAppException { … }
+                        public Song getSong(long id) throws WebAppException { … }
+                        public Song updateSong(Song song) throws WebAppException { … }
+                        public Song deleteSong(long id) throws WebAppException { … }
                     }
                 </source-code>
                 <p>
@@ -2193,7 +2243,10 @@
                     immer ähnlich aus, so wie hier am Beispiel von <code>saveNewSong()</code>:
                 </p>
                 <source-code language="java">
-                    public Response saveNewSong(Song song) throws UnirestException {
+                    public Song saveNewSong(Song song)
+                            throws UnirestException, WebAppException {
+
+                        // HTTP-Anfrage senden
                         HttpResponse&lt;String&gt; httpResponse = Unirest.post(this.url)
                                 .header("accept", "application/json")
                                 .header("content-type", "application/json")
@@ -2201,7 +2254,17 @@
                                 .body(this.gson.toJson(song))
                                 .asString();
 
-                        return this.gson.fromJson(httpResponse.getBody(), Response.class);
+                        // Exception werfen, wenn der Server einen Fehler meldet
+                        try {
+                            ExceptionResponse er = this.gson.fromJson(
+                                    httpResponse.getBody(), ExceptionResponse.class);
+                            throw new WebAppException(er);
+                        } catch (JsonSyntaxException ex) {
+                            // Okay, keine Fehlerdaten empfangen
+                        }
+
+                        // Antwortdaten zurückgeben
+                        return this.gson.fromJson(httpResponse.getBody(), Song.class);
                     }
                 </source-code>
                 <p>
@@ -2277,8 +2340,25 @@
                                             <a href="../../2-javaee/jpa/#19" target="_blank"><code>EntityBean</code> aus den JPA-Folien</a>.
                                         </p>
                                         <p>
-                                            c) Erweitere den Webservice um eine Collection und eine Ressource für den Zugriff auf Songtexte.
+                                            c) Erweitere den Webservice um entsprechende Methoden für den Zugriff auf Songtexte:
                                         </p>
+                                        <ul>
+                                            <li>
+                                                Auslesen aller Texte
+                                            </li>
+                                            <li>
+                                                Speichern eines neuen Textes
+                                            </li>
+                                            <li>
+                                                Auslesen eines Textes anhand seiner Id
+                                            </li>
+                                            <li>
+                                                Aktualisierung eines vorhandenen Textes
+                                            </li>
+                                            <li>
+                                                Löschen eines einzelnen Textes
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
 
@@ -2341,11 +2421,9 @@
                                         // Bereits zuvor enthaltene Klassen
                                         resources.add(SignUpUser.class);
                                         resources.add(CreateDemoData.class);
-                                        resources.add(SongCollection.class);
                                         resources.add(SongResource.class);
 
-                                        // Für diese Aufgabe hinzugefügte Klassen
-                                        resources.add(SongtextCollection.class);
+                                        // Für diese Aufgabe hinzugefügte Klasse
                                         resources.add(SongtextResource.class);
 
                                         return resources;
@@ -2354,133 +2432,49 @@
                                 }
                             </source-code>
 
-                            <h2>Songtext Collection</h2>
+                            <h2>Neue REST-Klasse</h2>
                             <source-code language="java">
-                                @Stateless
                                 @Path("Songtexts")
-                                public class SongtextCollection {
-
-                                    @EJB
-                                    SongtextBean songtextBean;
-
-                                    public static class Response {
-
-                                        public Songtext songtext;
-                                        public List&lt;Songtext&gt; songtexts;
-                                        public String status;
-                                        public String exception;
-                                        public String message;
-                                    }
-
-                                    @GET
-                                    @Produces(MediaType.APPLICATION_JSON)
-                                    public Response findSongtexts() {
-                                        Response response = new Response();
-
-                                        try {
-                                            response.songtexts = this.songtextBean.findAll();
-                                            response.status = "OK";
-                                        } catch (Exception ex) {
-                                            response.status = "ERROR";
-                                            response.exception = ex.getClass().getName();
-                                            response.message = ex.getMessage();
-                                        }
-
-                                        return response;
-                                    }
-
-                                    @POST
-                                    @Consumes(MediaType.APPLICATION_JSON)
-                                    @Produces(MediaType.APPLICATION_JSON)
-                                    public Response saveNewSongtext(Songtext songtext) {
-                                        Response response = new Response();
-
-                                        try {
-                                            response.songtext = this.songtextBean.saveNew(songtext);
-                                            response.status = "OK";
-                                        } catch (Exception ex) {
-                                            response.status = "ERROR";
-                                            response.exception = ex.getClass().getName();
-                                            response.message = ex.getMessage();
-                                        }
-
-                                        return response;
-                                    }
-                                }
-                            </source-code>
-
-                            <h2>Songtext Resource</h2>
-                            <source-code language="java">
-                                @Stateless
-                                @Path("Songtexts/{id}")
+                                @Consumes(MediaType.APPLICATION_JSON)
+                                @Produces(MediaType.APPLICATION_JSON)
                                 public class SongtextResource {
 
                                     @EJB
                                     SongtextBean songtextBean;
 
-                                    public class Response {
+                                    @GET
+                                    public List&lt;Songtext&gt; findSongtexts() {
+                                        return this.songtextBean.findAll();
+                                    }
 
-                                        public Songtext songtext;
-                                        public String status;
-                                        public String exception;
-                                        public String message;
+                                    @POST
+                                    public Songtext saveNewSongtext(@Valid Songtext songtext) {
+                                        return this.songtextBean.saveNew(songtext);
                                     }
 
                                     @GET
-                                    @Produces(MediaType.APPLICATION_JSON)
-                                    public Response getSongtext(@PathParam("id") long id) {
-                                        Response response = new Response();
-
-                                        try {
-                                            response.songtext = this.songtextBean.findById(id);
-                                            response.status = "OK";
-                                        } catch (Exception ex) {
-                                            response.status = "ERROR";
-                                            response.exception = ex.getClass().getName();
-                                            response.message = ex.getMessage();
-                                        }
-
-                                        return response;
+                                    @Path("{id}")
+                                    public Songtext getSongtext(@PathParam("id") long id) {
+                                        return this.songtextBean.findById(id);
                                     }
 
                                     @PUT
-                                    @Consumes(MediaType.APPLICATION_JSON)
-                                    @Produces(MediaType.APPLICATION_JSON)
-                                    public Response updateSong(Songtext songtext) {
-                                        Response response = new Response();
-
-                                        try {
-                                            response.songtext = this.songtextBean.update(songtext);
-                                            response.status = "OK";
-                                        } catch (Exception ex) {
-                                            response.status = "ERROR";
-                                            response.exception = ex.getClass().getName();
-                                            response.message = ex.getMessage();
-                                        }
-
-                                        return response;
+                                    @Path("{id}")
+                                    public Songtext updateSong(@PathParam("id") long id, @Valid Songtext songtext) {
+                                        songtext.setId(id);
+                                        return this.songtextBean.update(songtext);
                                     }
 
                                     @DELETE
-                                    @Produces(MediaType.APPLICATION_JSON)
-                                    public Response deleteSong(@PathParam("id") long id) {
-                                        Response response = new Response();
+                                    @Path("{id}")
+                                    public Songtext deleteSong(@PathParam("id") long id) {
+                                        Songtext songtext = this.songtextBean.findById(id);
 
-                                        try {
-                                            response.songtext = this.songtextBean.findById(id);
-
-                                            if (response.song != null) {
-                                                this.songtextBean.delete(response.songtext);
-                                            }
-
-                                            response.status = "OK";
-                                        } catch (Exception ex) {
-                                            response.status = "ERROR";
-                                            response.exception = ex.getClass().getName();
-                                            response.message = ex.getMessage();
+                                        if (songtext != null) {
+                                            this.songtextBean.delete(songtext);
                                         }
 
-                                        return response;
+                                        return songtext;
                                     }
                                 }
                             </source-code>
@@ -3296,23 +3290,26 @@
                                 "use strict";
 
                                 /**
-                                 * Von der Klasse SongCollection des Servers abgeleitete Klasse, die im Prinzip
+                                 * Von der Klasse SongResource des Servers abgeleitete Klasse, die im Prinzip
                                  * dieselben Methoden besitzt. Hier rufen wir jedoch den REST-Webservice des
                                  * Servers auf, anstelle direkt auf eine Datenbank zuzugreifen.
                                  */
-                                class SongCollection {
+                                class SongResource {
 
                                     /**
                                      * Konstruktor.
+                                     * @param {String} url Basis-URL des REST-Webservices (optional)
                                      */
                                     constructor(url) {
-                                        this.url = url || "http://localhost:8080/REST_Server_Beispiel/api/Songs/";
+                                        this.url = url || "http://localhost:8080/REST_Songs_Server/api/Songs/";
                                         this.username = "";
                                         this.password = "";
                                     }
 
                                     /**
                                      * Benutzername und Passwort für die Authentifizierung merken.
+                                     * @param {String} username Benutzername
+                                     * @param {String} password Passwort
                                      */
                                     setAuthData(username, password) {
                                         this.username = username;
@@ -3321,6 +3318,8 @@
 
                                     /**
                                      * Songs suchen.
+                                     * @param {String} query Suchparameter (optional)
+                                     * @returns {Promise} Gefundene Songs
                                      */
                                     async findSongs(query) {
                                         let url = this.url;
@@ -3335,15 +3334,13 @@
                                             }
                                         });
 
-                                        if (response.ok) {
-                                            return await response.json();
-                                        } else {
-                                            return {};
-                                        }
+                                        return await response.json();
                                     }
 
                                     /**
                                      * Neuen Song speichern.
+                                     * @param {Object} song Zu speichernder Song
+                                     * @returns {Promise} Gespeicherter Song
                                      */
                                     async saveNewSong(song) {
                                         let response = await fetch(this.url, {
@@ -3356,41 +3353,13 @@
                                             body: JSON.stringify(song)
                                         });
 
-                                        if (response.ok) {
-                                            return await response.json();
-                                        } else {
-                                            return {};
-                                        }
-                                    }
-
-                                }
-
-                                /**
-                                 * Von der Klasse SongResource des Servers abgeleitete Klasse, die im Prinzip
-                                 * dieselben Methoden besitzt. Hier rufen wir jedoch den REST-Webservice des
-                                 * Servers auf, anstelle direkt auf eine Datenbank zuzugreifen.
-                                 */
-                                class SongResource {
-
-                                    /**
-                                     * Konstruktor.
-                                     */
-                                    constructor(url) {
-                                        this.url = url || "http://localhost:8080/REST_Server_Beispiel/api/Songs/";
-                                        this.username = "";
-                                        this.password = "";
-                                    }
-
-                                    /**
-                                     * Benutzername und Passwort für die Authentifizierung merken.
-                                     */
-                                    setAuthData(username, password) {
-                                        this.username = username;
-                                        this.password = password;
+                                        return await response.json();
                                     }
 
                                     /**
                                      * Einzelnen Song auslesen.
+                                     * @param {Number} id Song-ID
+                                     * @returns {Promise} Gefundener Song
                                      */
                                     async getSong(id) {
                                         let response = await fetch(this.url + id + "/", {
@@ -3400,15 +3369,13 @@
                                             }
                                         });
 
-                                        if (response.ok) {
-                                            return await response.json();
-                                        } else {
-                                            return {};
-                                        }
+                                        return await response.json();
                                     }
 
                                     /**
                                      * Aktualisieren eines Songs.
+                                     * @param {Object} song Zu speichernder Song
+                                     * @returns {Promise} Gespeicherter Song
                                      */
                                     async updateSong(song) {
                                         let response = await fetch(this.url + song.id + "/", {
@@ -3421,15 +3388,13 @@
                                             body: JSON.stringify(song)
                                         });
 
-                                        if (response.ok) {
-                                            return await response.json();
-                                        } else {
-                                            return {};
-                                        }
+                                        return await response.json();
                                     }
 
                                     /**
                                      * Song löschen.
+                                     * @param {Number} id Song ID
+                                     * @returns {Promise} Gelöschter Song
                                      */
                                     async deleteSong(id) {
                                         let response = await fetch(this.url + id + "/", {
@@ -3440,11 +3405,7 @@
                                             }
                                         });
 
-                                        if (response.ok) {
-                                            return await response.json();
-                                        } else {
-                                            return {};
-                                        }
+                                        return await response.json();
                                     }
                                 }
                             </source-code>
@@ -3476,21 +3437,20 @@
 
                                         &lt;!-- Ab hier fängt es an, Spaß zu machen 🤩 --&gt;
                                         &lt;script&gt;
-                                            songCollection = new SongCollection();
                                             songResource = new SongResource();
-
-                                            //songCollection.setAuthData("username", "password");
                                             //songResource.setAuthData("username", "password");
 
                                             // Abruf und Anzeige aller Songs, nach Laden der Seite
-                                            async function reloadSongs() {
-                                                let response = await songCollection.findSongs("");
+                                            let reloadSongs = async () =&gt; {
+                                                let response = await songResource.findSongs("");
 
-                                                if (response.status === "OK") {
+                                                if ("exception" in response) {
+                                                    alert(`[${response.exception}]: ${response.message}`)
+                                                } else {
                                                     let songsElement = document.getElementById("songs");
                                                     songsElement.innerHTML = "";
 
-                                                    response.songs.forEach(song =&gt; {
+                                                    response.forEach(song =&gt; {
                                                         // Empfangene Daten anzeigen
                                                         let songElement = document.createElement("div");
                                                         songElement.classList.add("song");
@@ -3501,10 +3461,8 @@
                                                                 + `&lt;span class="label"&gt;Songwriter:&lt;/span&gt; ${song.songwriters} &lt;br/&gt;`
                                                                 + `&lt;span class="label"&gt;Jahr:&lt;/span&gt; ${song.releaseYear} &lt;br/&gt;`;
                                                     });
-                                                } else {
-                                                    alert(response.message);
                                                 }
-                                            }
+                                            };
 
                                             window.addEventListener("load", () =&gt; reloadSongs());
                                         &lt;/script&gt;
@@ -3533,11 +3491,11 @@
                     <iframe src="https://www.youtube-nocookie.com/embed/Zp4L89oLrmE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <p>
-                    An dieser Stelle wird es dann mal Zeit für etwas Werbung. 📺 Wir unterbrechen das laufende Programm und
-                    kommen nochmal auf das <a href="../../2-javaee/ejb/#8" target="_blank">EJB-Kapitel</a>, bzw. einen Teil
-                    daraus, zurück: <b>Clientseitige Webanwendungen mit Backendserver</b>. Denn REST-Webservices haben eine
-                    tolle Eigenschaft, weshalb sie auch so beliebt sind: Man kann sie ganz einfach mit JavaScript aus dem
-                    Browser heraus aufrufen, 👍 was auch
+                    An dieser Stelle wird es Zeit für etwas Werbung. 📺 Wir unterbrechen das laufende Programm und kommen
+                    nochmal auf das <a href="../../2-javaee/ejb/#8" target="_blank">EJB-Kapitel</a>, bzw. einen Teil daraus,
+                    zurück: <b>Clientseitige Webanwendungen mit Backendserver</b>. Denn REST-Webservices haben eine tolle
+                    Eigenschaft, weshalb sie auch so beliebt sind: Man kann sie ganz einfach mit JavaScript aus dem Browser
+                    heraus aufrufen, 👍 was auch
                     <a href="https://de.wikipedia.org/wiki/Ajax_(Programmierung)" target="_blank">AJAX</a> genannt wird.
                 </p>
                 <p>
@@ -3555,12 +3513,15 @@
                     gezeigten Musik-Webservice aufzurufen, wollen wir ähnlich zu Java folgenden Quellcode schreiben:
                 </p>
                 <source-code language="javascript">
-                    let songCollection = new SongCollection();
+                    let songCollection = new SongCollection("https://…");
                     songCollecion.setAuthData("username", "password");
+
                     let response = await songCollection.findSongs("Dire Straits");
 
-                    if (response.status === "OK") {
-                        response.songs.forEach(song => {
+                    if ("exception" in response) {
+                        // Vom Server gemeldete Exception behandeln
+                    } else
+                        response.forEach(song => {
                             // Empfangene Daten anzeigen
                             …
                         });
@@ -3569,18 +3530,17 @@
                 <p>
                     Bis auf das Schlüsselwort <code>await</code> sollte dir das nicht ungewöhnlich vorkommen, sondern einfach
                     nur den Methoden entsprechen, die der Webservice eben bietet. Dieselben Methoden wollen wir auch in JavaScript
-                    haben, wofür wir zwei eigene Klassen schreiben müssen.
+                    haben, wofür wir je Resourcentyp eine eigene Klasse schreiben müssen.
                 </p>
 
                 <h2>Webservice-Klassen schreiben</h2>
                 <p>
-                    Auf dem Server besteht der Webservice ja aus mindestens zwei Klassen: <code>SongCollection</code> und
-                    <code>SongResource</code>. Diese beiden Klassen müssen wir mit änhlichen Methoden nachbauen, wobei wir
-                    an den entscheidenen Stellen natürlich eine Anfrage an den Server senden, anstatt auf eine lokale Datenbank
-                    zuzugreifen. Das Grundgerüst der beiden Klassen ist daher folgendes, hier am Beispiel von <code>SongCollection</code>:
+                    Auf dem Server besteht der Webservice ja aus mindestens einer Klasse, die wir hier <code>SongResource</code>
+                    genannt haben. Diese Klasse müssen wir mit ähnlichen Methoden nachbauen, wobei wir innerhalb der Methoden einfach
+                    eine Anfrage an den Server senden. Das Grundgerüst der dieser Klassen ist daher immer folgendes:
                 </p>
                 <source-code language="javascript">
-                    class SongCollection {
+                    class SongResource {
                         // Konstruktor
                         constructor(url) {
                             this.url = url || "https://…";
@@ -3600,7 +3560,7 @@
                     }
                 </source-code>
                 <p>
-                    Wobei die Implementierung der beiden Webservice-Methoden zum Beispiel so aussehen kann:
+                    Die Implementierung der beiden Webservice-Methoden könnte dann zum Beispiel so aussehen:
                 </p>
                 <source-code language="javascript">
                     /**
@@ -3619,11 +3579,7 @@
                         });
 
                         // Ergebnis zurückliefern
-                        if (response.ok) {
-                            return await response.json();
-                        } else {
-                            return {};
-                        }
+                        return await response.json();
                     }
                 </source-code>
                 <p>
@@ -3676,10 +3632,7 @@
                         Unterstütze bei Bedarf mehr als ein Datenformat.
                     </li>
                     <li>
-                        Programmiere Collections und Ressourcen immer in verschiedenen Javaklassen.
-                    </li>
-                    <li>
-                        Definiere eine einheitliche Antwortstruktur, die auch Fehlermeldungen zurückliefern kann.
+                        Mappe auftretende Exceptions auf eine eigene Antwortstruktur, um diese sauber an den Client zu senden.
                     </li>
                     <li>
                         Verwende Objekte deiner Entity-Klassen, um Datensätze mit dem Webservice auszutauschen.
