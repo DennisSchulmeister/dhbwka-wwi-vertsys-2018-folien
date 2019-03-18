@@ -491,7 +491,7 @@
                     // Gehört zur Weboberfläche der Anwendung
                     public class ShoppingCartServlet extends HttpServlet {
                         @EJB
-                        ShoppingCartBean shoppingCart;
+                        private ShoppingCartBean shoppingCart;
 
                         public void doGet(…) { … }
                         public void doPost(…) { … }
@@ -1468,7 +1468,7 @@
                                 public class GuestbookServlet extends HttpServlet {
 
                                     @EJB
-                                    GuestbookBean guestbookBean;
+                                    private GuestbookBean guestbookBean;
 
                                     @Override
                                     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -1747,7 +1747,7 @@
                     public class GuestbookServlet extends HttpServler {
 
                         @EJB
-                        GuestbookBean guestbookBean
+                        private GuestbookBean guestbookBean
 
                         public void doGet(…) { … }
                         public void doPost(…) { … }
@@ -2680,7 +2680,7 @@
 
                                     // Hier nur das Interface angeben!
                                     @EJB
-                                    Payment payment;
+                                    private Payment payment;
                                     …
                                 }
                             </source-code>
@@ -2721,7 +2721,7 @@
 
                                     // Hier nur das Interface angeben
                                     @EJB
-                                    MovieSearch search;
+                                    private MovieSearch search;
                                     …
                                 }
                             </source-code>
@@ -2771,7 +2771,7 @@
 
                                     // Interface plus der richtige Name
                                     @EJB(beanName="ReadProductData-Admin")
-                                    ReadProductData readProductData;
+                                    private ReadProductData readProductData;
                                     …
                                 }
                             </source-code>
@@ -2832,7 +2832,7 @@
                     public class ProductRatingServlet extends HttpServlet {
 
                         @EJB
-                        ProductRating productRatingBean;
+                        private ProductRating productRatingBean;
                         …
                     }
                 </source-code>
@@ -2859,7 +2859,7 @@
 
                         // Interface plus der richtige Name
                         @EJB(beanName="ProductRating-Simple")
-                        ProductRating productRatingBean;
+                        private ProductRating productRatingBean;
                         …
                     }
                 </source-code>
@@ -2912,7 +2912,7 @@
                                 public class GenieTheGhostBean {
 
                                     @EJB
-                                    MagicLampBean lamp;
+                                    private MagicLampBean lamp;
 
                                     public GenieTheGhostBean {
                                         // Konstruktor: Hier ist this.lamp noch null!
@@ -2978,7 +2978,7 @@
                     public class ProductCatalogueBean {
 
                         @EJB
-                        ShoppingCartBean shoppingCart;
+                        private ShoppingCartBean shoppingCart;
                         …
                     }
                 </source-code>
@@ -3003,7 +3003,7 @@
                     public class ProductCatalogueBean {
 
                         @EJB
-                        ShoppingCartBean shoppingCart;
+                        private ShoppingCartBean shoppingCart;
 
                         public ProductCatalogueBean() {
                             // this.shoppingCart ist hier noch null!
@@ -3020,7 +3020,7 @@
                     public class ProductCatalogueBean {
 
                         @EJB
-                        ShoppingCartBean shoppingCart;
+                        private ShoppingCartBean shoppingCart;
 
                         @PostConstruct
                         public void onInit() {
