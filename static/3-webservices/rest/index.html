@@ -1427,7 +1427,6 @@
                                 // &lt;editor-fold defaultstate="collapsed" desc="Zugriff auf die Collection"&gt;
                                     /**
                                      * GET /api/Songs/List/
-                                     *
                                      * Auslesen einer Liste von Musikstücken.
                                      */
                                     @GET
@@ -1437,7 +1436,6 @@
 
                                     /**
                                      * POST /api/Songs/
-                                     *
                                      * Speichern eines neuen Songs.
                                      */
                                     @POST
@@ -1454,7 +1452,6 @@
                                 // &lt;editor-fold defaultstate="collapsed" desc="Zugriff auf einzelne Ressourcen"&gt;
                                     /**
                                      * GET /api/Songs/{id}/
-
                                      * Auslesen eines einzelnen Songs anhand seiner ID.
                                      */
                                     @GET
@@ -1463,10 +1460,8 @@
                                         return this.songBean.findById(id);
                                     }
 
-
                                     /**
                                      * PUT /api/Songs/{id}/
-
                                      * Aktualisieren eines vorhandenen Songs.
                                      */
                                     @PUT
@@ -1478,7 +1473,6 @@
 
                                     /**
                                      * DELETE /api/Songs/{id}/
-
                                      * Löschen eines vorhandenen Songs.
                                      */
                                     @DELETE
