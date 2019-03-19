@@ -1424,6 +1424,7 @@
                                 in der URL besitzen. Es handelt sich dabei um GET- und POST-Anfragen:
                             </p>
                             <source-code language="java">
+                                // &lt;editor-fold defaultstate="collapsed" desc="Zugriff auf die Collection"&gt;
                                     /**
                                      * GET /api/Songs/List/
                                      *
@@ -1443,12 +1444,14 @@
                                     public String saveNewSong(@Valid Song song) {
                                         return this.songBean.saveNew(song);
                                     }
+                                // &lt;/editor-fold&gt;
                             </source-code>
                             <p>
                                 Weiter geht es mit den Methoden, die sich auf einen vorhandenen Datensatz mit bekannter Id beziehen. Hier
                                 benötigen wir die passenden Methoden, um auf GET-, PUT- und DELETE-Anfragen zu reagieren.
                             </p>
                             <source-code language="java">
+                                // &lt;editor-fold defaultstate="collapsed" desc="Zugriff auf einzelne Ressourcen"&gt;
                                     /**
                                      * GET /api/Songs/{id}/
 
@@ -1489,6 +1492,7 @@
 
                                         return song;
                                     }
+                                // &lt;/editor-fold&gt;
                                 }
                             </source-code>
                             <p>
