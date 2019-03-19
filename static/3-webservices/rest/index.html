@@ -1971,7 +1971,10 @@
                                         // Exception werfen, wenn der Server einen Fehler meldet
                                         try {
                                             ExceptionResponse er = this.gson.fromJson(httpResponse.getBody(), ExceptionResponse.class);
-                                            throw new WebAppException(er);
+
+                                            if (er.exception != null) {
+                                                throw new WebAppException(er);
+                                            }
                                         } catch (JsonSyntaxException ex) {
                                             // Okay, keine Fehlerdaten empfangen
                                         }
@@ -1995,7 +1998,10 @@
                                         // Exception werfen, wenn der Server einen Fehler meldet
                                         try {
                                             ExceptionResponse er = this.gson.fromJson(httpResponse.getBody(), ExceptionResponse.class);
-                                            throw new WebAppException(er);
+
+                                            if (er.exception != null) {
+                                                throw new WebAppException(er);
+                                            }
                                         } catch (JsonSyntaxException ex) {
                                             // Okay, keine Fehlerdaten empfangen
                                         }
@@ -2020,7 +2026,10 @@
                                         // Exception werfen, wenn der Server einen Fehler meldet
                                         try {
                                             ExceptionResponse er = this.gson.fromJson(httpResponse.getBody(), ExceptionResponse.class);
-                                            throw new WebAppException(er);
+
+                                            if (er.exception != null) {
+                                                throw new WebAppException(er);
+                                            }
                                         } catch (JsonSyntaxException ex) {
                                             // Okay, keine Fehlerdaten empfangen
                                         }
@@ -2044,7 +2053,10 @@
                                         // Exception werfen, wenn der Server einen Fehler meldet
                                         try {
                                             ExceptionResponse er = this.gson.fromJson(httpResponse.getBody(), ExceptionResponse.class);
-                                            throw new WebAppException(er);
+
+                                            if (er.exception != null) {
+                                                throw new WebAppException(er);
+                                            }
                                         } catch (JsonSyntaxException ex) {
                                             // Okay, keine Fehlerdaten empfangen
                                         }
@@ -2066,7 +2078,10 @@
                                         // Exception werfen, wenn der Server einen Fehler meldet
                                         try {
                                             ExceptionResponse er = this.gson.fromJson(httpResponse.getBody(), ExceptionResponse.class);
-                                            throw new WebAppException(er);
+
+                                            if (er.exception != null) {
+                                                throw new WebAppException(er);
+                                            }
                                         } catch (JsonSyntaxException ex) {
                                             // Okay, keine Fehlerdaten empfangen
                                         }
@@ -2255,7 +2270,10 @@
                         try {
                             ExceptionResponse er = this.gson.fromJson(
                                     httpResponse.getBody(), ExceptionResponse.class);
-                            throw new WebAppException(er);
+
+                            if (er.exception != null) {
+                                throw new WebAppException(er);
+                            }
                         } catch (JsonSyntaxException ex) {
                             // Okay, keine Fehlerdaten empfangen
                         }
