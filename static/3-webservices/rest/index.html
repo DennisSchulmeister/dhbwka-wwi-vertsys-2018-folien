@@ -1417,7 +1417,7 @@
                                 public class SongResource {
 
                                     @EJB
-                                    SongBean songBean;
+                                    private SongBean songBean;
                             </source-code>
                             <p>
                                 Dann kommen die Methoden, die sich eher auf die „Liste der Einträge” beziehen und deshalb keine Id
@@ -1443,7 +1443,6 @@
                                     public String saveNewSong(@Valid Song song) {
                                         return this.songBean.saveNew(song);
                                     }
-                                }
                             </source-code>
                             <p>
                                 Weiter geht es mit den Methoden, die sich auf einen vorhandenen Datensatz mit bekannter Id beziehen. Hier
@@ -2194,7 +2193,7 @@
                 <source-code language="java">
                     SongResource songResource = new SongResource("https://…"); // URL optional
                     songResource.setAuthData("username", "password");
-                    
+
                     Song[] songs = songCollection.findSongs("Dire Straits");
 
                     if (songs != null) {
@@ -2440,7 +2439,7 @@
                                 public class SongtextResource {
 
                                     @EJB
-                                    SongtextBean songtextBean;
+                                    private SongtextBean songtextBean;
 
                                     @GET
                                     public List&lt;Songtext&gt; findSongtexts() {

@@ -1157,10 +1157,10 @@
                             public class CircusWebservice {
 
                                 @EJB
-                                LocationBean locationBean;
+                                private LocationBean locationBean;
 
                                 @EJB
-                                GigBean gigBean;
+                                private GigBean gigBean;
 
                                 public CircusWebservice() {
                                 }
@@ -1332,7 +1332,7 @@
                                             public class SOAPAuthBeispielWebservice {
 
                                                 @EJB
-                                                UserBean userBean;
+                                                private UserBean userBean;
 
                                                 /**
                                                  * Neuen Benutzer registrieren. Geht natürlich, ohne sich zuvor zu
@@ -1990,10 +1990,10 @@
                                 public class AdminWebservice {
 
                                     @EJB
-                                    BeziehungBean beziehungBean;
+                                    private BeziehungBean beziehungBean;
 
                                     @EJB
-                                    PersonBean personBean;
+                                    private PersonBean personBean;
 
                                     @WebMethod
                                     @WebResult(name = "status")
@@ -2049,10 +2049,10 @@
                                 public class SeifenoperWebservice {
 
                                     @EJB
-                                    BeziehungBean beziehungBean;
+                                    private BeziehungBean beziehungBean;
 
                                     @EJB
-                                    PersonBean personBean;
+                                    private PersonBean personBean;
 
                                     @WebMethod
                                     @WebResult(name = "person")
