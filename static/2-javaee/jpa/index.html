@@ -202,7 +202,7 @@
                     und der objektorientierten Welt von Java vermittelt. Dadurch wird es möglich, Code wie folgenden zu schreiben:
                 </p>
                 <source-code language="java">
-                    @Statelss
+                    @Stateless
                     public class GanzEinfach {
                         @PersistenceContext
                         protected EntityManager em;
@@ -2120,7 +2120,7 @@
                     Des Weiteren können wir in Java auch sogenannte <b>bidirektionale Beziehungen</b> herstellen, was es so in der
                     Datenbankwelt nicht gibt. Damit ist gemeint, dass nicht nur die Entität A auf B sondern auch B zurück auf A
                     verweisen kann – ohne dass dieser zusätzliche Verweis in der Datenbank abgelegt wird. Möglich macht das das
-                    Attribut <code>mappedBy</code> der verwendeten Annotationen, das immer den Feldnamen innerhalb der Quellentität
+                    Attribut <code>mappedBy</code> der verwendeten Annotationen, das immer den Feldnamen innerhalb der Quell-Entität
                     enthält.
                 </p>
                 <source-code language="java">
@@ -3165,7 +3165,7 @@
                             // Neuen Mitarbeiter speichern
                             this.em.persist(ma);
 
-                            // Mitarbeiter aktualisieren, so dass das ID-Feld
+                            // Mitarbeiter aktualisieren, damit das ID-Feld
                             // gefüllt ist
                             return this.em.merge(ma);
                         }
@@ -3248,7 +3248,7 @@
                             <h4 class="dhbw-lightblue" style="margin-bottom: 1em;">Vollständiges Beispiel</h4>
 
                             <source-code language="java">
-                                @Statless
+                                @Stateless
                                 public class JqlSelectBeispiel {
                                     @PersistenceContext
                                     protected EntityManager em;
@@ -3314,7 +3314,7 @@
                     übergeben werden muss, um alle Ergebnisse zurück zu bekommen:
                 </p>
                 <source-code language="java">
-                    @Statless
+                    @Stateless
                     public class SelectBeispiel1 {
                         @PersistenceContext
                         protected EntityManager em;
@@ -3338,7 +3338,7 @@
                     Mit der Punktsyntax können sogar die Felder aus den Beziehungen abgefragt werden:
                 </p>
                 <source-code language="java">
-                    @Statless
+                    @Stateless
                     public class SelectBeispiel2 {
                         @PersistenceContext
                         protected EntityManager em;
@@ -3416,7 +3416,7 @@
                             <p>
                                 Gute Enterprise Java Beans zu definieren, ist oftmals gar nicht so leicht. Für viele Anwendungen
                                 reicht es jedoch, wenn du je Entity eine Bean mit folgenden Methoden anbietest. Dadurch können
-                                die Clients ganz einfach Dantesätze suchen, anlegen, ändern und löschen. Die Typen <code>Entity</code>
+                                die Clients ganz einfach Datensätze suchen, anlegen, ändern und löschen. Die Typen <code>Entity</code>
                                 und <code>EntityId</code> musst du natürlich durch eigene Klassen ersetzen.
                             </p>
 
@@ -3655,7 +3655,7 @@
                             🔎
                         </td>
                         <td>
-                            Sie suchen Datensätzen anhand einzelner Felder.
+                            Sie suchen Datensätze anhand einzelner Felder.
                         </td>
                     </tr>
                     <tr>
@@ -4170,7 +4170,7 @@
                         Spendiere jeder Persistence Entity mehrere Konstruktoren, um ihre Benutzung zu vereinfachen.
                     </li>
                     <li>
-                        Übergabe die Id nicht an den Konstruktor, wenn sie automatisch generiert werden soll.
+                        Übergebe die ID nicht an den Konstruktor, wenn sie automatisch generiert werden soll.
                     </li>
                 </ul>
 
@@ -4180,7 +4180,7 @@
                         Überlege dir, die Tabellen im Produktivbetrieb von Hand anzulegen, um sie zu optimieren.
                     </li>
                     <li>
-                        Auf jeden Fall achte darauf, die richtige <b>Table Generation Strategy</b> zu wählen.
+                        Achte auf jeden Fall darauf, die richtige <b>Table Generation Strategy</b> zu wählen.
                     </li>
                     <li>
                         Nutze <code>@Table</code> und <code>@Column</code>, um die Namen von Tabellen und Feldern anzupassen.
