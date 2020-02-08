@@ -1119,75 +1119,75 @@
                             role            = "tabpanel"
                             aria-labelledby = "eigene_ws-beispiel-tab"
                         >
-                        <p>
-                            Innerhalb der Jakarta Enterprise Edition dürfen nur <b>Stateless Session Beans</b> als Webservice gekennzeichnet werden.
-                            Es empfiehlt sich dabei, immer eine eigene EJB nur für den Webservice zu definieren, anstatt einfach die ohnehin schon
-                            vorhandenen EJBs zum Webservice zu machen. Dadurch hat man eine klarere Trennung und läuft nicht Gefahr, zu viele
-                            Methoden entfernt aufrufbar zu machen. So wie im nachfolgenden Beispiel, das einen Webservice zur Verwaltung von
-                            Zirkusvorstellungen definiert. 🎪
-                        </p>
-                        <source-code language="java">
-                            /**
-                             * Zugrunde liegende EJB zur Verwaltung von Spielorten.
-                             * Hier nutzen wir die EntityBean aus dem JPA-Kapitel.
-                             */
-                            @Stateless
-                            public class LocationBean extends EntityBean&lt;Location, Long&gt; {
+                            <p>
+                                Innerhalb der Jakarta Enterprise Edition dürfen nur <b>Stateless Session Beans</b> als Webservice gekennzeichnet werden.
+                                Es empfiehlt sich dabei, immer eine eigene EJB nur für den Webservice zu definieren, anstatt einfach die ohnehin schon
+                                vorhandenen EJBs zum Webservice zu machen. Dadurch hat man eine klarere Trennung und läuft nicht Gefahr, zu viele
+                                Methoden entfernt aufrufbar zu machen. So wie im nachfolgenden Beispiel, das einen Webservice zur Verwaltung von
+                                Zirkusvorstellungen definiert. 🎪
+                            </p>
+                            <source-code language="java">
+                                /**
+                                 * Zugrunde liegende EJB zur Verwaltung von Spielorten.
+                                 * Hier nutzen wir die EntityBean aus dem JPA-Kapitel.
+                                 */
+                                @Stateless
+                                public class LocationBean extends EntityBean&lt;Location, Long&gt; {
 
-                                public LocationBean() {
-                                    super(Location.class);
-                                }
-                            }
-
-                            /**
-                             * Zugrunde liegende EJB zur Verwaltung von Vorstellungen.
-                             * Nutzt ebenfalls die EntityBean aus dem JPA-Kapitel.
-                             */
-                            @Stateless
-                            public class GigBean extends EntityBean&lt;Gig, Long&gt; {
-
-                                public GigBean() {
-                                    super(Gig.class);
-                                }
-                            }
-
-                            /**
-                             * Und hier nun der eigentliche Webservice. Entfernte Clients können nur
-                             * seine Methoden aufrufen und somit zum Beispiel keine Änderungen an den
-                             * Daten vornehmen.
-                             */
-                            @Stateless
-                            @WebService
-                            public class CircusWebservice {
-
-                                @EJB
-                                private LocationBean locationBean;
-
-                                @EJB
-                                private GigBean gigBean;
-
-                                public CircusWebservice() {
+                                    public LocationBean() {
+                                        super(Location.class);
+                                    }
                                 }
 
-                                @WebMethod
-                                @WebResult(name="location")
-                                public List&lt;Location&gt; getAllLocations() {
-                                    return this.locationBean.findAll();
+                                /**
+                                 * Zugrunde liegende EJB zur Verwaltung von Vorstellungen.
+                                 * Nutzt ebenfalls die EntityBean aus dem JPA-Kapitel.
+                                 */
+                                @Stateless
+                                public class GigBean extends EntityBean&lt;Gig, Long&gt; {
+
+                                    public GigBean() {
+                                        super(Gig.class);
+                                    }
                                 }
 
-                                @WebMethod
-                                @WebResult(name="gig")
-                                public List&lt;Gig&gt; getAllGigs() {
-                                    return this.gigBean.findAll();
-                                }
+                                /**
+                                 * Und hier nun der eigentliche Webservice. Entfernte Clients können nur
+                                 * seine Methoden aufrufen und somit zum Beispiel keine Änderungen an den
+                                 * Daten vornehmen.
+                                 */
+                                @Stateless
+                                @WebService
+                                public class CircusWebservice {
 
-                                @WebMethod
-                                @WebResult(name="gig")
-                                public Gig getGigDetails(@WebParam(name="id") long id) {
-                                    return this.gigBean.findById(id);
+                                    @EJB
+                                    private LocationBean locationBean;
+
+                                    @EJB
+                                    private GigBean gigBean;
+
+                                    public CircusWebservice() {
+                                    }
+
+                                    @WebMethod
+                                    @WebResult(name="location")
+                                    public List&lt;Location&gt; getAllLocations() {
+                                        return this.locationBean.findAll();
+                                    }
+
+                                    @WebMethod
+                                    @WebResult(name="gig")
+                                    public List&lt;Gig&gt; getAllGigs() {
+                                        return this.gigBean.findAll();
+                                    }
+
+                                    @WebMethod
+                                    @WebResult(name="gig")
+                                    public Gig getGigDetails(@WebParam(name="id") long id) {
+                                        return this.gigBean.findById(id);
+                                    }
                                 }
-                            }
-                        </source-code>
+                            </source-code>
                         </div>
                     </div>
                 </div>
