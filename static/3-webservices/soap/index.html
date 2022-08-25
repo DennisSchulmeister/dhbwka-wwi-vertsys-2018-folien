@@ -166,7 +166,7 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                    <div class="tab-content">
                         <!-- Business-To-Business -->
                         <div
                             class           = "tab-pane fade show active"
@@ -296,7 +296,7 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                    <div class="tab-content">
                         <!-- HTTP und XML-Format -->
                         <div
                             class           = "tab-pane fade show active"
@@ -555,94 +555,94 @@
         <section>
             <h1>Webservices testen mit SoapUI</h1>
             <article>
-                <ul class="dhbw-carousel-links">
+                <ul class="nav nav-tabs" role="tablist">
                     <li>
-                        <a href="#soapui-carousel" role="button" data-slide="next">Nächstes Bild</a>
+                        <a href="#soapui-carousel" class="nav-link" data-slide="next">Nächstes Bild</a>
                     </li>
                     <li>
-                        <a href="#soapui-carousel" role="button" data-slide="prev">Vorheriges Bild</a>
+                        <a href="#soapui-carousel" class="nav-link" data-slide="prev">Vorheriges Bild</a>
                     </li>
                     <li>
-                        <a href="#soapui-carousel" role="button" data-slide-to="0">Nochmal von vorne</a>
+                        <a href="#soapui-carousel" class="nav-link" data-slide-to="0">Nochmal von vorne</a>
                     </li>
                 </ul>
                 <div id="soapui-carousel" class="carousel slide" style="margin-bottom: 1em;" data-interval="false">
                     <div class="carousel-inner">
-                        <div class="carousel-item img-thumbnail active">
+                        <div class="carousel-item active">
                             <p>
                                 Angenommen, du hast einen Webservice entwickelt und startest diesen in Netbeans. Dann zeigt Netbeans am Ende
                                 des Server-Protokolls die URLs des Webservices an.
                             </p>
                             <img class="active d-block w-100" src="soapui-01.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Wenn du <code>?wsdl</code> an die URLs anhängst, kannst du im Browser die WSDL zu jeder EJB abrufen.
                             </p>
                             <img class="active d-block w-100" src="soapui-02.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 In SoapUI musst du je WSDL ein neues SOAP-Projekt anlegen.
                             </p>
                             <img class="active d-block w-100" src="soapui-03.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Dadurch öffnet sich folgendes Fenster. Kopiere die URL der WSDL hier herein und gib dem Projekt einen Namen.
                             </p>
                             <img class="active d-block w-100" src="soapui-04.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Das neue Projekt taucht dann links in der Baumansicht auf. Anhand der WSDL konnte SoapUI auch bereits die verfügbaren Operationen erkennen.
                             </p>
                             <img class="active d-block w-100" src="soapui-05.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Per Doppelklick auf ein Binding öffnet sich ein Fenster mit allerlei nützlichen Informationen über den Webservice.
                             </p>
                             <img class="active d-block w-100" src="soapui-06.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Beispielsweise gibt es hier auch einen praktischen WSDL-Viewer, der eine schnelle Navigation innerhalb der WSDL ermöglicht.
                             </p>
                             <img class="active d-block w-100" src="soapui-07.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 SoapUI hat bereits zu jeder Operation eine Beispielanfrage generiert, die sich per Doppelklick öffnen lässt.
                             </p>
                             <img class="active d-block w-100" src="soapui-08.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Über das Kontextmenü lassen sich noch beliebig weitere Beispielanfragen erzeugen.
                             </p>
                             <img class="active d-block w-100" src="soapui-09.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 So wie diese hier, wo der Parameter <src-code language="xml">&lt;name&gt;Spaceballs&lt;/name&gt;</src-code> an den Webservice übergeben wird. Per Klick
                                 auf das grüne Play-Symbol wird die Anfrage abgeschickt.
                             </p>
                             <img class="active d-block w-100" src="soapui-10.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Wenig später taucht dann rechts die Antwort auf.
                             </p>
                             <img class="active d-block w-100" src="soapui-11.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Über die „Raw”-Buttons lassen sich die HTTP-Rohdaten der Anfrage und Antwort anzeigen. Dadurch siehst du dann auch die gesendeten Header Fields.
                             </p>
                             <img class="active d-block w-100" src="soapui-12.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Damit endet unsere kleine SoapUI-Tour. Das Tool sollte ein keinem Werkzeugkoffer fehlen. 🔧
                             </p>
@@ -937,7 +937,7 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                    <div class="tab-content">
                         <!-- Allgemeines Vorgehen -->
                         <div
                             class           = "tab-pane fade show active"
@@ -1057,13 +1057,13 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-md">
-                                        <h3 class="dhbw-lightblue">@WebService</h3>
+                                        <h3>@WebService</h3>
                                         <p>
                                             Kennzeichnet eine <b>öffentliche, nicht-abstrakte Klasse</b> mit <b>öffentlichem und parameterlosen Konstruktor</b> als Webserviceimplementierung.
                                         </p>
                                     </div>
                                     <div class="col-md">
-                                        <h3 class="dhbw-lightblue">@WebMethod</h3>
+                                        <h3>@WebMethod</h3>
                                         <p>
                                             Markiert eine <b>öffentliche, nicht-statische Methode</b>, um sie über den Webservices aufrufbar zu machen.
                                         </p>
@@ -1071,13 +1071,13 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md">
-                                        <h3 class="dhbw-lightblue">@WebParam</h3>
+                                        <h3>@WebParam</h3>
                                         <p>
                                             Kennzeichnet einen Methodenparameter und legt fest, wie er im XML übergeben werden muss, z.B. wie das dazugehörige XML-Element heißen muss.
                                         </p>
                                     </div>
                                     <div class="col-md">
-                                        <h3 class="dhbw-lightblue">@WebResult</h3>
+                                        <h3>@WebResult</h3>
                                         <p>
                                             Steht vor einer Methode und legt fest, welchen Namen das XML-Element besitzt, in dem der Rückgabewert an den Aufrufer gesendet wird.
                                         </p>
@@ -1314,7 +1314,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                                <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                                <div class="tab-content">
                                     <!-- Webservice-Klasse -->
                                     <div
                                         class           = "tab-pane fade show active"
@@ -1766,56 +1766,56 @@
         <section>
             <h1>Fremde Webservices aufrufen</h1>
             <article>
-                <ul class="dhbw-carousel-links">
+                <ul class="nav nav-tabs" role="tablist">
                     <li>
-                        <a href="#aufruf-carousel" role="button" data-slide="next">Nächstes Bild</a>
+                        <a href="#aufruf-carousel" class="nav-link" data-slide="next">Nächstes Bild</a>
                     </li>
                     <li>
-                        <a href="#aufruf-carousel" role="button" data-slide="prev">Vorheriges Bild</a>
+                        <a href="#aufruf-carousel" class="nav-link" data-slide="prev">Vorheriges Bild</a>
                     </li>
                     <li>
-                        <a href="#aufruf-carousel" role="button" data-slide-to="0">Nochmal von vorne</a>
+                        <a href="#aufruf-carousel" class="nav-link" data-slide-to="0">Nochmal von vorne</a>
                     </li>
                 </ul>
                 <div id="aufruf-carousel" class="carousel slide" style="margin-bottom: 1em;" data-interval="false">
                     <div class="carousel-inner">
-                        <div class="carousel-item img-thumbnail active">
+                        <div class="carousel-item active">
                             <p>
                                 Als Beispiel soll der Filmwebservice von <a href="#5">Folie 5</a> herhalten. 🎥 Er muss in Netbeans ausgeführt werden.
                             </p>
                             <img class="active d-block w-100" src="aufruf-01.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Den Aufruf packen wir in eine neue Anwendung, für die du ein neues Projekt anlegen musst.
                             </p>
                             <img class="active d-block w-100" src="aufruf-02.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Und zwar vom Typ „Java Application”, da wir ein ganz einfaches Kommandozeilenprogramm schreiben wollen.
                             </p>
                             <img class="active d-block w-100" src="aufruf-03.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Dieses Fenster kennst du ja schon. Trage einen sinnvollen Namen ein und klicke auf „Finish”.
                             </p>
                             <img class="active d-block w-100" src="aufruf-04.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Dadurch legt Netbeans ein neues Projekt an, das am Anfang natürlich noch komplett leer ausschaut. 🥛
                             </p>
                             <img class="active d-block w-100" src="aufruf-05.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Jetzt wird es spannend: Wir benötigen einen neuen „Web Service Client”.
                             </p>
                             <img class="active d-block w-100" src="aufruf-06.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 In diesem Fenster musst du dann angeben, wo sich die WSDL befindet. Im Screenshot haben wir einfach ihre URL hinterlegt,
                                 was du so auch im echten Leben tun solltest. Denn so kannst du die Client-Klassen jederzeit auffrischen lassen, wenn sich
@@ -1823,14 +1823,14 @@
                             </p>
                             <img class="active d-block w-100" src="aufruf-07.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Wow! Alle diese Klassen hat Netbeans (oder besser gesagt das Tool <code>wsimport</code>) für uns generiert. Man stelle sich
                                 vor, wir hätten die alle von Hand schreiben müssen … 😮
                             </p>
                             <img class="active d-block w-100" src="aufruf-08.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Hier nun der komplette Quellcode für unser neues Programm. Die ersten fünf Zeilen der <code>main()</code>-Methode sind
                                 hier die entscheidenden. Die Klassen <code>Soap</code> und <code>MovieSoapWebservice</code> heißen für jeden Webservice
@@ -1874,13 +1874,13 @@
                                 }
                             </source-code>
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Das Ergebnis unserer Mühen. Es hat geklappt. Der Webservice lässt sich tatsächlich aufrufen. 🥳
                             </p>
                             <img class="active d-block w-100" src="aufruf-09.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Na, das war doch mal einfach. Bis auf die zwei Klassennamen, die man immer etwas suchen muss,
                                 war das doch echt nicht schwer. Und es funktioniert natürlich auch in jeder anderen Art von
@@ -1940,7 +1940,7 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                    <div class="tab-content">
                         <!-- Aufgabe -->
                         <div
                             class           = "tab-pane fade show active"
@@ -2148,7 +2148,7 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                    <div class="tab-content">
                         <!-- Allgemeine Fragen -->
                         <div
                             class           = "tab-pane fade show active"

@@ -147,7 +147,7 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                    <div class="tab-content">
                         <!-- Direkter Vergleich -->
                         <div
                             class           = "tab-pane fade show active"
@@ -314,9 +314,7 @@
                 </div>
             </article>
             <aside>
-                <div class="embed-responsive embed-responsive-16by9" style="margin-bottom: 1em">
-                    <iframe src="https://www.youtube-nocookie.com/embed/Nzf-TbvswDU" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
+                <lsx-youtube video="Nzf-TbvswDU"></lsx-youtube>
                 <p>
                     Um zu verstehen, wie sich SOAP und REST unterscheiden und warum beide so definiert sind, wie sie sind,
                     muss man sich die Hintergründe und die Entstehung beider Ansätze anschauen.
@@ -478,7 +476,7 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                    <div class="tab-content">
                         <!-- Liste abrufen -->
                         <div
                             class           = "tab-pane fade show active"
@@ -796,81 +794,81 @@
         <section>
             <h1>REST-Webservices testen mit SoapUI</h1>
             <article>
-                <ul class="dhbw-carousel-links">
+                <ul class="nav nav-tabs" role="tablist">
                     <li>
-                        <a href="#soapui-carousel" role="button" data-slide="next">Nächstes Bild</a>
+                        <a href="#soapui-carousel" class="nav-link" data-slide="next">Nächstes Bild</a>
                     </li>
                     <li>
-                        <a href="#soapui-carousel" role="button" data-slide="prev">Vorheriges Bild</a>
+                        <a href="#soapui-carousel" class="nav-link" data-slide="prev">Vorheriges Bild</a>
                     </li>
                     <li>
-                        <a href="#soapui-carousel" role="button" data-slide-to="0">Nochmal von vorne</a>
+                        <a href="#soapui-carousel" class="nav-link" data-slide-to="0">Nochmal von vorne</a>
                     </li>
                 </ul>
                 <div id="soapui-carousel" class="carousel slide" style="margin-bottom: 1em;" data-interval="false">
                     <div class="carousel-inner">
-                        <div class="carousel-item img-thumbnail active">
+                        <div class="carousel-item active">
                             <p>
                                 Wieder einmal haben wir in Netbeans einen hervorragenden Webservice programmiert. 🤗
                             </p>
                             <img class="active d-block w-100" src="soapui-01.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Durch Anhängen von <tt>?_wadl</tt> an die URL können wir die WADL-Beschreibung abrufen.
                             </p>
                             <img class="active d-block w-100" src="soapui-02.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Um den Webservice zu testen, legen wir in SoapUI ein REST-Projekt an.
                             </p>
                             <img class="active d-block w-100" src="soapui-03.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Im folgenden Fenster musst du auf <i>Import WADL…</i> klicken.
                             </p>
                             <img class="active d-block w-100" src="soapui-04.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Dadurch ändert sich das Fenster und du kannst die URL der WADL-Beschreibung einfügen.
                             </p>
                             <img class="active d-block w-100" src="soapui-05.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Anhand der WADL kann SoapUI die aufrufbaren Methoden und die URL-Struktur des Webservices erkennen.
                             </p>
                             <img class="active d-block w-100" src="soapui-06.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Die Methode <tt>createDemoData()</tt> erwartet keine Parameter, so dass du sie direkt aufrufen kannst.
                             </p>
                             <img class="active d-block w-100" src="soapui-07.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Auf der rechten Seite zeigt SoapUI die empfangenen JSON-Daten an. In diesem Fall eine einfache Statusmeldung.
                             </p>
                             <img class="active d-block w-100" src="soapui-08.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Der Methode <tt>getListJson()</tt> kann ein URL-Parameter names „query” mitgegeben werden.
                                 Sie liefert auch deutlich mehr Daten zurück. 🙂
                             </p>
                             <img class="active d-block w-100" src="soapui-09.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Dann wollen wir mal einen neuen Song anlegen. 🎵 Die JSON-Struktur müssen wir allerdings selbst herausfinden …
                             </p>
                             <img class="active d-block w-100" src="soapui-10.png" />
                         </div>
-                        <div class="carousel-item img-thumbnail">
+                        <div class="carousel-item">
                             <p>
                                 Unser Webservice scheint perfekt zu funktionieren. 👍🏻
                                 Klasse, was SoapUI alles kann.
@@ -957,9 +955,7 @@
                     Hier kannst du nun deine ersten, praktischen Erfahrungen mit REST sammeln. Lade dir hierfür einfach das Beispiel von Moodle
                     runter und erkunde es in SoapUI. Danach solltest mit der nächsten Aufgabe keine Probleme mehr haben. 🎓
                 </p>
-                <div class="embed-responsive embed-responsive-16by9" style="margin-bottom: 1em">
-                    <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/4bRuh9cNgl8?rel=0" allow="encrypted-media" allowfullscreen></iframe>
-                </div>
+                <lsx-youtube video="4bRuh9cNgl8"></lsx-youtube>
             </aside>
         </section>
 
@@ -1176,7 +1172,7 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                    <div class="tab-content">
                         <!-- Benötigte Annotationen -->
                         <div
                             class           = "tab-pane fade show active"
@@ -1767,7 +1763,7 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                    <div class="tab-content">
                         <!-- Maven-Projekt -->
                         <div
                             class           = "tab-pane fade show active"
@@ -2324,7 +2320,7 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                    <div class="tab-content">
                         <!-- Aufgabe -->
                         <div
                             class           = "tab-pane fade show active"
@@ -2826,7 +2822,7 @@
                             </a>
                         </li> -->
                     </ul>
-                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                    <div class="tab-content">
                         <!-- User-Entity -->
                         <div
                             class           = "tab-pane fade show active"
@@ -3264,7 +3260,7 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="tab-content border border-top-0 bg-white" style="padding: 1em;">
+                    <div class="tab-content">
                         <!-- Ablauf -->
                         <div
                             class           = "tab-pane fade show active"
@@ -3506,9 +3502,7 @@
                 </div>
             </article>
             <aside>
-                <div class="embed-responsive embed-responsive-16by9" style="margin-bottom: 1em">
-                    <iframe src="https://www.youtube-nocookie.com/embed/Zp4L89oLrmE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
+                <lsx-youtube video="Zp4L89oLrmE"></lsx-youtube>
                 <p>
                     An dieser Stelle wird es Zeit für etwas Werbung. 📺 Wir unterbrechen das laufende Programm und kommen
                     nochmal auf das <a href="../../2-javaee/ejb/#8" target="_blank">EJB-Kapitel</a>, bzw. einen Teil daraus,
